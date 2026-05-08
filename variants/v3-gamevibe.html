@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ziwei Su · Game-Vibe — Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0d0a; --bg-2:#0f1410; --bg-card:#121a14;
+  --ink:#cfd9c8; --ink-mute:#5a6a55; --ink-fade:#3a4537;
+  --green:#7cff5c; --green-dim:#3a8a2a;
+  --amber:#ffb347; --magenta:#ff5cff; --cyan:#5cffff;
+  --pixel:'Press Start 2P',monospace;
+  --crt:'VT323',monospace;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',system-ui,sans-serif;
+}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--mono);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* CRT scanlines + curvature shadow */
+body::before{
+  content:'';position:fixed;inset:0;z-index:300;pointer-events:none;
+  background:repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 2px,
+    rgba(0,0,0,.18) 3px,
+    rgba(0,0,0,.18) 4px
+  );
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:299;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.65) 100%);
+  mix-blend-mode:multiply;
+}
+
+/* HUD */
+.hud{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px;font-family:var(--pixel);font-size:9px;
+  color:var(--green);background:var(--bg);
+  border-bottom:1px solid var(--green-dim);
+  letter-spacing:.05em;
+}
+.hud .l,.hud .r{display:flex;gap:20px;align-items:center}
+.hud .blink{animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.hud a{color:var(--ink-mute);transition:color .1s}
+.hud a:hover{color:var(--green)}
+.hud .selected{color:var(--green)}
+.hud .selected::before{content:'▸ ';color:var(--amber)}
+
+/* Main wrapper */
+.scr{padding-top:48px;max-width:1100px;margin:0 auto;padding-left:24px;padding-right:24px}
+
+/* HERO -- character select screen */
+.hero{padding:60px 0 40px}
+.boot{font-family:var(--crt);font-size:1.4rem;color:var(--green);line-height:1.4;margin-bottom:32px}
+.boot .ok{color:var(--amber)}
+.boot .err{color:var(--magenta)}
+
+.title{
+  font-family:var(--pixel);font-size:clamp(1.6rem,5vw,3.2rem);
+  color:var(--ink);line-height:1.4;letter-spacing:.02em;
+  text-shadow:
+    2px 0 var(--magenta),
+    -2px 0 var(--cyan),
+    0 0 14px rgba(124,255,92,.3);
+  margin:24px 0 14px;
+  animation:flicker 4s infinite;
+}
+@keyframes flicker{0%,98%,100%{opacity:1}96%,97%{opacity:.8}}
+.subtitle{font-family:var(--pixel);font-size:9px;color:var(--amber);letter-spacing:.1em;margin-bottom:32px}
+
+/* Character sheet */
+.sheet{
+  border:1px solid var(--green-dim);background:var(--bg-card);
+  padding:24px;margin-bottom:36px;
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  font-family:var(--crt);font-size:1.2rem;line-height:1.45;
+}
+.sheet .stat{padding:6px 16px;display:flex;justify-content:space-between;border-bottom:1px dashed var(--ink-fade)}
+.sheet .stat:last-child,.sheet .stat:nth-last-child(2){border-bottom:none}
+.sheet .stat .k{color:var(--ink-mute);text-transform:uppercase;letter-spacing:.05em;font-size:.95rem;font-family:var(--mono)}
+.sheet .stat .v{color:var(--ink)}
+.sheet .stat .v em{color:var(--amber);font-style:normal}
+.sheet .stat .v.green{color:var(--green)}
+.sheet .stat .v.cyan{color:var(--cyan)}
+@media(max-width:640px){.sheet{grid-template-columns:1fr}.sheet .stat{border-bottom:1px dashed var(--ink-fade) !important}}
+
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.btn{
+  font-family:var(--pixel);font-size:9px;color:var(--green);
+  background:transparent;border:1px solid var(--green);
+  padding:12px 22px;cursor:pointer;letter-spacing:.06em;
+  transition:all .12s;
+}
+.btn:hover{background:var(--green);color:var(--bg);box-shadow:0 0 16px rgba(124,255,92,.5)}
+.btn.amber{color:var(--amber);border-color:var(--amber)}
+.btn.amber:hover{background:var(--amber);color:var(--bg);box-shadow:0 0 16px rgba(255,179,71,.5)}
+
+/* Section heads */
+.h-section{
+  font-family:var(--pixel);font-size:13px;color:var(--amber);
+  letter-spacing:.06em;margin:80px 0 8px;
+}
+.h-rule{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--ink-fade);margin-bottom:32px;letter-spacing:.1em;text-transform:uppercase}
+.h-rule::before{content:'';flex:1;height:1px;background:var(--ink-fade)}
+.h-rule::after{content:'';flex:8;height:1px;background:var(--ink-fade)}
+
+/* Quest cards */
+.quests{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:780px){.quests{grid-template-columns:1fr}}
+.quest{
+  background:var(--bg-card);border:1px solid var(--green-dim);
+  padding:20px;cursor:pointer;transition:all .15s;
+  position:relative;
+}
+.quest:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 0 var(--green-dim)}
+.quest::before{
+  content:'';position:absolute;top:-1px;left:-1px;width:8px;height:8px;
+  border-top:2px solid var(--amber);border-left:2px solid var(--amber);
+}
+.quest::after{
+  content:'';position:absolute;bottom:-1px;right:-1px;width:8px;height:8px;
+  border-bottom:2px solid var(--amber);border-right:2px solid var(--amber);
+}
+.quest .id{font-family:var(--pixel);font-size:8px;color:var(--ink-mute);letter-spacing:.08em;margin-bottom:6px}
+.quest h3{font-family:var(--pixel);font-size:11px;color:var(--ink);margin-bottom:14px;line-height:1.45;letter-spacing:.04em}
+.quest .tag{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.quest .desc{font-family:var(--crt);font-size:1.1rem;color:var(--ink-mute);line-height:1.45;margin-bottom:14px;min-height:64px}
+.quest .stats{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:10px;color:var(--ink-fade)}
+.quest .stats span{display:inline-flex;align-items:center;gap:4px}
+.quest .stats span.on{color:var(--green)}
+.quest .stats span::before{content:'■';color:var(--green-dim)}
+.quest .stats span.on::before{color:var(--green)}
+.quest .quest-foot{margin-top:14px;padding-top:12px;border-top:1px dashed var(--ink-fade);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.06em;text-transform:uppercase}
+.quest .quest-foot .reward{color:var(--green)}
+
+/* Featured quest (full width) */
+.quest.featured{grid-column:1/-1;display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center}
+.quest.featured .pixel-art{
+  aspect-ratio:1;background:
+    linear-gradient(45deg,#3a2814 25%,transparent 25%) 0 0,
+    linear-gradient(-45deg,#3a2814 25%,transparent 25%) 0 0,
+    linear-gradient(45deg,transparent 75%,#3a2814 75%) 0 0,
+    linear-gradient(-45deg,transparent 75%,#3a2814 75%) 0 0,
+    radial-gradient(circle at 50% 40%,#ffb347 0%,#ff5722 35%,#3a2814 60%);
+  background-size:16px 16px,16px 16px,16px 16px,16px 16px,100% 100%;
+  background-position:0 0,8px 0,8px 8px,0 8px,center;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--pixel);font-size:1.6rem;color:#fff;
+  text-shadow:2px 2px 0 #000;
+  border:1px solid var(--green-dim);
+}
+@media(max-width:780px){.quest.featured{grid-template-columns:1fr}.quest.featured .pixel-art{aspect-ratio:16/9}}
+
+/* About / Stats */
+.bio{
+  background:var(--bg-card);border:1px solid var(--green-dim);
+  padding:32px;margin-top:80px;
+}
+.bio h2{font-family:var(--pixel);font-size:13px;color:var(--amber);margin-bottom:24px;letter-spacing:.06em}
+.bio p{font-family:var(--crt);font-size:1.25rem;color:var(--ink);line-height:1.55;margin-bottom:14px}
+.bio .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;padding-top:24px;border-top:1px dashed var(--ink-fade)}
+.bio .links a{
+  font-family:var(--pixel);font-size:9px;color:var(--green);
+  border:1px solid var(--green-dim);padding:10px 16px;
+  letter-spacing:.05em;transition:all .12s;
+}
+.bio .links a:hover{background:var(--green);color:var(--bg);border-color:var(--green)}
+
+/* Footer */
+footer{margin-top:80px;padding:32px 24px 64px;text-align:center;font-family:var(--mono);font-size:10px;color:var(--ink-fade);letter-spacing:.15em;text-transform:uppercase}
+footer .blink-line{display:inline-block;animation:blink 1.5s steps(2) infinite}
+
+</style>
+</head>
+<body>
+
+<!-- HUD -->
+<div class="hud">
+  <div class="l">
+    <span>● SUSU.SYS</span>
+    <span class="blink">● ONLINE</span>
+    <span>v3.0.6</span>
+  </div>
+  <div class="r">
+    <a class="selected" href="#">PROFILE</a>
+    <a href="#work">QUESTS</a>
+    <a href="#bio">BIO</a>
+    <a href="mailto:suzysu418@gmail.com">CONTACT</a>
+    <a href="#">[ EN / 中 ]</a>
+  </div>
+</div>
+
+<div class="scr">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="boot">
+      <span class="ok">[ OK ]</span> &nbsp;Booting susu.sys ......&nbsp;<span class="ok">DONE</span><br>
+      <span class="ok">[ OK ]</span> &nbsp;Loading character profile ...&nbsp;<span class="ok">DONE</span><br>
+      <span class="ok">[ OK ]</span> &nbsp;Mounting <span style="color:var(--cyan)">/portfolio</span> ...&nbsp;<span class="ok">READY</span>
+    </div>
+
+    <div class="title">ZIWEI &nbsp;SU</div>
+    <div class="subtitle">▸ GAME DESIGNER · LONDON · LV.19MO</div>
+
+    <!-- Character sheet -->
+    <div class="sheet">
+      <div class="stat"><span class="k">CLASS</span><span class="v green">Game Designer</span></div>
+      <div class="stat"><span class="k">SUBCLASS</span><span class="v cyan">Solo Maker</span></div>
+      <div class="stat"><span class="k">LOCATION</span><span class="v">London, UK</span></div>
+      <div class="stat"><span class="k">TENURE</span><span class="v">19 MO @ <em>Studio</em></span></div>
+      <div class="stat"><span class="k">SPECS</span><span class="v">Systems · Economy · F2P</span></div>
+      <div class="stat"><span class="k">SHIPPED</span><span class="v">1 Title <em>· East Asia</em></span></div>
+      <div class="stat"><span class="k">SIDEPROJECTS</span><span class="v">x6 · 1 jam · 1 tool</span></div>
+      <div class="stat"><span class="k">STATUS</span><span class="v green">▸ HIRING WINDOW</span></div>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn">▸ PLAY QUESTS &nbsp;[ENTER]</button>
+      <button class="btn amber">⌬ EMAIL CV &nbsp;[E]</button>
+    </div>
+  </section>
+
+  <!-- QUESTS -->
+  <h2 class="h-section" id="work">▌ SELECTED QUESTS</h2>
+  <div class="h-rule">CHOOSE ONE TO INSPECT — 6 ENTRIES</div>
+
+  <div class="quests">
+
+    <!-- Featured: tarduck -->
+    <a class="quest featured" href="#">
+      <div class="pixel-art">⌖ TAR</div>
+      <div>
+        <div class="id">QUEST_01 · LEGENDARY</div>
+        <h3>tarduck — Escape from Duckkov</h3>
+        <div class="tag">SOLO · BROWSER · EXTRACTION SHOOTER</div>
+        <p class="desc">Tarkov-inspired top-down shooter built solo for Cursor Vibe Jam 2026 in 30 days. 5 weapons, 5 enemies, body-part hitboxes, grid inventory, 12 talents, 8 crafting recipes, fog-of-war.</p>
+        <div class="stats">
+          <span class="on">THREE.JS</span><span class="on">VITE</span><span class="on">AI-CODED</span><span class="on">57 COMMITS</span>
+        </div>
+        <div class="quest-foot">
+          <span>JAM · APR 2026</span>
+          <span class="reward">▸ PUBLIC · GITHUB</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- LD59 -->
+    <a class="quest" href="#">
+      <div class="id">QUEST_02 · RARE</div>
+      <h3>Respond to Signal 404</h3>
+      <div class="tag">UNITY · HORROR · PUZZLE</div>
+      <p class="desc">2D pixel-art horror puzzle for Ludum Dare 59. Sole programmer in a 6-person team, 72 hours, HTML5 build to itch.io.</p>
+      <div class="stats">
+        <span class="on">UNITY</span><span class="on">SOLE PROG</span><span class="on">PIXEL ART</span>
+      </div>
+      <div class="quest-foot">
+        <span>LD59 · APR 2026</span>
+        <span class="reward">▸ PUBLIC · ITCH</span>
+      </div>
+    </a>
+
+    <!-- gridbot -->
+    <a class="quest" href="#">
+      <div class="id">QUEST_03 · TOOL</div>
+      <h3>gridbot — Black-box QA</h3>
+      <div class="tag">PYTHON · MIT · pip install</div>
+      <p class="desc">Android automation toolkit for designers and QA, not engineers. Capture + input + OCR (PaddleOCR) + state graphs. Modular, public.</p>
+      <div class="stats">
+        <span class="on">PYTHON</span><span class="on">ADB</span><span class="on">PADDLEOCR</span>
+      </div>
+      <div class="quest-foot">
+        <span>SOLO · APR 2026</span>
+        <span class="reward">▸ PUBLIC · MIT</span>
+      </div>
+    </a>
+
+    <!-- OpenClaw -->
+    <a class="quest" href="#">
+      <div class="id">QUEST_04 · EPIC</div>
+      <h3>OpenClaw — Multi-Agent</h3>
+      <div class="tag">CLAUDE API · 7 AGENTS · 34 CRON</div>
+      <p class="desc">Self-built automation platform — 7 agents, 34 cron jobs, 6+ APIs. Job hunt + content + ops on autopilot. JSON-driven, signal bus.</p>
+      <div class="stats">
+        <span class="on">PYTHON</span><span class="on">CLAUDE</span><span class="on">CRON</span>
+      </div>
+      <div class="quest-foot">
+        <span>ONGOING · 2024+</span>
+        <span class="reward">▸ STATUS · LIVE</span>
+      </div>
+    </a>
+
+    <!-- Moodrift -->
+    <a class="quest" href="#">
+      <div class="id">QUEST_05 · UNCOMMON</div>
+      <h3>Moodrift — AI Music Pipeline</h3>
+      <div class="tag">SUNO · FFMPEG · YOUTUBE · BILIBILI</div>
+      <p class="desc">End-to-end pipeline that takes Suno-generated tracks through video production and pushes to YouTube + Bilibili.</p>
+      <div class="stats">
+        <span class="on">PYTHON</span><span class="on">FFMPEG</span><span class="on">SUNO</span>
+      </div>
+      <div class="quest-foot">
+        <span>ONGOING · 2024+</span>
+        <span class="reward">▸ LIVE OPS</span>
+      </div>
+    </a>
+
+    <!-- MA -->
+    <a class="quest" href="#">
+      <div class="id">QUEST_06 · STARTER PACK</div>
+      <h3>MA Game Design Projects</h3>
+      <div class="tag">UNITY · UAL · 3 PROTOTYPES</div>
+      <p class="desc">RPG Puzzle, Meta Platformer, and Hypha. Owned mechanics design and implementation for the MA at UAL LCC.</p>
+      <div class="stats">
+        <span class="on">UNITY</span><span class="on">C#</span><span class="on">3 GAMES</span>
+      </div>
+      <div class="quest-foot">
+        <span>UAL · 2022 / 2023</span>
+        <span class="reward">▸ ARCHIVED</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- BIO -->
+  <div class="bio" id="bio">
+    <h2>▌ CHARACTER BIO</h2>
+    <p>Game Designer based in London. By day I work on free-to-play mobile games — systems, economy, monetisation. By night I ship solo experiments: jam games, automation tools, and AI-driven prototypes.</p>
+    <p>Education: <span style="color:var(--amber)">MA Game Design</span>, UAL London College of Communication (2023). Engineering Geology BE, Jilin University (2020). Languages: Mandarin native · English working.</p>
+    <p style="color:var(--green)">▸ Currently exploring: AAA / mid-size studios, gameplay programmer roles, and indie collaborations across the UK and EU.</p>
+
+    <div class="links">
+      <a href="mailto:suzysu418@gmail.com">▸ EMAIL</a>
+      <a href="#">▸ LINKEDIN</a>
+      <a href="#">▸ GITHUB</a>
+      <a href="#">▸ CARGO</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>© 2026 Ziwei Su · London &nbsp;·&nbsp; PRESS <span class="blink-line">▸</span> START &nbsp;·&nbsp; MOCKUP V3 · GAME-VIBE</footer>
+
+</body>
+</html>

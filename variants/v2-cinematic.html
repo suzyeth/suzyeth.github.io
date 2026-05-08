@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ziwei Su · Cinematic — Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0c0a; --bg-alt:#16140f; --bg-cream:#f3ede3;
+  --ink:#f5efe4; --ink-mute:#8a847a; --ink-deep:#1a1815;
+  --accent:#e8623a; --accent-glow:rgba(232,98,58,.5);
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',system-ui,sans-serif;
+  --max:1280px;
+}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+
+/* Film grain overlay */
+body::after{
+  content:'';position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+
+/* Top HUD bar */
+.hud{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 32px;font-family:var(--mono);font-size:11px;
+  color:var(--ink-mute);letter-spacing:.18em;text-transform:uppercase;
+  mix-blend-mode:difference;
+}
+.hud .l,.hud .r{display:flex;gap:24px;align-items:center}
+.hud .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-glow);animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.3}}
+.hud a:hover{color:var(--ink)}
+
+/* Hero */
+.hero{position:relative;height:100vh;width:100%;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.1) contrast(1.05)}
+.hero .veil{position:absolute;inset:0;background:
+  radial-gradient(ellipse at center,transparent 0%,rgba(13,12,10,.55) 60%,rgba(13,12,10,.92) 100%),
+  linear-gradient(180deg,rgba(13,12,10,.4) 0%,transparent 30%,transparent 70%,rgba(13,12,10,.95) 100%);
+}
+.hero .frame{position:absolute;inset:0;display:grid;grid-template-rows:1fr auto;padding:72px 32px 32px}
+.letterbox-top,.letterbox-bot{position:absolute;left:0;right:0;height:48px;background:var(--bg);z-index:50}
+.letterbox-top{top:0}.letterbox-bot{bottom:0}
+
+.hero h1{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(4.5rem,13vw,14rem);line-height:.9;letter-spacing:-.04em;
+  align-self:end;
+  font-variation-settings:"opsz" 144,"SOFT" 100;
+}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--accent)}
+.hero .meta{
+  display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;
+  margin-top:24px;padding-top:24px;border-top:1px solid rgba(245,239,228,.18)
+}
+.hero .meta .role{font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.4rem;color:var(--ink)}
+.hero .meta .role span{color:var(--ink-mute)}
+.hero .scroll-hint{font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--ink-mute);text-transform:uppercase}
+.hero .scroll-hint::before{content:'';display:inline-block;width:36px;height:1px;background:var(--ink-mute);vertical-align:middle;margin-right:12px}
+
+/* Sections */
+section{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 32px}
+.shot-meta{
+  position:absolute;top:32px;left:32px;right:32px;
+  display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+  letter-spacing:.18em;text-transform:uppercase;
+}
+.shot-meta .num{color:var(--accent)}
+
+/* Project showcase */
+.project{position:relative;width:100%;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.project .media{
+  position:relative;aspect-ratio:4/5;border-radius:2px;overflow:hidden;
+  background:var(--bg-alt);
+}
+.project .media .placeholder{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:9rem;font-weight:300;color:var(--accent);
+}
+.project video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.project .media::after{
+  content:'';position:absolute;inset:0;border:1px solid rgba(245,239,228,.08);pointer-events:none
+}
+
+.project .text .index{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--accent);margin-bottom:28px;text-transform:uppercase}
+.project .text h2{
+  font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:1;letter-spacing:-.02em;margin-bottom:20px;
+  font-variation-settings:"opsz" 144;
+}
+.project .text h2 em{font-style:italic;font-weight:300;color:var(--accent)}
+.project .text .tagline{font-family:var(--serif);font-style:italic;font-size:1.35rem;color:var(--ink-mute);margin-bottom:36px;line-height:1.5;font-weight:300}
+.project .text .body{color:var(--ink);font-size:.95rem;line-height:1.85;max-width:480px;margin-bottom:32px;font-weight:400}
+.project .text .credits{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.1em;line-height:2;text-transform:uppercase;border-top:1px solid rgba(245,239,228,.12);padding-top:20px}
+.project .text .credits span{color:var(--ink)}
+.project .text .cta{margin-top:28px;display:inline-flex;align-items:center;gap:12px;padding:14px 28px;border:1px solid var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
+.project .text .cta:hover{background:var(--ink);color:var(--bg);transform:translateX(4px)}
+.project .text .cta::after{content:'→'}
+
+@media(max-width:900px){
+  .project{grid-template-columns:1fr;gap:40px}
+  .project .media{aspect-ratio:16/10}
+}
+
+/* Section: cream interlude */
+.interlude{background:var(--bg-cream);color:var(--ink-deep);text-align:center;padding:160px 32px}
+.interlude .quote{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.8rem,4vw,3.4rem);line-height:1.35;max-width:920px;margin:0 auto;letter-spacing:-.02em}
+.interlude .quote em{color:var(--accent);font-weight:400}
+.interlude .sig{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:#999;margin-top:48px;text-transform:uppercase}
+
+/* About */
+.about{background:var(--bg-alt);padding:160px 32px}
+.about-inner{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.about h3{font-family:var(--serif);font-weight:300;font-size:3rem;line-height:1.1;margin-bottom:32px}
+.about p{color:var(--ink-mute);font-size:1rem;line-height:1.85;margin-bottom:18px}
+.about .links{font-family:var(--mono);font-size:12px;letter-spacing:.1em;line-height:2.5;text-transform:uppercase;margin-top:32px}
+.about .links a{display:flex;justify-content:space-between;border-bottom:1px solid rgba(245,239,228,.1);padding:12px 0;color:var(--ink-mute);transition:color .3s}
+.about .links a:hover{color:var(--ink)}
+.about .links a::after{content:'↗';color:var(--accent)}
+@media(max-width:700px){.about-inner{grid-template-columns:1fr;gap:32px}}
+
+/* Footer */
+footer{padding:56px 32px;text-align:center;font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.2em;text-transform:uppercase;background:var(--bg)}
+
+</style>
+</head>
+<body>
+
+<!-- Top HUD -->
+<div class="hud">
+  <div class="l">
+    <span class="dot"></span>
+    <span>REC · 2026</span>
+    <span>SUSU/PORTFOLIO</span>
+  </div>
+  <div class="r">
+    <a href="#work">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a href="mailto:suzysu418@gmail.com">CONTACT</a>
+    <a href="#" style="color:var(--accent)">中</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <video src="../assets/ma-opening.mp4" autoplay loop muted playsinline></video>
+  <div class="veil"></div>
+  <div class="letterbox-top"></div>
+  <div class="letterbox-bot"></div>
+  <div class="frame">
+    <div></div>
+    <div>
+      <h1>Ziwei <em>Su</em></h1>
+      <div class="meta">
+        <div class="role">Game Designer<br><span>— Systems · Economy · Solo Maker — London</span></div>
+        <div class="scroll-hint">Scroll · 6 Projects</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project 1: tarduck -->
+<section id="work" style="background:var(--bg)">
+  <div class="shot-meta">
+    <span><span class="num">01</span> / 06 · Selected Work</span>
+    <span>Solo · Three.js · 30 days</span>
+  </div>
+  <div class="project">
+    <div class="media">
+      <div class="placeholder" style="background:radial-gradient(circle at 40% 30%,#3a2814 0%,#1a0f08 70%);font-size:6rem">⌖</div>
+    </div>
+    <div class="text">
+      <p class="index">tarduck — Vol. 01 · Apr 2026</p>
+      <h2>Escape from <em>Duckkov</em></h2>
+      <p class="tagline">A top-down extraction shooter, designed and shipped solo in 30 days for Cursor Vibe Jam 2026.</p>
+      <p class="body">Designed and directed an entire Tarkov-inspired loop — 5 weapons, 5 enemy archetypes, body-part hitbox damage, grid inventory, 12 talents, 8 crafting recipes, fog-of-war, wave spawning. AI-assisted dev workflow under jam rules.</p>
+      <div class="credits">
+        Stack · <span>Three.js · Vite · ACES tone mapping</span><br>
+        Scope · <span>Solo entry · 57 commits</span><br>
+        Status · <span>Submitted · Judging May 2026</span>
+      </div>
+      <a href="#" class="cta">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- Interlude: design philosophy -->
+<section class="interlude">
+  <p class="quote">I design systems that make players <em>stay, spend, and come back —</em> without making them feel manipulated.</p>
+  <p class="sig">— Design Philosophy · 2026</p>
+</section>
+
+<!-- Project 2: MA Hypha (using ending video) -->
+<section style="background:var(--bg-alt)">
+  <div class="shot-meta">
+    <span><span class="num">02</span> / 06 · Selected Work</span>
+    <span>Unity · MA · UAL LCC · 2023</span>
+  </div>
+  <div class="project">
+    <div class="text">
+      <p class="index">MA Game Design — Vol. 02 · 2022 / 2023</p>
+      <h2>Hypha &amp; <em>Other Worlds</em></h2>
+      <p class="tagline">Three Unity prototypes from the MA at UAL — a meta platformer, a 4-mechanic puzzle RPG, and Hypha, a top-down shooter sandbox.</p>
+      <p class="body">Across these projects I owned game mechanics design and the Unity implementation: random enemy generation, HP / damage feedback, four-direction firing, and the puzzle progression for teleport / box pull / ice break / thorn cross.</p>
+      <div class="credits">
+        Stack · <span>Unity 2022 · C#</span><br>
+        Scope · <span>3 prototypes · Solo &amp; small team</span><br>
+        Programme · <span>MA Game Design — UAL</span>
+      </div>
+      <a href="#" class="cta">View Reels</a>
+    </div>
+    <div class="media">
+      <video src="../assets/ma-ending.mp4" autoplay loop muted playsinline></video>
+    </div>
+  </div>
+</section>
+
+<!-- Project 3: gridbot (text-led, no real media) -->
+<section style="background:var(--bg)">
+  <div class="shot-meta">
+    <span><span class="num">03</span> / 06 · Selected Work</span>
+    <span>Python · MIT · pip install</span>
+  </div>
+  <div class="project">
+    <div class="media" style="background:linear-gradient(135deg,#0e1a0e 0%,#1f3a1f 60%,#0a1408 100%)">
+      <div class="placeholder" style="font-family:var(--mono);font-size:.9rem;color:#7fff7f;text-align:left;align-items:flex-start;justify-content:flex-start;padding:32px;line-height:1.8;letter-spacing:.05em">
+        $ pip install gridbot[ocr]<br>
+        ▸ capture &nbsp;✓<br>
+        ▸ input &nbsp;&nbsp;&nbsp;✓<br>
+        ▸ ocr &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✓ paddle<br>
+        ▸ navigator ✓<br>
+        ▸ recorder &nbsp;✓<br>
+        <br>
+        <span style="color:rgba(127,255,127,.5)">› ready_state: idle</span><br>
+        <span style="color:#7fff7f">_</span>
+      </div>
+    </div>
+    <div class="text">
+      <p class="index">gridbot — Vol. 03 · Apr 2026</p>
+      <h2>Black-box <em>Automation</em></h2>
+      <p class="tagline">A Python toolkit that lets designers and QA test mobile games without touching the source code.</p>
+      <p class="body">Modular package — capture, input, OCR (PaddleOCR), state graphs, recording — built for the cases UIAutomator and Appium can't reach. Custom rendering engines, third-party-controlled games, designer-owned regression sweeps.</p>
+      <div class="credits">
+        Stack · <span>Python · ADB · PaddleOCR · YAML</span><br>
+        Status · <span>Alpha 0.1.x · MIT · pip-installable</span><br>
+        For · <span>Designers &amp; QA, not engineers</span>
+      </div>
+      <a href="#" class="cta">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <h3>About<br><em style="font-style:italic;color:var(--accent)">Ziwei.</em></h3>
+      <p>I'm a Game Designer based in London. I work on free-to-play mobile games by day — systems, economy, monetisation — and ship solo experiments by night.</p>
+      <p>This portfolio shows the personal side: jam games, tools, and prototypes that test how far one designer can take an idea with the help of modern AI workflows.</p>
+      <p>Education — MA Game Design, UAL London College of Communication (2023).</p>
+    </div>
+    <div>
+      <p style="font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:8px">Find me</p>
+      <div class="links">
+        <a href="mailto:suzysu418@gmail.com"><span>Email</span><span>suzysu418@gmail.com</span></a>
+        <a href="#"><span>LinkedIn</span><span>ziwei-su</span></a>
+        <a href="#"><span>GitHub</span><span>suzyeth</span></a>
+        <a href="#"><span>Cargo</span><span>ziweisu.cargo.site</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Ziwei Su · London · No.SS · Mockup v2 · Cinematic</footer>
+
+</body>
+</html>

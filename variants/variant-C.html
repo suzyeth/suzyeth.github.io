@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ziwei Su — Game Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #141414;
+    color: #b0b0b0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* NAV */
+  nav {
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+
+  nav a {
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #d4a853;
+  }
+
+  .lang-toggle {
+    font-size: 12px;
+    padding: 4px 12px;
+    border: 1px solid #333;
+    border-radius: 2px;
+    cursor: pointer;
+    background: transparent;
+    color: #b0b0b0;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .lang-toggle:hover {
+    border-color: #d4a853;
+    color: #d4a853;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 0;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #e8e8e8;
+    margin-bottom: 12px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: #808080;
+  }
+
+  /* SECTIONS */
+  section {
+    padding-top: 120px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #555;
+    margin-bottom: 48px;
+  }
+
+  /* PROJECT CARDS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .card {
+    background: #1c1c1c;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .card:hover {
+    background: #212121;
+  }
+
+  .card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .thumb-pro-1 {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+
+  .thumb-pro-2 {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1b2e 50%, #1a1a2e 100%);
+  }
+
+  .thumb-personal-1 {
+    background: linear-gradient(135deg, #1c1c14 0%, #2a2a1a 50%, #1c1c14 100%);
+  }
+
+  .thumb-personal-2 {
+    background: linear-gradient(135deg, #141a1a 0%, #1a2626 50%, #141a1a 100%);
+  }
+
+  .thumb-personal-3 {
+    background: linear-gradient(135deg, #1a141a 0%, #261a26 50%, #1a141a 100%);
+  }
+
+  .thumb-personal-4 {
+    background: linear-gradient(135deg, #1a1a14 0%, #1a1a1a 50%, #14141a 100%);
+  }
+
+  .card-body {
+    padding: 20px 24px 24px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #e8e8e8;
+    margin-bottom: 6px;
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .card:hover .card-title {
+    border-color: #d4a853;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: #808080;
+    margin-bottom: 12px;
+  }
+
+  .card-tags {
+    font-size: 12px;
+    color: #555;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(180deg, #1c1c1c 0%, #222 100%);
+    border-radius: 4px;
+  }
+
+  .about-text h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #e8e8e8;
+    margin-bottom: 16px;
+  }
+
+  .about-text p {
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 120px 0 60px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover {
+    color: #d4a853;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    nav .nav-links {
+      gap: 20px;
+    }
+
+    .hero {
+      padding: 48px 0 0;
+    }
+
+    section {
+      padding-top: 80px;
+    }
+
+    .hero h1 {
+      font-size: 24px;
+    }
+
+    .container {
+      padding: 0 20px;
+    }
+
+    footer {
+      padding: 80px 0 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" style="font-size:14px; color:#e8e8e8; font-weight:500;">Ziwei Su</a>
+    <div class="nav-links">
+      <a href="#work" data-en="Work" data-zh="作品">Work</a>
+      <a href="#about" data-en="About" data-zh="关于">About</a>
+      <a href="#contact" data-en="Contact" data-zh="联系">Contact</a>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">中</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 data-en="Ziwei Su" data-zh="苏子薇">Ziwei Su</h1>
+    <p data-en="Game Designer. Systems, Economy, Monetisation." data-zh="游戏策划 — 系统、经济、商业化">Game Designer. Systems, Economy, Monetisation.</p>
+  </section>
+
+  <!-- PROFESSIONAL WORK -->
+  <section id="work">
+    <div class="section-title" data-en="Professional Work" data-zh="职业项目">Professional Work</div>
+    <div class="projects-grid">
+
+      <div class="card">
+        <div class="card-thumb thumb-pro-1"></div>
+        <div class="card-body">
+          <div class="card-title" data-en="Roguelike Idle Shooter" data-zh="Roguelike 放置射击">Roguelike Idle Shooter</div>
+          <div class="card-desc" data-en="RippleSoft 2025 — Systems design and economy balancing for a hybrid roguelike idle shooter." data-zh="RippleSoft 2025 — 混合 Roguelike 放置射击的系统设计与经济平衡">RippleSoft 2025 — Systems design and economy balancing for a hybrid roguelike idle shooter.</div>
+          <div class="card-tags" data-en="Systems Design, Economy, Balancing" data-zh="系统设计、经济、数值平衡">Systems Design, Economy, Balancing</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb thumb-pro-2"></div>
+        <div class="card-body">
+          <div class="card-title" data-en="Idle Card RPG" data-zh="放置卡牌 RPG">Idle Card RPG</div>
+          <div class="card-desc" data-en="LuminaryTech 2024 — Monetisation strategy and progression systems for a card-based idle RPG." data-zh="LuminaryTech 2024 — 卡牌放置 RPG 的商业化策略与成长体系设计">LuminaryTech 2024 — Monetisation strategy and progression systems for a card-based idle RPG.</div>
+          <div class="card-tags" data-en="Monetisation, Progression, Card Systems" data-zh="商业化、成长体系、卡牌系统">Monetisation, Progression, Card Systems</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PERSONAL PROJECTS -->
+  <section>
+    <div class="section-title" data-en="Personal Projects" data-zh="个人项目">Personal Projects</div>
+    <div class="projects-grid">
+
+      <div class="card">
+        <div class="card-thumb thumb-personal-1"></div>
+        <div class="card-body">
+          <div class="card-title" data-en="Tarkov-like Extraction Shooter" data-zh="塔科夫式撤离射击">Tarkov-like Extraction Shooter</div>
+          <div class="card-desc" data-en="Game Jam — A tense extraction shooter prototype built in 48 hours." data-zh="Game Jam — 48 小时内完成的紧张撤离射击原型">Game Jam — A tense extraction shooter prototype built in 48 hours.</div>
+          <div class="card-tags" data-en="Game Jam, Unreal Engine, Level Design" data-zh="Game Jam、虚幻引擎、关卡设计">Game Jam, Unreal Engine, Level Design</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb thumb-personal-2"></div>
+        <div class="card-body">
+          <div class="card-title" data-en="OpenClaw AI Multi-Agent System" data-zh="OpenClaw AI 多智能体系统">OpenClaw AI Multi-Agent System</div>
+          <div class="card-desc" data-en="Autonomous content pipeline powered by coordinated AI agents." data-zh="由协调 AI 智能体驱动的自主内容管线">Autonomous content pipeline powered by coordinated AI agents.</div>
+          <div class="card-tags" data-en="AI, Multi-Agent, Automation" data-zh="AI、多智能体、自动化">AI, Multi-Agent, Automation</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb thumb-personal-3"></div>
+        <div class="card-body">
+          <div class="card-title" data-en="Moodrift AI Music Pipeline" data-zh="Moodrift AI 音乐管线">Moodrift AI Music Pipeline</div>
+          <div class="card-desc" data-en="AI-generated ambient music distributed across YouTube and Bilibili." data-zh="AI 生成氛围音乐，分发至 YouTube 和 B 站">AI-generated ambient music distributed across YouTube and Bilibili.</div>
+          <div class="card-tags" data-en="AI Music, Content Pipeline, Distribution" data-zh="AI 音乐、内容管线、分发">AI Music, Content Pipeline, Distribution</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb thumb-personal-4"></div>
+        <div class="card-body">
+          <div class="card-title" data-en="MA Game Design Projects" data-zh="硕士游戏设计项目">MA Game Design Projects</div>
+          <div class="card-desc" data-en="Academic projects exploring narrative systems and player-driven economies." data-zh="探索叙事系统与玩家驱动经济的学术项目">Academic projects exploring narrative systems and player-driven economies.</div>
+          <div class="card-tags" data-en="Academic, Narrative, Economy Design" data-zh="学术、叙事、经济设计">Academic, Narrative, Economy Design</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title" data-en="About" data-zh="关于">About</div>
+    <div class="about-grid">
+      <div class="about-photo"></div>
+      <div class="about-text">
+        <h3 data-en="Ziwei Su" data-zh="苏子薇">Ziwei Su</h3>
+        <p data-en="Game designer specialising in systems design, virtual economies, and monetisation strategy. I care about building game systems that feel fair, deep, and sustainable." data-zh="专注于系统设计、虚拟经济与商业化策略的游戏策划。我致力于构建公平、有深度且可持续的游戏系统。">Game designer specialising in systems design, virtual economies, and monetisation strategy. I care about building game systems that feel fair, deep, and sustainable.</p>
+        <p data-en="Previously at RippleSoft and LuminaryTech working on live-service mobile titles. Outside of professional work, I build AI-powered tools and creative pipelines, and occasionally jam on extraction shooters." data-zh="曾就职于 RippleSoft 和 LuminaryTech，负责长线运营手游项目。工作之余，我构建 AI 驱动的工具与创意管线，偶尔也参加撤离射击 Game Jam。">Previously at RippleSoft and LuminaryTech working on live-service mobile titles. Outside of professional work, I build AI-powered tools and creative pipelines, and occasionally jam on extraction shooters.</p>
+        <p data-en="MA in Game Design. Based in the UK." data-zh="游戏设计硕士，现居英国。">MA in Game Design. Based in the UK.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact">
+    <div class="section-title" data-en="Contact" data-zh="联系">Contact</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:hello@example.com">Email</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  let currentLang = 'en';
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    const btn = document.getElementById('langToggle');
+    btn.textContent = currentLang === 'en' ? '中' : 'EN';
+
+    document.querySelectorAll('[data-en]').forEach(function(el) {
+      el.textContent = currentLang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+    });
+
+    document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh';
+  }
+</script>
+
+</body>
+</html>

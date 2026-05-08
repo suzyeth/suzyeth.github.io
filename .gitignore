@@ -1,0 +1,20 @@
+# macOS / cross-platform metadata
+._*
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Tooling artifacts
+.gstack/
+
+# Local-only files (rollback snapshot, design docs with internal notes)
+index.html.backup
+docs/
+
+# Empty legacy directory
+img/
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp

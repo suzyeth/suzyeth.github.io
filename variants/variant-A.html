@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ziwei Su — Game Designer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --card-bg: #12121a;
+      --card-border: #1a1a2a;
+      --text: #e0e0e0;
+      --muted: #777;
+      --cyan: #00e5ff;
+      --cyan-dim: rgba(0, 229, 255, 0.15);
+      --cyan-glow: rgba(0, 229, 255, 0.3);
+      --max-w: 1100px;
+      --nav-h: 64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      height: var(--nav-h);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--cyan);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .lang-toggle {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-toggle:hover { border-color: var(--cyan); color: var(--text); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      transition: 0.2s;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 100px 24px 80px;
+    }
+    .hero h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--text);
+      text-shadow: 0 0 40px rgba(0, 229, 255, 0.2), 0 0 80px rgba(0, 229, 255, 0.08);
+    }
+    .hero .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-top: 16px;
+      font-weight: 500;
+    }
+    .hero .subtitle span {
+      color: var(--cyan);
+    }
+
+    /* --- SECTION COMMON --- */
+    .section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--cyan);
+      display: inline-block;
+    }
+
+    /* --- CARDS GRID --- */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan-glow);
+    }
+    .card-image {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+    .card-image.grad-1 { background: linear-gradient(135deg, #0d1117 0%, #1a1040 50%, #0a2a3a 100%); }
+    .card-image.grad-2 { background: linear-gradient(135deg, #0d1117 0%, #1a0a2a 50%, #2a1a0a 100%); }
+    .card-image.grad-3 { background: linear-gradient(135deg, #0a1a10 0%, #0d1117 50%, #1a2a1a 100%); }
+    .card-image.grad-4 { background: linear-gradient(135deg, #1a0a1a 0%, #0d1117 50%, #0a1a2a 100%); }
+    .card-image.grad-5 { background: linear-gradient(135deg, #0d1117 0%, #2a1a0a 50%, #1a0a1a 100%); }
+    .card-image.grad-6 { background: linear-gradient(135deg, #0a1a2a 0%, #0d1117 50%, #1a1a0a 100%); }
+    .card-body { padding: 20px; }
+    .card-body h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .card-body .card-org {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .card-body p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border: 1px solid var(--cyan);
+      border-radius: 999px;
+      color: var(--cyan);
+      background: transparent;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    /* --- ABOUT --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .about-photo {
+      width: 240px;
+      height: 280px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .about-text h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .about-text p strong { color: var(--text); }
+
+    /* --- FOOTER --- */
+    footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 40px 24px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; justify-items: center; }
+      .about-photo { width: 180px; height: 210px; }
+      .hero { padding: 72px 20px 56px; }
+      .section { padding: 40px 20px; }
+
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(16px);
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--card-border);
+      }
+      .hamburger { display: flex; }
+    }
+
+    /* bilingual hidden class */
+    .zh { display: none; }
+    body.zh-mode .zh { display: initial; }
+    body.zh-mode .en { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">ZW.SU</a>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#professional"><span class="en">Work</span><span class="zh">项目经历</span></a></li>
+        <li><a href="#personal"><span class="en">Projects</span><span class="zh">个人项目</span></a></li>
+        <li><a href="#about"><span class="en">About</span><span class="zh">关于</span></a></li>
+        <li><button class="lang-toggle" onclick="document.body.classList.toggle('zh-mode'); this.textContent = document.body.classList.contains('zh-mode') ? 'EN' : '中'">中</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Ziwei Su</h1>
+    <p class="subtitle">
+      <span class="en">Game Designer <span>|</span> Systems <span>|</span> Economy <span>|</span> Monetisation</span>
+      <span class="zh">游戏策划 <span>|</span> 系统设计 <span>|</span> 经济系统 <span>|</span> 商业化</span>
+    </p>
+  </section>
+
+  <!-- PROFESSIONAL PROJECTS -->
+  <section class="section" id="professional">
+    <div class="section-title">
+      <span class="en">Professional Work</span>
+      <span class="zh">项目经历</span>
+    </div>
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-image grad-1">[ screenshot ]</div>
+        <div class="card-body">
+          <h3>Roguelike Idle Shooter</h3>
+          <div class="card-org">RippleSoft &middot; 2025</div>
+          <p>
+            <span class="en">Designed core loop, progression systems, and economy balancing for a roguelike idle shooter blending real-time combat with idle mechanics.</span>
+            <span class="zh">负责核心循环、成长系统与经济平衡设计，融合即时战斗与放置玩法的 Roguelike 射击游戏。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Systems Design</span>
+            <span class="tag">Economy</span>
+            <span class="tag">Roguelike</span>
+            <span class="tag">Idle</span>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-image grad-2">[ screenshot ]</div>
+        <div class="card-body">
+          <h3>Idle Card RPG</h3>
+          <div class="card-org">LuminaryTech &middot; 2024</div>
+          <p>
+            <span class="en">Led monetisation design and gacha economy for a card-collecting idle RPG. Owned live-ops event design and retention optimization.</span>
+            <span class="zh">主导卡牌放置 RPG 的商业化与抽卡经济设计，负责活动系统和留存优化。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Monetisation</span>
+            <span class="tag">Gacha</span>
+            <span class="tag">Live-Ops</span>
+            <span class="tag">Card RPG</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL PROJECTS -->
+  <section class="section" id="personal">
+    <div class="section-title">
+      <span class="en">Personal Projects</span>
+      <span class="zh">个人项目</span>
+    </div>
+    <div class="cards-grid">
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-image grad-3">[ screenshot ]</div>
+        <div class="card-body">
+          <h3>Tarkov-like Extraction Shooter</h3>
+          <div class="card-org"><span class="en">Game Jam Project</span><span class="zh">Game Jam 作品</span></div>
+          <p>
+            <span class="en">Built a Tarkov-inspired extraction shooter prototype in 72 hours. Designed loot economy, risk-reward extraction loop, and inventory systems.</span>
+            <span class="zh">72 小时内完成类塔科夫撤离射击原型，设计了战利品经济、风险-收益撤离循环和背包系统。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Extraction</span>
+            <span class="tag">Game Jam</span>
+            <span class="tag">Loot Economy</span>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="card">
+        <div class="card-image grad-4">[ screenshot ]</div>
+        <div class="card-body">
+          <h3>OpenClaw AI Multi-Agent System</h3>
+          <div class="card-org"><span class="en">Side Project</span><span class="zh">个人项目</span></div>
+          <p>
+            <span class="en">Engineered a multi-agent AI system that automates content curation, trend analysis, and cross-platform distribution using LLMs.</span>
+            <span class="zh">搭建多 Agent AI 系统，自动化内容筛选、趋势分析和跨平台分发。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">AI Agents</span>
+            <span class="tag">LLM</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="card">
+        <div class="card-image grad-5">[ screenshot ]</div>
+        <div class="card-body">
+          <h3>Moodrift AI Music Pipeline</h3>
+          <div class="card-org"><span class="en">Side Project</span><span class="zh">个人项目</span></div>
+          <p>
+            <span class="en">End-to-end pipeline generating ambient music with Suno AI, packaging videos, and distributing to YouTube and Bilibili with automated metadata.</span>
+            <span class="zh">端到端音乐生成管线：Suno AI 生成氛围音乐，自动打包视频并分发至 YouTube 和 B 站。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">AI Music</span>
+            <span class="tag">Pipeline</span>
+            <span class="tag">YouTube</span>
+            <span class="tag">Bilibili</span>
+          </div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="card">
+        <div class="card-image grad-6">[ screenshot ]</div>
+        <div class="card-body">
+          <h3>MA Game Design Projects</h3>
+          <div class="card-org"><span class="en">Academic</span><span class="zh">硕士课程</span></div>
+          <p>
+            <span class="en">A collection of game design projects from postgraduate studies, including systems design documents, prototypes, and player experience research.</span>
+            <span class="zh">硕士期间的游戏设计作品集，包括系统设计文档、原型和玩家体验研究。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Academic</span>
+            <span class="tag">Prototyping</span>
+            <span class="tag">UX Research</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="section-title">
+      <span class="en">About</span>
+      <span class="zh">关于我</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo">[ photo ]</div>
+      <div class="about-text">
+        <h3>
+          <span class="en">Hi, I'm Ziwei.</span>
+          <span class="zh">你好，我是子薇。</span>
+        </h3>
+        <p>
+          <span class="en">I'm a <strong>game designer</strong> specializing in <strong>systems design</strong>, <strong>economy balancing</strong>, and <strong>monetisation strategy</strong>. I hold an MA in Game Design and have shipped titles across idle, RPG, and shooter genres.</span>
+          <span class="zh">我是一名<strong>游戏策划</strong>，专注于<strong>系统设计</strong>、<strong>经济平衡</strong>和<strong>商业化策略</strong>。拥有游戏设计硕士学位，参与过放置、RPG 和射击品类的上线项目。</span>
+        </p>
+        <p>
+          <span class="en">Beyond game design, I explore the intersection of AI and creative tools — building multi-agent systems and generative pipelines as side projects. I believe great games are built on robust systems, not just good ideas.</span>
+          <span class="zh">工作之余，我探索 AI 与创意工具的交叉领域，搭建多 Agent 系统和生成式管线。我相信好游戏源于扎实的系统设计，而非仅凭灵感。</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">&copy; 2025 Ziwei Su</div>
+    <div class="footer-links">
+      <a href="mailto:hello@example.com">Email</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://twitter.com" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </footer>
+
+</body>
+</html>

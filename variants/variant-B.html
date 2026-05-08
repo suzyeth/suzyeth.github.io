@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ziwei Su — Game Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f5f5f0;
+      color: #1a1a1a;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(245, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #666;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover {
+      color: #1a1a1a;
+    }
+
+    .lang-toggle {
+      display: inline-block;
+      padding: 4px 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 13px;
+      color: #666;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      background: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lang-toggle:hover {
+      border-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 100px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 28px;
+      color: #1a1a1a;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #666;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .btn-cv {
+      display: inline-block;
+      background: #e85d4a;
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-cv:hover {
+      background: #d14e3c;
+      transform: translateY(-1px);
+    }
+
+    /* ---- SECTIONS ---- */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 48px;
+      color: #1a1a1a;
+    }
+
+    /* ---- CARDS GRID ---- */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 36px 32px;
+      transition: box-shadow 0.25s, transform 0.25s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+      transform: translateY(-3px);
+    }
+
+    .card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .card .card-meta {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .card .card-desc {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .card .card-tags {
+      font-size: 14px;
+      font-style: italic;
+      color: #888;
+    }
+
+    /* ---- ABOUT ---- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .photo-placeholder {
+      width: 280px;
+      height: 340px;
+      background: #e8e8e2;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 18px;
+      max-width: 580px;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      padding: 60px 0 48px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      margin-top: 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-inner p {
+      font-size: 14px;
+      color: #999;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .social-links a {
+      color: #888;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      color: #e85d4a;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .hero {
+        padding-top: 120px;
+        padding-bottom: 64px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .photo-placeholder {
+        width: 100%;
+        height: 260px;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      nav ul li a {
+        font-size: 13px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      nav ul {
+        gap: 14px;
+      }
+    }
+
+    /* ---- BILINGUAL TOGGLE ---- */
+    .zh { display: none; }
+    body.zh-mode .zh { display: block; }
+    body.zh-mode .en { display: none; }
+    body.zh-mode span.zh { display: inline; }
+    body.zh-mode span.en { display: none; }
+    span.en { display: inline; }
+    span.zh { display: none; }
+    body.zh-mode .cards-grid .en-card { display: none; }
+    body.zh-mode .cards-grid .zh-card { display: flex; }
+    .cards-grid .zh-card { display: none; }
+    .cards-grid .en-card { display: flex; }
+
+    /* About grid responsive for zh */
+    body.zh-mode .about-grid .en { display: none; }
+    body.zh-mode .about-grid .zh { display: block; }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">Ziwei Su</a>
+      <ul>
+        <li><a href="#work"><span class="en">Work</span><span class="zh">作品</span></a></li>
+        <li><a href="#about"><span class="en">About</span><span class="zh">关于</span></a></li>
+        <li><a href="#contact"><span class="en">Contact</span><span class="zh">联系</span></a></li>
+        <li><button class="lang-toggle" onclick="toggleLang()">中/EN</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1>Ziwei Su</h1>
+      <p class="en">Game Designer specialising in systems, economy, and monetisation for F2P games.</p>
+      <p class="zh">游戏策划，专注于F2P游戏的系统、经济和商业化设计。</p>
+      <a href="#" class="btn-cv"><span class="en">Download CV</span><span class="zh">下载简历</span></a>
+    </div>
+  </header>
+
+  <!-- PROFESSIONAL WORK -->
+  <section id="work">
+    <div class="container">
+      <h2 class="section-title"><span class="en">Professional Work</span><span class="zh">职业项目</span></h2>
+      <div class="cards-grid">
+        <!-- EN cards -->
+        <div class="card en-card">
+          <h3>Roguelike Idle Shooter</h3>
+          <div class="card-meta">RippleSoft &mdash; 2025</div>
+          <p class="card-desc">Designed core idle-shooter loop, roguelike meta-progression, and monetisation systems for a mid-core F2P mobile title.</p>
+          <span class="card-tags">Systems Design, Economy, Monetisation, Idle Mechanics</span>
+        </div>
+        <div class="card en-card">
+          <h3>Idle Card RPG</h3>
+          <div class="card-meta">LuminaryTech &mdash; 2024</div>
+          <p class="card-desc">Owned gacha economy, PvE progression, and live-ops event framework for a card-based idle RPG with 2M+ downloads.</p>
+          <span class="card-tags">Card Systems, Gacha Economy, Live-Ops, PvE Design</span>
+        </div>
+        <!-- ZH cards -->
+        <div class="card zh-card">
+          <h3>Roguelike挂机射击</h3>
+          <div class="card-meta">RippleSoft &mdash; 2025</div>
+          <p class="card-desc">负责核心挂机射击循环、Roguelike元进度和商业化系统设计，面向中核F2P手游。</p>
+          <span class="card-tags">系统设计、经济系统、商业化、挂机机制</span>
+        </div>
+        <div class="card zh-card">
+          <h3>挂机卡牌RPG</h3>
+          <div class="card-meta">LuminaryTech &mdash; 2024</div>
+          <p class="card-desc">负责抽卡经济、PvE进度及运营活动框架设计，产品累计下载量超200万。</p>
+          <span class="card-tags">卡牌系统、抽卡经济、运营活动、PvE设计</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL PROJECTS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title"><span class="en">Personal Projects</span><span class="zh">个人项目</span></h2>
+      <div class="cards-grid">
+        <!-- EN cards -->
+        <div class="card en-card">
+          <h3>Tarkov-like Extraction Shooter</h3>
+          <div class="card-meta">Game Jam</div>
+          <p class="card-desc">48-hour game jam prototype exploring extraction-shooter tension loops, loot risk/reward, and session-based progression.</p>
+          <span class="card-tags">Game Jam, Extraction Loop, Prototyping</span>
+        </div>
+        <div class="card en-card">
+          <h3>OpenClaw AI Multi-Agent System</h3>
+          <div class="card-meta">Personal &mdash; Ongoing</div>
+          <p class="card-desc">Multi-agent AI system that automates content curation, trend analysis, and cross-platform publishing for social media.</p>
+          <span class="card-tags">AI Agents, Automation, Content Pipeline</span>
+        </div>
+        <div class="card en-card">
+          <h3>Moodrift AI Music Pipeline</h3>
+          <div class="card-meta">Personal &mdash; Ongoing</div>
+          <p class="card-desc">End-to-end pipeline generating ambient music with Suno AI, packaging for YouTube and Bilibili distribution.</p>
+          <span class="card-tags">AI Music, Content Creation, Distribution</span>
+        </div>
+        <div class="card en-card">
+          <h3>MA Game Design Projects</h3>
+          <div class="card-meta">Academic</div>
+          <p class="card-desc">A collection of design projects from postgraduate study, including board game prototypes, systems analyses, and design documents.</p>
+          <span class="card-tags">Academic, Game Design, Prototyping</span>
+        </div>
+        <!-- ZH cards -->
+        <div class="card zh-card">
+          <h3>塔科夫式撤离射击</h3>
+          <div class="card-meta">Game Jam</div>
+          <p class="card-desc">48小时Game Jam原型，探索撤离射击紧张感循环、战利品风险收益及局制进度设计。</p>
+          <span class="card-tags">Game Jam、撤离循环、原型设计</span>
+        </div>
+        <div class="card zh-card">
+          <h3>OpenClaw AI多智能体系统</h3>
+          <div class="card-meta">个人项目 &mdash; 进行中</div>
+          <p class="card-desc">多智能体AI系统，自动化社交媒体内容策展、趋势分析和跨平台发布。</p>
+          <span class="card-tags">AI智能体、自动化、内容管线</span>
+        </div>
+        <div class="card zh-card">
+          <h3>Moodrift AI音乐管线</h3>
+          <div class="card-meta">个人项目 &mdash; 进行中</div>
+          <p class="card-desc">端到端管线，使用Suno AI生成氛围音乐，并分发至YouTube和B站。</p>
+          <span class="card-tags">AI音乐、内容创作、分发</span>
+        </div>
+        <div class="card zh-card">
+          <h3>硕士游戏设计项目</h3>
+          <div class="card-meta">学术</div>
+          <p class="card-desc">研究生期间的设计项目合集，包括桌游原型、系统分析和设计文档。</p>
+          <span class="card-tags">学术、游戏设计、原型设计</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="photo-placeholder">Photo</div>
+        <div class="about-text">
+          <h2><span class="en">About</span><span class="zh">关于我</span></h2>
+          <div class="en">
+            <p>I am a game designer with a focus on systems, economy, and monetisation for free-to-play titles. My work spans idle games, card RPGs, and shooter hybrids, always centred on creating loops that players find genuinely compelling.</p>
+            <p>Beyond professional projects, I explore AI-driven content pipelines and multi-agent systems, believing that the intersection of game design thinking and emerging technology is where the most interesting work happens.</p>
+            <p>I hold an MA in Game Design and bring a blend of analytical rigour and creative intuition to every project I touch.</p>
+          </div>
+          <div class="zh">
+            <p>我是一名游戏策划，专注于F2P游戏的系统、经济和商业化设计。工作涵盖挂机游戏、卡牌RPG和射击混合品类，始终以打造玩家真正沉浸的核心循环为目标。</p>
+            <p>在职业项目之外，我还探索AI驱动的内容管线和多智能体系统，相信游戏设计思维与新兴技术的交汇处藏着最有趣的机会。</p>
+            <p>我拥有游戏设计硕士学位，将分析严谨性与创意直觉融入每一个项目。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-inner">
+        <p>&copy; 2025 Ziwei Su</p>
+        <div class="social-links">
+          <a href="mailto:hello@example.com">Email</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleLang() {
+      document.body.classList.toggle('zh-mode');
+    }
+  </script>
+</body>
+</html>

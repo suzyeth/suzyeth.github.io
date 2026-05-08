@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ziwei Su — Game Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- GSAP + ScrollTrigger + SplitText -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f5f5f0;--bg-card:#fff;--bg-alt:#efefe8;
+      --bg-nav:rgba(245,245,240,.85);
+      --text:#1a1a1a;--text-muted:#666;--text-light:#999;
+      --accent:#e85d4a;--accent-hover:#d14836;
+      --border:#e8e4df;
+      --shadow:0 2px 12px rgba(0,0,0,.06);
+      --shadow-hover:0 12px 40px rgba(0,0,0,.14);
+      --radius:6px;--max-w:1100px;
+      --font-heading:'Playfair Display',Georgia,serif;
+      --font-body:'Inter',system-ui,sans-serif;
+    }
+    html{font-size:16px}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 28px}
+
+    /* Grain overlay */
+    body::after{
+      content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Custom cursor */
+    .cursor{position:fixed;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--accent);pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s,background .3s;mix-blend-mode:difference}
+    .cursor.hover{width:56px;height:56px;background:rgba(232,93,74,.1);border-color:var(--accent)}
+    .cursor.click{transform:translate(-50%,-50%) scale(.8)}
+    @media(pointer:coarse){.cursor{display:none}}
+
+    /* Nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:all .4s}
+    nav.scrolled{background:var(--bg-nav);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 0}
+    nav .container{display:flex;justify-content:space-between;align-items:center}
+    .nav-logo{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:var(--text);transition:color .2s}
+    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-links a{color:var(--text-muted);font-size:.88rem;font-weight:500;position:relative;transition:color .3s}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--accent);transition:width .4s cubic-bezier(.25,.46,.45,.94)}
+    .nav-links a:hover{color:var(--text)}
+    .nav-links a:hover::after{width:100%}
+    .lang-toggle{background:none;border:1.5px solid var(--border);color:var(--text-muted);padding:5px 14px;border-radius:20px;cursor:pointer;font-size:.78rem;font-family:var(--font-body);transition:all .3s}
+    .lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
+    /* Magnetic button class */
+    .magnetic{transition:transform .3s cubic-bezier(.25,.46,.45,.94)}
+    .nav-hamburger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text)}
+    @media(max-width:640px){
+      .nav-hamburger{display:block}
+      .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg-nav);backdrop-filter:blur(20px);padding:24px 28px;gap:18px;border-bottom:1px solid var(--border)}
+      .nav-links.open{display:flex}
+    }
+
+    /* Hero */
+    .hero{padding:140px 0 80px;position:relative;min-height:auto;display:flex;align-items:center}
+    .hero-line{overflow:hidden;display:block}
+    .hero-line-inner{display:block;transform:translateY(105%)}
+    .hero h1{font-family:var(--font-heading);font-size:clamp(3rem,7vw,5.5rem);font-weight:800;color:var(--text);line-height:1.05;margin-bottom:24px;letter-spacing:-.04em}
+    .hero .subtitle{font-size:1.15rem;color:var(--text-muted);max-width:500px;margin-bottom:48px;line-height:1.8;opacity:0}
+    .hero-links{display:flex;gap:16px;flex-wrap:wrap;opacity:0}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--accent);color:#fff;font-weight:600;font-size:.9rem;border-radius:30px;border:none;cursor:pointer;transition:all .3s cubic-bezier(.25,.46,.45,.94);font-family:var(--font-body)}
+    .btn-primary:hover{background:var(--accent-hover);color:#fff;transform:translateY(-3px);box-shadow:0 6px 20px rgba(232,93,74,.35)}
+    .btn-outline{display:inline-flex;align-items:center;gap:6px;padding:14px 32px;border:1.5px solid var(--border);color:var(--text-muted);font-weight:500;font-size:.9rem;border-radius:30px;transition:all .3s cubic-bezier(.25,.46,.45,.94);font-family:var(--font-body)}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+
+    /* Marquee */
+    .marquee{overflow:hidden;padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);white-space:nowrap}
+    .marquee-inner{display:flex;gap:48px;animation:marquee 20s linear infinite;width:max-content}
+    .marquee-item{font-family:var(--font-heading);font-size:1.1rem;color:var(--text-light);font-weight:400;display:flex;align-items:center;gap:16px}
+    .marquee-item .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Sections */
+    section{padding:120px 0}
+    .section-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-light);margin-bottom:12px;font-weight:600}
+    .section-title{font-family:var(--font-heading);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--text);margin-bottom:56px;letter-spacing:-.02em}
+    .reveal{clip-path:inset(0 0 100% 0);transition:clip-path .8s cubic-bezier(.77,0,.18,1)}
+    .reveal.visible{clip-path:inset(0 0 0 0)}
+
+    /* Project Grid */
+    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px}
+    .project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;border-radius:12px}
+    .project-card.featured .card-img{height:100%;min-height:360px}
+    .project-card.featured .card-body{display:flex;flex-direction:column;justify-content:center;padding:40px 36px}
+    .project-card.featured .card-body h3{font-size:1.5rem}
+    .project-card.featured .card-body p{font-size:.95rem}
+    @media(max-width:700px){.project-grid{grid-template-columns:1fr}.project-card.featured{grid-template-columns:1fr}.project-card.featured .card-img{min-height:240px}}
+    .project-card{background:var(--bg-card);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:all .5s cubic-bezier(.25,.46,.45,.94);position:relative}
+    .project-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-8px)}
+    .project-card .card-img{width:100%;height:300px;overflow:hidden;position:relative}
+    .project-card .card-img img,.project-card .card-img .placeholder{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+    .project-card:hover .card-img img,.project-card:hover .card-img .placeholder{transform:scale(1.08)}
+    .placeholder{display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.5;position:relative}
+    .placeholder::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,.08) 50%,transparent 70%);animation:shimmer 3s ease infinite}
+    @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+    .card-img .card-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.5));opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:24px}
+    .project-card:hover .card-overlay{opacity:1}
+    .card-overlay span{color:#fff;font-size:.85rem;font-weight:500;border:1px solid rgba(255,255,255,.5);padding:6px 16px;border-radius:20px}
+    .card-body{padding:28px 28px 32px}
+    .card-body h3{font-family:var(--font-heading);font-size:1.25rem;color:var(--text);margin-bottom:6px;font-weight:600;transition:color .3s}
+    .project-card:hover .card-body h3{color:var(--accent)}
+    .card-body .card-meta{font-size:.82rem;color:var(--text-light);margin-bottom:12px;font-weight:500}
+    .card-body p{font-size:.9rem;color:var(--text-muted);margin-bottom:16px;line-height:1.65}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{font-size:.72rem;padding:5px 14px;border-radius:20px;background:var(--bg);color:var(--text-muted);font-weight:500;transition:all .25s;border:1px solid transparent}
+    .tag:hover{border-color:var(--accent);color:var(--accent)}
+
+    /* Card detail expand */
+    .card-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94),padding .4s;padding:0 28px;background:var(--bg-card)}
+    .card-detail.open{max-height:500px;padding:0 28px 28px;border-top:1px solid var(--border)}
+    .card-detail h4{font-family:var(--font-heading);font-size:1rem;margin-bottom:14px;color:var(--text)}
+    .card-detail ul{margin:0 0 14px 18px;color:var(--text-muted);font-size:.88rem}
+    .card-detail li{margin-bottom:8px;line-height:1.6}
+    .card-detail .close-detail{font-size:.85rem;color:var(--accent);cursor:pointer;font-weight:500;transition:color .2s}
+    .card-detail .close-detail:hover{color:var(--accent-hover)}
+
+    /* Horizontal scroll showcase */
+    .hscroll-section{padding:120px 0;overflow:hidden}
+    .hscroll-wrapper{display:flex;gap:32px;width:max-content;will-change:transform}
+    .hscroll-card{width:440px;flex-shrink:0;background:var(--bg-card);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);transition:all .5s cubic-bezier(.25,.46,.45,.94)}
+    .hscroll-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-6px) scale(1.02)}
+    .hscroll-card .card-img{height:260px;overflow:hidden}
+    .hscroll-card .card-img .placeholder{width:100%;height:100%;transition:transform .5s}
+    .hscroll-card:hover .card-img .placeholder{transform:scale(1.06)}
+    .hscroll-card .card-body{padding:24px}
+    .hscroll-card .card-body h3{font-family:var(--font-heading);font-size:1.1rem;margin-bottom:6px;color:var(--text)}
+    .hscroll-card .card-body p{font-size:.85rem;color:var(--text-muted);margin-bottom:12px}
+    @media(max-width:700px){.hscroll-card{width:300px}}
+
+    /* About */
+    .about-grid{display:grid;grid-template-columns:300px 1fr;gap:56px;align-items:start}
+    .about-photo{width:100%;aspect-ratio:3/4;border-radius:8px;overflow:hidden;position:relative}
+    .about-photo .placeholder{width:100%;height:100%;background:linear-gradient(135deg,#e8e4df,#d8d4cf);display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:.3}
+    .about-text h3{font-family:var(--font-heading);font-size:1.5rem;margin-bottom:20px;color:var(--text)}
+    .about-text p{color:var(--text-muted);margin-bottom:18px;font-size:.95rem}
+    .about-text .education{margin-top:28px;padding-top:28px;border-top:1px solid var(--border)}
+    .about-text .education h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-light);margin-bottom:14px;font-weight:600}
+    .about-text .education p{font-size:.88rem;margin-bottom:8px}
+    @media(max-width:700px){.about-grid{grid-template-columns:1fr}.about-photo{max-width:240px;margin:0 auto}}
+
+    /* Stats */
+    .stats{display:flex;gap:48px;padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:0 auto;max-width:var(--max-w)}
+    .stat{text-align:center;flex:1}
+    .stat .number{font-family:var(--font-heading);font-size:2.5rem;font-weight:800;color:var(--text);display:block;line-height:1}
+    .stat .label{font-size:.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.08em;margin-top:8px;font-weight:500}
+    @media(max-width:500px){.stats{flex-wrap:wrap;gap:24px;padding:32px 28px}.stat{flex:0 0 45%}}
+
+    /* Footer */
+    footer{padding:56px 0;text-align:center}
+    footer .social{display:flex;justify-content:center;gap:28px;margin-bottom:20px}
+    footer .social a{color:var(--text-muted);font-size:.88rem;font-weight:500;position:relative;transition:color .3s}
+    footer .social a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--accent);transition:width .4s cubic-bezier(.25,.46,.45,.94)}
+    footer .social a:hover{color:var(--accent)}
+    footer .social a:hover::after{width:100%}
+    footer .copy{font-size:.78rem;color:var(--text-light)}
+
+    /* Back to top */
+    .back-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);transition:all .4s;z-index:999;box-shadow:0 4px 16px rgba(232,93,74,.3)}
+    .back-top.show{opacity:1;transform:translateY(0)}
+    .back-top:hover{background:var(--accent-hover);transform:translateY(-3px) scale(1.05)}
+
+    /* Bilingual */
+    [lang="zh"]{display:none}
+    body.zh [lang="zh"]{display:revert}
+    body.zh [lang="en"]{display:none}
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="nav-logo magnetic">Ziwei Su</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="#work" class="magnetic"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="#projects" class="magnetic"><span lang="en">Projects</span><span lang="zh">项目</span></a>
+      <a href="#about" class="magnetic"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="mailto:suzysu418@gmail.com" class="magnetic"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+      <button class="lang-toggle magnetic" onclick="toggleLang()">中 / EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>
+      <span class="hero-line"><span class="hero-line-inner" lang="en">Ziwei Su</span><span class="hero-line-inner" lang="zh">苏紫薇</span></span>
+    </h1>
+    <p class="subtitle">
+      <span lang="en">Game Designer specialising in systems design, game economy, and monetisation for free-to-play mobile games. Based in London.</span>
+      <span lang="zh">游戏设计师，专注系统设计、游戏经济和 F2P 商业化。现居伦敦。</span>
+    </p>
+    <div class="hero-links">
+      <a href="#work" class="btn-primary magnetic"><span lang="en">View Work</span><span lang="zh">查看作品</span> &darr;</a>
+      <a href="resume.pdf" download class="btn-outline magnetic"><span lang="en">Download CV</span><span lang="zh">下载简历</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-inner">
+    <span class="marquee-item"><span class="dot"></span>Systems Design</span>
+    <span class="marquee-item"><span class="dot"></span>Game Economy</span>
+    <span class="marquee-item"><span class="dot"></span>Monetisation</span>
+    <span class="marquee-item"><span class="dot"></span>Progression Design</span>
+    <span class="marquee-item"><span class="dot"></span>Gacha & Banner</span>
+    <span class="marquee-item"><span class="dot"></span>F2P Mobile</span>
+    <span class="marquee-item"><span class="dot"></span>Feature Documentation</span>
+    <span class="marquee-item"><span class="dot"></span>Unity / C#</span>
+    <span class="marquee-item"><span class="dot"></span>AI Tools</span>
+    <span class="marquee-item"><span class="dot"></span>Systems Design</span>
+    <span class="marquee-item"><span class="dot"></span>Game Economy</span>
+    <span class="marquee-item"><span class="dot"></span>Monetisation</span>
+    <span class="marquee-item"><span class="dot"></span>Progression Design</span>
+    <span class="marquee-item"><span class="dot"></span>Gacha & Banner</span>
+    <span class="marquee-item"><span class="dot"></span>F2P Mobile</span>
+    <span class="marquee-item"><span class="dot"></span>Feature Documentation</span>
+    <span class="marquee-item"><span class="dot"></span>Unity / C#</span>
+    <span class="marquee-item"><span class="dot"></span>AI Tools</span>
+  </div>
+</div>
+
+<!-- Stats -->
+<div style="padding:0 28px">
+  <div class="stats" id="statsBar">
+    <div class="stat"><span class="number" data-target="2">0</span><span class="label"><span lang="en">Shipped Titles</span><span lang="zh">上线项目</span></span></div>
+    <div class="stat"><span class="number" data-target="2">0</span><span class="label"><span lang="en">Years Experience</span><span lang="zh">年经验</span></span></div>
+    <div class="stat"><span class="number" data-target="6">0</span><span class="label"><span lang="en">Projects</span><span lang="zh">个项目</span></span></div>
+    <div class="stat"><span class="number" data-target="34">0</span><span class="label"><span lang="en">AI Automations</span><span lang="zh">个自动化</span></span></div>
+  </div>
+</div>
+
+<!-- Professional Work -->
+<section id="work">
+  <div class="container">
+    <p class="section-label reveal"><span lang="en">Professional Work</span><span lang="zh">职业项目</span></p>
+    <h2 class="section-title reveal"><span lang="en">Featured Projects</span><span lang="zh">精选项目</span></h2>
+    <div class="project-grid">
+
+      <div class="project-card featured" onclick="toggleDetail(this)">
+        <div class="card-img">
+          <div class="placeholder" style="background:linear-gradient(135deg,#1a2d3d 0%,#2a4a5a 40%,#3a5a6a 70%,#1a3040 100%)">&#127918;</div>
+          <div class="card-overlay"><span lang="en">View Details</span><span lang="zh">查看详情</span></div>
+        </div>
+        <div class="card-body">
+          <h3><span lang="en">Roguelike Idle Shooter</span><span lang="zh">肉鸽放置射击</span></h3>
+          <p class="card-meta">RippleSoft &middot; 2025 — Present</p>
+          <p><span lang="en">Economy balancing, progression curves, battle pass, shop bundle pricing, and feature documentation for a F2P mobile title.</span><span lang="zh">经济平衡、成长曲线、战令设计、礼包定价、功能文档撰写。</span></p>
+          <div class="tags">
+            <span class="tag">Systems Design</span><span class="tag">Economy</span><span class="tag">Monetisation</span><span class="tag">F2P</span>
+          </div>
+        </div>
+        <div class="card-detail">
+          <h4><span lang="en">Key Contributions</span><span lang="zh">核心贡献</span></h4>
+          <ul>
+            <li lang="en">Built core resource source/sink models and player progression curves in Excel</li>
+            <li lang="en">Independently proposed retention rewards integrating affinity items into battle pass and 7-day sign-in</li>
+            <li lang="en">Designed pricing logic for daily/weekly bundles based on resource consumption frequency</li>
+            <li lang="en">Wrote feature docs covering refresh rules, purchase limits, edge cases</li>
+            <li lang="zh">用 Excel 搭建核心资源产出/消耗模型和玩家成长曲线</li>
+            <li lang="zh">独立提出将亲密度道具嵌入战令与七日签到的留存方案</li>
+            <li lang="zh">设计每日/每周礼包的定价逻辑和资源结构</li>
+            <li lang="zh">撰写功能文档，覆盖刷新规则、购买限制、异常处理</li>
+          </ul>
+          <span class="close-detail" onclick="event.stopPropagation()"><span lang="en">Close</span><span lang="zh">收起</span> &uarr;</span>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="toggleDetail(this)">
+        <div class="card-img">
+          <div class="placeholder" style="background:linear-gradient(135deg,#2d1a3d 0%,#4a2a5a 40%,#5a3a6a 70%,#301a40 100%)">&#127183;</div>
+          <div class="card-overlay"><span lang="en">View Details</span><span lang="zh">查看详情</span></div>
+        </div>
+        <div class="card-body">
+          <h3><span lang="en">Idle Card RPG</span><span lang="zh">放置卡牌养成</span></h3>
+          <p class="card-meta">LuminaryTech &middot; 2024 — 2025</p>
+          <p><span lang="en">Hero interaction system, gacha banner design with pity mechanics, combat balancing, and live ops events. Shipped title.</span><span lang="zh">英雄交互系统、限时抽卡UP池、战斗数值平衡、商业化活动设计。已上线运营。</span></p>
+          <div class="tags">
+            <span class="tag">Gacha Design</span><span class="tag">Systems</span><span class="tag">Balancing</span><span class="tag">Shipped</span>
+          </div>
+        </div>
+        <div class="card-detail">
+          <h4><span lang="en">Key Contributions</span><span lang="zh">核心贡献</span></h4>
+          <ul>
+            <li lang="en">Designed hero interaction system with UI wireframes, rules, and config schemas</li>
+            <li lang="en">Planned limited-time gacha banners with UP probability and cumulative pity systems</li>
+            <li lang="en">Owned combat numerical balancing across multiple releases</li>
+            <li lang="en">Produced system design docs and config table structures for engineering</li>
+            <li lang="zh">设计英雄交互系统，包括界面示意图、交互规则、配置表结构</li>
+            <li lang="zh">规划限时UP池，包含概率提升机制和累计保底</li>
+            <li lang="zh">负责战斗数值平衡和多版本迭代调优</li>
+            <li lang="zh">产出系统策划文档和配置表结构</li>
+          </ul>
+          <span class="close-detail" onclick="event.stopPropagation()"><span lang="en">Close</span><span lang="zh">收起</span> &uarr;</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Big Statement -->
+<section style="padding:100px 0;text-align:center">
+  <div class="container">
+    <blockquote class="big-quote reveal" style="font-family:var(--font-heading);font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.5;max-width:800px;margin:0 auto;font-style:italic">
+      <span lang="en">"I design the systems that make players stay, spend, and come back — without feeling manipulated."</span>
+      <span lang="zh">"我设计的系统让玩家留下来、愿意花钱、还想再回来——但不会觉得被操控。"</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- Horizontal Scroll Projects -->
+<section id="projects" class="hscroll-section" style="background:var(--bg-alt)">
+  <div class="container">
+    <p class="section-label reveal"><span lang="en">Personal & Academic</span><span lang="zh">个人 & 学术</span></p>
+    <h2 class="section-title reveal"><span lang="en">Side Projects</span><span lang="zh">其他项目</span></h2>
+  </div>
+  <div class="hscroll-wrapper" id="hscrollWrapper" style="padding-left:calc((100vw - var(--max-w))/2 + 28px)">
+
+    <div class="hscroll-card">
+      <div class="card-img"><div class="placeholder" style="background:linear-gradient(135deg,#2d2d1a 0%,#4a4a2a 50%,#3a3a1a 100%)">&#128299;</div></div>
+      <div class="card-body">
+        <h3><span lang="en">Tarkov-like Extraction Shooter</span><span lang="zh">类塔科夫撤离射击</span></h3>
+        <p class="card-meta">Cursor Game Jam &middot; 2026</p>
+        <p><span lang="en">AI-assisted game development using Cursor.</span><span lang="zh">使用 Cursor AI 辅助开发。</span></p>
+        <div class="tags"><span class="tag">Unity</span><span class="tag">AI-assisted</span><span class="tag">Game Jam</span></div>
+      </div>
+    </div>
+
+    <div class="hscroll-card">
+      <div class="card-img"><div class="placeholder" style="background:linear-gradient(135deg,#1a2d3d 0%,#2a4a5a 50%,#1a3a4a 100%)">&#129302;</div></div>
+      <div class="card-body">
+        <h3><span lang="en">OpenClaw AI Multi-Agent</span><span lang="zh">OpenClaw AI 多智能体</span></h3>
+        <p class="card-meta">2026</p>
+        <p><span lang="en">7+ AI agents, 34 automated cron jobs, signal-based communication.</span><span lang="zh">7+ AI agent，34 个定时任务，信号通信。</span></p>
+        <div class="tags"><span class="tag">Claude API</span><span class="tag">Python</span><span class="tag">Automation</span></div>
+      </div>
+    </div>
+
+    <div class="hscroll-card">
+      <div class="card-img"><div class="placeholder" style="background:linear-gradient(135deg,#2d1a3d 0%,#4a2a5a 50%,#3a1a4a 100%)">&#127925;</div></div>
+      <div class="card-body">
+        <h3><span lang="en">Moodrift AI Music</span><span lang="zh">Moodrift AI 音乐管线</span></h3>
+        <p class="card-meta">2026</p>
+        <p><span lang="en">AI music generation to YouTube & Bilibili auto-publishing.</span><span lang="zh">AI 音乐生成到 YouTube & B站自动发布。</span></p>
+        <div class="tags"><span class="tag">Suno AI</span><span class="tag">FFmpeg</span><span class="tag">YouTube API</span></div>
+      </div>
+    </div>
+
+    <div class="hscroll-card">
+      <div class="card-img"><div class="placeholder" style="background:linear-gradient(135deg,#3d3d2d 0%,#4a4a3a 50%,#2d2d1a 100%)">&#127891;</div></div>
+      <div class="card-body">
+        <h3><span lang="en">MA Game Design Projects</span><span lang="zh">硕士游戏设计项目</span></h3>
+        <p class="card-meta">UAL LCC &middot; 2022 — 2023</p>
+        <p><span lang="en">RPG Puzzle, Platformer, Hypha. Unity/C#.</span><span lang="zh">RPG 解谜、平台跳跃、Hypha。Unity/C#。</span></p>
+        <div class="tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Level Design</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <p class="section-label reveal"><span lang="en">About</span><span lang="zh">关于我</span></p>
+    <h2 class="section-title reveal"><span lang="en">Hi, I'm Ziwei.</span><span lang="zh">你好，我是紫薇。</span></h2>
+    <div class="about-grid">
+      <div class="about-photo reveal"><div class="placeholder">&#128100;</div></div>
+      <div class="about-text reveal">
+        <div lang="en">
+          <p>I'm a Game Designer based in London, specialising in systems design, game economy, and monetisation for free-to-play mobile games.</p>
+          <p>I've designed progression systems, resource economy models, gacha mechanics, and live ops events across multiple shipped F2P titles. I own features from concept through documentation to implementation handoff.</p>
+          <p>Outside of work, I build AI-powered tools and automation systems, exploring the intersection of AI and game design.</p>
+        </div>
+        <div lang="zh">
+          <p>我是一名居住在伦敦的游戏设计师，专注于 F2P 手游的系统设计、游戏经济和商业化。</p>
+          <p>有多个已上线项目的经验，涵盖成长系统、资源经济、抽卡机制和运营活动。能独立负责从概念到落地的全流程。</p>
+          <p>工作之余，构建 AI 驱动的工具和自动化系统，探索 AI 与游戏设计的交叉领域。</p>
+        </div>
+        <div class="education">
+          <h4>Education</h4>
+          <p><strong>MA Game Design</strong> — UAL London College of Communication, 2022–2023</p>
+          <p><strong>BE Engineering Geology</strong> — Jilin University, 2015–2020</p>
+        </div>
+        <div style="margin-top:28px">
+          <a href="resume.pdf" download class="btn-primary magnetic"><span lang="en">Download CV</span><span lang="zh">下载简历</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="social">
+      <a href="https://www.linkedin.com/in/ziwei-su-9a48382a2/" target="_blank" class="magnetic">LinkedIn</a>
+      <a href="https://github.com/suzyeth" target="_blank" class="magnetic">GitHub</a>
+      <a href="mailto:suzysu418@gmail.com" class="magnetic">Email</a>
+    </div>
+    <p class="copy">&copy; 2026 Ziwei Su &middot; London, UK</p>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0})">&uarr;</button>
+
+<script>
+// ── Lenis smooth scroll ──
+const lenis = new Lenis({lerp:.07,smoothWheel:true});
+function raf(time){lenis.raf(time);requestAnimationFrame(raf)}
+requestAnimationFrame(raf);
+// Sync GSAP ScrollTrigger with Lenis
+lenis.on('scroll',ScrollTrigger.update);
+gsap.ticker.add(t=>lenis.raf(t*1000));
+gsap.ticker.lagSmoothing(0);
+
+// ── Hero text reveal ──
+gsap.to('.hero-line-inner',{y:0,duration:1.2,ease:'power4.out',stagger:.15,delay:.3});
+gsap.to('.subtitle',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.9});
+gsap.to('.hero-links',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:1.1});
+
+// ── Scroll reveals ──
+gsap.utils.toArray('.reveal').forEach(el=>{
+  ScrollTrigger.create({
+    trigger:el,start:'top 85%',
+    onEnter:()=>el.classList.add('visible'),once:true
+  });
+});
+gsap.utils.toArray('.project-card, .hscroll-card').forEach((el,i)=>{
+  gsap.from(el,{
+    scrollTrigger:{trigger:el,start:'top 85%'},
+    y:40,opacity:0,duration:.7,ease:'power3.out',delay:i%2*.12
+  });
+});
+
+// ── Horizontal scroll ──
+const hWrap=document.getElementById('hscrollWrapper');
+if(hWrap){
+  const totalScroll=hWrap.scrollWidth-window.innerWidth;
+  gsap.to(hWrap,{
+    x:()=>-totalScroll,ease:'none',
+    scrollTrigger:{
+      trigger:'.hscroll-section',start:'top top',
+      end:()=>'+=' + totalScroll,pin:true,scrub:1,
+      invalidateOnRefresh:true
+    }
+  });
+}
+
+// ── Counter animation ──
+const counterObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.querySelectorAll('.number[data-target]').forEach(n=>{
+      const t=+n.dataset.target;let c=0;
+      const s=Math.max(1,Math.ceil(t/40));
+      const timer=setInterval(()=>{c+=s;if(c>=t){c=t;clearInterval(timer)}n.textContent=c},30);
+    });
+    counterObs.unobserve(e.target);
+  });
+},{threshold:.4});
+document.querySelectorAll('.stats').forEach(el=>counterObs.observe(el));
+
+// ── Custom cursor ──
+const cursor=document.getElementById('cursor');
+if(window.matchMedia('(pointer:fine)').matches){
+  let cx=0,cy=0,tx=0,ty=0;
+  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+  (function loop(){cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;cursor.style.left=cx+'px';cursor.style.top=cy+'px';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.project-card,.hscroll-card,.tag').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
+  });
+  document.addEventListener('mousedown',()=>cursor.classList.add('click'));
+  document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+}else{cursor.style.display='none'}
+
+// ── Magnetic buttons ──
+document.querySelectorAll('.magnetic').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    const x=e.clientX-r.left-r.width/2;
+    const y=e.clientY-r.top-r.height/2;
+    el.style.transform=`translate(${x*.25}px,${y*.25}px)`;
+  });
+  el.addEventListener('mouseleave',()=>{el.style.transform=''});
+});
+
+// ── Nav scroll ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+  document.getElementById('backTop').classList.toggle('show',window.scrollY>500);
+});
+
+// ── Parallax on featured card images ──
+gsap.utils.toArray('.featured .placeholder').forEach(img=>{
+  gsap.to(img,{y:-40,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'bottom top',scrub:true}});
+});
+
+// ── Card detail toggle ──
+function toggleDetail(card){const d=card.querySelector('.card-detail');if(d)d.classList.toggle('open')}
+
+// ── Language toggle ──
+function toggleLang(){document.body.classList.toggle('zh');localStorage.setItem('lang',document.body.classList.contains('zh')?'zh':'en')}
+if(localStorage.getItem('lang')==='zh')document.body.classList.add('zh');
+</script>
+
+</body>
+</html>

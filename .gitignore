@@ -14,6 +14,13 @@ docs/
 # Empty legacy directory
 img/
 
+# Legacy design explorations (contain pre-NDA-cleanup references)
+variants/variant-A.html
+variants/variant-B.html
+variants/variant-C.html
+variants/variant-D.html
+variants/variant-final.html
+
 # Editor / IDE
 .idea/
 .vscode/

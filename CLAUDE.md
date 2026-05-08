@@ -37,8 +37,8 @@ A defensive inline `<script>` IIFE near the bottom of `index.html` reads `localS
   - `hero-poster.jpg` (video poster + reduced-motion fallback)
 - `img/` — legacy empty image directory; safe to delete.
 - `variants/` — design history; not linked from `index.html`.
-  - `variant-{A,B,C,D,final}.html` — pre-2026-05-08 design explorations.
   - `v2-cinematic.html`, `v3-gamevibe.html` — direction mockups from the 2026-05-08 brainstorm.
+  - Pre-2026-05-08 explorations live locally only (gitignored).
 - `docs/` — design + plan docs from the 2026-05-08 redesign. Read first when revisiting this codebase.
 - `index.html.backup` — pre-redesign snapshot. Safe to delete once new page is locked in.
 - `.gstack/` — tooling artifacts; do not treat as source.
@@ -57,11 +57,11 @@ A defensive inline `<script>` IIFE near the bottom of `index.html` reads `localS
 
 ### NDA / confidentiality rule (hard)
 
-The portfolio shows **only personal-project work**. Do not add screenshots, design diagrams, or any other visual asset from Venus / Luminary / RippleSoft work, or anything else under NDA. Do not name those employers anywhere on the page. The credibility strip uses vague phrasing ("F2P mobile") on purpose.
+The portfolio shows **only personal-project work** alongside high-level descriptions of professional experience. Do not add screenshots, design diagrams, or any other visual asset from any employer's work. Project names from professional work must remain anonymous (use type descriptions like "F2P RPG (East Asia)" / "F2P Roguelike Shooter"). The credibility strip uses vague phrasing on purpose.
 
 ### Removed legacy references
 
-The previous production file linked to `case-ripplesoft.html`, `case-luminarytech.html`, and `resume.pdf`. These were never authored. The redesigned page does **not** reference them — the contact pattern is "Email for CV" via `mailto:`. Do not reintroduce these links.
+The previous production file linked to several case-study HTML files and a `resume.pdf`. These were never authored. The redesigned page does **not** reference them — the contact pattern is "Email for CV" via `mailto:`. Do not reintroduce these links.
 
 ## Conventions specific to this repo
 

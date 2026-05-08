@@ -94,7 +94,9 @@ section { position: relative; padding: 120px 0; }
 
 /* HERO ---------------------------------------------------- */
 .hero {
-  position: relative; height: 100vh; min-height: 600px;
+  position: relative;
+  height: 100vh; height: 100dvh;
+  min-height: 540px;
   padding: 0; overflow: hidden;
 }
 .hero-video {
@@ -119,15 +121,15 @@ section { position: relative; padding: 120px 0; }
 }
 .hero-name {
   font-family: var(--serif); font-weight: 300;
-  font-size: clamp(4.5rem, 13vw, 14rem);
+  font-size: clamp(3.2rem, min(12vw, 22vh), 13rem);
   line-height: .9; letter-spacing: -.04em;
   font-variation-settings: "opsz" 144;
 }
 .hero-name em { font-style: italic; font-weight: 400; color: var(--accent); }
 .hero-meta {
-  display: flex; justify-content: space-between; align-items: end; gap: 24px;
+  display: flex; justify-content: space-between; align-items: end; gap: 14px 24px;
   flex-wrap: wrap;
-  margin-top: 24px; padding-top: 24px;
+  margin-top: 18px; padding-top: 18px;
   border-top: 1px solid var(--ink-fade);
 }
 .hero-role {
@@ -144,8 +146,14 @@ section { position: relative; padding: 120px 0; }
   background: var(--ink-mute); vertical-align: middle; margin-right: 12px;
 }
 @media (max-width: 640px) {
-  .hero-letterbox { height: 28px; }
-  .hero-frame { inset: 56px 0 24px 0; }
+  .hero-letterbox { height: 24px; }
+  .hero-frame { inset: 56px 0 20px 0; padding-left: var(--gutter); padding-right: var(--gutter); }
+}
+/* Short-viewport guardrail (small laptops, landscape phones) */
+@media (max-height: 640px) {
+  .hero-letterbox { height: 24px; }
+  .hero-frame { inset: 56px 0 20px 0; }
+  .hero-meta { margin-top: 10px; padding-top: 10px; }
 }
 
 /* Reduced motion fallback ---------------------------------- */

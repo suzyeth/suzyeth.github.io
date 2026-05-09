@@ -1,645 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ziwei Su — Game Designer</title>
-<meta name="description" content="Game Designer based in London. Systems, economy, monetisation, and solo-shipped tools and games.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
-<!-- Optional motion enhancement (works without these) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ziwei Su — Game Designer</title>
+  <meta name="description" content="Game Designer specialising in systems design, game economy, and monetisation for F2P games.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Top nav ============================================ -->
-<header class="hud">
-  <a href="#" class="brand">SUSU / PORTFOLIO</a>
-  <nav class="hud-r" aria-label="Primary">
-    <a href="#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
-    <a href="#about"><span lang="en">About</span><span lang="zh">关于</span></a>
-    <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
-    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
-  </nav>
-</header>
-
-<!-- HERO =========================================== -->
-<section class="hero" id="top">
-  <video class="hero-video" src="assets/ma-opening.mp4" poster="assets/hero-poster.jpg" autoplay loop muted playsinline preload="metadata"></video>
-  <div class="hero-veil"></div>
-  <div class="hero-letterbox top"></div>
-  <div class="hero-letterbox bot"></div>
-  <div class="hero-frame container">
-    <div class="hero-spacer"></div>
-    <div class="hero-bottom">
-      <h1 class="hero-name">
-        <span lang="en">Ziwei <em>Su</em></span>
-        <span lang="zh">苏紫薇</span>
-      </h1>
-      <div class="hero-meta">
-        <p class="hero-role">
-          <span lang="en">Game Designer <span class="hero-role-mute">— Systems · Economy · Solo Maker — London</span></span>
-          <span lang="zh">游戏设计师 <span class="hero-role-mute">— 系统 · 经济 · 独立作者 — 伦敦</span></span>
-        </p>
-        <p class="hero-scroll" aria-hidden="true"><span lang="en">Scroll · 6 Projects</span><span lang="zh">向下 · 6 个项目</span></p>
-      </div>
+<!-- Nav -->
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">Ziwei Su</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="#work" lang="en">Work</a>
+      <a href="#work" lang="zh">作品</a>
+      <a href="#projects" lang="en">Projects</a>
+      <a href="#projects" lang="zh">项目</a>
+      <a href="#about" lang="en">About</a>
+      <a href="#about" lang="zh">关于</a>
+      <a href="mailto:suzysu418@gmail.com" lang="en">Contact</a>
+      <a href="mailto:suzysu418@gmail.com" lang="zh">联系</a>
+      <button class="lang-toggle" onclick="toggleLang()">中/EN</button>
     </div>
   </div>
-</section>
+</nav>
 
-<!-- CREDENTIALS ===================================== -->
-<section class="creds" id="creds">
+<!-- Hero -->
+<section class="hero">
   <div class="container">
-    <p class="creds-line" data-reveal>
-      <span lang="en">London-based · 19 months in F2P mobile · 1 shipped title (East Asia) · 6 personal projects · MA UAL</span>
-      <span lang="zh">现居伦敦 · F2P 手游 19 个月 · 1 款已上线（东亚）· 6 个个人项目 · UAL 硕士</span>
+    <h1>
+      <span lang="en">Ziwei Su</span>
+      <span lang="zh">苏紫薇</span>
+    </h1>
+    <p class="subtitle">
+      <span lang="en">Game Designer specialising in systems design, game economy, and monetisation for F2P mobile games. Currently based in London.</span>
+      <span lang="zh">游戏设计师，专注系统设计、游戏经济和 F2P 商业化设计。现居伦敦。</span>
     </p>
-  </div>
-</section>
-
-<!-- ABOUT =========================================== -->
-<section class="about" id="about">
-  <div class="container about-grid">
-    <div class="about-photo" aria-hidden="true" data-reveal>
-      <div class="about-photo-placeholder">ZS</div>
-    </div>
-    <div class="about-body" data-reveal>
-      <h2 class="about-h">
-        <span lang="en">Hi <span class="wave">👋</span> — I'm <em>Ziwei.</em></span>
-        <span lang="zh">嗨 <span class="wave">👋</span> — 我是 <em>紫薇.</em></span>
-      </h2>
-      <div lang="en" class="about-text">
-        <p>I'm a Game Designer based in London. By day I work on free-to-play mobile games — systems, economy, monetisation. By night I ship solo experiments: jam games, automation tools, and AI-driven prototypes.</p>
-        <p>This portfolio shows the personal side: jam games, tools, and prototypes that test how far one designer can take an idea using modern AI workflows.</p>
-      </div>
-      <div lang="zh" class="about-text">
-        <p>我是一名居住在伦敦的游戏设计师。白天做 F2P 手游的系统、经济和商业化；晚上做独立实验——jam 游戏、自动化工具、AI 驱动的原型。</p>
-        <p>这个 portfolio 主要展示个人的一面：jam 作品、工具、原型，看看一个设计师借助 AI 工作流能把一个想法推到多远。</p>
-      </div>
-      <dl class="about-meta">
-        <div class="about-meta-row"><dt lang="en">Education</dt><dt lang="zh">教育</dt><dd>MA Game Design — UAL London College of Communication, 2023<br>BE Engineering Geology — Jilin University, 2020</dd></div>
-        <div class="about-meta-row"><dt lang="en">Languages</dt><dt lang="zh">语言</dt><dd lang="en">Mandarin (native) · English (working)</dd><dd lang="zh">中文（母语）· 英文（工作流利）</dd></div>
-      </dl>
+    <div class="hero-links">
+      <a href="#work">
+        <span lang="en">View Work</span>
+        <span lang="zh">查看作品</span>
+         &darr;
+      </a>
+      <a href="https://www.linkedin.com/in/suzy99-su/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/suzyeth" target="_blank">GitHub</a>
+      <a href="resume.pdf" download>
+        <span lang="en">Download CV</span>
+        <span lang="zh">下载简历</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- BACKSTORY ======================================= -->
-<section class="backstory" id="backstory">
-  <div class="bs-bg" aria-hidden="true"></div>
+<!-- Professional Work -->
+<section id="work">
   <div class="container">
-    <header class="bs-head" data-reveal>
-      <p class="eyebrow"><span lang="en">My Backstory</span><span lang="zh">我的旅程</span></p>
-      <h2 class="bs-title">
-        <span lang="en">The <em>path</em> so far.</span>
-        <span lang="zh">走过的 <em>路</em>。</span>
-      </h2>
-    </header>
-
-    <div class="timeline">
-      <span class="timeline-rail" aria-hidden="true"></span>
-
-      <article class="tl-entry right" data-reveal>
-        <div class="tl-card tl-card-feature">
-          <p class="tl-meta">2024 — Present · London</p>
-          <h3 class="tl-role"><span lang="en">Game Designer</span><span lang="zh">游戏设计师</span></h3>
-          <p class="tl-org">Venus</p>
-          <div class="tl-body">
-            <p lang="en">End-to-end ownership of monetisation design across two F2P mobile titles — one shipped in East Asia, one in closed beta.</p>
-            <p lang="zh">两款 F2P 手游的商业化端到端负责 — 一款已在东亚上线，一款进入封闭测试阶段。</p>
-          </div>
-          <div class="tl-domains">
-            <div class="tl-domain">
-              <h4 class="tl-d-h"><span lang="en">Monetisation Systems</span><span lang="zh">商业化系统</span></h4>
-              <ul>
-                <li lang="en">Gacha banner design — limited-time UP probability &amp; pity systems</li>
-                <li lang="en">Battle-pass architecture, login event series (7-day / 30-day)</li>
-                <li lang="en">Affinity rewards, monthly subscription, daily / weekly bundles</li>
-                <li lang="en">Shop with VIP membership tier · pricing models · treasure-chest config</li>
-                <li lang="zh">限时抽卡 — UP 概率与保底机制设计</li>
-                <li lang="zh">战令架构 · 签到活动序列（7 / 30 日）</li>
-                <li lang="zh">好感度奖励 · 月卡 · 每日 / 每周礼包</li>
-                <li lang="zh">商城 + VIP 会员 · 定价模型 · 宝箱配置</li>
-              </ul>
-            </div>
-            <div class="tl-domain">
-              <h4 class="tl-d-h"><span lang="en">Numerical Design</span><span lang="zh">数值设计</span></h4>
-              <ul>
-                <li lang="en">Game-wide master numerics — iterated across 10 versions</li>
-                <li lang="en">Economy resource-flow model — 3 versions</li>
-                <li lang="en">Items, equipment, skill progression &amp; formula tables</li>
-                <li lang="zh">全局数值总表 — 迭代 10 个版本</li>
-                <li lang="zh">资源流转模型 — 3 个版本</li>
-                <li lang="zh">物品 / 装备 / 技能成长 / 公式表</li>
-              </ul>
-            </div>
-            <div class="tl-domain">
-              <h4 class="tl-d-h"><span lang="en">Documentation</span><span lang="zh">文档与交付</span></h4>
-              <ul>
-                <li lang="en">Interaction system design docs — lead author</li>
-                <li lang="en">Combat configuration tables</li>
-                <li lang="en">Gacha system design documentation, concept → launch</li>
-                <li lang="zh">交互系统设计文档 — 主笔</li>
-                <li lang="zh">战斗配置表</li>
-                <li lang="zh">抽卡系统设计文档（概念 → 上线）</li>
-              </ul>
-            </div>
-          </div>
-          <p class="tl-tags">F2P RPG (East Asia, shipped) · F2P Roguelike Shooter (closed beta)</p>
-        </div>
-        <span class="tl-dot" aria-hidden="true"></span>
-      </article>
-
-      <article class="tl-entry left" data-reveal>
-        <span class="tl-dot" aria-hidden="true"></span>
-        <div class="tl-card">
-          <p class="tl-meta">2024 — Present · After Hours</p>
-          <h3 class="tl-role"><span lang="en">Solo Maker</span><span lang="zh">独立作者</span></h3>
-          <p class="tl-org"><span lang="en">Side projects · always-on</span><span lang="zh">副业 · 持续进行</span></p>
-          <div class="tl-body">
-            <p lang="en">Started shipping side projects after joining the studio — jam games, automation tools, AI pipelines, AI-coded prototypes. Each one a small bet on how far modern AI workflows can push a single designer.</p>
-            <p lang="zh">入职后开始做独立项目 — jam 游戏、自动化工具、AI 管线、AI 协作原型。每一个都是在押注：现代 AI 工作流能把一个设计师推到多远。</p>
-          </div>
-          <ul class="tl-projects">
-            <li><strong>tarduck</strong> · <span lang="en">Three.js extraction shooter · Cursor Vibe Jam 2026</span><span lang="zh">Three.js 撤离射击 · Cursor Vibe Jam 2026</span></li>
-            <li><strong>Respond to Signal 404</strong> · <span lang="en">Unity 2D horror puzzle · LD59 (sole programmer)</span><span lang="zh">Unity 2D 恐怖解谜 · LD59（唯一程序）</span></li>
-            <li><strong>gridbot</strong> · <span lang="en">Python Android automation · MIT, pip-installable</span><span lang="zh">Python Android 自动化 · MIT 协议，pip 可装</span></li>
-            <li><strong>OpenClaw</strong> · <span lang="en">Multi-agent platform · 7 agents, 34 cron jobs</span><span lang="zh">多智能体平台 · 7 agents, 34 cron 任务</span></li>
-            <li><strong>Moodrift</strong> · <span lang="en">AI music → video → multi-platform pipeline</span><span lang="zh">AI 音乐 → 视频 → 多平台发布管线</span></li>
-          </ul>
-          <a href="#work" class="tl-cta"><span lang="en">See Selected Work ↓</span><span lang="zh">查看精选作品 ↓</span></a>
-        </div>
-      </article>
-
-      <article class="tl-entry right" data-reveal>
-        <div class="tl-card">
-          <p class="tl-meta">2022 — 2023 · London</p>
-          <h3 class="tl-role"><span lang="en">MA Game Design</span><span lang="zh">硕士 · 游戏设计</span></h3>
-          <p class="tl-org">UAL · London College of Communication</p>
-          <div class="tl-body">
-            <p lang="en">Three Unity prototypes — an RPG puzzle, a meta-style platformer, and Hypha — covering mechanics design, level design, and end-to-end implementation in C#.</p>
-            <p lang="zh">三款 Unity 原型 — RPG 解谜、元叙事平台跳跃、Hypha 俯视角射击 — 覆盖机制设计、关卡设计与 C# 完整实现。</p>
-          </div>
-        </div>
-        <span class="tl-dot" aria-hidden="true"></span>
-      </article>
-
-      <article class="tl-entry left" data-reveal>
-        <span class="tl-dot" aria-hidden="true"></span>
-        <div class="tl-card">
-          <p class="tl-meta">2015 — 2020 · Jilin</p>
-          <h3 class="tl-role"><span lang="en">BE Engineering Geology</span><span lang="zh">本科 · 工程地质</span></h3>
-          <p class="tl-org">Jilin University</p>
-          <div class="tl-body">
-            <p lang="en">Five years of engineering analysis and field research. Pivoted to game design afterwards — same systems thinking, different domain.</p>
-            <p lang="zh">五年的工程分析与野外研究。之后转向游戏设计 — 同样的系统思维，换一个领域。</p>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- SELECTED WORK =================================== -->
-<section class="work" id="work">
-  <div class="container">
-    <header class="work-head" data-reveal>
-      <p class="eyebrow"><span lang="en">Selected Work</span><span lang="zh">精选作品</span></p>
-      <h2 class="work-title">
-        <span lang="en">Six <em>side projects</em>, one designer.</span>
-        <span lang="zh">六个 <em>个人项目</em>，一个设计师。</span>
-      </h2>
-    </header>
-
-    <div class="work-grid">
-
-      <!-- 01 tarduck (featured) -->
-      <article class="card card-feature" data-reveal data-id="tarduck">
-        <div class="card-media tarduck-art" aria-hidden="true"><span class="card-glyph">⌖</span></div>
-        <div class="card-text">
-          <p class="card-id">01 · <span lang="en">Featured · Cursor Vibe Jam 2026</span><span lang="zh">特色项目 · Cursor Vibe Jam 2026</span></p>
-          <h3 class="card-title">tarduck — <em>Escape from Duckkov</em></h3>
-          <p class="card-tag">Solo · Three.js · Browser Extraction Shooter</p>
-          <p class="card-blurb">
-            <span lang="en">Tarkov-inspired top-down shooter, designed and shipped solo in 30 days under jam rules: ≥90% AI-coded.</span>
-            <span lang="zh">Tarkov 风格的俯视角撤离射击，30 天独立完成，jam 规则下 ≥90% 由 AI 编写。</span>
-          </p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-tarduck"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-tarduck" hidden>
-          <div class="detail-grid">
-            <div>
-              <h4><span lang="en">Role</span><span lang="zh">角色</span></h4>
-              <p lang="en">Solo entry — design, direction, AI-collaboration workflow.</p>
-              <p lang="zh">独立参与 — 设计、方向把控、AI 协作工作流。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scope</span><span lang="zh">范围</span></h4>
-              <ul>
-                <li lang="en">5 weapons · 5 enemy types · body-part hitbox damage</li>
-                <li lang="en">Grid inventory · 12 talents · 8 crafting recipes</li>
-                <li lang="en">3 extract points · fog-of-war · wave spawning · difficulty scaling</li>
-                <li lang="zh">5 武器 · 5 敌人类型 · 部位 hitbox 伤害</li>
-                <li lang="zh">网格背包 · 12 天赋 · 8 合成配方</li>
-                <li lang="zh">3 个撤离点 · 战争迷雾 · 波次生成 · 难度缩放</li>
-              </ul>
-            </div>
-            <div>
-              <h4><span lang="en">Scale</span><span lang="zh">规模</span></h4>
-              <p lang="en">30 days · 57 commits · ≥90% AI-coded under jam rules.</p>
-              <p lang="zh">30 天 · 57 commits · jam 规则下 ≥90% 由 AI 编写。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Stack</span><span lang="zh">技术栈</span></h4>
-              <p>Three.js · Vite · lil-gui · ACES tone mapping · Bloom</p>
-            </div>
-          </div>
-          <div class="detail-links">
-            <a href="https://suzyeth.github.io/escape-from-duckkov/" target="_blank" rel="noopener" class="primary"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
-            <a href="https://github.com/suzyeth/escape-from-duckkov" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 02 LD59 -->
-      <article class="card" data-reveal data-id="ld59">
-        <div class="card-media ld59-art" aria-hidden="true"><span class="card-glyph">▣</span></div>
-        <div class="card-text">
-          <p class="card-id">02 · <span lang="en">Ludum Dare 59 Jam</span><span lang="zh">Ludum Dare 59 Jam</span></p>
-          <h3 class="card-title">Respond to <em>Signal 404</em></h3>
-          <p class="card-tag">Sole Programmer · Unity · 2D Pixel Horror</p>
-          <p class="card-blurb">
-            <span lang="en">Six-person team, 72 hours. I was the sole programmer; the result is a pixel-art horror puzzle on itch.io.</span>
-            <span lang="zh">6 人团队，72 小时。我是唯一程序员，最终在 itch.io 发布的 2D 像素恐怖解谜。</span>
-          </p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-ld59"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-ld59" hidden>
-          <div class="detail-grid">
-            <div>
-              <h4><span lang="en">Role</span><span lang="zh">角色</span></h4>
-              <p lang="en">Co-designer (with Cheng Min); sole programmer on a 6-person team; co-handled audio.</p>
-              <p lang="zh">联合设计师（与 Cheng Min）；6 人团队中唯一程序员；联合负责音频。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scope</span><span lang="zh">范围</span></h4>
-              <p lang="en">Designed signal-detection mechanic and puzzle progression. Built every gameplay system in Unity, shipped HTML5 build to itch.io.</p>
-              <p lang="zh">设计信号检测机制和解谜流程。Unity 中实现所有玩法系统，HTML5 构建发布到 itch.io。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scale</span><span lang="zh">规模</span></h4>
-              <p lang="en">72-hour jam · 6-person team · public on itch + Ludum Dare for rating.</p>
-              <p lang="zh">72 小时 jam · 6 人团队 · itch + LD 公开评分。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Stack</span><span lang="zh">技术栈</span></h4>
-              <p>Unity 2022 · C# · WebGL build</p>
-            </div>
-          </div>
-          <div class="detail-links">
-            <a href="https://cheng-min.itch.io/respond-to-signal-404" target="_blank" rel="noopener">itch.io ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 03 gridbot -->
-      <article class="card" data-reveal data-id="gridbot">
-        <div class="card-media terminal-art" aria-hidden="true">
-<pre>$ pip install gridbot[ocr]
-▸ capture   ✓
-▸ input     ✓
-▸ ocr       ✓ paddle
-▸ navigator ✓
-▸ recorder  ✓
-
-› ready_state: idle
-_</pre>
-        </div>
-        <div class="card-text">
-          <p class="card-id">03 · <span lang="en">Solo · MIT</span><span lang="zh">独立项目 · MIT 协议</span></p>
-          <h3 class="card-title">gridbot — <em>Black-box QA</em></h3>
-          <p class="card-tag">Python · ADB · PaddleOCR · pip-installable</p>
-          <p class="card-blurb">
-            <span lang="en">Android automation toolkit aimed at designers and QA — works where UIAutomator and Appium don't.</span>
-            <span lang="zh">面向策划与 QA 的 Android 自动化工具包 — 在 UIAutomator/Appium 失效的场合也能用。</span>
-          </p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-gridbot"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-gridbot" hidden>
-          <div class="detail-grid">
-            <div>
-              <h4><span lang="en">Role</span><span lang="zh">角色</span></h4>
-              <p lang="en">Solo — architecture, API design, packaging, docs.</p>
-              <p lang="zh">独立 — 架构、API 设计、打包、文档。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scope</span><span lang="zh">范围</span></h4>
-              <p lang="en">Modular package: <code>capture · input · ocr · navigator · recorder · state</code>. Designed for use cases where UIAutomator and Appium fail (custom rendering engines, third-party games).</p>
-              <p lang="zh">模块化包：<code>capture · input · ocr · navigator · recorder · state</code>。针对 UIAutomator/Appium 失效场景（自定义渲染引擎、第三方游戏）。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scale</span><span lang="zh">规模</span></h4>
-              <p lang="en">Alpha 0.1.x, MIT licensed, <code>pip install gridbot[ocr]</code>.</p>
-              <p lang="zh">Alpha 0.1.x，MIT 协议，<code>pip install gridbot[ocr]</code>。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Stack</span><span lang="zh">技术栈</span></h4>
-              <p>Python 3.9+ · ADB · PaddleOCR · YAML state graphs</p>
-            </div>
-          </div>
-          <div class="detail-links">
-            <a href="https://github.com/suzyeth/gridbot" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 04 OpenClaw -->
-      <article class="card" data-reveal data-id="openclaw">
-        <div class="card-media network-art" aria-hidden="true"><span class="card-glyph">⛬</span></div>
-        <div class="card-text">
-          <p class="card-id">04 · <span lang="en">Solo · 2024 — Present</span><span lang="zh">独立项目 · 2024 至今</span></p>
-          <h3 class="card-title">OpenClaw — <em>Multi-Agent</em></h3>
-          <p class="card-tag">Claude API · 7 agents · 34 cron jobs</p>
-          <p class="card-blurb">
-            <span lang="en">Self-built automation platform — agents handling job hunt, content, and ops on autopilot via signal-bus + JSON config.</span>
-            <span lang="zh">自建自动化平台 — agents 通过 signal-bus 和 JSON 配置自动跑求职、内容、运营。</span>
-          </p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-openclaw"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-openclaw" hidden>
-          <div class="detail-grid">
-            <div>
-              <h4><span lang="en">Role</span><span lang="zh">角色</span></h4>
-              <p lang="en">Solo — agents, signal bus, cron orchestration, integrations.</p>
-              <p lang="zh">独立 — agents、signal bus、cron 调度、集成。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scope</span><span lang="zh">范围</span></h4>
-              <p lang="en">7+ agents covering job hunt, content, ops, music. JSON-driven configs. 6+ external API integrations.</p>
-              <p lang="zh">7+ agents 覆盖求职、内容、运营、音乐。JSON 配置驱动，6+ 外部 API 集成。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scale</span><span lang="zh">规模</span></h4>
-              <p lang="en">34 cron jobs running on personal infrastructure since 2024.</p>
-              <p lang="zh">34 个 cron 任务，2024 年至今在个人基础设施上运行。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Stack</span><span lang="zh">技术栈</span></h4>
-              <p>Python · Claude API · macOS launchd / cron · JSON config</p>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 05 Moodrift -->
-      <article class="card" data-reveal data-id="moodrift">
-        <div class="card-media moodrift-art" aria-hidden="true">
-          <img src="assets/moodrift-cover.png" alt="" loading="lazy">
-        </div>
-        <div class="card-text">
-          <p class="card-id">05 · <span lang="en">Solo · 2024 — Present</span><span lang="zh">独立项目 · 2024 至今</span></p>
-          <h3 class="card-title">Moodrift — <em>AI Music Pipeline</em></h3>
-          <p class="card-tag">Suno · FFmpeg · YouTube · Bilibili</p>
-          <p class="card-blurb">
-            <span lang="en">End-to-end pipeline from Suno-generated tracks through video production to YouTube and Bilibili publishing.</span>
-            <span lang="zh">端到端管线：Suno 生成音乐 → 视频制作 → YouTube + B 站发布。</span>
-          </p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-moodrift"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-moodrift" hidden>
-          <div class="detail-grid">
-            <div>
-              <h4><span lang="en">Role</span><span lang="zh">角色</span></h4>
-              <p lang="en">Solo pipeline owner — generation prompts, video assembly, multi-platform publishing.</p>
-              <p lang="zh">独立管线拥有者 — 生成 prompt、视频组装、多平台发布。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scope</span><span lang="zh">范围</span></h4>
-              <p lang="en">AI music generation → automated video production → publishing to YouTube and Bilibili with three publisher tiers (9 / 10 / 14).</p>
-              <p lang="zh">AI 音乐生成 → 自动视频制作 → YouTube 与 B 站发布，三档 publisher（9 / 10 / 14）。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scale</span><span lang="zh">规模</span></h4>
-              <p lang="en">Daily output across multiple themes — sleep piano, dark academia, nature ambient.</p>
-              <p lang="zh">每日多主题产出 — 睡眠钢琴、暗学院、自然氛围。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Stack</span><span lang="zh">技术栈</span></h4>
-              <p>Python · Suno · FFmpeg · YouTube API · Bilibili API</p>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 06 MA -->
-      <article class="card" data-reveal data-id="ma">
-        <div class="card-media ma-art" aria-hidden="true">
-          <video src="assets/ma-ending.mp4" autoplay loop muted playsinline preload="metadata"></video>
-        </div>
-        <div class="card-text">
-          <p class="card-id">06 · <span lang="en">UAL · 2022 — 2023</span><span lang="zh">UAL · 2022 — 2023</span></p>
-          <h3 class="card-title">MA Game <em>Design</em></h3>
-          <p class="card-tag">Unity · C# · 3 Prototypes</p>
-          <p class="card-blurb">
-            <span lang="en">Three Unity prototypes from the MA: an RPG puzzle, a meta platformer, and Hypha — a top-down shooter.</span>
-            <span lang="zh">硕士期间三款 Unity 原型：RPG 解谜、元叙事平台跳跃，以及 Hypha 俯视角射击。</span>
-          </p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-ma"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-ma" hidden>
-          <div class="detail-grid">
-            <div>
-              <h4><span lang="en">Role</span><span lang="zh">角色</span></h4>
-              <p lang="en">Owned game mechanics design and Unity implementation across three prototypes; level design and parameter tuning for the platformer.</p>
-              <p lang="zh">三款原型中负责玩法设计与 Unity 实现；平台跳跃部分负责关卡设计与数值调优。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Scope</span><span lang="zh">范围</span></h4>
-              <ul>
-                <li lang="en">RPG Puzzle — 4 mechanics (teleport / box pull / ice break / thorn cross)</li>
-                <li lang="en">Meta Platformer — level design + parameter tuning</li>
-                <li lang="en">Hypha — random enemy generation, four-direction firing, HP / damage feedback</li>
-                <li lang="zh">RPG 解谜 — 4 个机制（传送 / 推箱 / 破冰 / 穿刺）</li>
-                <li lang="zh">元叙事平台 — 关卡 + 参数调优</li>
-                <li lang="zh">Hypha — 随机敌人生成、四向射击、HP/伤害反馈</li>
-              </ul>
-            </div>
-            <div>
-              <h4><span lang="en">Scale</span><span lang="zh">规模</span></h4>
-              <p lang="en">3 Unity prototypes during MA Game Design at UAL LCC, 2022–2023.</p>
-              <p lang="zh">UAL LCC 硕士期间三款 Unity 原型，2022–2023。</p>
-            </div>
-            <div>
-              <h4><span lang="en">Stack</span><span lang="zh">技术栈</span></h4>
-              <p>Unity 2022 · C#</p>
-            </div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS =========================================== -->
-<section class="skills" id="skills">
-  <div class="container">
-    <header class="skills-head" data-reveal>
-      <h2 class="skills-eyebrow">
-        <span lang="en">Skills</span><span lang="zh">能力</span>
-      </h2>
-    </header>
-    <div class="skills-grid">
-      <div class="skill-col" data-reveal>
-        <h3 class="skill-h"><span lang="en">Game Design</span><span lang="zh">游戏设计</span></h3>
-        <ul>
-          <li>Systems Design</li>
-          <li>Game Economy</li>
-          <li>Monetisation · Gacha · Battle Pass</li>
-          <li>Live Ops · Login Events</li>
-          <li>Numerical Balancing</li>
-          <li>Progression Design</li>
-          <li>Spec / GDD authoring</li>
-        </ul>
-      </div>
-      <div class="skill-col" data-reveal>
-        <h3 class="skill-h"><span lang="en">Programming</span><span lang="zh">程序</span></h3>
-        <ul>
-          <li>Python (intermediate)</li>
-          <li>C# (working — Unity scripting)</li>
-          <li>JavaScript (working)</li>
-          <li>Three.js (jam project)</li>
-          <li>REST APIs · JSON config</li>
-          <li>Cron / launchd orchestration</li>
-          <li>AI-assisted dev workflow</li>
-        </ul>
-      </div>
-      <div class="skill-col" data-reveal>
-        <h3 class="skill-h"><span lang="en">Tools</span><span lang="zh">工具</span></h3>
-        <ul>
-          <li>Unity 2022.3+</li>
-          <li>Excel / Google Sheets modelling</li>
-          <li>JSON / CSV configs</li>
-          <li>Figma</li>
-          <li>JIRA / Confluence</li>
-          <li>Cursor · Claude Code</li>
-          <li>Git</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT ========================================= -->
-<section class="contact" id="contact">
-  <div class="container">
-    <p class="eyebrow"><span lang="en">Contact</span><span lang="zh">联系</span></p>
-    <h2 class="contact-title" data-reveal>
-      <span lang="en">Looking to <em>collaborate?</em></span>
-      <span lang="zh">想 <em>合作</em>？</span>
+    <h2 class="section-title">
+      <span lang="en">Professional Work</span>
+      <span lang="zh">职业项目</span>
     </h2>
-    <a class="contact-email" href="mailto:suzysu418@gmail.com?subject=Hello%20Ziwei" data-reveal>suzysu418@gmail.com</a>
-    <ul class="contact-links" data-reveal>
-      <li><a href="https://www.linkedin.com/in/ziwei-su-9a48382a2/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-      <li><a href="https://github.com/suzyeth" target="_blank" rel="noopener">GitHub ↗</a></li>
-    </ul>
+    <div class="project-grid">
+
+      <!-- RippleSoft -->
+      <a class="project-card" href="case-ripplesoft.html">
+        <div class="card-placeholder" style="background:linear-gradient(135deg,#0d1f2d,#1a3a4a)">&#127918;</div>
+        <div class="card-body">
+          <h3>
+            <span lang="en">Roguelike Idle Shooter — Monetisation & Systems</span>
+            <span lang="zh">肉鸽放置射击 — 商业化 & 系统设计</span>
+          </h3>
+          <p>
+            <span lang="en">RippleSoft | 2025 — Present. Economy balancing, progression design, battle pass, gacha, and feature documentation.</span>
+            <span lang="zh">RippleSoft | 2025 至今。经济平衡、成长设计、战令、商店礼包定价与功能文档撰写。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Systems Design</span>
+            <span class="tag">Economy</span>
+            <span class="tag">Monetisation</span>
+            <span class="tag">F2P</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- LuminaryTech -->
+      <a class="project-card" href="case-luminarytech.html">
+        <div class="card-placeholder" style="background:linear-gradient(135deg,#1f0d2d,#3a1a4a)">&#127183;</div>
+        <div class="card-body">
+          <h3>
+            <span lang="en">Idle Card RPG — Systems & Monetisation</span>
+            <span lang="zh">放置卡牌养成 — 系统 & 商业化设计</span>
+          </h3>
+          <p>
+            <span lang="en">LuminaryTech | 2024 — 2025. Hero interaction system, gacha banner design, combat balancing, and live ops events for a shipped F2P title.</span>
+            <span lang="zh">LuminaryTech | 2024 — 2025。英雄交互系统、限时抽卡UP池、战斗数值、商业化活动设计。已上线运营。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Gacha Design</span>
+            <span class="tag">Systems</span>
+            <span class="tag">Balancing</span>
+            <span class="tag">Shipped</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
   </div>
 </section>
 
-<!-- FOOTER ========================================== -->
-<footer class="foot">
-  <div class="container foot-inner">
-    <span>© 2026 Ziwei Su · London</span>
-    <span class="foot-mute" lang="en">Last updated May 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 5 月更新</span>
+<!-- Personal Projects -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">
+      <span lang="en">Personal & Academic Projects</span>
+      <span lang="zh">个人 & 学术项目</span>
+    </h2>
+    <div class="project-grid">
+
+      <!-- Tarkov Game Jam -->
+      <div class="project-card">
+        <div class="card-placeholder" style="background:linear-gradient(135deg,#1a1f0d,#2d3a1a)">&#128299;</div>
+        <div class="card-body">
+          <h3>
+            <span lang="en">Tarkov-like Extraction Shooter</span>
+            <span lang="zh">类塔科夫撤离射击</span>
+          </h3>
+          <p>
+            <span lang="en">Cursor Game Jam 2026. AI-assisted game development using Cursor. In progress.</span>
+            <span lang="zh">Cursor Game Jam 2026。使用 AI 辅助开发。进行中。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Unity</span>
+            <span class="tag">AI-assisted</span>
+            <span class="tag">Game Jam</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- OpenClaw -->
+      <div class="project-card">
+        <div class="card-placeholder" style="background:linear-gradient(135deg,#0d1a2d,#1a2d4a)">&#129302;</div>
+        <div class="card-body">
+          <h3>
+            <span lang="en">OpenClaw — AI Multi-Agent System</span>
+            <span lang="zh">OpenClaw — AI 多智能体系统</span>
+          </h3>
+          <p>
+            <span lang="en">A 7+ agent AI system for automated job search, content creation, music production, and daily operations. 34 cron jobs, signal-based communication.</span>
+            <span lang="zh">7+ 个 AI agent 协作系统，自动化求职、内容创作、音乐生产和日常运营。34 个定时任务，信号通信。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Claude API</span>
+            <span class="tag">Python</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Moodrift -->
+      <div class="project-card">
+        <div class="card-placeholder" style="background:linear-gradient(135deg,#1a0d2d,#2d1a4a)">&#127925;</div>
+        <div class="card-body">
+          <h3>
+            <span lang="en">Moodrift — AI Music Pipeline</span>
+            <span lang="zh">Moodrift — AI 音乐自动化管线</span>
+          </h3>
+          <p>
+            <span lang="en">End-to-end automated pipeline: AI music generation → video production → YouTube & Bilibili publishing.</span>
+            <span lang="zh">全自动管线：AI 音乐生成 → 视频制作 → YouTube & B站发布。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Suno AI</span>
+            <span class="tag">FFmpeg</span>
+            <span class="tag">YouTube API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MA Projects -->
+      <div class="project-card">
+        <div class="card-placeholder" style="background:linear-gradient(135deg,#2d2d0d,#1a1a0a)">&#127891;</div>
+        <div class="card-body">
+          <h3>
+            <span lang="en">MA Game Design Projects</span>
+            <span lang="zh">硕士游戏设计项目</span>
+          </h3>
+          <p>
+            <span lang="en">RPG Puzzle Game, Meta-style Platformer, and Hypha — built with Unity/C# at UAL London College of Communication.</span>
+            <span lang="zh">RPG 解谜、元叙事平台跳跃、Hypha — 在 UAL 伦敦传媒学院用 Unity/C# 开发。</span>
+          </p>
+          <div class="tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">Level Design</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">
+      <span lang="en">About</span>
+      <span lang="zh">关于我</span>
+    </h2>
+    <div class="about-content">
+      <div class="about-photo" style="height:280px;background:linear-gradient(135deg,#1a1a2a,#0d0d1a);display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:.4">&#128100;</div>
+      <div class="about-text">
+        <div lang="en">
+          <p>I'm a Game Designer based in London, specialising in systems design, game economy, and monetisation for free-to-play mobile games.</p>
+          <p>I have experience designing progression systems, resource economy models, gacha mechanics, and live ops events across multiple shipped F2P titles. I'm comfortable owning features from concept through documentation to implementation handoff, working closely with engineering and art teams.</p>
+          <p>Outside of work, I build AI-powered tools and automation systems, and I'm exploring the intersection of AI and game design.</p>
+          <h3>Education</h3>
+          <p>MA Game Design — UAL London College of Communication (2022–2023)<br>
+          BE Engineering Geology — Jilin University (2015–2020)</p>
+        </div>
+        <div lang="zh">
+          <p>我是一名居住在伦敦的游戏设计师，专注于 F2P 手游的系统设计、游戏经济和商业化设计。</p>
+          <p>我有多个已上线 F2P 项目的经验，涵盖成长系统、资源经济模型、抽卡机制和运营活动设计。能独立负责从概念、文档到落地的全流程，与程序和美术紧密协作。</p>
+          <p>工作之余，我在构建 AI 驱动的工具和自动化系统，探索 AI 与游戏设计的交叉领域。</p>
+          <h3>教育背景</h3>
+          <p>游戏设计硕士 — UAL 伦敦传媒学院 (2022–2023)<br>
+          工程地质学学士 — 吉林大学 (2015–2020)</p>
+        </div>
+        <div style="margin-top:24px">
+          <a href="resume.pdf" download class="btn">
+            <span lang="en">Download CV (PDF)</span>
+            <span lang="zh">下载简历 (PDF)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="social">
+      <a href="https://www.linkedin.com/in/suzy99-su/" target="_blank" title="LinkedIn">LinkedIn</a>
+      <a href="https://github.com/suzyeth" target="_blank" title="GitHub">GitHub</a>
+      <a href="https://ziweisu.cargo.site" target="_blank" title="Portfolio">Cargo</a>
+      <a href="mailto:suzysu418@gmail.com" title="Email">Email</a>
+    </div>
+    <p>&copy; 2026 Ziwei Su. London, UK.</p>
   </div>
 </footer>
 
 <script>
-// CRITICAL: language toggle must work even if every other script fails.
-(function () {
-  const KEY = 'lang';
-  const btn = document.getElementById('langToggle');
-  const apply = (l) => document.body.classList.toggle('zh', l === 'zh');
-  apply(localStorage.getItem(KEY) || 'en');
-  if (btn) btn.addEventListener('click', () => {
-    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
-    localStorage.setItem(KEY, next);
-    apply(next);
-  });
-})();
-
-// Project card expand/collapse ---------------------------------
-(function () {
-  const cards = document.querySelectorAll('.card');
-  let openCard = null;
-
-  function close(card) {
-    if (!card) return;
-    const btn = card.querySelector('.card-expand');
-    const detail = card.querySelector('.card-detail');
-    if (btn) btn.setAttribute('aria-expanded', 'false');
-    if (detail) detail.setAttribute('hidden', '');
-    card.classList.remove('is-open');
-  }
-
-  function open(card) {
-    if (openCard && openCard !== card) close(openCard);
-    const btn = card.querySelector('.card-expand');
-    const detail = card.querySelector('.card-detail');
-    if (btn) btn.setAttribute('aria-expanded', 'true');
-    if (detail) detail.removeAttribute('hidden');
-    card.classList.add('is-open');
-    openCard = card;
-  }
-
-  cards.forEach(card => {
-    const btn = card.querySelector('.card-expand');
-    if (!btn) return;
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      if (isOpen) { close(card); openCard = null; }
-      else open(card);
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && openCard) { close(openCard); openCard = null; }
-  });
-})();
-
-// Scroll reveals (IntersectionObserver, no GSAP required) ----
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const targets = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window)) {
-    targets.forEach(t => t.classList.add('is-in'));
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-    });
-  }, { threshold: .15, rootMargin: '0px 0px -8% 0px' });
-  targets.forEach(t => io.observe(t));
-})();
-
-// Lenis smooth scroll (optional enhancement) -----------------
-window.addEventListener('load', () => {
-  if (typeof Lenis === 'undefined') return;
-  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
-  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-});
+function toggleLang(){
+  document.body.classList.toggle('zh');
+  localStorage.setItem('lang',document.body.classList.contains('zh')?'zh':'en');
+}
+// restore language preference
+if(localStorage.getItem('lang')==='zh')document.body.classList.add('zh');
 </script>
 
 </body>

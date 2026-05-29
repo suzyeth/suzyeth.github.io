@@ -7,6 +7,7 @@
 # Tooling artifacts
 .gstack/
 .superpowers/
+.claude/
 
 # Local-only files (rollback snapshot, design docs with internal notes)
 index.html.backup

@@ -5,10 +5,17 @@
 
 /* Reset --------------------------------------------------- */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
+html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 88px; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* Keyboard focus: visible accent ring, never on mouse click ----- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
 /* Tokens -------------------------------------------------- */
 :root {
@@ -193,12 +200,17 @@ section { position: relative; padding: 120px 0; }
   align-items: start;
 }
 .about-photo {
+  position: relative; overflow: hidden;
   aspect-ratio: 3/4; background: linear-gradient(135deg, #d8d2c5 0%, #b8b1a3 100%);
   display: flex; align-items: center; justify-content: center;
 }
 .about-photo-placeholder {
   font-family: var(--serif); font-weight: 300; font-size: 5rem;
   color: rgba(26,24,21,.4); letter-spacing: -.05em;
+}
+.about-photo-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
 }
 .about-h {
   font-family: var(--serif); font-weight: 300;
@@ -261,6 +273,7 @@ section { position: relative; padding: 120px 0; }
 
 /* Per-card art backgrounds (placeholders until real screenshots) ----- */
 .tarduck-art { background: radial-gradient(circle at 40% 30%, #3a2814 0%, #1a0f08 70%); }
+.sand-garden-art { background: radial-gradient(circle at 50% 35%, #3a3328 0%, #1a1610 75%); }
 .ld59-art    { background: linear-gradient(135deg, #2d0d2d 0%, #4a1a4a 50%, #3a0d3a 100%); }
 .network-art { background: radial-gradient(circle at 50% 50%, #1f3a4a 0%, #0a1418 75%); }
 .terminal-art {
@@ -398,6 +411,8 @@ section { position: relative; padding: 120px 0; }
 [data-reveal].is-in { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .about-h .wave, .bs-bg { animation: none; }
 }
 
 /* Disable hero video on small screens (battery + bandwidth) */

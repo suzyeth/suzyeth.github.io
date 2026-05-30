@@ -385,10 +385,15 @@ section { position: relative; padding: 120px 0; }
 .contact .eyebrow { color: var(--accent); }
 .contact-title {
   font-family: var(--serif); font-weight: 300;
-  font-size: clamp(2.4rem, 5vw, 4rem); margin-bottom: 48px;
+  font-size: clamp(2.4rem, 5vw, 4rem); margin-bottom: 16px;
   line-height: 1.1; letter-spacing: -.02em;
 }
 .contact-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+.contact-sub {
+  font-family: var(--mono); font-size: 13px;
+  letter-spacing: .08em; color: var(--ink-mute);
+  margin-bottom: 48px;
+}
 .contact-email {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: clamp(1.6rem, 3.2vw, 2.4rem);
@@ -649,4 +654,45 @@ section { position: relative; padding: 120px 0; }
   .hud { padding: 12px 14px; }
   .hud .brand { font-size: 10px; letter-spacing: .12em; }
   .creds-line { font-size: 9px; }
+}
+
+/* =========================================================
+   PRINT / SAVE-AS-PDF — 2026-05-30
+   Recruiters often print the portfolio or save it to PDF.
+   Flip to ink-on-paper, drop motion/video, expand every
+   project detail so nothing is hidden in the printout.
+   ========================================================= */
+@media print {
+  *, *::before, *::after {
+    background: #fff !important; color: #111 !important;
+    box-shadow: none !important; text-shadow: none !important;
+    animation: none !important; transition: none !important;
+  }
+  body::after { display: none !important; }              /* film grain */
+  .hud, .skip-link, .hero-video, .hero-veil,
+  .hero-letterbox, .hero-scroll, .bs-bg,
+  video, .card-expand, .lang-toggle { display: none !important; }
+
+  /* Hide the alternate language; print only what's on screen */
+  body:not(.zh) [lang="zh"] { display: none !important; }
+  body.zh [lang="en"] { display: none !important; }
+
+  html { scroll-padding-top: 0; }
+  section { padding: 24px 0 !important; page-break-inside: avoid; }
+  .hero { height: auto !important; min-height: 0 !important; padding: 12px 0 !important; }
+  .hero-frame { position: static !important; inset: auto !important; }
+  .hero-name { color: #111 !important; font-size: 2.4rem !important; }
+
+  /* Expand all project details for a complete paper record */
+  .card-detail[hidden] { display: block !important; }
+  .card, .tl-card { border: 1px solid #ccc !important; page-break-inside: avoid; }
+  .work-grid { display: block !important; }
+  .card { margin-bottom: 16px; }
+
+  a { text-decoration: underline; }
+  /* Surface link URLs so they survive on paper */
+  .contact-links a::after, .detail-links a::after { content: " (" attr(href) ")"; font-size: .75em; color: #555 !important; }
+  .accent, em { color: #111 !important; }
+
+  @page { margin: 1.6cm; }
 }

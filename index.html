@@ -276,15 +276,20 @@
     <header class="work-head" data-reveal>
       <p class="eyebrow"><span lang="en">Selected Work</span><span lang="zh">精选作品</span></p>
       <h2 class="work-title">
-        <span lang="en">Seven <em>side projects</em>, one designer.</span>
-        <span lang="zh">七个 <em>个人项目</em>，一个设计师。</span>
+        <span lang="en">Eight <em>side projects</em>, one designer.</span>
+        <span lang="zh">八个 <em>个人项目</em>，一个设计师。</span>
       </h2>
+      <div class="work-filter" role="group" aria-label="Filter projects by type">
+        <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="zh">全部</span></button>
+        <button type="button" class="filter-btn" data-filter="games" aria-pressed="false"><span lang="en">Games</span><span lang="zh">游戏</span></button>
+        <button type="button" class="filter-btn" data-filter="tools" aria-pressed="false"><span lang="en">Tools &amp; Systems</span><span lang="zh">工具与系统</span></button>
+      </div>
     </header>
 
     <div class="work-grid">
 
       <!-- 01 tarduck (featured) -->
-      <article class="card card-feature" data-reveal data-id="tarduck">
+      <article class="card card-feature" data-reveal data-id="tarduck" data-cat="games">
         <div class="card-media tarduck-art">
           <picture>
             <source type="image/webp" srcset="assets/tarduck-cover.webp" />
@@ -337,7 +342,7 @@
       </article>
 
       <!-- 02 sand-garden -->
-      <article class="card" data-reveal data-id="sand-garden">
+      <article class="card" data-reveal data-id="sand-garden" data-cat="games">
         <div class="card-media sand-garden-art">
           <picture>
             <source type="image/webp" srcset="assets/sand-garden-cover.webp" />
@@ -391,7 +396,7 @@
       </article>
 
       <!-- 03 LD59 -->
-      <article class="card" data-reveal data-id="ld59">
+      <article class="card" data-reveal data-id="ld59" data-cat="games">
         <div class="card-media ld59-art">
           <picture>
             <source type="image/webp" srcset="assets/ld59-cover.webp" />
@@ -437,7 +442,7 @@
       </article>
 
       <!-- 04 gridbot -->
-      <article class="card" data-reveal data-id="gridbot">
+      <article class="card" data-reveal data-id="gridbot" data-cat="tools">
         <div class="card-media terminal-art" aria-hidden="true">
 <pre>$ pip install gridbot[ocr]
 ▸ capture   ✓
@@ -487,8 +492,64 @@ _</pre>
         </div>
       </article>
 
-      <!-- 05 MA -->
-      <article class="card" data-reveal data-id="ma">
+      <!-- 05 gacha-sim -->
+      <article class="card" data-reveal data-id="gacha" data-cat="tools">
+        <div class="card-media gacha-art" aria-hidden="true">
+<pre>P50  ▓▓▓▓▓░░░░░  28 pulls
+P75  ▓▓▓▓▓▓▓░░░  41 pulls
+P90  ▓▓▓▓▓▓▓▓▓░  58 pulls
+P99  ▓▓▓▓▓▓▓▓▓▓  79 pulls
+─────────────────────
+formula vs engine  −20%</pre>
+        </div>
+        <div class="card-text">
+          <p class="card-id">05 · <span lang="en">Solo · Live tool</span><span lang="zh">独立项目 · 在线工具</span></p>
+          <h3 class="card-title">Gacha <em>Economy Sim</em></h3>
+          <p class="card-tag">React · TypeScript · Monte Carlo · Web Worker</p>
+          <p class="card-blurb">
+            <span lang="en">A real-time gacha-economy simulator for numerical designers — edit pool weights and pity periods, see P50/P90 pull-cost distributions instantly. No engineer round-trips.</span>
+            <span lang="zh">面向数值策划的实时抽卡经济模拟器 — 改池子权重与保底周期，立即看到 P50/P90 抽数成本分布。无需工程师介入。</span>
+          </p>
+          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-gacha"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
+        </div>
+        <div class="card-detail" id="card-detail-gacha" hidden>
+          <div class="detail-grid">
+            <div>
+              <h4><span lang="en">Role</span><span lang="zh">角色</span></h4>
+              <p lang="en">Solo — engine architecture, plugin-rule design, UI, test suite.</p>
+              <p lang="zh">独立 — 引擎架构、插件式规则设计、UI、测试。</p>
+            </div>
+            <div>
+              <h4><span lang="en">Scope</span><span lang="zh">范围</span></h4>
+              <ul>
+                <li lang="en">Pure 2-level draw engine with a 4-hook plugin-rule interface (pity, scripted first-draw)</li>
+                <li lang="en">Target-driven simulation: 1000 players pull until they hit item X → P50/P75/P90/P99 cost</li>
+                <li lang="en">Surfaces that the common spreadsheet drop-rate formula overstates true rates by ~20%</li>
+                <li lang="en">Inline-editable weights / % / pity periods; multi-scheme save + JSON / xlsx import</li>
+                <li lang="zh">纯函数二级抽卡引擎 + 4-hook 插件式规则接口（保底、首抽脚本）</li>
+                <li lang="zh">目标驱动模拟：1000 玩家各自抽到目标为止 → P50/P75/P90/P99 成本分位</li>
+                <li lang="zh">揭示常见 Excel 掉率公式比真实概率高估约 20%</li>
+                <li lang="zh">权重 / 概率 / 保底周期全部 click-to-edit；多方案保存 + JSON / xlsx 导入</li>
+              </ul>
+            </div>
+            <div>
+              <h4><span lang="en">Scale</span><span lang="zh">规模</span></h4>
+              <p lang="en">60 tests; engine math validated within ±0.4% of closed-form values over 200k Monte Carlo pulls; 100k-pull batches off-thread in ~500ms.</p>
+              <p lang="zh">60 个测试；引擎数学经 20 万次蒙特卡洛验证，与闭式解误差 ±0.4% 内；10 万抽批量在 Worker 中约 500ms 完成。</p>
+            </div>
+            <div>
+              <h4><span lang="en">Stack</span><span lang="zh">技术栈</span></h4>
+              <p>React 19 · TypeScript · Zustand · Zod · Web Worker · ECharts · Vitest</p>
+            </div>
+          </div>
+          <div class="detail-links">
+            <a href="https://gacha-simulator-ten.vercel.app" target="_blank" rel="noopener" class="primary"><span lang="en">▶ Live demo</span><span lang="zh">▶ 在线试用</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 MA -->
+      <article class="card" data-reveal data-id="ma" data-cat="games">
         <div class="card-media ma-art" aria-hidden="true">
           <video src="assets/ma-ending.mp4" loop muted playsinline preload="none" data-lazy-video></video>
         </div>
@@ -534,7 +595,7 @@ _</pre>
       </article>
 
       <!-- 06 hypha -->
-      <article class="card" data-reveal data-id="hypha">
+      <article class="card" data-reveal data-id="hypha" data-cat="games">
         <div class="card-media hypha-art">
           <picture>
             <source type="image/webp" srcset="assets/hypha-cover.webp" />
@@ -580,7 +641,7 @@ _</pre>
       </article>
 
       <!-- 07 metagame -->
-      <article class="card" data-reveal data-id="metagame">
+      <article class="card" data-reveal data-id="metagame" data-cat="games">
         <div class="card-media metagame-art">
           <picture>
             <source type="image/webp" srcset="assets/metagame-cover.webp" />
@@ -765,6 +826,25 @@ _</pre>
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && openCard) { close(openCard); openCard = null; }
+  });
+})();
+
+// Work filter (All / Games / Tools) -------------------------
+(function () {
+  const grid = document.querySelector('.work-grid');
+  const btns = document.querySelectorAll('.filter-btn');
+  if (!grid || !btns.length) return;
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      grid.classList.remove('filter-games', 'filter-tools');
+      if (f !== 'all') grid.classList.add('filter-' + f);
+      btns.forEach(b => {
+        const on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+    });
   });
 })();
 

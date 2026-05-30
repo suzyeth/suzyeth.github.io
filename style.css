@@ -258,6 +258,20 @@ section { position: relative; padding: 120px 0; }
 }
 .work-title em { font-style: italic; color: var(--accent); font-weight: 400; }
 
+/* Work filter (All / Games / Tools) ---------------------- */
+.work-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.filter-btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--ink-mute); padding: 8px 16px;
+  border: 1px solid var(--ink-fade); border-radius: 999px;
+  transition: color .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+}
+.filter-btn:hover { color: var(--ink); border-color: rgba(245,239,228,.4); }
+.filter-btn.is-active { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+/* Filtering: hide cards whose category doesn't match the active filter */
+.work-grid.filter-games .card:not([data-cat="games"]),
+.work-grid.filter-tools .card:not([data-cat="tools"]) { display: none; }
+
 .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media (max-width: 760px) { .work-grid { grid-template-columns: 1fr; } }
 
@@ -297,6 +311,16 @@ section { position: relative; padding: 120px 0; }
   white-space: pre;
 }
 .ma-art       { background: #000; }
+
+.gacha-art {
+  background: linear-gradient(135deg, #2a160e 0%, #3a1f12 55%, #140a06 100%);
+  align-items: flex-start; justify-content: flex-start;
+}
+.gacha-art pre {
+  font-family: var(--mono); font-size: .82rem; line-height: 1.7;
+  color: var(--accent); padding: 24px; letter-spacing: .04em;
+  white-space: pre;
+}
 
 /* Card text ------------------------------------------------ */
 .card-text { padding: 28px; display: flex; flex-direction: column; gap: 10px; }

@@ -29,6 +29,11 @@
 
 <!-- Inline SVG favicon: salmon monogram on warm-black, no extra request -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Ziwei Su">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,6 +69,8 @@
 </script>
 </head>
 <body>
+
+<a class="skip-link" href="#work"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
 
 <!-- Top nav ============================================ -->
 <header class="hud">
@@ -115,7 +122,10 @@
   <div class="container about-grid">
     <div class="about-photo" data-reveal>
       <span class="about-photo-placeholder" aria-hidden="true">ZS</span>
-      <img class="about-photo-img" src="assets/profile.jpg" alt="Ziwei Su" width="600" height="800" loading="lazy" decoding="async" onerror="this.remove()" />
+      <picture>
+        <source type="image/webp" srcset="assets/profile.webp" />
+        <img class="about-photo-img" src="assets/profile.jpg" alt="Ziwei Su" width="600" height="800" loading="lazy" decoding="async" onerror="this.closest('picture').remove()" />
+      </picture>
     </div>
     <div class="about-body" data-reveal>
       <h2 class="about-h">
@@ -269,7 +279,10 @@
       <!-- 01 tarduck (featured) -->
       <article class="card card-feature" data-reveal data-id="tarduck">
         <div class="card-media tarduck-art">
-          <img src="assets/tarduck-cover.jpg" alt="tarduck — browser extraction shooter, top-down view" width="800" height="600" loading="eager" fetchpriority="high" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset="assets/tarduck-cover.webp" />
+            <img src="assets/tarduck-cover.jpg" alt="tarduck — browser extraction shooter, top-down view" width="800" height="600" loading="eager" fetchpriority="high" decoding="async" />
+          </picture>
         </div>
         <div class="card-text">
           <p class="card-id">01 · <span lang="en">Featured · Cursor Vibe Jam 2026</span><span lang="zh">特色项目 · Cursor Vibe Jam 2026</span></p>
@@ -319,7 +332,10 @@
       <!-- 02 sand-garden -->
       <article class="card" data-reveal data-id="sand-garden">
         <div class="card-media sand-garden-art">
-          <img src="assets/sand-garden-cover.jpg" alt="Robot Karesansui — a robot raking ripple patterns in a shader-drawn zen garden" width="800" height="600" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset="assets/sand-garden-cover.webp" />
+            <img src="assets/sand-garden-cover.jpg" alt="Robot Karesansui — a robot raking ripple patterns in a shader-drawn zen garden" width="800" height="600" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="card-text">
           <p class="card-id">02 · <span lang="en">Solo · MIT</span><span lang="zh">独立项目 · MIT 协议</span></p>
@@ -370,7 +386,10 @@
       <!-- 03 LD59 -->
       <article class="card" data-reveal data-id="ld59">
         <div class="card-media ld59-art">
-          <img src="assets/ld59-cover.jpg" alt="Respond to Signal 404 — 2D pixel-art horror puzzle game" width="800" height="600" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset="assets/ld59-cover.webp" />
+            <img src="assets/ld59-cover.jpg" alt="Respond to Signal 404 — 2D pixel-art horror puzzle game" width="800" height="600" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="card-text">
           <p class="card-id">03 · <span lang="en">Ludum Dare 59 Jam</span><span lang="zh">Ludum Dare 59 Jam</span></p>
@@ -510,7 +529,10 @@ _</pre>
       <!-- 06 hypha -->
       <article class="card" data-reveal data-id="hypha">
         <div class="card-media hypha-art">
-          <img src="assets/hypha-cover.jpg" alt="Hypha — one-button web game about a mycelium reaching toward the surface" width="800" height="600" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset="assets/hypha-cover.webp" />
+            <img src="assets/hypha-cover.jpg" alt="Hypha — one-button web game about a mycelium reaching toward the surface" width="800" height="600" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="card-text">
           <p class="card-id">06 · <span lang="en">GGJ 2023 · Team</span><span lang="zh">GGJ 2023 · 团队</span></p>
@@ -553,7 +575,10 @@ _</pre>
       <!-- 07 metagame -->
       <article class="card" data-reveal data-id="metagame">
         <div class="card-media metagame-art">
-          <img src="assets/metagame-cover.jpg" alt="MetaGame — a meta-narrative platformer about playtesting a platformer" width="800" height="600" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset="assets/metagame-cover.webp" />
+            <img src="assets/metagame-cover.jpg" alt="MetaGame — a meta-narrative platformer about playtesting a platformer" width="800" height="600" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="card-text">
           <p class="card-id">07 · <span lang="en">UAL · MA Term 3</span><span lang="zh">UAL · 硕士第三学期</span></p>
@@ -676,7 +701,11 @@ _</pre>
 (function () {
   const KEY = 'lang';
   const btn = document.getElementById('langToggle');
-  const apply = (l) => document.body.classList.toggle('zh', l === 'zh');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
   apply(localStorage.getItem(KEY) || 'en');
   if (btn) btn.addEventListener('click', () => {
     const next = document.body.classList.contains('zh') ? 'en' : 'zh';

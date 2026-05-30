@@ -7,8 +7,19 @@
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 img, video { display: block; max-width: 100%; }
+picture { display: contents; }  /* transparent wrapper: layout rules still target the inner <img> */
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* Skip link: hidden until keyboard-focused ---------------------- */
+.skip-link {
+  position: fixed; top: -100px; left: 12px; z-index: 300;
+  background: var(--accent); color: #fff;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .1em;
+  padding: 10px 16px; border-radius: 4px;
+  transition: top .2s var(--ease);
+}
+.skip-link:focus { top: 12px; }
 
 /* Keyboard focus: visible accent ring, never on mouse click ----- */
 :focus-visible {
@@ -285,7 +296,6 @@ section { position: relative; padding: 120px 0; }
   color: #7fff7f; padding: 24px; letter-spacing: .04em;
   white-space: pre;
 }
-.moodrift-art { background: #1a1815; }
 .ma-art       { background: #000; }
 
 /* Card text ------------------------------------------------ */

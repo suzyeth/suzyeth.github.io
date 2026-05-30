@@ -5,7 +5,7 @@
 
 /* Reset --------------------------------------------------- */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 88px; }
+html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
@@ -587,3 +587,56 @@ section { position: relative; padding: 120px 0; }
 }
 .tl-cta:hover { opacity: .7; }
 .tl-entry.left .tl-projects { text-align: left; }
+
+/* =========================================================
+   MOBILE REFINEMENTS — 2026-05-30
+   Consolidated phone/tablet tuning. Loaded last so these
+   win the cascade over per-section padding declarations.
+   ========================================================= */
+
+/* Touch devices: don't leave hover lifts/borders stuck after a tap */
+@media (hover: none) {
+  .card:hover            { transform: none; border-color: var(--ink-fade); }
+  .tl-card:hover         { transform: none; border-color: var(--ink-fade); }
+  .card-expand:hover     { background: none; color: var(--ink); border-color: var(--ink-fade); }
+  .contact-email:hover   { color: var(--ink); border-color: var(--ink-fade); }
+}
+
+/* Tablet & below: trim the oversized vertical rhythm (sections hard-code
+   140–160px, which otherwise defeats the mobile `section` padding). */
+@media (max-width: 760px) {
+  .about, .contact, .backstory { padding: 96px 0; }
+  .work   { padding-top: 96px; padding-bottom: 96px; }
+  .skills { padding: 96px 0; }
+  .work-head, .skills-head { margin-bottom: 40px; }
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  html { scroll-padding-top: 64px; }      /* match the shrunk fixed header */
+
+  .about, .contact, .backstory { padding: 72px 0; }
+  .work   { padding-top: 72px; padding-bottom: 72px; }
+  .skills { padding: 72px 0; }
+
+  /* Thumb-friendly language toggle (was ~24px tall) */
+  .lang-toggle { padding: 9px 16px; }
+
+  /* Keep the long italic email from overflowing tiny screens */
+  .contact-email { font-size: clamp(1.25rem, 6.4vw, 1.8rem); word-break: break-word; }
+  .contact-title { margin-bottom: 32px; }
+  .contact-links { gap: 18px 26px; margin-top: 40px; }
+
+  /* Roomier card interiors on small screens */
+  .card-text { padding: 22px; }
+  .card-feature .card-text { padding: 24px; }
+  .card-detail { padding: 24px; }
+  .detail-links { flex-wrap: wrap; gap: 12px; }
+}
+
+/* Narrow phones (≤380px): keep the fixed header from crowding */
+@media (max-width: 380px) {
+  .hud { padding: 12px 14px; }
+  .hud .brand { font-size: 10px; letter-spacing: .12em; }
+  .creds-line { font-size: 9px; }
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robot Karesansui — WebGL Zen Sim Case Study · Suzy Su</title>
+<meta name="description" content="Case study for Robot Karesansui, a shader-drawn zen-garden simulation in React-Three-Fiber: a tireless rake-bot, battery FSM, day/night and weather systems — with zero asset pipeline.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/sand-garden.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robot Karesansui — WebGL Zen Sim Case Study">
+<meta property="og:description" content="A shader-drawn zen garden that runs itself: rake-bot FSM, day/night cycle, weather tiers, eight fauna — no textures, no asset pipeline.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/sand-garden.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Solo · MIT · WebGL Zen Simulation</span><span lang="zh">独立 · MIT · WebGL 禅意模拟</span></p>
+      <h1 class="proj-title">Robot <em>Karesansui</em></h1>
+      <p class="proj-tag">R3F · WebGL · Shader Simulation · Systems Toy</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">A small robot perpetually rakes ripple patterns into a dry zen garden. I built it to find out how much living, self-running atmosphere one designer can compose entirely in shaders — no textures, no imported models, just simulation and state machines.</span>
+      <span lang="zh">一个小机器人不停在枯山水里耙出波纹。我做它，是想知道：一个设计师，只用 shader 能营造出多少"活的、自运转的"氛围——没有贴图、没有导入模型，只有模拟和状态机。</span>
+    </p>
+
+    <div class="proj-media">
+      <video loop muted playsinline preload="none" poster="../assets/sandgarden-poster.jpg" data-lazy-video aria-label="Robot Karesansui — a robot raking concentric ripples into a shader-drawn zen garden">
+        <source src="../assets/sandgarden-demo.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-grid">
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
+        <p lang="en">Make a calm, autonomous scene that feels alive without a single imported asset. Every grain of sand, ripple, and creature is drawn procedurally and driven by its own state — the system, not the player, keeps it moving.</p>
+        <p lang="zh">做一个平静、能自己运转、却感觉"活着"的场景，且不导入任何资源。每一粒沙、每一道波纹、每一只生物都程序化绘制、由各自的状态驱动——让系统而不是玩家来维持它的运转。</p>
+      </div>
+      <div class="proj-block proj-note">
+        <h2><span lang="en">The System Loop</span><span lang="zh">系统循环</span></h2>
+        <p lang="en">Rake the garden → battery drains → a two-leg approach back to the dock to recharge → day rolls into night → weather shifts through rain tiers → fauna come and go → the grooves slowly fade and the cycle begins again.</p>
+        <p lang="zh">耙园 → 电量下降 → 两段式归坞充电 → 白天转入夜晚 → 天气在不同雨势间切换 → 生物来去 → 凹痕缓慢消退，循环重新开始。</p>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
+      <p lang="en">The core is a heightfield sand simulation (1024×1024) with diffusion and drift; the rake teeth etch real grooves into the field that slowly relax back to flat. The robot follows a pre-computed Catmull-Rom path aligned pixel-for-pixel with the shader's concentric ripples, so its motion and the visible pattern always agree. A battery FSM handles a two-leg dock approach; a 3-minute day/night cycle and a weather state machine with three rain tiers keep the mood shifting. The whole thing is ~5k lines of TypeScript in a single-page R3F scene, with <code>zero</code> asset pipeline — everything is in-shader except the ambient audio, which is synthesised through the Web Audio API.</p>
+      <p lang="zh">核心是一套 1024×1024 的 heightfield 沙地模拟，带扩散与漂移；耙齿在高度场上刻出真实凹痕，再缓慢松弛回平。机器人沿预计算的 Catmull-Rom 路径行进，与 shader 的同心波纹逐像素对齐，所以它的运动和画面里的纹路始终一致。电量状态机负责两段式归坞；3 分钟昼夜循环与含三档雨势的天气状态机让氛围持续变化。整体约 5k 行 TypeScript，单页 R3F 场景，<code>零</code>资源管线——除环境音由 Web Audio API 合成外，全部在 shader 里绘制。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🎯 The Detail That Sells It</span><span lang="zh">🎯 让它可信的细节</span></h2>
+      <p lang="en">Atmosphere lives in the small life on top of the system. Eight fauna species — dragonfly, gecko, frog, sparrow, beetle, butterfly, fireflies, and falling leaves — drift through on their own timers, so the garden never reads as static or as a busy screensaver. The tuning work was pacing: how often weather turns, how long night lasts, how quickly grooves fade — enough change to feel alive, slow enough to stay calm.</p>
+      <p lang="zh">氛围来自系统之上那些"小生命"。八种生物——蜻蜓、壁虎、青蛙、麻雀、甲虫、蝴蝶、萤火虫、落叶——各按自己的节拍出现，让花园既不显得呆板，也不像忙乱的屏保。调优主要是节奏：天气多久变一次、夜晚多长、凹痕多快消退——变化要足够"活"，又要慢到足够"静"。</p>
+    </section>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
+        <p lang="en">Solo — simulation engine, shaders, robot FSM, synthesised audio.</p>
+        <p lang="zh">独立 — 模拟引擎、shader、机器人状态机、合成音频。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
+        <p lang="en">~5k LOC TypeScript · single-page R3F scene · zero asset pipeline.</p>
+        <p lang="zh">约 5k 行 TypeScript · 单页 R3F 场景 · 零资源管线。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <p>Vite · React 18 · TypeScript · Three.js (R3F + drei) · zustand · Web Audio API</p>
+      </div>
+    </div>
+
+    <div class="proj-links">
+      <a href="https://github.com/suzyeth/sand-garden" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="cocktail-rendering.html"><span lang="en">← Kitchen Bar</span><span lang="zh">← 厨房调酒</span></a>
+      <a href="ld59.html"><span lang="en">Next: Respond to Signal 404 →</span><span lang="zh">下一个：Respond to Signal 404 →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated June 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

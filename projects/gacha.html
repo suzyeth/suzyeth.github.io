@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gacha Economy Sim — Numerical Tool Case Study · Suzy Su</title>
+<meta name="description" content="Case study for a real-time gacha-economy simulator: edit pool weights and pity, run a Monte Carlo of 1000 players, and read P50/P90 pull-cost distributions instantly.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/gacha.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gacha Economy Sim — Numerical Tool Case Study">
+<meta property="og:description" content="A real-time gacha-economy simulator for numerical designers: edit rules, run a Monte Carlo, read P50/P90 pull-cost distributions — no engineer round-trip.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/gacha.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Solo · Live Tool · For Numerical Designers</span><span lang="zh">独立 · 在线工具 · 面向数值策划</span></p>
+      <h1 class="proj-title">Gacha <em>Economy Sim</em></h1>
+      <p class="proj-tag">React · TypeScript · Monte Carlo · Web Worker</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">A real-time gacha-economy simulator for numerical designers: edit pool weights and pity periods and watch the P50/P90 pull-cost distribution update instantly — no engineer round-trip, no spreadsheet guesswork.</span>
+      <span lang="zh">面向数值策划的实时抽卡经济模拟器：改池子权重和保底周期，立刻看到 P50/P90 抽数成本分布更新——不用等工程师介入，也不靠 Excel 估。</span>
+    </p>
+
+    <div class="proj-media">
+      <video loop muted playsinline preload="none" poster="../assets/gacha-poster.jpg" data-lazy-video aria-label="Gacha economy simulator — target-driven pull-cost percentile dashboard running a 1000-player simulation">
+        <source src="../assets/gacha-demo.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-grid">
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
+        <p lang="en">Collapse the slow loop between "change a gacha rule" and "see what it actually costs real players" down to a single interaction a designer can run themselves — and make the answer trustworthy enough to ship a banner on.</p>
+        <p lang="zh">把"改一条抽卡规则"到"看清它对真实玩家到底要多少钱"之间那条慢循环，压缩成一个策划自己就能跑的交互——并且让结果可信到能据此上线一个卡池。</p>
+      </div>
+      <div class="proj-block proj-note">
+        <h2><span lang="en">The Workflow</span><span lang="zh">使用流程</span></h2>
+        <p lang="en">Edit weights / % / pity inline → run a target-driven simulation of 1000 players pulling until they hit item X → read the P50/P75/P90/P99 cost → save the scheme or import JSON / xlsx.</p>
+        <p lang="zh">权重 / 概率 / 保底周期就地编辑 → 跑目标驱动模拟，1000 名玩家各自抽到目标 X 为止 → 读 P50/P75/P90/P99 成本 → 保存方案或导入 JSON / xlsx。</p>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
+      <p lang="en">At the core is a pure, 2-level draw engine with a 4-hook plugin-rule interface, so mechanics like pity or a scripted first-draw are rules rather than special cases. Heavy runs — 100k-pull batches — go off the main thread into a Web Worker and return in ~500ms, with results charted in ECharts. The engine is covered by 60 tests and validated within ±0.4% of closed-form values over 200k Monte Carlo pulls, so the numbers are not just plausible, they're checked.</p>
+      <p lang="zh">核心是一个纯函数的二级抽卡引擎，配 4-hook 插件式规则接口，于是保底、首抽脚本这类机制都成了"规则"而非特例。重计算——10 万抽批量——被丢到 Web Worker 的主线程外，约 500ms 返回，结果用 ECharts 绘制。引擎有 60 个测试，并在 20 万次蒙特卡洛抽样下与闭式解误差 ±0.4% 内——所以数字不只是"看起来对"，而是被核对过的。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🎯 The Insight It Surfaces</span><span lang="zh">🎯 它暴露出的问题</span></h2>
+      <p lang="en">Running real distributions instead of point estimates revealed that the common spreadsheet drop-rate formula overstates true rates by roughly 20% — exactly the kind of quiet error that under-prices a banner and breaks an economy. That gap is the whole reason a tool like this earns its place next to the spreadsheet.</p>
+      <p lang="zh">用真实分布而非点估计去跑，暴露出常见的 Excel 掉率公式比真实概率高估约 20%——正是这种悄无声息的误差，会让一个卡池定价过低、把经济拖垮。这个差距，就是这样一个工具值得摆在 Excel 旁边的全部理由。</p>
+    </section>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
+        <p lang="en">Solo — engine architecture, plugin-rule design, UI, test suite.</p>
+        <p lang="zh">独立 — 引擎架构、插件式规则设计、UI、测试。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
+        <p lang="en">60 tests · ±0.4% vs closed-form over 200k MC pulls · 100k-pull batches ~500ms off-thread.</p>
+        <p lang="zh">60 个测试 · 20 万抽下与闭式解误差 ±0.4% · 10 万抽批量约 500ms（主线程外）。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <p>React 19 · TypeScript · Zustand · Zod · Web Worker · ECharts · Vitest</p>
+      </div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="https://gacha-simulator-ten.vercel.app" target="_blank" rel="noopener"><span lang="en">▶ Live demo</span><span lang="zh">▶ 在线试用</span></a>
+    </div>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="gridbot.html"><span lang="en">← gridbot</span><span lang="zh">← gridbot</span></a>
+      <a href="ma.html"><span lang="en">Next: MA Game Design →</span><span lang="zh">下一个：MA Game Design →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated June 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

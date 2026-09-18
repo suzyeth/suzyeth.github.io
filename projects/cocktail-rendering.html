@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kitchen Bar — Liquid &amp; Glass Rendering Case Study · Suzy Su</title>
+<meta name="description" content="A Unity cocktail game's liquid & glass rendering, broken down like a stylized-water shader: surface, refraction, lighting, foam, buoyancy, plus a cup-art pipeline. Six chapters with key code.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/cocktail-rendering.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kitchen Bar — Liquid & Glass Rendering Case Study">
+<meta property="og:description" content="The stylized-water recipe — surface, refraction, lighting, foam, buoyancy — transposed into a 2D glass of cocktail. Six chapters, each with the fix and the code.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/cocktail-rendering.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Personal Project · Unity · Tech Art / Technical Design</span><span lang="zh">个人项目 · Unity · 技术美术 / 技术设计</span></p>
+      <h1 class="proj-title"><span lang="en">Kitchen Bar</span><span lang="zh">厨房调酒</span> <em>— liquid &amp; glass rendering</em></h1>
+      <p class="proj-tag">Unity 6 · URP · Procedural Rendering · Custom GrabPass Shader · SpriteMask</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">A 2D cocktail-pouring game. My job was the liquid, the glass, and the cups, and the hard part was that every first version looked fake. The goal was never physical accuracy — it was a real-time, controllable, <em>believable</em> glass of liquid. This write-up borrows the classic stylized-water decomposition — surface, refraction, lighting, foam, buoyancy — and transposes it into a 2D glass. Each chapter follows the same arc: what looked wrong, why it actually read as wrong, and the fix that worked. Key code included.</span>
+      <span lang="zh">一个 2D 倒酒游戏。液体、玻璃、酒杯的渲染是我做的，麻烦在于每个东西的第一版都很假。目标从来不是物理正确，而是一杯实时、可控、<em>看起来可信</em>的酒。这篇拆解借用了程式化水体渲染的经典配方——液面、折射、光照、泡沫、浮力——把它移植进 2D 场景里的一只杯子。每章讲的都是同一个过程：哪里假、查出来为什么假、最后怎么改对的。附关键代码。</span>
+    </p>
+
+    <section class="techstack" aria-label="Tech stack">
+      <div class="ts-row">
+        <span class="ts-label"><span lang="en">Engine</span><span lang="zh">引擎</span></span>
+        <span class="ts-chips">
+          <span class="chip">Unity 6</span>
+          <span class="chip">URP 17 (2D Renderer)</span>
+        </span>
+      </div>
+      <div class="ts-row">
+        <span class="ts-label"><span lang="en">Rendering</span><span lang="zh">渲染</span></span>
+        <span class="ts-chips">
+          <span class="chip">Procedural Texture2D</span>
+          <span class="chip">SpriteMask</span>
+          <span class="chip">GrabPass shader</span>
+          <span class="chip">Light2D + 2D normals</span>
+          <span class="chip">Bloom (post)</span>
+        </span>
+      </div>
+      <div class="ts-row">
+        <span class="ts-label"><span lang="en">Languages</span><span lang="zh">语言</span></span>
+        <span class="ts-chips">
+          <span class="chip">C#</span>
+          <span class="chip">HLSL / ShaderLab</span>
+          <span class="chip">Python</span>
+        </span>
+      </div>
+      <div class="ts-row">
+        <span class="ts-label"><span lang="en">Tooling</span><span lang="zh">工具</span></span>
+        <span class="ts-chips">
+          <span class="chip">Pillow (PIL)</span>
+          <span class="chip">DOTween</span>
+          <span class="chip"><span lang="en">AI image gen</span><span lang="zh">AI 出图</span></span>
+          <span class="chip"><span lang="en">New Input System</span><span lang="zh">新输入系统</span></span>
+        </span>
+      </div>
+    </section>
+
+    <img class="case-img" src="../assets/cocktail/cover.png" alt="Liquid shader showcase: refraction, cocktail color presets, and a pour with foam" loading="lazy" decoding="async" style="max-height:640px">
+    <p class="case-cap"><span lang="en">Liquid-shader lab: refraction, color presets, and a layered pour — all procedural.</span><span lang="zh">液体 shader 实验场：折射、配色预设、分层倒酒——全程序化。</span></p>
+
+    <section class="proj-block" aria-label="The recipe">
+      <h2><span lang="en">The recipe — six ingredients</span><span lang="zh">配方——六个成分</span></h2>
+      <p lang="en">Stylized water shaders classically build up in layers: depth color, refraction, foam, lighting, waves, buoyancy. A glass of cocktail needs the same ingredient list, just translated to 2D — plus one ingredient water never needs: the container. Click a card to jump to its chapter.</p>
+      <p lang="zh">程式化水体 shader 的经典做法是分层叠加：深度着色、折射、泡沫、光照、波浪、浮力。一杯酒需要同一份成分清单，只是要翻译成 2D 的做法——外加一个水永远不需要的成分：杯子本身。点卡片直接跳到对应章节。</p>
+      <div class="dir-grid">
+        <a class="dir-item" href="#case-liquid">
+          <span class="dir-no">01</span>
+          <b class="dir-title"><span lang="en">Surface</span><span lang="zh">液面</span></b>
+          <span class="dir-desc"><span lang="en">Waves, in a glass: a meniscus disc that breathes in place, baked in code.</span><span lang="zh">杯中的「波浪」：一张原地呼吸的弯月面水盘，全由代码烘焙。</span></span>
+          <span class="dir-tech">Texture2D · SpriteMask · C#</span>
+        </a>
+        <a class="dir-item" href="#case-refract">
+          <span class="dir-no">02</span>
+          <b class="dir-title"><span lang="en">Refraction</span><span lang="zh">折射</span></b>
+          <span class="dir-desc"><span lang="en">A GrabPass shader that bends what's behind the glass.</span><span lang="zh">GrabPass shader，让玻璃扭曲背后的画面。</span></span>
+          <span class="dir-tech">HLSL · GrabPass · clip mask</span>
+        </a>
+        <a class="dir-item" href="#case-light">
+          <span class="dir-no">03</span>
+          <b class="dir-title"><span lang="en">Lighting</span><span lang="zh">光照</span></b>
+          <span class="dir-desc"><span lang="en">Unlit base plus Lit overlay: an arc of light without color drift.</span><span lang="zh">Unlit 底 + Lit 叠层，出弧光而本色不漂。</span></span>
+          <span class="dir-tech">Light2D · 2D normals · Unlit/Lit</span>
+        </a>
+        <a class="dir-item" href="#case-foam">
+          <span class="dir-no">04</span>
+          <b class="dir-title"><span lang="en">Foam</span><span lang="zh">泡沫</span></b>
+          <span class="dir-desc"><span lang="en">Five procedural versions failed before style won: hand-painted froth.</span><span lang="zh">程序化连败五版之后，风格赢了：手绘泡沫。</span></span>
+          <span class="dir-tech">Texture2D · <span lang="en">style match</span><span lang="zh">风格匹配</span></span>
+        </a>
+        <a class="dir-item" href="#case-efflevel">
+          <span class="dir-no">05</span>
+          <b class="dir-title"><span lang="en">Buoyancy</span><span lang="zh">浮力</span></b>
+          <span class="dir-desc"><span lang="en">Ice displaces liquid; one EffLevel drives visuals and scoring alike.</span><span lang="zh">冰块排开液体；一个 EffLevel 同时驱动视觉与判定。</span></span>
+          <span class="dir-tech">C# · systems design</span>
+        </a>
+        <a class="dir-item" href="#case-pipeline">
+          <span class="dir-no">06</span>
+          <b class="dir-title"><span lang="en">The container</span><span lang="zh">容器</span></b>
+          <span class="dir-desc"><span lang="en">Idempotent scripts turn any cup art into aligned sprite + mask in minutes.</span><span lang="zh">幂等脚本把任意杯子图分钟级拆成对齐的 sprite + mask。</span></span>
+          <span class="dir-tech">Python · PIL · hue keying</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="proj-block" id="case-liquid">
+      <h2><span lang="en">1 · Surface — killing the "conveyor belt"</span><span lang="zh">第 1 章 · 液面——去「传送带感」</span></h2>
+      <p lang="en">In a water shader this ingredient is called <i>waves</i>, and the tutorial move is to scroll a wave texture across the surface. That's exactly what my first liquid surface did — a sine-wave texture panning sideways — and the eye instantly read it as a conveyor belt. Layering a second counter-scrolling wave helped a little, but it was still wrong. Eventually I realized the problem wasn't the wave shape or the speed: <b>any surface that translates as a whole looks fake</b>. I replaced it with a slightly top-down elliptical "disc" carrying a meniscus highlight; clipped to the cup wall, that highlight reads as liquid curling up the glass. It mostly sits still and only "breathes", and the motion of a pour is handed off to ripples at the impact point.</p>
+      <p lang="zh">这个成分在水体 shader 里叫「波浪」，教程标配做法是让波形贴图在表面上滚动。我的第一版液面就是这么做的——一张正弦波贴图横向滚动——眼睛立刻读成「传送带波纹」。加第二层反向滚动做干涉，好一点，但还是不对。后来想明白了，问题不在波形也不在速度：<b>只要表面整体在平移就假</b>。改成一张略俯视的椭圆「水盘」，带一圈弯月面亮边；被杯腔遮罩裁切后，这圈亮边正好落在液体贴杯壁的位置，看起来就是液面沿着杯壁微微上翘。平时几乎不动，只轻轻「呼吸」，倒酒的动感交给落点的涟漪去做。</p>
+      <img class="case-img" src="../assets/cocktail/case1-liquid-strip.png" alt="Six liquid-rendering stages from flat color to elliptical meniscus surface" loading="lazy" decoding="async">
+      <p class="case-cap"><span lang="en">Stages 0–5. Compare <code>1 Wave</code> (the rejected scrolling look) with <code>3 Meniscus</code> (the final ellipse).</span><span lang="zh">0–5 阶段。对比 <code>1 Wave</code>（被弃的滚动做法）与 <code>3 Meniscus</code>（最终椭圆方案）。</span></p>
+      <p class="code-lbl"><span lang="en">Key code — baking the meniscus ellipse (C#)</span><span lang="zh">关键代码 — 烘焙弯月面椭圆贴图（C#）</span></p>
+      <pre class="code-block"><span class="cm">// Surface = a slightly top-down elliptical "disc": center fill + meniscus rim highlight.</span>
+float r2   = nx*nx + ny*ny;                     <span class="cm">// squared radial distance in ellipse space</span>
+float fill = SmoothStep(1f, 0.86f, r2);         <span class="cm">// the disc body</span>
+float men  = SmoothStep(0.62f, 0.97f, r2)       <span class="cm">// meniscus: appears near the rim...</span>
+           * SmoothStep(1.04f, 0.95f, r2);      <span class="cm">// ...and fades out at the very edge</span>
+float lum  = 0.82f + ny*0.16f + men*0.55f;      <span class="cm">// back edge brighter + rim highlight</span>
+
+<span class="cm">// At runtime the disc only "breathes" (tiny scale pulse) — it never translates.</span>
+float ellH = Clamp(cupW*0.18f, .12f, .26f) * (1f + 0.06f*Sin(t*1.7f));</pre>
+      <p class="takeaway"><span lang="en"><b>Takeaway —</b> For realism, never translate the whole surface; use in-place undulation and a perspective shape.</span><span lang="zh"><b>经验 —</b> 要真，就别让液面整体平移，用原地起伏／透视形状。</span></p>
+    </section>
+
+    <section class="proj-block" id="case-refract">
+      <h2><span lang="en">2 · Refraction — a GrabPass shader</span><span lang="zh">第 2 章 · 折射——GrabPass shader</span></h2>
+      <p lang="en">Without refraction the liquid looked pasted onto the glass, like two flat stickers instead of a container with something inside. Water shaders solve this by sampling the scene behind the surface with distorted UVs; a 2D glass can use the same trick with a simpler distortion source. I wrote a shader, <code>Bartender/GlassRefract</code>. It grabs the already-rendered backdrop with a <code>GrabPass</code>, then offsets the sampled UVs by how far each pixel sits from the cup's centerline: near the wall the offset grows, which is exactly what refraction magnification does. The cup cavity is clipped inside the shader via a mask texture, so the whole thing is self-contained and skips the SpriteMask/stencil ordering traps entirely. A render-pipeline guard makes it shut off silently under URP instead of erroring.</p>
+      <p lang="zh">没有折射的时候，酒体看着就是「贴」在玻璃上的一张色块，两张平面图叠一起，不像装着酒的杯子。水体 shader 的解法是用扭曲过的 UV 去采样水面背后的画面；2D 的杯子可以用同一招，只是扭曲源可以更简单。我写了个 shader，<code>Bartender/GlassRefract</code>：用 <code>GrabPass</code> 抓背后已经渲染好的画面，按像素到杯壁中心的水平距离做横向 UV 位移，越靠杯壁位移越大，这正好就是折射放大。杯腔形状用遮罩贴图在 shader 里直接 <code>clip</code> 掉，整个自包含，SpriteMask/stencil 那套渲染顺序的坑全绕开了。另外加了管线守卫，切到 URP 就安静关掉，不报错。</p>
+      <img class="case-img" src="../assets/cocktail/case2-refract.png" alt="Refraction OFF vs ON — vertical bars bend inside the glass only when refraction is on" loading="lazy" decoding="async">
+      <p class="case-cap"><span lang="en">Striped backdrop as a ruler: bars stay straight outside, but bend &amp; magnify inside the glass once refraction is on.</span><span lang="zh">竖条当标尺：杯外笔直，开折射后杯内被掰弯、放大。</span></p>
+      <p class="code-lbl"><span lang="en">Key code — the fragment shader (<code>Bartender/GlassRefract</code>, HLSL)</span><span lang="zh">关键代码 — 片元着色器（<code>Bartender/GlassRefract</code>，HLSL）</span></p>
+      <pre class="code-block">GrabPass { "_GlassGrab" }                       <span class="cm">// grab everything already rendered behind</span>
+
+fixed4 frag(v2f i) : SV_Target
+{
+    fixed mask = tex2D(_MaskTex, i.uv).a;       <span class="cm">// cup cavity = 1</span>
+    clip(mask - 0.5);                           <span class="cm">// discard outside — no SpriteMask/stencil needed</span>
+
+    float ex   = (i.uv.x - 0.5) * 2.0;          <span class="cm">// -1 (left wall) .. 1 (right wall)</span>
+    float disp = pow(abs(ex), _EdgePow) * sign(ex) * _Strength;  <span class="cm">// grows toward the wall</span>
+
+    float2 guv = i.grabUV.xy / i.grabUV.w;
+    guv.x -= disp;                              <span class="cm">// lateral shift = refraction magnification</span>
+    return tex2D(_GlassGrab, guv);
+}</pre>
+      <p class="takeaway"><span lang="en"><b>Takeaway —</b> A glass's realism isn't in the glass — it's in how it bends what's behind it.</span><span lang="zh"><b>经验 —</b> 玻璃的「真」不在杯子本身，在它如何扭曲背后的东西。</span></p>
+    </section>
+
+    <section class="proj-block" id="case-light">
+      <h2><span lang="en">3 · Lighting — a Light2D arc on the glass</span><span lang="zh">第 3 章 · 光照——Light2D 玻璃弧光</span></h2>
+      <p lang="en">On water, lighting means a specular glint dancing on the surface; on a glass, it's a bright arc hugging the rim. After migrating to URP I added a <code>Light2D</code> to produce that arc, and it lit every sprite in the scene. All my hand-tuned colors drifted at once. Root cause: URP 2D sprites default to <code>Sprite-Lit-Default</code>, so everything "eats light". Fix: <b>Unlit base + Lit overlay</b>. The base is pinned to Unlit so its color is immune; a single Lit glass layer sits on top, transparent inside with alpha only on a wall-hugging band plus side-facing normals. Light sweeps that band into one arc along the rim instead of smothering the content in a milky film.</p>
+      <p lang="zh">在水面上，光照是浮动的镜面高光；在杯子上，是贴着杯壁的一道弧光。迁到 URP 后加一盏 <code>Light2D</code> 想打出这道弧光，结果全场精灵都被照、精调的本色全漂了。根因：URP 2D 精灵默认是 <code>Sprite-Lit-Default</code>，都「吃光」。修法：<b>Unlit 底 + Lit 叠层</b>。底层钉死 Unlit、本色免疫；最上叠一层 Lit 玻璃，内部全透明、只在贴杯壁窄带给 alpha + 侧向法线，于是光只扫出沿杯壁的一道弧光，而不糊一层白纱。</p>
+      <img class="case-img" src="../assets/cocktail/case3-urp-compare.png" alt="Four frames of a glass as the key light moves left to right, the wall glint sliding with it" loading="lazy" decoding="async">
+      <p class="case-cap"><span lang="en">As the key light moves, only the wall-band glint slides — the liquid color underneath never shifts.</span><span lang="zh">主光移动时，只有杯壁窄带的高光在滑动，下面的酒色全程不变。</span></p>
+      <p class="code-lbl"><span lang="en">Key code — Unlit base, Lit overlay (C#)</span><span lang="zh">关键代码 — Unlit 底 + Lit 叠层（C#）</span></p>
+      <pre class="code-block"><span class="cm">// URP 2D sprites default to Sprite-Lit-Default — add one Light2D and EVERYTHING eats light.</span>
+<span class="cm">// So every base sprite is pinned to Unlit: hand-tuned colors become immune to lighting.</span>
+unlitMat = new Material(Shader.Find(<span class="kw">"Universal Render Pipeline/2D/Sprite-Unlit-Default"</span>));
+litMat   = new Material(Shader.Find(<span class="kw">"Universal Render Pipeline/2D/Sprite-Lit-Default"</span>));
+
+sr.sharedMaterial = unlitMat;                   <span class="cm">// ← applied to ALL base sprites at creation</span>
+
+<span class="cm">// Only ONE overlay is Lit: transparent inside, alpha only on a wall-hugging band,</span>
+<span class="cm">// with side-facing normals imported as the sprite's secondary "_NormalMap" texture.</span>
+glassLit.sharedMaterial = litMat;               <span class="cm">// side light sweeps this band into an arc</span></pre>
+      <p class="takeaway"><span lang="en"><b>Takeaway —</b> The overlay should make the rim catch light as an arc, not smother content in a half-opaque film.</span><span lang="zh"><b>经验 —</b> 叠层要的是「杯壁吃光出弧光」，不是「整片半透膜糊住内容」。</span></p>
+    </section>
+
+    <section class="proj-block" id="case-foam">
+      <h2><span lang="en">4 · Foam — when style beats simulation</span><span lang="zh">第 4 章 · 泡沫——风格赢了模拟</span></h2>
+      <p lang="en">Foam is a headline ingredient of every water shader — usually a noise texture panned over the surface with distorted UVs. I tried the equivalent here and failed five times in a row: each procedural version was mathematically fine and visually wrong. The eventual diagnosis wasn't in the math at all. The game is drawn in a pencil-sketch style, and clean procedural froth simply doesn't belong in that world — it looked like a screenshot from a different game pasted on top. Foam became a hand-painted texture that matches the line work, and it fit instantly. Along the way I also discovered a humbling bug: for several tuning rounds the foam had never rendered at all, so every parameter change I "evaluated" had changed nothing.</p>
+      <p lang="zh">泡沫是所有水体 shader 的招牌成分——通常是一张噪声贴图，用扭曲 UV 在表面上滚动采样。我在这儿做了等价的尝试，连败五版：每一版程序化泡沫在数学上都对，看起来都不对。最后的诊断根本不在数学上：这个游戏是铅笔速写风，干净的程序化泡沫放不进这个世界——像从另一个游戏截图里抠下来贴上去的。改成跟线稿风格一致的手绘贴图，立刻就融进去了。中间还查出一个很打脸的 bug：有好几轮调参期间泡沫压根从没被渲染出来过，我认真「评估」过的每次改动其实全打在空气上。</p>
+      <p class="takeaway"><span lang="en"><b>Takeaway —</b> Match the art style before matching the physics — and before tuning anything, verify it actually renders.</span><span lang="zh"><b>经验 —</b> 先对齐美术风格，再谈物理正确；调参之前，先确认那个东西真的被画出来了。</span></p>
+    </section>
+
+    <section class="proj-block" id="case-efflevel">
+      <h2><span lang="en">5 · Buoyancy — ice displacement, one EffLevel</span><span lang="zh">第 5 章 · 浮力——加冰排水 EffLevel</span></h2>
+      <p lang="en">Water shader write-ups end with buoyancy: making objects ride the surface. In a glass, the floating object is ice — and here buoyancy drags gameplay into the rendering. Adding ice raises the surface. But if only the <i>visual</i> rises while scoring still reads poured volume, the visible surface floats above the judged line. The player aims at one line and gets judged on another, which is fatal for a "hit the target line" game. Fix: a single <code>EffLevel = poured level + ice displacement</code> drives the visuals, the target-line check, spill, and scoring all at once. It also produces a nice bit of design for free: with ice in the glass, you pour a little less, same as a real bar.</p>
+      <p lang="zh">水体 shader 教程的最后一章通常是浮力：让物体浮在水面上。在杯子里，浮着的东西是冰——而且这里的「浮力」会把玩法一起卷进渲染。加冰会顶高液面。但如果只抬「视觉」、评分还按实际倒进去的量算，玩家瞄的那条液面就浮在判定线上方，卡准了也判失败，对「卡目标线」这个玩法是致命的。修法是引入一个 <code>EffLevel = 已倒液面 + 冰排开量</code>，视觉、对目标线、溢出、评分全部只认这一个数。顺便还白捡了一层设计：杯里有冰就得少倒点酒，跟真调酒一样。</p>
+      <img class="case-img" src="../assets/cocktail/case4-efflevel-diagram.png" alt="Whiskey neat vs on the rocks — ice raises the surface, and both feed the same judged level" loading="lazy" decoding="async">
+      <p class="case-cap"><span lang="en">Whiskey, neat vs on the rocks: ice raises the surface, and both cups feed one judged level.</span><span lang="zh">威士忌 neat vs on the rocks：冰把液面排高，两杯都走同一套判定。</span></p>
+      <p class="code-lbl"><span lang="en">Key code — one value drives everything (C#, from <code>BartenderGame.cs</code>)</span><span lang="zh">关键代码 — 一个量驱动一切（C#，摘自 <code>BartenderGame.cs</code>）</span></p>
+      <pre class="code-block"><span class="cm">// Ice displacement: each cube raises the "effective surface" by iceDisplace.</span>
+float IceRiseFrac =&gt; (level &gt; 0.02f) ? Mathf.Min(iceAdded, iceMax) * iceDisplace : 0f;
+float EffLevel    =&gt; Mathf.Clamp01(level + IceRiseFrac);
+
+<span class="cm">// ...and every consumer reads the SAME value:</span>
+float lh = EffLevel * liqH;                      <span class="cm">// ① visible liquid height</span>
+if (EffLevel &gt; spillLine) { Spill(); return; }   <span class="cm">// ② spill check (over the rim)</span>
+var r = Evaluate(EffLevel, target, garnishOk);   <span class="cm">// ③ scoring — aim == verdict</span></pre>
+      <p class="takeaway"><span lang="en"><b>Takeaway —</b> If a physical detail affects visible state, visuals and judgment must read the same value — what you aim at is what's judged.</span><span lang="zh"><b>经验 —</b> 物理细节若影响可见状态，必须让视觉与判定走同一个量——「你瞄的」就是「被判的」。</span></p>
+    </section>
+
+    <section class="proj-block" id="case-pipeline">
+      <h2><span lang="en">6 · The container — a cup-art pipeline</span><span lang="zh">第 6 章 · 容器——杯子美术管线</span></h2>
+      <p lang="en">The one ingredient with no water-shader analog: water doesn't come in a cup, a cocktail does. The game keeps adding cups: tumblers, stemware, handled steins, even pencil sketches shot on a phone. The renderer needs an aligned <b>sprite + cavity-mask</b> pair for each one, and cutting those by hand is slow and never lines up. So I built an idempotent pipeline. Green-key sources split by hue into an aligned sprite (green → transparent) and mask (green → white): the Y-crop runs on the green region to drop a stem, while the X-axis keeps a handle because the handle isn't green and the mask excludes it for free. A second PIL path turns raw white-background sketches into geometry-fitted masks. The iron rule: trim to the content box, or the cup floats above the counter once it's scaled.</p>
+      <p lang="zh">这是唯一在水体 shader 里找不到对应物的成分：水不需要装进杯子，鸡尾酒需要。游戏的杯子一直在加：直身杯、高脚杯、带把手的扎啤杯，还有微信里发来的手绘草图照片。渲染端每个杯子都要一对对齐的<b>线稿 sprite + 内腔 mask</b>，手抠又慢又对不齐，所以做了一条幂等管线。绿键源图按色相拆成对齐的 sprite（绿→透明）和 mask（绿→白）：Y 轴按绿区裁，自动切掉高脚杯的杆；X 轴保留把手，把手不填绿，遮罩天然就把它排除了。白底手绘草图走另一条 PIL 路径，自动拟合出几何遮罩。有条铁律：必须按内容包围盒贴紧裁剪，杯底下面留一条透明边，放大之后杯子就浮在台面上方。</p>
+      <img class="case-img" src="../assets/cocktail/case5-pipeline-triptych.png" alt="One green-key source split into an aligned line-art sprite and a cavity mask" loading="lazy" decoding="async">
+      <p class="case-cap"><span lang="en">One source → aligned sprite + mask, split by hue.</span><span lang="zh">一张源图 → 对齐的 sprite + mask，按色相拆分。</span></p>
+      <p class="code-lbl"><span lang="en">Key code — the hue key &amp; the split (C#, from <code>SetupCupB.cs</code>)</span><span lang="zh">关键代码 — 色相判定与拆分（C#，摘自 <code>SetupCupB.cs</code>）</span></p>
+      <pre class="code-block"><span class="cm">// "Is this pixel the green cavity?" — tolerant of AI-art color noise.</span>
+static bool IsGreen(Color32 c) =&gt; c.a &gt; 60 &amp;&amp; c.g &gt; 100 &amp;&amp; c.g &gt; c.r + 25 &amp;&amp; c.g &gt; c.b + 25;
+
+<span class="cm">// MASK: keep only green pixels that stay green when eroded 3px in 8 directions</span>
+<span class="cm">// → the fill region sits safely inside the cup wall.</span>
+maskPx[i] = eroded ? new Color32(255,255,255,255) : new Color32(0,0,0,0);
+
+<span class="cm">// SPRITE: green → transparent; everything else kept (and green spill desaturated).</span>
+if (green[i] || c.a &lt; 60) glassPx[i] = new Color32(0,0,0,0);
+else { byte g = (byte)Mathf.Min(c.g, Mathf.Max(c.r, c.b));
+       glassPx[i] = new Color32(c.r, g, c.b, c.a); }</pre>
+      <img class="case-img" src="../assets/cocktail/case5-cups.png" alt="Six finished cups produced by the same pipeline — martini, hurricane, rocks, steins" loading="lazy" decoding="async">
+      <p class="case-cap"><span lang="en">Cups from the same script: tumblers, stemware, handled steins — all bottom-aligned to the counter.</span><span lang="zh">同一套脚本产出的杯子：直身杯、高脚杯、带把手扎啤杯，全部贴台对齐。</span></p>
+      <p class="takeaway"><span lang="en"><b>Takeaway —</b> Tooling beats one-off art — an idempotent split/crop script lets any new cup enter the game in minutes.</span><span lang="zh"><b>经验 —</b> 做工具比做单图更值钱——一套幂等的拆图／裁切脚本，让任意新杯子分钟级入库。</span></p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Also explored</span><span lang="zh">其他探索</span></h2>
+      <p lang="en">A few more that didn't get a full chapter. Ice kept turning orange; after ruling out materials, lights and sorting order, the culprit was URP Bloom bleeding the drink's amber glow onto the cubes. There's also layered cocktails (per-band colors revealed as you pour — the 2D cousin of depth-based water color) and a cold-mist particle system for iced drinks.</p>
+      <p lang="zh">还有几件没写成完整章节的。冰块发橙：材质、灯光、排序挨个排除，最后发现是 URP Bloom 把酒体的琥珀辉光渗到了冰上。另外做了分层鸡尾酒（倒酒时逐层露出色带——算是水体「深度着色」在 2D 里的远亲）和冰饮的冷雾粒子。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Conclusion</span><span lang="zh">结语</span></h2>
+      <p lang="en">Line the six chapters up and the recipe is the classic stylized-water list — surface, refraction, lighting, foam, buoyancy — plus the container that water never needs. But none of these ingredients was added because a tutorial listed it. Each one earned its slot by fixing one specific way the drink read as fake: a surface that translated, a liquid pasted on the glass, a light that washed everything, foam from the wrong game, a judged line the player couldn't see. That's what "believable" means in stylized rendering: not accuracy, but removing the reads-as-wrong signals one at a time.</p>
+      <p lang="zh">把六章排成一行，正好就是程式化水体的经典配方——液面、折射、光照、泡沫、浮力——再加上水永远不需要的容器。但没有一个成分是因为「教程里有」才加的：每个成分都是靠修掉一种具体的「假」挣来位置的——整体平移的液面、贴在玻璃上的酒体、把全场洗白的灯、来自另一个游戏的泡沫、玩家看不见的判定线。这就是程式化渲染里「可信」的含义：不是物理正确，而是把「读起来不对」的信号一个一个拆掉。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Further reading</span><span lang="zh">延伸阅读</span></h2>
+      <p lang="en">This write-up borrows its structure from the classic 3D water breakdown: <a href="https://ameye.dev/notes/stylized-water-shader/" target="_blank" rel="noopener">Alexander Ameye — Stylized Water Shader ↗</a> builds up water in the same layers (depth, colors, refraction, foam, lighting, waves, buoyancy) for a 3D URP scene, and is the best single reference for the original recipe.</p>
+      <p lang="zh">本文的章节结构借自 3D 水体渲染的经典拆解：<a href="https://ameye.dev/notes/stylized-water-shader/" target="_blank" rel="noopener">Alexander Ameye — Stylized Water Shader ↗</a> 用同一套分层（深度、着色、折射、泡沫、光照、波浪、浮力）在 3D URP 场景里一步步搭出水面，是原版配方最好的单篇参考。</p>
+    </section>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
+        <p lang="en">Solo: liquid/glass/cup rendering, custom shaders, art tooling.</p>
+        <p lang="zh">独立：液体/玻璃/酒杯渲染、自写 shader、美术工具。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Scope</span><span lang="zh">范围</span></h3>
+        <ul>
+          <li lang="en">Procedural liquid · meniscus surface · foam · ripples</li>
+          <li lang="en">GrabPass glass refraction · URP Light2D arc-light</li>
+          <li lang="en">EffLevel gameplay sync · AI + PIL cup pipeline</li>
+          <li lang="zh">程序化液体 · 弯月液面 · 泡沫 · 涟漪</li>
+          <li lang="zh">GrabPass 玻璃折射 · URP Light2D 弧光</li>
+          <li lang="zh">EffLevel 玩法同步 · AI + PIL 杯子管线</li>
+        </ul>
+      </div>
+      <div>
+        <h3><span lang="en">Skills shown</span><span lang="zh">展示的能力</span></h3>
+        <ul>
+          <li lang="en">Shader authoring (HLSL) &amp; render-pipeline migration</li>
+          <li lang="en">Procedural texture / real-time visual tuning</li>
+          <li lang="en">Systems design where gameplay meets rendering</li>
+          <li lang="en">Pipeline tooling that scales content</li>
+          <li lang="zh">Shader 编写（HLSL）与渲染管线迁移</li>
+          <li lang="zh">程序化贴图 / 实时视觉手感调优</li>
+          <li lang="zh">玩法与渲染交界处的系统设计</li>
+          <li lang="zh">让内容可规模化的管线工具</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="proj-note-line"><span lang="en">Personal project · in active development. Code walkthrough available on request.</span><span lang="zh">个人项目 · 开发中。可应邀做代码走读。</span></p>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="tarduck.html"><span lang="en">← tarduck</span><span lang="zh">← tarduck</span></a>
+      <a href="sand-garden.html"><span lang="en">Next: Robot Karesansui →</span><span lang="zh">下一个：Robot Karesansui →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated June 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

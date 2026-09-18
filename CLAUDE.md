@@ -4,68 +4,77 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static, single-page bilingual (English / 简体中文) portfolio site for game designer Ziwei Su. Plain HTML + CSS — no build step, no package manager, no framework, no JS bundler. Open `index.html` in a browser or serve the directory with any static server.
+A static, bilingual (English / 简体中文) portfolio site for game designer Ziwei Su ("Suzy Su" / 苏紫薇). Plain HTML + CSS with a little inline JS — **no build step, no package manager, no framework, no bundler, no test runner, no linter.** Editing files is the entire workflow; "deploying" is uploading the directory (GitHub Pages).
 
-There is no `package.json`, no test runner, no linter. Editing files is the entire workflow; the only "build" is uploading the directory.
+It is no longer a single page: `index.html` is the homepage, and `projects/<id>.html` are per-project case-study pages linked from the Work cards.
 
-The site was redesigned 2026-05-08 — see `docs/2026-05-08-portfolio-redesign-design.md` (spec) and `docs/2026-05-08-portfolio-redesign-plan.md` (implementation plan).
+**Previewing:** serve the directory with any static server, e.g. `py -3 -m http.server 5173` then open `localhost:5173`. Note: on this machine bare `python` is Python 2.7 (no `http.server`), so use `py -3` / `python3`. `.claude/launch.json` is wired for the preview tool with the same command.
+
+Redesign history lives in `docs/2026-05-08-portfolio-redesign-*.md` (read first when revisiting).
 
 ## Architecture
 
 ### Bilingual rendering pattern
 
-EN and ZH content coexist in the DOM and one is hidden via CSS. Both versions of every translatable string sit side-by-side as sibling `<span lang="en">` / `<span lang="zh">` elements. The toggle works by adding/removing `class="zh"` on `<body>`:
+EN and ZH strings coexist in the DOM as sibling `<span lang="en">` / `<span lang="zh">` (or paired block elements); CSS hides one. The toggle flips `class="zh"` on `<body>`:
 
 ```css
 [lang="zh"]{display:none}            /* default: hide ZH */
-body.zh [lang="zh"]{display:revert}  /* when toggled: show ZH, hide EN */
+body.zh [lang="zh"]{display:revert}  /* toggled: show ZH, hide EN */
 body.zh [lang="en"]{display:none}
 ```
 
-A defensive inline `<script>` IIFE near the bottom of `index.html` reads `localStorage.lang` on load and binds the `#langToggle` button. It runs first and works even if other scripts (GSAP, Lenis, ScrollTrigger) fail to load.
+A defensive inline `<script>` IIFE at the bottom of **each** page reads `localStorage.lang` and binds `#langToggle`. It runs first and works even if Lenis or other scripts fail.
 
-**Implication for edits:** any new user-facing string must be added in BOTH languages with the matching `lang` attribute, or it will appear in only one mode. Don't add a single bare `<span>Foo</span>` — it will show up in EN mode but vanish in ZH mode (or vice versa) depending on its parent.
+**Implication:** every new user-facing string must exist in BOTH languages with the matching `lang` attribute, or it appears in only one mode. Never add a bare `<span>Foo</span>`.
 
-### File layout and purpose
+### Theming lives in `:root` tokens — trust the tokens, not hardcoded hex
 
-- `index.html` — the production page. Bilingual via `body.zh` toggle, persisted in `localStorage`. Inline `<script>` blocks at the bottom handle: language toggle (always works), card expand, scroll reveals, and optional Lenis smooth scroll.
-- `style.css` — single stylesheet. Dark warm-black theme via CSS custom properties on `:root`. Mobile breakpoint at `640px` (tablet at `760px`, secondary at `800px` and `900px`).
-- `assets/` — production media. **All assets are personal-project sourced — no company assets are permitted here per NDA.**
-  - `ma-opening.mp4` (hero video, ~11 MB; disabled on `<= 640px`)
-  - `ma-ending.mp4` (MA project card)
-  - `moodrift-cover.png` (Moodrift project card)
-  - `hero-poster.jpg` (video poster + reduced-motion fallback)
-- `img/` — legacy empty image directory; safe to delete.
-- `variants/` — design history; not linked from `index.html`.
-  - `v2-cinematic.html`, `v3-gamevibe.html` — direction mockups from the 2026-05-08 brainstorm.
-  - Pre-2026-05-08 explorations live locally only (gitignored).
-- `docs/` — design + plan docs from the 2026-05-08 redesign. Read first when revisiting this codebase.
-- `index.html.backup` — pre-redesign snapshot. Safe to delete once new page is locked in.
-- `.gstack/` — tooling artifacts; do not treat as source.
-- `._*` files — macOS AppleDouble metadata sidecars; ignore.
+All color/spacing/font values are CSS custom properties on `:root` in `style.css`. The palette has been re-themed several times (warm-black → teal-on-light → current near-monochrome `--ink`/`--accent` `#141414` on `--bg` `#ffffff`). **Do not trust a specific hex in this doc or your memory — read `:root` for the live palette.** Caveat: the "retheme layers" near the bottom of `style.css` (e.g. the Work dashboard grid, some hero rules) and a few per-page accents still contain **hardcoded** hex/rgba (leftover teal `rgba(15,127,140,…)`, salmon, terminal green `#8fe5dc`). A token-only retheme won't catch those — grep for stray hex when recoloring.
 
-### Page structure (top to bottom)
+### Every page shares the same shell — and duplicates it
 
-1. `header.hud` — fixed top nav: brand `SUSU / PORTFOLIO` left; Work / About / Contact + lang toggle right. `mix-blend-mode: difference` so it adapts to the section behind it.
-2. `section.hero` — full-viewport video background (`assets/ma-opening.mp4`) + giant Fraunces name + role line + scroll hint. Letterbox bars top/bottom.
-3. `section.creds` — single mono-uppercase line of NDA-safe credibility data ("London-based · 19 months in F2P mobile · 1 shipped title · 6 personal projects · MA UAL").
-4. `section.about` — cream-background pause: avatar + "Hi 👋 — I'm *Ziwei.*" + two intro paragraphs + Education + Languages.
-5. `section.work` — six expandable project cards. tarduck is featured (full-width). Click "More details →" expands a 4-column detail panel (Role · Scope · Scale · Stack); ESC closes; only one open at a time.
-6. `section.skills` — three-column transparent skill split: Game Design / Programming / Tools.
-7. `section.contact` — big italic mailto `suzysu418@gmail.com` + LinkedIn + GitHub.
-8. `footer.foot` — copyright + last-updated date.
+`index.html` and each `projects/*.html` repeat the same skeleton on purpose (resilience, no bundler): `header.hud` (brand + nav links + lang toggle + hamburger), `footer.foot`, and a bottom inline `<script>` of small IIFEs — **language toggle (critical), mobile menu, lazy-play-videos-in-view, optional Lenis smooth scroll.** When you change the header markup or any shared IIFE, **replicate the change across all pages** (there is no include mechanism).
+
+### Project sub-pages (`projects/*.html`)
+
+One case study per project: `tarduck`, `sand-garden`, `ld59`, `gridbot`, `gacha`, `ma`, `hypha`, `metagame`, `cocktail-rendering`. They use shared `.proj-*` classes **defined in `style.css`** (not inline). Layout: `.proj-head` → `.proj-lede` → `.proj-media` (hero `<video>`/`<picture>`, or `.proj-media.is-terminal` = ASCII block for tool pages) → `.proj-grid`/`.proj-block` narrative → `.proj-meta` (Role · Scale · Stack) → `.proj-links` → `.proj-nav` (prev/next chain). To add a project, copy an existing sub-page as the template.
+
+### Homepage Work section
+
+- 9 project cards live in `.work-carousel`: on desktop it auto-scrolls as a marquee (JS clones the cards for a seamless loop and supports pointer-drag); at `≤640px` a media-query + JS bypass turns it into a **native scroll-snap swipe** with the marquee clones hidden. Below it, `.work-list` is a static grid of the same cards (also JS-cloned). Filter pills (All / Games / Tools) show/hide by `data-cat` on both.
+- Each card **both** expands inline (`.card-detail`: Role · Scope · Scale · Stack; one open at a time; ESC closes) **and** links to its case study — via a `.detail-links a.case` "Full case study →" link, and the whole card body is clickable (a pointer-JS handler that ignores drags and inner links). Keep card + sub-page in sync when editing a project.
+- Card numbers (`01`–`09` in `.card-id`) are hand-written — keep them sequential if you add or reorder cards (the `SLUG` map in the card-click IIFE maps any `data-id` whose file differs, e.g. `cocktail` → `cocktail-rendering`).
+
+### Mobile nav
+
+At `≤640px` the section links collapse into a dropdown behind `#menuToggle` (hamburger); `.hud.menu-open` reveals `.hud-links` (the lang toggle stays visible). The menu-toggle IIFE is duplicated per page.
+
+### Page structure of `index.html` (top → bottom)
+
+1. `header.hud` — fixed, backdrop-blurred top bar.
+2. `section.hero` — **static** full-viewport poster (`assets/hero-poster.jpg`) + giant Fraunces name + role line. There is **no hero video in production**; `assets/ma-opening.mp4` is legacy/unused (only referenced by `variants/`).
+3. `section.creds` — one NDA-safe mono line ("…2 shipped titles · 8 personal projects · MA UAL").
+4. `section.about` — cream pause: avatar + intro + Education + Languages.
+5. `section.backstory` — a full career **timeline** that is currently `display:none` in `style.css`. Authored but hidden (it overlaps the Work cards). Don't assume it is live.
+6. `section.work` — the carousel + grid described above.
+7. `section.skills` — three columns (Game Design / Programming / Tools).
+8. `section.contact` — mailto `suzysu418@gmail.com` + LinkedIn / GitHub / itch.
+9. `footer.foot`.
 
 ### NDA / confidentiality rule (hard)
 
-The portfolio shows **only personal-project work** alongside high-level descriptions of professional experience. Do not add screenshots, design diagrams, or any other visual asset from any employer's work. Project names from professional work must remain anonymous (use type descriptions like "F2P RPG (East Asia)" / "F2P Roguelike Shooter"). The credibility strip uses vague phrasing on purpose.
+The portfolio shows **only personal-project work** alongside high-level descriptions of professional experience. Do not add screenshots, diagrams, or any asset from an employer's work. Professional titles stay anonymous (use type descriptions like "F2P RPG (East Asia)" / "F2P Roguelike Shooter"). The credibility strip is deliberately vague. `assets/` is personal-project media only.
 
 ### Removed legacy references
 
-The previous production file linked to several case-study HTML files and a `resume.pdf`. These were never authored. The redesigned page does **not** reference them — the contact pattern is "Email for CV" via `mailto:`. Do not reintroduce these links.
+The pre-redesign page linked to hand-authored case-study files and a `resume.pdf` that never existed. Do not reintroduce them — the contact pattern is "Email for CV" via `mailto:`. (The `projects/*.html` case studies are the current, real per-project pages — distinct from those removed stubs.)
 
 ## Conventions specific to this repo
 
-- All translatable copy must be paired EN + ZH with `lang` attributes — see Bilingual rendering pattern above.
-- Email `suzysu418@gmail.com`, GitHub `suzyeth` — keep in sync across mailto, contact section, and footer if changed.
-- Color tokens live in `:root` in `style.css`. Adjust `--accent` (currently salmon `#e8623a`) there to retheme the page in one edit.
-- Hero video is heavy (11 MB). Add a `.webm` alternative or compress further if hosting bandwidth becomes a concern.
+- **Bilingual pairing** — every translatable string is EN + ZH with `lang` attributes (see above).
+- **CSS cache-busting** — every HTML `<link rel="stylesheet">` loads `style.css?v=YYYYMMDD-label`. When you change `style.css`, bump the label **and update it in every HTML file** (`index.html` + all `projects/*.html`) so returning visitors get fresh CSS. All 10 pages are currently on `20260701-review-fixes` — keep them in lockstep.
+- **Identity to keep in sync** — email `suzysu418@gmail.com`, GitHub `suzyeth`, itch `ssu997`, brand `SUSU`. Display name is `Suzy Su` (EN) / `苏紫薇`·`紫薇` (ZH), used across `<title>`, `meta` author, contact, and footer on every page — keep it consistent when editing any page.
+- **Adding a project** — new `projects/<id>.html` (copy an existing page) + a card in `index.html`'s carousel with a `.detail-links a.case` link to it + fix the `.proj-nav` prev/next on the neighbouring pages + bump/sync the CSS version.
+- **Theming** — edit `:root` tokens in `style.css`; grep for stray hardcoded hex in the retheme layers (see Theming above).
+- `img/` (empty), `variants/`, `_from-portfolio-salvage/`, `*.bak-*`, `.gstack/`, `._*` are history/tooling — not production source.

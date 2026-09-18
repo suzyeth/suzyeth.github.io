@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MetaGame — Meta-narrative Platformer Case Study · Suzy Su</title>
+<meta name="description" content="Case study for MetaGame, a meta-narrative platformer where you play a tester moving through three iterative versions of the same game — the playtest loop turned into the level.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/metagame.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="MetaGame — Meta-narrative Platformer Case Study">
+<meta property="og:description" content="A metagame about making a platformer: play a tester through three iterative versions, leaving feedback on each — the playtest loop as the level.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/metagame.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">UAL · MA Term 3 · 2023 · Solo</span><span lang="zh">UAL · 硕士第三学期 · 2023 · 独立</span></p>
+      <h1 class="proj-title"><em>MetaGame</em></h1>
+      <p class="proj-tag">Unity · Meta-narrative Platformer</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">A metagame about making a platformer. You play a tester moving through three iterative versions of the same game, leaving feedback on each — the playtest loop itself turned into the level.</span>
+      <span lang="zh">一款"做平台跳跃"的元游戏。你扮演一名测试员，依次跑通同一款游戏的三个迭代版本，并对每个版本留下反馈——把 playtest 循环本身做成了关卡。</span>
+    </p>
+
+    <div class="proj-media">
+      <picture>
+        <source type="image/webp" srcset="../assets/metagame-cover.webp" />
+        <img src="../assets/metagame-cover.jpg" alt="MetaGame — a meta-narrative platformer about playtesting a platformer" width="800" height="600" loading="lazy" decoding="async" />
+      </picture>
+    </div>
+
+    <section class="proj-grid">
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
+        <p lang="en">Make the act of playtesting the subject of the game. Instead of hiding iteration behind the scenes, put the player inside it — so the experience of "this version is rough, here's why" becomes the content.</p>
+        <p lang="zh">把"做 playtest"这件事本身变成游戏的主题。与其把迭代藏在幕后，不如让玩家身处其中——让"这个版本很糙、糙在哪里"的体验，成为内容本身。</p>
+      </div>
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
+        <p lang="en">Play a version → hit its rough edges → leave in-fiction feedback → watch the next version change in response → carry the meta-narrative forward.</p>
+        <p lang="zh">玩一个版本 → 撞上它粗糙的地方 → 在叙事内留下反馈 → 看下一个版本据此变化 → 把元叙事往前推进。</p>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
+      <p lang="en">Three iterative platformer "versions" are wrapped inside a single tester loop, with combat, spike obstacles, and in-fiction feedback prompts tying the layers together. Built solo in Unity (C#) and shipped as an HTML5 / WebGL build on itch. The structural trick is that each "version" has to be deliberately, legibly imperfect — broken on purpose, but readable as broken.</p>
+      <p lang="zh">三个迭代的平台跳跃"版本"被包进同一个测试员循环里，用战斗、尖刺障碍和叙事内的反馈机制把各层串起来。独立用 Unity（C#）制作，以 HTML5 / WebGL 发布到 itch。结构上的关键在于：每个"版本"都必须是刻意的、可读的不完美——故意做坏，但坏得让人看得懂。</p>
+    </section>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
+        <p lang="en">Solo — concept, three-stage level design, Unity implementation.</p>
+        <p lang="zh">独立 — 概念、三段式关卡设计、Unity 实现。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
+        <p lang="en">MA Term 3 · UAL LCC, 2023 · HTML5 web build · public on itch.</p>
+        <p lang="zh">UAL LCC 硕士第三学期, 2023 · HTML5 网页版 · 发布到 itch。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <p>Unity · C# · WebGL</p>
+      </div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="https://ssu997.itch.io/metagame" target="_blank" rel="noopener"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
+    </div>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="hypha.html"><span lang="en">← Hypha</span><span lang="zh">← Hypha</span></a>
+      <a href="../index.html#work"><span lang="en">All work →</span><span lang="zh">返回全部作品 →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated June 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hypha — One-Button GGJ Game Case Study · Suzy Su</title>
+<meta name="description" content="Case study for Hypha, a one-button web game about a mycelium reaching toward the surface, built in 48 hours for Global Game Jam 2023.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/hypha.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hypha — One-Button GGJ Game Case Study">
+<meta property="og:description" content="A one-button game about a mycelium reaching for the surface — click to absorb nutrients or dodge hazards. Built in 48 hours for Global Game Jam 2023.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/hypha.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Global Game Jam 2023 · 2-Person Team</span><span lang="zh">Global Game Jam 2023 · 2 人团队</span></p>
+      <h1 class="proj-title"><em>Hypha</em></h1>
+      <p class="proj-tag">GGJ 2023 · Unity · One-Button Web Game</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">A one-button game about a mycelium reaching toward the surface. Click the centre to absorb nutrients, or dodge what would harm the hyphae. Built in 48 hours for Global Game Jam 2023.</span>
+      <span lang="zh">一款关于菌丝向地表生长的单键游戏。点击中心吸收养分，或躲开会伤害菌丝的东西。48 小时内为 Global Game Jam 2023 做出。</span>
+    </p>
+
+    <div class="proj-media">
+      <picture>
+        <source type="image/webp" srcset="../assets/hypha-cover.webp" />
+        <img src="../assets/hypha-cover.jpg" alt="Hypha — one-button web game about a mycelium reaching toward the surface" width="800" height="600" loading="lazy" decoding="async" />
+      </picture>
+    </div>
+
+    <section class="proj-grid">
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
+        <p lang="en">Get a complete, readable feeling out of a single input. With one button, the whole design budget goes into timing and rhythm — when to click, when to wait — so the organic growth of the mycelium reads as a felt loop rather than a UI.</p>
+        <p lang="zh">用一个输入做出完整、可读的体验。只有一个按钮时，所有设计预算都压在时机与节奏上——什么时候点、什么时候等——让菌丝的有机生长成为一种能"感觉到"的循环，而不是一个 UI。</p>
+      </div>
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
+        <p lang="en">Watch the hypha reach outward → time a click to absorb a nutrient → release before a hazard crosses the centre → grow a little further → repeat as the margins tighten.</p>
+        <p lang="zh">看菌丝向外伸展 → 卡准时机点击吸收养分 → 在有害物穿过中心前松手 → 再长一点 → 在容错越来越小的过程中重复。</p>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
+      <p lang="en">A single-input timing puzzle built around organic mushroom growth, scoped to fit a 48-hour jam. Made in Unity (C#) and shipped as an HTML5 / WebGL build on itch, with art by Cheng Min. The tight scope was the point — one mechanic, tuned until it feels good, rather than three that don't.</p>
+      <p lang="zh">一个围绕有机菌菇生长的单键节奏玩法，体量按 48 小时 jam 来定。用 Unity（C#）制作，以 HTML5 / WebGL 发布到 itch，美术由 Cheng Min 负责。"小而紧"正是重点——一个机制，调到手感对，而不是三个都半途而废。</p>
+    </section>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
+        <p lang="en">Game designer + Unity developer; art by Cheng Min.</p>
+        <p lang="zh">游戏设计 + Unity 开发；美术 Cheng Min。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
+        <p lang="en">Global Game Jam 2023 · 2-person team · HTML5 web build on itch.</p>
+        <p lang="zh">Global Game Jam 2023 · 2 人团队 · HTML5 网页版发布到 itch。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <p>Unity · C# · WebGL</p>
+      </div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="https://ssu997.itch.io/hypha" target="_blank" rel="noopener"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
+    </div>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="ma.html"><span lang="en">← MA Game Design</span><span lang="zh">← MA Game Design</span></a>
+      <a href="metagame.html"><span lang="en">Next: MetaGame →</span><span lang="zh">下一个：MetaGame →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated June 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

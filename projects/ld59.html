@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Respond to Signal 404 — Jam Case Study · Suzy Su</title>
+<meta name="description" content="Case study for Respond to Signal 404, a 2D pixel-horror puzzle co-designed and solely programmed in a 72-hour Ludum Dare jam by a six-person team.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/ld59.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Respond to Signal 404 — Jam Case Study">
+<meta property="og:description" content="A 2D pixel-horror signal-detection puzzle: co-designed and shipped as sole programmer in a 72-hour Ludum Dare jam.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/ld59.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Ludum Dare 59 · 72-Hour Jam · Co-design + Sole Programmer</span><span lang="zh">Ludum Dare 59 · 72 小时 Jam · 联合设计 + 唯一程序</span></p>
+      <h1 class="proj-title">Respond to <em>Signal 404</em></h1>
+      <p class="proj-tag">Unity · 2D Pixel Horror · Signal-Detection Puzzle</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">A 2D pixel-horror puzzle built in 72 hours. I co-designed the signal-detection mechanic, then shipped the entire game as the team's sole programmer — six people, three days, live on itch.io.</span>
+      <span lang="zh">一款 72 小时做出来的 2D 像素恐怖解谜。我联合设计了信号检测机制，并作为团队唯一程序员把整个游戏落地——6 个人、3 天、已上线 itch.io。</span>
+    </p>
+
+    <div class="proj-media">
+      <picture>
+        <source type="image/webp" srcset="../assets/ld59-cover.webp" />
+        <img src="../assets/ld59-cover.jpg" alt="Respond to Signal 404 — 2D pixel-art horror puzzle game" width="800" height="600" loading="lazy" decoding="async" />
+      </picture>
+    </div>
+
+    <section class="proj-grid">
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
+        <p lang="en">Turn "tuning a radio for a faint signal" into a tense horror puzzle — make careful listening the core verb, so dread builds out of the player's own attention rather than a jump scare.</p>
+        <p lang="zh">把"调收音机找微弱信号"变成一个紧张的恐怖解谜——让"仔细听"成为核心动词，让恐惧从玩家自己的专注里长出来，而不是靠 jump scare。</p>
+      </div>
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
+        <p lang="en">Sweep the signal → read the feedback → narrow in on the source → uncover the next fragment of the story → repeat under mounting dread.</p>
+        <p lang="zh">扫描信号 → 读取反馈 → 逼近信号源 → 揭开下一段故事碎片 → 在不断累积的不安中重复。</p>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
+      <p lang="en">On a six-person team I was the only programmer, so every gameplay system — signal detection, puzzle state, scene flow, UI — was mine to build in Unity 2022 (C#). I shipped a working WebGL build to itch.io inside the 72-hour window and co-handled the audio that carries most of the game's tension.</p>
+      <p lang="zh">6 人团队里我是唯一程序员，所以每一个玩法系统——信号检测、解谜状态、场景流程、UI——都由我在 Unity 2022（C#）里实现。我在 72 小时内把可玩的 WebGL 版本发布到 itch.io，并联合负责承载了大部分张力的音频。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🎯 The Design</span><span lang="zh">🎯 设计思路</span></h2>
+      <p lang="en">Co-designed with Cheng Min, the puzzle progression is built so each solved signal both advances the story and tightens the mood. The constraint of a jam — three days, one programmer — pushed the design toward one strong, legible mechanic rather than a pile of half-finished ones.</p>
+      <p lang="zh">与 Cheng Min 联合设计，解谜流程让每解开一个信号既推进故事、又收紧氛围。Jam 的约束——3 天、1 个程序——逼着设计聚焦在一个强而清晰的机制上，而不是堆一堆做不完的功能。</p>
+    </section>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
+        <p lang="en">Co-designer (with Cheng Min) · sole programmer on a 6-person team · co-handled audio.</p>
+        <p lang="zh">联合设计师（与 Cheng Min）· 6 人团队中唯一程序员 · 联合负责音频。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
+        <p lang="en">72-hour jam · 6-person team · public on itch + Ludum Dare for rating.</p>
+        <p lang="zh">72 小时 jam · 6 人团队 · itch + Ludum Dare 公开评分。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <p>Unity 2022 · C# · WebGL</p>
+      </div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="https://cheng-min.itch.io/respond-to-signal-404" target="_blank" rel="noopener"><span lang="en">▶ Play on itch.io</span><span lang="zh">▶ itch.io 试玩</span></a>
+    </div>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="sand-garden.html"><span lang="en">← Robot Karesansui</span><span lang="zh">← Robot Karesansui</span></a>
+      <a href="gridbot.html"><span lang="en">Next: gridbot →</span><span lang="zh">下一个：gridbot →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated June 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

@@ -27,3 +27,9 @@ variants/variant-final.html
 .idea/
 .vscode/
 *.swp
+
+# Historical salvage record — NOT site content, keeps pre-NDA-cleanup variants
+_from-portfolio-salvage/
+
+# Local style backups
+style.css.bak-darktheme

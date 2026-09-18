@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tarduck — Extraction Shooter Case Study · Suzy Su</title>
+<meta name="description" content="Case study for tarduck, a browser extraction shooter designed solo in 30 days to test risk/reward pacing, fast solo production, and compact systems design.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/tarduck.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="tarduck — Extraction Shooter Case Study">
+<meta property="og:description" content="A browser extraction shooter case study: risk/reward pacing, fast solo production, and compact systems design in 30 days.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/tarduck.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Featured Case Study · Cursor Vibe Jam 2026 · Solo</span><span lang="zh">精选案例 · Cursor Vibe Jam 2026 · 独立</span></p>
+      <h1 class="proj-title">tarduck <em>— extraction shooter</em></h1>
+      <p class="proj-tag">Three.js · Browser · Risk/Reward Loop · Solo · 30 Days</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">A compact extraction shooter built to answer one design question: can a browser-scale prototype still create the pressure of "one more room, or get out now"? I designed the risk/reward loop and progression surface, and directed the build end to end.</span>
+      <span lang="zh">一个紧凑的撤离射击原型，用来回答一个设计问题：浏览器体量的项目，能不能仍然制造“再深入一间，还是现在撤离”的压力？我端到端负责风险/回报循环与成长界面，并主导整个开发。</span>
+    </p>
+
+    <div class="proj-media">
+      <video loop muted playsinline preload="none" poster="../assets/tarduck-poster.jpg" data-lazy-video aria-label="tarduck — isometric 3D raid overview with mission HUD">
+        <source src="../assets/tarduck-demo.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-grid">
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
+        <p lang="en">Compress extraction-shooter tension into a short browser session: readable combat, meaningful inventory pressure, and a clear decision between greed and safety.</p>
+        <p lang="zh">把撤离射击的张力压缩进一次短浏览器体验：战斗要易读，背包要有压力，玩家要清楚地在贪心和安全之间做选择。</p>
+      </div>
+      <div class="proj-block proj-note">
+        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
+        <p lang="en">Enter raid → scout through fog → fight for loot → manage limited grid space → choose extract timing → convert loot into upgrades for the next run.</p>
+        <p lang="zh">进入战局 → 在迷雾中探索 → 为战利品战斗 → 管理有限网格背包 → 选择撤离时机 → 把收益转化为下一局升级。</p>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
+      <p lang="en">Built in Three.js + Vite with fully procedural geometry — no asset pipeline. The renderer uses physically based materials with bloom and ACES tone mapping for a cartoon-grim look, plus an in-engine <code>lil-gui</code> panel for live tuning. The real work was the direction layer: breaking systems into clear specs, reviewing and integrating each change, and keeping a coherent architecture across 57 commits in 30 days.</p>
+      <p lang="zh">用 Three.js + Vite 构建，几何体全程序化生成，没有资源管线。渲染使用 PBR 材质、bloom 和 ACES 色调映射，形成偏卡通但冷峻的视觉质感，并内置 <code>lil-gui</code> 面板实时调参。真正的工作在“指挥层”：把系统拆成清晰的规格、审阅并整合每次改动，并在 30 天 57 次提交里维持架构一致。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">🎯 The Design</span><span lang="zh">🎯 设计思路</span></h2>
+      <p lang="en">The core is a risk/reward extraction loop: push deeper for better loot, or extract early and bank what you have. I designed the supporting systems around that tension:</p>
+      <p lang="zh">核心是一套风险/回报的撤离循环：深入拿更好的战利品，还是早撤保住已有收益。围绕这个张力，我设计了这些支撑系统：</p>
+      <ul>
+        <li lang="en">5 weapons and 5 enemy types with body-part hitbox damage, armor &amp; durability</li>
+        <li lang="en">Grid inventory · 12-talent progression tree · 8 crafting recipes</li>
+        <li lang="en">3 extract points · fog-of-war · wave spawning · difficulty scaling</li>
+        <li lang="zh">5 种武器、5 种敌人，含部位 hitbox 伤害、装甲与耐久</li>
+        <li lang="zh">网格背包 · 12 天赋成长树 · 8 个合成配方</li>
+        <li lang="zh">3 个撤离点 · 战争迷雾 · 波次生成 · 难度缩放</li>
+      </ul>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">What I Tuned</span><span lang="zh">我调了什么</span></h2>
+      <p lang="en">The key tuning problem was not adding more content, but making the run state readable enough for players to make informed risks. I used fog density, enemy waves, extract placement, inventory pressure, and upgrade costs as the main pacing levers.</p>
+      <p lang="zh">关键调优问题不是继续加内容，而是让玩家足够读懂当前局势，从而愿意承担风险。我主要用迷雾密度、敌人波次、撤离点位置、背包压力和升级成本来控制节奏。</p>
+    </section>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
+        <p lang="en">Solo — game design, creative direction, production.</p>
+        <p lang="zh">独立 — 游戏设计、创意方向、开发主导。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
+        <p lang="en">30 days · 57 commits · solo, under jam rules.</p>
+        <p lang="zh">30 天 · 57 commits · 独立完成，遵循 jam 规则。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <p>Three.js · Vite · lil-gui · PBR · Bloom · ACES tone mapping</p>
+      </div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="https://suzyeth.github.io/escape-from-duckkov/" target="_blank" rel="noopener"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
+      <a href="https://github.com/suzyeth/escape-from-duckkov" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="../index.html#work"><span lang="en">← All work</span><span lang="zh">← 返回作品</span></a>
+      <a href="cocktail-rendering.html"><span lang="en">Next: Kitchen Bar →</span><span lang="zh">下一个：厨房调酒 →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated June 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

@@ -148,6 +148,7 @@ img, video { max-width: 100%; display: block; }
 .lab-card > p:not(.lab-no), .lab-card > div > p:not(.lab-no) { font-size: 13px; line-height: 1.65; opacity: .76; }
 .lab-proof { margin-top: 22px; padding-top: 14px; border-top: 1px solid currentColor; font: 400 9px/1.5 var(--mono); text-transform: uppercase; letter-spacing: .08em; opacity: .55; }
 .lab-source { width: fit-content; margin-top: 18px; padding-bottom: 3px; border-bottom: 1px solid currentColor; font: 500 9px/1 var(--mono); letter-spacing: .08em; }
+.lab-links { display: flex; flex-wrap: wrap; gap: 16px; }
 .lab-card-media { padding: 0; }
 .lab-card-media > div:last-child { display: flex; flex-direction: column; flex: 1; padding: 22px 28px 28px; }
 .lab-card-media .lab-no { margin-bottom: 22px; }

@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Table for Two — Suzy / AI Lab</title><meta name="description" content="Table for Two: project evidence, process and limitations by Suzy Su."><link rel="canonical" href="https://suzyeth.github.io/ai/table-for-two.html"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/vendor/fonts.css"><link rel="stylesheet" href="style.css?v=20261008-published"><link rel="stylesheet" href="motion.css?v=20261008-published"><link rel="stylesheet" href="archive.css?v=20261008-published"><link rel="stylesheet" href="case.css?v=20261008-published"></head><body class="case-page case-table-for-two"><a class="skip-link" href="#case-detail"><span lang="en">Skip to case details</span><span lang="zh">跳到案例详情</span></a><header class="site-header"><a class="brand" href="index.html">SUZY / AI LAB</a><nav class="nav"><a href="index.html#work"><span lang="en">← All projects</span><span lang="zh">← 全部项目</span></a><button class="lang-toggle" id="langToggle" type="button" aria-label="Toggle language">EN / 中</button></nav></header><main><section class="case-hero wrap"><p class="eyebrow"><span lang="en">Project file</span><span lang="zh">项目档案</span> / 01</p><h1>Table for Two</h1><div class="case-intro"><div class="project-meta"><span>Embodied AI</span><span>OpenVINO · MuJoCo · ACT</span><span>2026</span></div><p class="project-lede"><span lang="en">A contact-physics testbed for turning language into coordinated two-arm manipulation. The scripted pipeline completed 29/30 unseen scenes; the learned policy solved early stages but not the full chain.</span><span lang="zh">一个将语言转化为双臂协同操作的接触物理试验台。脚本管线在未见场景中完成 29/30；学习策略能完成前期阶段，但未打通完整链路。</span></p><div class="project-links"><a href="https://youtu.be/d6iiVpS3A5Q" target="_blank" rel="noopener"><span lang="en">Watch demo</span><span lang="zh">观看演示</span> ↗</a><a href="https://github.com/suzyeth/table-for-two" target="_blank" rel="noopener">GitHub ↗</a></div></div><dl class="proof-strip">
+            <div><dt><span lang="en">Status</span><span lang="zh">状态</span></dt><dd><span lang="en">Solo hackathon prototype</span><span lang="zh">独立黑客松原型</span></dd></div>
+            <div><dt><span lang="en">Evidence</span><span lang="zh">证据</span></dt><dd><span lang="en">29/30 unseen scripted runs</span><span lang="zh">未见脚本运行 29/30</span></dd></div>
+            <div><dt><span lang="en">Learned policy</span><span lang="zh">学习策略</span></dt><dd><span lang="en">0/10 complete task</span><span lang="zh">完整任务 0/10</span></dd></div>
+            <div><dt><span lang="en">Runtime</span><span lang="zh">运行</span></dt><dd><span lang="en">Local Intel CPU / iGPU</span><span lang="zh">本地 Intel CPU / iGPU</span></dd></div>
+          </dl></section>    <section class="reveal-chapter" aria-labelledby="reveal-title">
+      <div class="reveal-stage">
+        <img class="reveal-image" src="assets/table-for-two-cover.png" alt="Table for Two — project visual" width="1600" height="900">
+        <div class="reveal-shade" aria-hidden="true"></div>
+        <svg class="reveal-paper" viewBox="0 0 1440 1000" preserveAspectRatio="none" aria-hidden="true"><path fill="#f0f0eb" d="M0 0H1440V735C1380 770 1300 719 1240 707S1150 735 1100 675S1000 730 941 653S841 691 791 588S711 611 655 643S568 615 509 697S407 640 345 707S252 707 189 762S77 809 0 790Z"/></svg>
+        <div class="reveal-chapter-links"><a href="#case-detail"><span lang="en">Read the case</span><span lang="zh">阅读案例</span></a><a href="index.html#work"><span lang="en">All projects ↗</span><span lang="zh">全部项目 ↗</span></a></div>
+        <span class="reveal-mark mark-left" aria-hidden="true">+</span><span class="reveal-mark mark-right" aria-hidden="true">+</span>
+        <div class="reveal-caption"><p><span lang="en">01 / Table for Two</span><span lang="zh">01 / Table for Two</span></p><h2 id="reveal-title"><span lang="en">From language.<br>Into action.</span><span lang="zh">从语言，<br>到行动。</span></h2><div class="reveal-caption-bottom"><span lang="en">A real prototype. A testable claim.</span><span lang="zh">可运行的原型，可验证的主张。</span><span aria-hidden="true">↓</span></div></div>
+      </div>
+    </section><article class="project project-dark" id="case-detail">
+        <div class="project-media media-robot">
+          <img src="assets/table-for-two-cover.png" alt="Two simulated SO-101 robot arms setting a table" width="1600" height="900">
+          <span class="media-index">01</span>
+        </div>
+        <div class="project-copy wrap-narrow">
+          
+          
+          
+          
+          
+          <details class="case-notes" open>
+            <summary><span lang="en">Approach & evidence</span><span lang="zh">方法与验证</span><span aria-hidden="true">−</span></summary>
+            <div class="case-grid">
+              <div><b><span lang="en">Problem</span><span lang="zh">问题</span></b><p><span lang="en">Can low-cost home robots plan and execute two-handed everyday tasks on local hardware?</span><span lang="zh">低成本家用机器人能否在本地硬件上规划并执行双手日常任务？</span></p></div>
+              <div><b><span lang="en">My work</span><span lang="zh">我的工作</span></b><p><span lang="en">Language planner, validated task grammar, bimanual skills, contact tuning and evaluation scenes.</span><span lang="zh">语言规划、任务语法校验、双臂技能、接触参数调优与评估场景。</span></p></div>
+              <div><b><span lang="en">Proof</span><span lang="zh">验证</span></b><p><span lang="en">Physics-only manipulation, randomised scenes and OpenVINO inference without cloud or discrete GPU.</span><span lang="zh">纯物理操作、随机化场景，以及无需云端和独立显卡的 OpenVINO 推理。</span></p></div>
+            </div>
+          </details>
+        </div>
+      </article><nav class="case-next wrap"><a href="index.html#work"><span lang="en">← Back to archive</span><span lang="zh">← 返回档案馆</span></a><a href="artdex.html"><span lang="en">Next project</span><span lang="zh">下一个项目</span> / ArtDex ↗</a></nav></main><footer><span>© 2026 Suzy Su</span><a href="mailto:suzysu418@gmail.com"><span lang="en">Get in touch ↗</span><span lang="zh">联系我 ↗</span></a></footer><script src="script.js?v=20261008-published"></script><script src="chapter-reveal.js?v=20261008-published"></script></body></html>

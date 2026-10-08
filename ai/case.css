@@ -1,0 +1,54 @@
+.case-page { background: #f0f0eb; }
+.case-hero { padding-top: 145px; padding-bottom: 65px; }
+.case-hero h1 { font: 500 clamp(3.4rem, 8vw, 8rem)/1 var(--serif); letter-spacing: -.04em; margin: 30px 0 38px; }
+.case-intro { display: grid; grid-template-columns: 1fr 2fr; column-gap: 65px; }
+.case-intro .project-meta { align-content: start; }
+.case-intro .project-lede { font: 400 20px/1.6 var(--sans); max-width: 790px; }
+.case-intro .project-links { grid-column: 2; }
+.case-hero .proof-strip { grid-template-columns: repeat(4, 1fr); margin-top: 60px; }
+.case-hero .proof-strip > div { padding: 16px; border-top: 0; border-left: 1px solid var(--line); }
+.case-hero .proof-strip > div:first-child { padding-left: 0; border-left: 0; }
+.case-page .project { display: block; min-height: 0; border: 0; margin-top: 75px; margin-bottom: 70px; }
+.case-page .project-copy { max-width: none; width: 100%; padding: 0; }
+.case-page .project-media { display: none; }
+.case-page .project h3 { margin-bottom: 30px; }
+.case-page .project .project-lede { max-width: 760px; }
+.case-page .case-grid { gap: 40px; grid-template-columns: repeat(3, 1fr); padding-top: 32px; }
+.case-page .case-grid p { font-size: 15px; line-height: 1.8; }
+.case-page .case-grid b { font-size: 11px; }
+.case-page .terminal-visual { min-height: 450px; margin-top: 55px; }
+.case-artdex .reveal-image, .case-second-pass .reveal-image, .case-earwitness .reveal-image { object-fit: contain; background: #29322e; }
+.case-next { display: flex; justify-content: space-between; gap: 30px; padding: 30px 0 65px; border-top: 1px solid var(--line); font: 12px/1.6 var(--mono); }
+@media (max-width: 680px) {
+ .case-hero { padding-top: 110px; padding-bottom: 45px; }
+ .case-hero h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
+ .case-intro { display: block; }
+ .case-intro .project-lede { font-size: 16px; }
+ .case-hero .proof-strip { grid-template-columns: 1fr 1fr; margin-top: 35px; }
+ .case-hero .proof-strip > div { padding: 14px 10px; border-bottom: 1px solid var(--line); }
+ .case-hero .proof-strip > div:nth-child(odd) { border-left: 0; padding-left: 0; }
+ .case-page .case-grid { grid-template-columns: 1fr; }
+ .case-next { flex-direction: column; }
+}
+
+/* Keep original evidence at a sensible scale; make room for the caption. */
+.case-page .project { margin-top: 48px; }
+.case-page .case-notes { margin-top: 0; }
+.case-page .case-notes summary { font: 400 clamp(1.7rem, 3vw, 2.6rem)/1.2 var(--serif); text-transform: none; letter-spacing: -.025em; padding: 22px 0; }
+.case-table-for-two .reveal-stage { background: #293239; }
+.case-table-for-two .reveal-image { inset: 4% 8% auto; width: 84%; height: 69%; object-fit: contain; }
+.case-table-for-two .reveal-caption h2 { font-size: clamp(2.8rem, 5vw, 4.8rem); }
+.case-page .reveal-caption-bottom { margin-top: 22px; }
+@media (max-width: 680px) {
+ .case-hero { padding-bottom: 20px; }
+ .case-page .reveal-chapter { height: 116svh; min-height: 740px; }
+ .case-page .reveal-stage { height: 72svh; min-height: 460px; }
+ .case-page .reveal-chapter-links { top: 9%; }
+ .case-page .reveal-caption h2 { font-size: 2.7rem; }
+ .case-page .reveal-caption > p { margin-bottom: 15px; }
+ .case-table-for-two .reveal-image { inset: 4% 3% auto; width: 94%; height: 58%; }
+ .case-page .project { margin-top: 32px; margin-bottom: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .case-page .reveal-chapter { height: auto; min-height: 0; }
+}

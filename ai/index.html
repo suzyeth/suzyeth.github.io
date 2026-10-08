@@ -13,8 +13,10 @@
   <meta property="og:image" content="https://suzyeth.github.io/ai/assets/table-for-two-cover.png">
   <meta name="theme-color" content="#f4f6f2">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../assets/fonts.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/vendor/fonts.css">
+  <link rel="stylesheet" href="style.css?v=20261008-published">
+  <link rel="stylesheet" href="motion.css?v=20261008-published">
+  <link rel="stylesheet" href="archive.css?v=20261008-published">
 </head>
 <body>
   <a class="skip-link" href="#work"><span lang="en">Skip to work</span><span lang="zh">跳到作品</span></a>
@@ -30,31 +32,16 @@
   </header>
 
   <main>
-    <section class="hero" id="top">
-      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-inner">
-        <p class="hero-kicker"><span lang="en">AI Creative Technologist · Applied AI Prototyper · London</span><span lang="zh">AI 创意技术 · 应用 AI 原型 · 伦敦</span></p>
-        <h1>Suzy Su <span>/ Applied AI</span></h1>
-        <p class="hero-statement">
-          <span lang="en">I build AI systems that can show their work.</span>
-          <span lang="zh">我构建能够解释自己如何工作的 AI 系统。</span>
-        </p>
-        <p class="hero-copy">
-          <span lang="en">I turn ambiguous AI ideas into testable products, with visible evidence, constraints and failure modes.</span>
-          <span lang="zh">我把模糊的 AI 想法变成可测试的产品，让证据、约束和失败模式都清晰可见。</span>
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#work"><span lang="en">Explore selected work</span><span lang="zh">查看精选作品</span><span aria-hidden="true">↓</span></a>
-          <a class="button button-quiet" href="mailto:suzysu418@gmail.com"><span lang="en">Contact</span><span lang="zh">联系我</span></a>
-        </div>
-      </div>
-      <div class="hero-status" aria-label="Portfolio summary">
-        <span><b>04</b><span lang="en">selected systems</span><span lang="zh">个精选系统</span></span>
-        <span><b>02</b><span lang="en">live products</span><span lang="zh">个在线产品</span></span>
-        <span><b>04</b><span lang="en">featured public repos</span><span lang="zh">个精选公开仓库</span></span>
-      </div>
-    </section>
+    <div class="hero-scene"><section class="hero explorer-hero archive-mode" id="top" aria-label="Project explorer">
+<div class="explorer-heading wrap"><div><p class="eyebrow">SUZY SU / AI & CREATIVE TECHNOLOGY</p><h1><span lang="en">Explore the archive.</span><span lang="zh">探索作品档案。</span></h1></div><p class="explorer-intro"><span lang="en">AI systems, creative tools<br>and things worth exploring.</span><span lang="zh">AI 系统、创意工具，<br>和那些值得探索的想法。</span></p></div>
+<div class="explorer-toolbar wrap"><a class="browse-down" href="#work"><span lang="en">Browse all projects ↓</span><span lang="zh">向下浏览全部作品 ↓</span></a><p><span lang="en">Selected experiments</span><span lang="zh">精选探索</span> <span class="explorer-count">01 / 05</span></p><div><span class="explorer-hint"><span lang="en">Scroll or drag to choose</span><span lang="zh">滚动或拖动选择</span></span><button type="button" class="explorer-prev" aria-label="Previous project / 上一个项目">←</button><button type="button" class="explorer-next" aria-label="Next project / 下一个项目">→</button></div></div>
+<div class="explorer-rail" data-lenis-prevent role="group" aria-label="Select a project / 选择项目"><a draggable="false" class="explorer-card is-selected" href="table-for-two.html" data-title="Table for Two" data-description-en="Language becomes coordinated action." data-description-zh="让语言转化为双臂协同行动。" data-destination="table-for-two.html"><span class="explorer-card-top"><span>01 / 2026</span><span lang="en">Embodied AI</span><span lang="zh">具身智能</span></span><span class="explorer-art art-0"><img src="assets/cover-table.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>Table for Two</strong><span aria-hidden="true">↗</span></span></a>
+<a draggable="false" class="explorer-card" href="artdex.html" data-title="ArtDex" data-description-en="A museum visit, collected." data-description-zh="把博物馆之旅变成个人收藏。" data-destination="artdex.html"><span class="explorer-card-top"><span>02 / 2026</span><span lang="en">Vision product</span><span lang="zh">视觉产品</span></span><span class="explorer-art art-1"><img src="assets/cover-artdex.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>ArtDex</strong><span aria-hidden="true">↗</span></span></a>
+<a draggable="false" class="explorer-card" href="second-pass.html" data-title="Second Pass" data-description-en="Testing the claim behind the model." data-description-zh="验证模型背后的主张。" data-destination="second-pass.html"><span class="explorer-card-top"><span>03 / 2026</span><span lang="en">Research tool</span><span lang="zh">研究工具</span></span><span class="explorer-art art-2"><img src="assets/cover-second.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>Second Pass</strong><span aria-hidden="true">↗</span></span></a>
+<a draggable="false" class="explorer-card" href="earwitness.html" data-title="Earwitness" data-description-en="Listen to the evidence, not the claim." data-description-zh="让通话证据验证成功声明。" data-destination="earwitness.html"><span class="explorer-card-top"><span>04 / 2026</span><span lang="en">Agent evaluation</span><span lang="zh">智能体评估</span></span><span class="explorer-art art-3"><img src="assets/cover-earwitness.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>Earwitness</strong><span aria-hidden="true">↗</span></span></a>
+<a draggable="false" class="explorer-card" href="https://sillage-fragrance-study.suzysu418.chatgpt.site" target="_blank" rel="noopener" data-title="SILLAGE" data-description-en="A fragrance story, told through motion." data-description-zh="以动效讲述香气故事。" data-destination="https://sillage-fragrance-study.suzysu418.chatgpt.site"><span class="explorer-card-top"><span>05 / 2026</span><span lang="en">Web & motion</span><span lang="zh">网页与动效</span></span><span class="explorer-art art-4"><img src="assets/cover-sillage.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>SILLAGE</strong><span aria-hidden="true">↗</span></span></a></div>
+<div class="explorer-selection wrap"><div><p class="eyebrow"><span lang="en">In focus</span><span lang="zh">当前选择</span></p><h2 id="explorer-title">Table for Two</h2><p id="explorer-description"><span lang="en">Language becomes coordinated action.</span><span lang="zh">让语言转化为双臂协同行动。</span></p></div><a class="button button-primary explorer-open" href="table-for-two.html"><span lang="en">Explore this project</span><span lang="zh">探索这个项目</span><span aria-hidden="true">↗</span></a></div>
+</section></div>
 
     <div class="signal-strip" aria-hidden="true">
       <div class="signal-track">
@@ -63,14 +50,19 @@
       </div>
     </div>
 
-    <section class="selected" id="work">
+<section class="selected" id="work">
       <header class="section-head wrap" data-reveal>
         <p class="eyebrow"><span lang="en">Selected work / 01—04</span><span lang="zh">精选作品 / 01—04</span></p>
-        <h2><span lang="en">Systems with something<br>real at stake.</span><span lang="zh">让 AI 面对真实问题，<br>而不是只做演示。</span></h2>
+        <h2 class="motion-heading"><span lang="en">Systems with something<br>real at stake.</span><span lang="zh">让 AI 面对真实问题，<br>而不是只做演示。</span></h2>
         <p><span lang="en">Each project begins with a failure mode: hallucination, unverifiable success, broken continuity or an action that cannot survive contact with physics.</span><span lang="zh">每个项目都从一种失败模式出发：幻觉、无法验证的成功、断裂的连续性，或经不起物理检验的动作。</span></p>
       </header>
 
-      <article class="project project-dark" data-reveal>
+      <nav class="work-index wrap" aria-label="Selected project index"><div class="index-label"><span lang="en">Project index</span><span lang="zh">项目索引</span><span lang="en">Explore the systems ↓</span><span lang="zh">探索项目 ↓</span></div><a class="work-index-row" href="table-for-two.html"><span class="index-number">01</span><strong>Table for Two</strong><span class="index-category"><span lang="en">Embodied AI</span><span lang="zh">具身智能</span></span><span class="index-arrow" aria-hidden="true">↗</span><span class="index-preview" aria-hidden="true"><img src="assets/table-for-two-cover.png" alt="" width="1600" height="900"><span class="index-preview-label">01 / TABLE FOR TWO</span></span></a>
+<a class="work-index-row" href="artdex.html"><span class="index-number">02</span><strong>ArtDex</strong><span class="index-category"><span lang="en">Vision product</span><span lang="zh">视觉产品</span></span><span class="index-arrow" aria-hidden="true">↗</span><span class="index-preview" aria-hidden="true"><img src="assets/artdex-capture.png" alt="" width="1600" height="900"><span class="index-preview-label">02 / ARTDEX</span></span></a>
+<a class="work-index-row" href="second-pass.html"><span class="index-number">03</span><strong>Second Pass</strong><span class="index-category"><span lang="en">Research tool</span><span lang="zh">研究工具</span></span><span class="index-arrow" aria-hidden="true">↗</span><span class="index-preview" aria-hidden="true"><img src="assets/second-pass-architecture.png" alt="" width="1600" height="900"><span class="index-preview-label">03 / SECOND PASS</span></span></a>
+<a class="work-index-row" href="earwitness.html"><span class="index-number">04</span><strong>Earwitness</strong><span class="index-category"><span lang="en">Agent evaluation</span><span lang="zh">智能体评估</span></span><span class="index-arrow" aria-hidden="true">↗</span><span class="index-preview" aria-hidden="true"><span class="index-terminal">EARWITNESS<br><br><span>CLAIM: COMPLETED</span><br>EVIDENCE: MISSING<br><br>↳ VERDICT: FAIL</span><span class="index-preview-label">04 / EARWITNESS</span></span></a></nav>
+
+      <article class="project project-dark" id="table-for-two" data-reveal>
         <div class="project-media media-robot">
           <img src="assets/table-for-two-cover.png" alt="Two simulated SO-101 robot arms setting a table" width="1600" height="900">
           <span class="media-index">01</span>
@@ -97,7 +89,7 @@
         </div>
       </article>
 
-      <article class="project project-light project-split" data-reveal>
+      <article class="project project-light project-split" id="artdex" data-reveal>
         <div class="project-copy wrap-narrow">
           <div class="project-meta"><span>Vision product</span><span>Bedrock · DynamoDB · S3</span><span>2026</span></div>
           <h3>ArtDex</h3>
@@ -108,7 +100,7 @@
             <div><dt><span lang="en">Evidence</span><span lang="zh">证据</span></dt><dd><span lang="en">AWS loop verified end to end</span><span lang="zh">AWS 全链路实测</span></dd></div>
             <div><dt><span lang="en">Limit</span><span lang="zh">局限</span></dt><dd><span lang="en">2 documented recognition checks</span><span lang="zh">2 个已记录识别样例</span></dd></div>
           </dl>
-          <div class="project-links"><a href="https://artdex-fawn.vercel.app" target="_blank" rel="noopener"><span lang="en">Open live app</span><span lang="zh">打开在线应用</span> ↗</a><a href="https://github.com/suzyeth/artdex" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="project-links"><a href="https://artdex-fawn.vercel.app" target="_blank" rel="noopener"><span lang="en">Open live app</span><span lang="zh">打开在线应用</span> ↗</a><a href="assets/artdex-live-capture.webm" target="_blank" rel="noopener"><span lang="en">Watch 17s capture</span><span lang="zh">观看 17 秒捕获流程</span> ↗</a><a href="https://github.com/suzyeth/artdex" target="_blank" rel="noopener">GitHub ↗</a></div>
           <details class="case-notes">
             <summary><span lang="en">Read the case notes</span><span lang="zh">阅读案例摘要</span><span aria-hidden="true">+</span></summary>
             <div class="case-grid">
@@ -123,7 +115,7 @@
         </div>
       </article>
 
-      <article class="project project-cyan" data-reveal>
+      <article class="project project-cyan" id="second-pass" data-reveal>
         <div class="project-media media-film">
           <img src="assets/second-pass-architecture.png" alt="Second Pass data and agent architecture" width="1600" height="900">
           <span class="media-index">03</span>
@@ -149,7 +141,7 @@
         </div>
       </article>
 
-      <article class="project project-terminal project-split" data-reveal>
+      <article class="project project-terminal project-split" id="earwitness" data-reveal>
         <div class="project-copy wrap-narrow">
           <div class="project-meta"><span>Agent evaluation</span><span>Evidence · LLM judge · Telephony</span><span>2026</span></div>
           <h3>Earwitness</h3>
@@ -193,7 +185,7 @@
       <div class="wrap">
         <header class="section-head lab-head" data-reveal>
           <p class="eyebrow"><span lang="en">Working lab / 05—09</span><span lang="zh">进行中的实验室 / 05—09</span></p>
-          <h2><span lang="en">Agents, pipelines<br>and useful experiments.</span><span lang="zh">智能体、生产管线<br>与有用的实验。</span></h2>
+          <h2 class="motion-heading"><span lang="en">Agents, pipelines<br>and useful experiments.</span><span lang="zh">智能体、生产管线<br>与有用的实验。</span></h2>
           <div class="filters" role="group" aria-label="Filter lab projects">
             <button class="filter is-active" type="button" data-filter="all"><span lang="en">All</span><span lang="zh">全部</span></button>
             <button class="filter" type="button" data-filter="agents"><span lang="en">Agents</span><span lang="zh">智能体</span></button>
@@ -224,7 +216,7 @@
             <p class="lab-no">08 / WORKFLOW</p><h3>StudioFlow AI</h3>
             <p><span lang="en">A live video-brief workflow that turns intake into a structured production record and generated output.</span><span lang="zh">在线的视频需求工作流，将输入转化为结构化生产记录与生成结果。</span></p>
             <div class="lab-proof"><span lang="en">Cloud Run · Firestore mirror · Gemini intake · Veo output</span><span lang="zh">Cloud Run · Firestore 镜像 · Gemini 解析 · Veo 输出</span></div>
-            <div class="lab-links"><a class="lab-source" href="https://studioflow-ai-334984245629.us-central1.run.app" target="_blank" rel="noopener">Live demo ↗</a><a class="lab-source" href="https://github.com/suzyeth/studioflow-ai" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="lab-links"><a class="lab-source" href="https://studioflow-ai-334984245629.us-central1.run.app" target="_blank" rel="noopener">Live demo ↗</a><a class="lab-source" href="assets/studioflow-live-workflow.webm" target="_blank" rel="noopener"><span lang="en">29s workflow ↗</span><span lang="zh">29 秒工作流 ↗</span></a><a class="lab-source" href="https://github.com/suzyeth/studioflow-ai" target="_blank" rel="noopener">GitHub ↗</a></div>
           </article>
           <article class="lab-card lab-card-media" data-cat="creative" data-reveal>
             <div class="lab-image pipeline-visual" aria-label="Comfy Gateway generation pipeline"><span>TEXT</span><i>→</i><span>IMAGE</span><i>→</i><span>EDIT</span><i>→</i><span>VIDEO</span></div>
@@ -236,11 +228,13 @@
       </div>
     </section>
 
+    <section class="motion-study" aria-labelledby="sillage-title"><div class="wrap study-layout"><p class="eyebrow"><span lang="en">Beyond the systems / Web & motion</span><span lang="zh">系统之外 / 网页与动效</span></p><div><h2 id="sillage-title">SILLAGE<span aria-hidden="true">↗</span></h2><p><span lang="en">An independent fragrance concept. Art direction, scroll choreography and an AI-assisted build.</span><span lang="zh">独立香水品牌概念网站。探索视觉设计、滚动动效与 AI 辅助构建。</span></p><div class="study-links"><a href="https://sillage-fragrance-study.suzysu418.chatgpt.site" target="_blank" rel="noopener"><span lang="en">Experience the website ↗</span><span lang="zh">体验网站 ↗</span></a><a href="https://sillage-fragrance-study.suzysu418.chatgpt.site/case-study" target="_blank" rel="noopener"><span lang="en">Read the case study ↗</span><span lang="zh">查看案例过程 ↗</span></a></div></div></div></section>
+
     <section class="principles" id="principles">
       <div class="wrap">
         <header class="section-head" data-reveal>
           <p class="eyebrow"><span lang="en">How I work</span><span lang="zh">我的方法</span></p>
-          <h2><span lang="en">Trust is a product<br>decision.</span><span lang="zh">可信，是一种<br>产品决策。</span></h2>
+          <h2 class="motion-heading"><span lang="en">Trust is a product<br>decision.</span><span lang="zh">可信，是一种<br>产品决策。</span></h2>
         </header>
         <div class="principle-grid">
           <article data-reveal><span>01</span><h3><span lang="en">Start with the failure</span><span lang="zh">从失败模式出发</span></h3><p><span lang="en">I define what must never be silently wrong before choosing a model or interface.</span><span lang="zh">在选择模型或界面之前，先定义什么绝不能悄悄出错。</span></p></article>
@@ -254,18 +248,24 @@
       <div class="wrap about-layout">
         <div data-reveal>
           <p class="eyebrow"><span lang="en">About / Contact</span><span lang="zh">关于 / 联系</span></p>
-          <h2><span lang="en">Designer by training.<br>Builder by habit.</span><span lang="zh">以设计理解问题，<br>用构建验证答案。</span></h2>
+          <h2 class="motion-heading"><span lang="en">Designer by training.<br>Builder by habit.</span><span lang="zh">以设计理解问题，<br>用构建验证答案。</span></h2>
         </div>
         <div class="about-copy" data-reveal>
           <p><span lang="en">I'm Suzy, a London-based game designer working across applied AI, creative technology and interactive systems. I move from research to working prototype, then test the claim the prototype is making.</span><span lang="zh">我是 Suzy，现居伦敦，工作横跨应用 AI、创意技术与交互系统。我从研究走向可运行原型，再验证原型所提出的主张。</span></p>
           <a class="email" href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a>
-          <div class="socials"><a href="https://github.com/suzyeth" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/suzy99-su/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+          <p class="design-credit"><span lang="en">Website visual and motion direction by Suzy Su. Built with Codex through iterative in-browser review. Project covers are editorial illustrations; original interfaces and evidence appear in the project pages.</span><span lang="zh">本站视觉与动效方向由 Suzy Su 主导，通过 Codex 实现并在浏览器中反复调整。项目封面为主题插画，真实界面与验证材料见项目详情。</span></p><div class="socials"><a href="https://github.com/suzyeth" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/suzy99-su/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
         </div>
       </div>
     </section>
   </main>
 
   <footer><span>© 2026 Suzy Su</span><a href="../index.html"><span lang="en">Game portfolio ↗</span><span lang="zh">游戏设计作品集 ↗</span></a><span><span lang="en">London / Remote</span><span lang="zh">伦敦 / 远程</span></span></footer>
-  <script src="script.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="script.js?v=20261008-published"></script>
+  <script src="motion.js?v=20261008-published"></script>
+  <script src="explorer.js?v=20261008-published"></script>
+  <script src="archive-pointer.js?v=20261008-published"></script>
 </body>
 </html>
+
+

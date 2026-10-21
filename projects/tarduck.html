@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>tarduck — Extraction Shooter Case Study · Suzy Su</title>
-<meta name="description" content="Case study for tarduck, a browser extraction shooter designed solo in 30 days to test risk/reward pacing, fast solo production, and compact systems design.">
+<meta name="description" content="A browser extraction shooter built around one decision: keep searching for loot, or leave with what you have.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="tarduck — Extraction Shooter Case Study">
-<meta property="og:description" content="A browser extraction shooter case study: risk/reward pacing, fast solo production, and compact systems design in 30 days.">
+<meta property="og:description" content="A browser extraction shooter built around one decision: keep searching for loot, or leave with what you have.">
 <meta property="og:url" content="https://suzyeth.github.io/projects/tarduck.html">
 <meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
 <meta property="og:locale" content="en_GB">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="../assets/fonts.css">
-<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
 <script src="../assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -58,70 +58,29 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">A compact extraction shooter built to answer one design question: can a browser-scale prototype still create the pressure of "one more room, or get out now"? I designed the risk/reward loop and progression surface, and directed the build end to end.</span>
-      <span lang="zh">一个紧凑的撤离射击原型，用来回答一个设计问题：浏览器体量的项目，能不能仍然制造“再深入一间，还是现在撤离”的压力？我端到端负责风险/回报循环与成长界面，并主导整个开发。</span>
+      <span lang="en">A browser extraction shooter built around one decision: keep searching for loot, or leave with what you have. I led the game design, implementation and integration, connecting combat, inventory and progression into a playable raid loop.</span>
+      <span lang="zh">一个围绕“继续搜刮，还是带着已有收益撤离”展开的浏览器射击游戏。我负责游戏设计、开发实现与整合，把战斗、背包和成长连接成可玩的战局循环。</span>
     </p>
-
-    <div class="proj-media">
-      <video loop muted playsinline preload="none" poster="../assets/tarduck-poster.jpg" data-lazy-video aria-label="tarduck — isometric 3D raid overview with mission HUD">
-        <source src="../assets/tarduck-demo.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <section class="proj-grid">
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
-        <p lang="en">Compress extraction-shooter tension into a short browser session: readable combat, meaningful inventory pressure, and a clear decision between greed and safety.</p>
-        <p lang="zh">把撤离射击的张力压缩进一次短浏览器体验：战斗要易读，背包要有压力，玩家要清楚地在贪心和安全之间做选择。</p>
-      </div>
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
-        <p lang="en">Enter raid → scout through fog → fight for loot → manage limited grid space → choose extract timing → convert loot into upgrades for the next run.</p>
-        <p lang="zh">进入战局 → 在迷雾中探索 → 为战利品战斗 → 管理有限网格背包 → 选择撤离时机 → 把收益转化为下一局升级。</p>
-      </div>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
-      <p lang="en">Built in Three.js + Vite with fully procedural geometry — no asset pipeline. The renderer uses physically based materials with bloom and ACES tone mapping for a cartoon-grim look, plus an in-engine <code>lil-gui</code> panel for live tuning. The real work was the direction layer: breaking systems into clear specs, reviewing and integrating each change, and keeping a coherent architecture across 57 commits in 30 days.</p>
-      <p lang="zh">用 Three.js + Vite 构建，几何体全程序化生成，没有资源管线。渲染使用 PBR 材质、bloom 和 ACES 色调映射，形成偏卡通但冷峻的视觉质感，并内置 <code>lil-gui</code> 面板实时调参。真正的工作在“指挥层”：把系统拆成清晰的规格、审阅并整合每次改动，并在 30 天 57 次提交里维持架构一致。</p>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🎯 The Design</span><span lang="zh">🎯 设计思路</span></h2>
-      <p lang="en">The core is a risk/reward extraction loop: push deeper for better loot, or extract early and bank what you have. I designed the supporting systems around that tension:</p>
-      <p lang="zh">核心是一套风险/回报的撤离循环：深入拿更好的战利品，还是早撤保住已有收益。围绕这个张力，我设计了这些支撑系统：</p>
-      <ul>
-        <li lang="en">5 weapons and 5 enemy types with body-part hitbox damage, armor &amp; durability</li>
-        <li lang="en">Grid inventory · 12-talent progression tree · 8 crafting recipes</li>
-        <li lang="en">3 extract points · fog-of-war · wave spawning · difficulty scaling</li>
-        <li lang="zh">5 种武器、5 种敌人，含部位 hitbox 伤害、装甲与耐久</li>
-        <li lang="zh">网格背包 · 12 天赋成长树 · 8 个合成配方</li>
-        <li lang="zh">3 个撤离点 · 战争迷雾 · 波次生成 · 难度缩放</li>
-      </ul>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">What I Tuned</span><span lang="zh">我调了什么</span></h2>
-      <p lang="en">The key tuning problem was not adding more content, but making the run state readable enough for players to make informed risks. I used fog density, enemy waves, extract placement, inventory pressure, and upgrade costs as the main pacing levers.</p>
-      <p lang="zh">关键调优问题不是继续加内容，而是让玩家足够读懂当前局势，从而愿意承担风险。我主要用迷雾密度、敌人波次、撤离点位置、背包压力和升级成本来控制节奏。</p>
-    </section>
 
     <div class="proj-meta">
       <div>
-        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
-        <p lang="en">Solo — game design, creative direction, production.</p>
-        <p lang="zh">独立 — 游戏设计、创意方向、开发主导。</p>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Core-loop design; implementation and integration.</p><p lang="zh">核心循环设计；开发实现与整合。</p>
       </div>
       <div>
-        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
-        <p lang="en">30 days · 57 commits · solo, under jam rules.</p>
-        <p lang="zh">30 天 · 57 commits · 独立完成，遵循 jam 规则。</p>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Solo · 30-day jam project.</p><p lang="zh">独立项目 · 30 天 Jam。</p>
       </div>
       <div>
-        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
-        <p>Three.js · Vite · lil-gui · PBR · Bloom · ACES tone mapping</p>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>Three.js · Vite · lil-gui</p>
       </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">An extraction shooter only works if "keep looting or leave" carries real weight in every raid.</p><p lang="zh">撤离射击只有在「继续搜刮还是撤离」每局都有分量时才成立。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Tie combat risk, grid-inventory space and extraction to that one choice, and tune it with fog, enemy waves, extract placement and inventory pressure.</p><p lang="zh">把战斗风险、网格背包空间和撤离都绑在这个选择上，再用迷雾、敌人波次、撤离点位置和背包压力调节奏。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">A playable raid loop in 30 days. A later polish pass fixed four first-raid P0 issues and made rendering 4–5× faster on integrated graphics.</p><p lang="zh">30 天做出可玩的战局循环。之后的打磨修好了第一局的 4 个 P0 问题，集显上渲染快 4–5 倍。</p></div>
     </div>
 
     <div class="proj-links">
@@ -129,8 +88,65 @@
       <a href="https://github.com/suzyeth/escape-from-duckkov" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
 
+
+
+    <div class="proj-media">
+      <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/tarduck-poster.jpg" controls aria-label="tarduck — isometric 3D raid overview with mission HUD">
+        <source src="../assets/tarduck-demo.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-block">
+      <h2><span lang="en">The decision inside each raid</span><span lang="zh">每一局的核心选择</span></h2>
+      <p lang="en">Enter a raid, scout through fog, fight for loot and decide when to extract. Limited inventory space makes each pickup a choice; staying longer creates more opportunities to collect loot while keeping the run at risk. Successful extraction connects the current raid to upgrades for the next.</p>
+      <p lang="zh">进入战局，在迷雾中探索，为战利品战斗，再决定什么时候撤离。有限的背包空间让拾取变成选择；停留越久，搜刮机会越多，已有收益也继续处于风险中。成功撤离把本局收获与下一局的成长连接起来。</p>
+    <div class="gameplay-gallery"><figure><a href="../assets/gameplay/tarduck-loadout.png" target="_blank" rel="noopener"><img src="../assets/gameplay/tarduck-loadout.png" width="1418" height="802" loading="lazy" alt="Five starting loadouts offer different weapons, armour and supplies."></a><figcaption><span lang="en">Five starting loadouts offer different weapons, armour and supplies.</span><span lang="zh">五套初始配置提供不同的武器、装甲与补给。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">How the systems support that choice</span><span lang="zh">系统如何支撑这个选择</span></h2>
+      <p lang="en">Weapons, enemy behaviours and body-part damage shape combat risk. Grid inventory, armour durability and supplies make preparation and looting matter. Talents and crafting give extracted resources a use beyond the current run. These systems share a design purpose: make the decision to stay or leave consequential.</p>
+      <p lang="zh">武器、敌人行为和部位伤害构成战斗风险；网格背包、装甲耐久与补给让备战和搜刮有取舍；天赋与合成则赋予撤离收益跨局的用途。这些系统共同服务于一个目标：让“继续还是撤离”真正影响玩家的得失。</p>
+    <p lang="en">The grid makes carrying space part of the decision: a piece of armour occupies cells that could hold other loot. Its value therefore depends on what the player gives up carrying, as well as its combat use. Extraction then gives that loadout a stopping point: bank the current haul or expose it to another encounter.</p>
+      <p lang="zh">网格背包把空间本身变成决策资源：一件装甲会占用原本能装其他战利品的格子。因此，它的价值不仅来自战斗用途，也取决于玩家为它放弃携带什么。撤离再给这组取舍一个结算点：保住当前收获，或让它继续承担下一场遭遇的风险。</p>
+<div class="gameplay-gallery"><figure><a href="../assets/gameplay/tarduck-inventory.png" target="_blank" rel="noopener"><img src="../assets/gameplay/tarduck-inventory.png" width="1418" height="802" loading="lazy" alt="The grid inventory shows the space occupied by a light vest and the current carried weight."></a><figcaption><span lang="en">The grid inventory shows the space occupied by a light vest and the current carried weight.</span><span lang="zh">网格背包显示轻甲占用的格子及当前携带重量。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">My contribution and implementation</span><span lang="zh">我的贡献与实现方式</span></h2>
+      <p lang="en">I defined the loop and supporting systems, broke the work into implementation tasks and integrated the changes. The prototype uses Three.js and Vite, procedural geometry, PBR materials, bloom and ACES tone mapping. An in-game lil-gui panel supports live parameter changes.</p>
+      <p lang="zh">我定义核心循环与支撑系统，把需求拆成开发任务并整合改动。原型使用 Three.js 与 Vite，结合程序化几何、PBR 材质、Bloom 和 ACES 色调映射，并用内置 lil-gui 面板实时调参。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Tuning risk and readability</span><span lang="zh">风险与可读性的调优</span></h2>
+      <p lang="en">Fog density, enemy waves, extraction placement, inventory pressure and upgrade costs are the main pacing controls. They affect different parts of the same decision: what the player can see, what they can carry and what they stand to gain. A useful playtest question is whether a fuller inventory changes the decision to take another fight.</p>
+      <p lang="zh">迷雾密度、敌人波次、撤离点位置、背包压力和升级成本是主要调优手段。它们分别影响玩家能看见什么、能带走什么，以及继续行动能得到什么。后续试玩应重点观察：背包逐渐装满后，玩家是否会改变继续战斗的决定。</p>
+    <div class="gameplay-gallery"><figure><a href="../assets/gameplay/tarduck-raid.png" target="_blank" rel="noopener"><img src="../assets/gameplay/tarduck-raid.png" width="1418" height="802" loading="lazy" alt="Industrial map at raid start: field of view, minimap, timer and equipment HUD."></a><figcaption><span lang="en">Industrial map at raid start: field of view, minimap, timer and equipment HUD.</span><span lang="zh">工业地图开局：视野、小地图、倒计时与装备 HUD。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">October polish pass: checking the first raid</span><span lang="zh">十月打磨：从第一局开始排查</span></h2>
+      <p lang="en">After the jam I went back to the game with one question: what goes wrong for a new player on their first raid? I ran a health check from a fresh save on a laptop's integrated GPU and logged every issue as P0 (hits a judge or new player on the first raid), P1 (feel and readability) or P2 (minor). Four P0 issues came out of it, and I fixed all four the same day.</p>
+      <p lang="zh">Jam 结束后我带着一个问题重新检查游戏：新玩家第一局会遇到什么问题？我用全新存档、在笔记本集显上做了一次体检，把每个问题按 P0（评委或新玩家第一局就会碰到）、P1（手感和可读性）、P2（小问题）分级。一共找出 4 个 P0，当天全部修完。</p>
+      <p lang="en"><strong>The loadout lied.</strong> A first-run shortcut gave the Assault kit a light vest and 60 rounds, while its card promised 90 rounds and two bandages, so new players started with no healing. Every kit now grants exactly what its card shows.</p>
+      <p lang="zh"><strong>配置卡和实际不符。</strong>首次游玩的一个捷径分支只给突击配置一件轻甲和 60 发子弹，卡片上写的却是 90 发子弹加两个绷带，新玩家一开局就没有治疗道具。现在每套配置发放的内容和卡片完全一致。</p>
+      <p lang="en"><strong>The wrong map, in the wrong language.</strong> Raids opened on a grey-block test layout with a debug link pinned to the screen, and several signs and route hints were still in Chinese. The finished Industrial map is the default again, the test layout is opt-in, and a scan of a live raid finds no untranslated text.</p>
+      <p lang="zh"><strong>默认地图和语言都不对。</strong>开局进的是灰盒测试地图，屏幕上还挂着调试链接，好几处路牌和路线提示是中文。现在默认回到做完的工业地图，测试地图改为手动开启，扫描战局界面已经没有未翻译的文字。</p>
+      <p lang="en"><strong>Performance on integrated graphics.</strong> The median frame was 33 ms, but hitches of up to a second pulled the average to about 14 FPS. The root cause was nine shadow-casting lights: each point-light shadow re-renders the scene six times, over roughly 1,500 shadow casters. I added quality tiers chosen from the GPU (low turns off point-light shadows, uses a smaller, harder sun shadow and skips bloom) with an automatic drop to low if frames stay slow. Indoor lights now dim instead of switching off, because changing the number of visible lights recompiled every shader. In a same-page A/B benchmark, low rendered 4–5× faster than high.</p>
+      <p lang="zh"><strong>集显性能。</strong>帧时间中位数 33 ms，但最长一秒的卡顿把平均帧率拉到约 14 FPS。根因是 9 个投射阴影的光源：每个点光源阴影都要把场景多渲染 6 次，涉及约 1500 个投影物体。我加了按显卡自动选择的画质档位（低档关闭点光源阴影、改用更小更硬的太阳阴影、不开 Bloom），帧时间持续过高时会自动降到低档。室内灯改成调亮度而不是开关，因为可见光源数量一变，所有着色器都会重新编译。同一页面 A/B 测试中，低档渲染比高档快 4–5 倍。</p>
+      <p lang="en">This pass lives on a separate branch and is not in the live jam build yet. Not yet verified: real-time FPS on a discrete GPU, and a full raid through the boss fight and extraction.</p>
+      <p lang="zh">这轮改动在单独的分支上，还没有更新到线上 Jam 版本。尚未验证：独显上的实时帧率，以及打完 Boss 到撤离的完整一局。</p>
+    <div class="gameplay-gallery"><figure><a href="../assets/gameplay/tarduck-enemy-silhouettes.png" target="_blank" rel="noopener"><img src="../assets/gameplay/tarduck-enemy-silhouettes.png" width="960" height="600" loading="lazy" alt="Three enemy types side by side, each with a distinct colour block and silhouette."></a><figcaption><span lang="en">Enemy silhouettes reworked so each type reads at a glance from the top-down camera.</span><span lang="zh">重做敌人轮廓，让俯视镜头下一眼就能分清敌人类型。</span></figcaption></figure><figure><a href="../assets/gameplay/tarduck-industrial-kit.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/tarduck-industrial-kit.jpg" width="1224" height="417" loading="lazy" alt="Blender industrial props previewed close-up and from the game camera."></a><figcaption><span lang="en">A Blender industrial kit (crates, barrels, containers, forklift), checked both close-up and from the in-game camera.</span><span lang="zh">用 Blender 做的工业场景道具（箱子、油桶、集装箱、叉车），分别在近景和游戏视角下检查。</span></figcaption></figure></div>
+    </section>
+
+
+
+
+
+
     <nav class="proj-nav" aria-label="Project navigation">
-      <a href="../index.html#work"><span lang="en">← All work</span><span lang="zh">← 返回作品</span></a>
+      <a href="../index.html#work"><span lang="en">All work</span><span lang="zh">返回作品</span></a>
       <a href="cocktail-rendering.html"><span lang="en">Next: Kitchen Bar →</span><span lang="zh">下一个：厨房调酒 →</span></a>
     </nav>
 
@@ -140,8 +156,8 @@
 <footer class="foot">
   <div class="container foot-inner">
     <span>© 2026 Suzy Su · London</span>
-    <span class="foot-mute" lang="en">Last updated June 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
   </div>
 </footer>
 

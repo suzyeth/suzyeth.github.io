@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-01",
+  "images": {
+    "sandgarden-rain.png": "assets/sandgarden-demo.mp4",
+    "gacha-config.png": "assets/gacha-demo.mp4",
+    "gacha-result.png": "assets/gacha-demo.mp4"
+  },
+  "method": "Browser-decoded frames from existing local recordings; no generated imagery."
+}

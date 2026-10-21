@@ -1,0 +1,234 @@
+{
+  "date": "2026-10-01",
+  "kind": "New synthetic experiment, not historical player or commercial data",
+  "trials": 20000,
+  "maxPulls": 120,
+  "firstSeed": 20261001,
+  "fixedSeed": 20261002,
+  "protection": "After any non-target rare, the next rare is target; commons retain protection, targets clear it. Experiment-only plugin, not shipped UI.",
+  "checks": "Protection activation/persistence/reset and exact state-probability recurrence passed.",
+  "results": [
+    {
+      "id": "A",
+      "period": 80,
+      "protect": false,
+      "config": {
+        "id": "synthetic",
+        "name": "Synthetic public example",
+        "rarities": [
+          {
+            "id": "rare",
+            "baseRate": 0.02
+          },
+          {
+            "id": "common",
+            "baseRate": 0.98
+          }
+        ],
+        "items": [
+          {
+            "id": "target",
+            "name": "Target",
+            "rarity": "rare",
+            "weight": 1
+          },
+          {
+            "id": "other",
+            "name": "Other rare",
+            "rarity": "rare",
+            "weight": 1
+          },
+          {
+            "id": "common",
+            "name": "Common",
+            "rarity": "common"
+          }
+        ],
+        "rules": [
+          {
+            "type": "cyclic-pity",
+            "params": {
+              "period": 80,
+              "bucketId": "rare"
+            }
+          }
+        ]
+      },
+      "first": {
+        "count": 20000,
+        "succeeded": 15871,
+        "failed": 4129,
+        "failureRate": 0.20645,
+        "p50": 51,
+        "p75": 80,
+        "p90": 97,
+        "p99": 118,
+        "mean": 52.5984500031504,
+        "min": 1,
+        "max": 120
+      },
+      "fixed": {
+        "meanRare": 2.7697,
+        "meanTarget": 1.39175,
+        "meanOther": 1.37795,
+        "successRate": 0.7968
+      },
+      "exact": {
+        "success": 0.7939114036888517,
+        "rare": 2.7575679301476743,
+        "target": 1.3787839650738372
+      }
+    },
+    {
+      "id": "B",
+      "period": 60,
+      "protect": false,
+      "config": {
+        "id": "synthetic",
+        "name": "Synthetic public example",
+        "rarities": [
+          {
+            "id": "rare",
+            "baseRate": 0.02
+          },
+          {
+            "id": "common",
+            "baseRate": 0.98
+          }
+        ],
+        "items": [
+          {
+            "id": "target",
+            "name": "Target",
+            "rarity": "rare",
+            "weight": 1
+          },
+          {
+            "id": "other",
+            "name": "Other rare",
+            "rarity": "rare",
+            "weight": 1
+          },
+          {
+            "id": "common",
+            "name": "Common",
+            "rarity": "common"
+          }
+        ],
+        "rules": [
+          {
+            "type": "cyclic-pity",
+            "params": {
+              "period": 60,
+              "bucketId": "rare"
+            }
+          }
+        ]
+      },
+      "first": {
+        "count": 20000,
+        "succeeded": 17088,
+        "failed": 2912,
+        "failureRate": 0.1456,
+        "p50": 56,
+        "p75": 68,
+        "p90": 99,
+        "p99": 120,
+        "mean": 51.7684925093633,
+        "min": 1,
+        "max": 120
+      },
+      "fixed": {
+        "meanRare": 3.15185,
+        "meanTarget": 1.5867,
+        "meanOther": 1.56515,
+        "successRate": 0.8532
+      },
+      "exact": {
+        "success": 0.853493977776379,
+        "rare": 3.1431547866486276,
+        "target": 1.5715773933243138
+      }
+    },
+    {
+      "id": "C",
+      "period": 80,
+      "protect": true,
+      "config": {
+        "id": "synthetic",
+        "name": "Synthetic public example",
+        "rarities": [
+          {
+            "id": "rare",
+            "baseRate": 0.02
+          },
+          {
+            "id": "common",
+            "baseRate": 0.98
+          }
+        ],
+        "items": [
+          {
+            "id": "target",
+            "name": "Target",
+            "rarity": "rare",
+            "weight": 1
+          },
+          {
+            "id": "other",
+            "name": "Other rare",
+            "rarity": "rare",
+            "weight": 1
+          },
+          {
+            "id": "common",
+            "name": "Common",
+            "rarity": "common"
+          }
+        ],
+        "rules": [
+          {
+            "type": "cyclic-pity",
+            "params": {
+              "period": 80,
+              "bucketId": "rare"
+            }
+          },
+          {
+            "type": "target-protection",
+            "params": {}
+          }
+        ]
+      },
+      "first": {
+        "count": 20000,
+        "succeeded": 18408,
+        "failed": 1592,
+        "failureRate": 0.0796,
+        "p50": 52,
+        "p75": 80,
+        "p90": 96,
+        "p99": 117,
+        "mean": 53.059322033898304,
+        "min": 1,
+        "max": 120
+      },
+      "fixed": {
+        "meanRare": 2.764,
+        "meanTarget": 1.7348,
+        "meanOther": 1.0292,
+        "successRate": 0.92075
+      },
+      "exact": {
+        "success": 0.9195931564019348,
+        "rare": 2.757567930147736,
+        "target": 1.7243875361074383
+      }
+    }
+  ],
+  "engineSourceHashes": {
+    "simulator.ts": "6259cc7f621361d06131ad1e5e09eaeba66b4aa29e0b7b29fdba992385a0be71",
+    "scenarios.ts": "86b67fab35e38e16d039ec652691e039a733786251ce0f49b5343b070a1b4e43",
+    "rules/cyclic-pity.ts": "830d2976a8a058cbbfda3ad3a78ccf8f482f86f86147156169989b8ebaeef93c"
+  }
+}

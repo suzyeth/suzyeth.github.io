@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools &amp; Technical Work · Suzy Su</title>
+<meta name="description" content="Tools for designers and game-side systems: automation, simulation, data pipelines and in-engine work.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/tools.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tools &amp; Technical Work · Suzy Su">
+<meta property="og:description" content="Tools for designers and game-side systems: automation, simulation, data pipelines and in-engine work.">
+<meta property="og:url" content="https://suzyeth.github.io/tools.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="style.css?v=20261018-pdo">
+<script src="assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="index.html" class="brand">SUSU / TOOLS</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="#work-tools"><span lang="en">At work</span><span lang="zh">工作中的工具</span></a>
+      <a href="#projects"><span lang="en">Projects</span><span lang="zh">个人项目</span></a>
+      <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Tools &amp; technical work · London</span><span lang="zh">工具与技术方向 · 伦敦</span></p>
+      <h1 class="proj-title">Tools for designers, <em>systems for players</em></h1>
+      <p class="proj-tag">Python · C# · Unity · Three.js · Android automation · Data pipelines</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">I build the tools designers use every day and the game-side systems they rely on: automation, simulation, data pipelines and in-engine work, shaped by daily use of designer tooling on two shipped F2P titles.</span>
+      <span lang="zh">我做策划每天要用的工具，也做游戏里的系统：自动化、模拟、数据管线和引擎内的开发。这些都来自我在两款已上线 F2P 手游里每天使用策划工具的经验。</span>
+    </p>
+
+    <section class="proj-block" id="work-tools">
+      <h2><span lang="en">Tools I built at work</span><span lang="zh">工作中做的工具</span></h2>
+      <p lang="en">From two shipped F2P mobile titles. Studio and games are anonymised; no screenshots are shown.</p>
+      <p lang="zh">来自两款已上线的 F2P 手游。工作室和游戏名已匿名，不放截图。</p>
+      <div class="pro-grid">
+        <article class="pro-card">
+          <h3 class="pro-title"><span lang="en">Reporting pipeline</span><span lang="zh">报表管线</span></h3>
+          <p lang="en">A Python (openpyxl) pipeline that generates a multi-sheet live-ops dashboard: retention cohorts, LTV, payer tiers, level funnels and reactivation, with conditional-format heatmaps.</p>
+          <p lang="zh">用 Python（openpyxl）自动生成多 sheet 的运营数据看板：留存分群、LTV、付费分层、关卡漏斗和回流，带条件格式热力图。</p>
+        </article>
+        <article class="pro-card">
+          <h3 class="pro-title"><span lang="en">Version change ledger</span><span lang="zh">版本变更台账</span></h3>
+          <p lang="en">A Python script that compares config tables across releases and writes a change ledger, so every config change can be traced to a version.</p>
+          <p lang="zh">Python 脚本对比多个版本的配置表，生成变更台账，让每一处配置改动都能追溯到具体版本。</p>
+        </article>
+        <article class="pro-card">
+          <h3 class="pro-title"><span lang="en">Docs generated from scripts</span><span lang="zh">用脚本生成文档</span></h3>
+          <p lang="en">A full optimisation cycle (diagnosis, issue list with repro steps, governed master list) produced by scripts. To change the content, change the script and rerun; nobody hand-edits the spreadsheets.</p>
+          <p lang="zh">一整轮优化的诊断、带复现步骤的问题清单和方案总表都由脚本生成。要改内容就改脚本重跑，不手改表格。</p>
+        </article>
+        <article class="pro-card">
+          <h3 class="pro-title"><span lang="en">Config schema design</span><span lang="zh">配置表结构协作</span></h3>
+          <p lang="en">Worked with engineering on config schemas: proposed the fields design needed and decided which parameters belong in a data-driven config layer.</p>
+          <p lang="zh">和程序一起设计配置表结构：提出策划需要的字段，决定哪些参数放进数据驱动的配置层。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="proj-block" id="projects">
+      <h2><span lang="en">Personal projects</span><span lang="zh">个人项目</span></h2>
+      <div class="pro-grid">
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Solo · QA tooling</span><span lang="zh">独立 · QA 工具</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">gridbot <em>Black-box QA</em></h3>
+          <p lang="en">An Android automation toolkit for game screens that standard automation can't read. Capture, OCR, input and a YAML-driven navigator work as independent modules. MIT licensed.</p>
+          <p lang="zh">一个 Android 自动化工具包，用来处理标准自动化工具读不懂的游戏界面。截图、OCR、输入和按 YAML 走流程的导航器都可以单独使用。MIT 开源。</p>
+          <div class="proj-links"><a class="primary" href="projects/gridbot.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a><a href="https://github.com/suzyeth/gridbot" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Live tool</span><span lang="zh">在线可用</span></span></p>
+          <h3 class="pro-title">Gacha <em>Economy Sim</em></h3>
+          <p lang="en">Rules are kept separate from the draw engine as pluggable rule modules, and simulations use fixed seeds so every result can be reproduced.</p>
+          <p lang="zh">规则和抽卡引擎分开，做成可插拔的规则模块；模拟使用固定种子，每个结果都能复现。</p>
+          <div class="proj-links"><a class="primary" href="projects/gacha.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a><a href="https://gacha-simulator-ten.vercel.app" target="_blank" rel="noopener"><span lang="en">Live demo ↗</span><span lang="zh">在线试用 ↗</span></a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Tech art · Personal</span><span lang="zh">技术美术 · 个人项目</span><span class="card-status"><span lang="en">In development</span><span lang="zh">开发中</span></span></p>
+          <h3 class="pro-title"><span lang="en">Kitchen Bar</span><span lang="zh">厨房调酒</span></h3>
+          <p lang="en">Liquid and glass shaders in Unity URP, plus a cup-art preparation pipeline that turns cup images into game-ready assets.</p>
+          <p lang="zh">Unity URP 里的液体和玻璃 shader，加上一条把酒杯图片处理成游戏可用资源的美术管线。</p>
+          <div class="proj-links"><a class="primary" href="projects/cocktail-rendering.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Project lead · 6-person team</span><span lang="zh">项目负责 · 六人团队</span><span class="card-status"><span lang="en">In development</span><span lang="zh">开发中</span></span></p>
+          <h3 class="pro-title">Project:<em>IDOL</em></h3>
+          <p lang="en">A web interface running inside Unity 6, with a typed command and event contract between C# and JavaScript. I own integration, save reliability and battle feedback, with regression tests for each fix.</p>
+          <p lang="zh">在 Unity 6 里内嵌网页界面，C# 和 JavaScript 之间有一套定义好的命令和事件协议。我负责集成、存档可靠性和战斗反馈，每处修复都配了回归测试。</p>
+          <div class="proj-links"><a class="primary" href="projects/idol.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Solo · Cursor Vibe Jam 2026</span><span lang="zh">独立 · Cursor Vibe Jam 2026</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
+          <h3 class="pro-title">tarduck</h3>
+          <p lang="en">A first-raid health check with issues ranked by severity. Traced low frame rates to shadow-casting lights and added GPU-based quality tiers: 4–5× faster rendering on integrated graphics.</p>
+          <p lang="zh">对第一局做体检，按严重程度给问题分级。把低帧率追到投射阴影的光源上，加了按显卡自动选择的画质档位：集显上渲染快 4–5 倍。</p>
+          <div class="proj-links"><a class="primary" href="projects/tarduck.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a><a href="https://suzyeth.github.io/escape-from-duckkov/" target="_blank" rel="noopener"><span lang="en">Play ↗</span><span lang="zh">试玩 ↗</span></a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Skills</span><span lang="zh">技能</span></h2>
+      <p lang="en">Python · C# · JavaScript / TypeScript · Unity (URP, HLSL shaders, in-editor workflows) · Three.js · ADB and Android automation · OCR · openpyxl reporting pipelines · JSON / CSV / YAML config · Git</p>
+      <p lang="zh">Python · C# · JavaScript / TypeScript · Unity（URP、HLSL shader、编辑器内工作流）· Three.js · ADB 与 Android 自动化 · OCR · openpyxl 报表管线 · JSON / CSV / YAML 配置 · Git</p>
+    </section>
+
+    <section class="proj-block" id="contact">
+      <h2><span lang="en">Contact</span><span lang="zh">联系</span></h2>
+      <p lang="en">Open to tools and technical roles in games, in London or remote. Email <a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a> for my CV.</p>
+      <p lang="zh">正在寻找游戏行业的工具、技术方向岗位，伦敦或远程。简历请邮件索取：<a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a>。</p>
+      <div class="proj-links">
+        <a href="https://www.linkedin.com/in/suzy99-su/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/suzyeth" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="index.html"><span lang="en">Game design portfolio →</span><span lang="zh">游戏策划作品集 →</span></a>
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

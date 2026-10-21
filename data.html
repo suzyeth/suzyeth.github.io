@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Analysis · Suzy Su</title>
+<meta name="description" content="Data analysis on a live F2P game: diagnostics, experiment design, retention studies and metric definitions.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/data.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Data Analysis · Suzy Su">
+<meta property="og:description" content="Data analysis on a live F2P game: diagnostics, experiment design, retention studies and metric definitions.">
+<meta property="og:url" content="https://suzyeth.github.io/data.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="style.css?v=20261018-pdo">
+<script src="assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="index.html" class="brand">SUSU / DATA</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="#methods"><span lang="en">Methods</span><span lang="zh">方法案例</span></a>
+      <a href="#projects"><span lang="en">Projects</span><span lang="zh">公开项目</span></a>
+      <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Data analysis · F2P mobile · London</span><span lang="zh">数据分析 · F2P 手游 · 伦敦</span></p>
+      <h1 class="proj-title">Data analysis on a <em>live F2P game</em></h1>
+      <p class="proj-tag">SQL · Python · Experiment design · Retention &amp; funnels · Metric definitions</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">I define the metrics, drive the instrumentation, run live diagnostics and design A/B tests with guardrails, and I care most about getting the causal reasoning right before it reaches a report. Work examples are anonymised and show methods, not figures.</span>
+      <span lang="zh">我负责定义指标、推动埋点、做上线后的数据诊断，并设计带护栏指标的 A/B 实验。我最看重的是在结论写进报告之前，先把因果推理理清楚。工作中的案例已匿名，只讲方法，不写业务数值。</span>
+    </p>
+
+    <ul class="stat-row">
+      <li class="stat"><b>11</b><span lang="en">analytics reports cross-checked in a first-month diagnostic</span><span lang="zh">份报表交叉核对，用于开服首月诊断</span></li>
+      <li class="stat"><b>38</b><span lang="en">metrics defined in a monetisation data spec</span><span lang="zh">个指标，写进商业化数据需求文档</span></li>
+      <li class="stat"><b>200k</b><span lang="en">fixed-seed Monte Carlo runs to price a gacha event</span><span lang="zh">次固定种子蒙特卡洛，用于抽卡活动定价</span></li>
+      <li class="stat"><b>8%</b><span lang="en">paying-user rate on a shipped idle card RPG</span><span lang="zh">付费率，已上线的放置卡牌 RPG</span></li>
+    </ul>
+
+    <section class="proj-block" id="methods">
+      <h2><span lang="en">Methods from live work</span><span lang="zh">工作中的方法案例</span></h2>
+      <p lang="en">From a live F2P mobile title (live since May 2026). Studio and game are anonymised; no business figures are shown.</p>
+      <p lang="zh">来自一款已上线运营的 F2P 手游（2026 年 5 月上线）。工作室和游戏名已匿名，不展示任何业务数值。</p>
+
+      <h3 class="data-case"><span lang="en">1 · First-month live diagnostic</span><span lang="zh">1 · 开服首月数据诊断</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">After launch, the team needed to know which problems were real and which were noise across many separate reports.</p><p lang="zh">上线后，团队需要从大量分散的报表里分清哪些是真问题、哪些是噪音。</p></div>
+        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Ingested 11 analytics reports and cross-validated key KPIs through business reconciliation before trusting any of them.</p><p lang="zh">汇总 11 份报表，先用业务勾稽关系交叉校验关键指标，再决定信哪些数据。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Three systemic issues, each backed by several metrics: uneven acquisition quality, shallow payment depth, and difficulty walls that churn players rather than convert them.</p><p lang="zh">找出三个系统性问题，每个都有多项指标佐证：买量质量参差、付费深度偏浅、关卡卡点导致流失而不是转化。</p></div>
+      </div>
+
+      <h3 class="data-case"><span lang="en">2 · A/B test design</span><span lang="zh">2 · A/B 实验设计</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Test a mid-tier monetisation offer without hurting retention or inviting early, biased stops.</p><p lang="zh">测试一个中档商业化礼包，既不能伤留存，也要避免提前看结果带来的偏差。</p></div>
+        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">One primary metric (ARPPU), retention and refund rate as guardrails, sample plan and stop rule fixed in advance, results re-checked by payer segment.</p><p lang="zh">一个主指标（ARPPU），留存和退款率作护栏；样本量和停止规则提前定好；按付费分层复核结果。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Backed by incremental-revenue scenarios with ±20% sensitivity and an LTV-versus-CPA break-even read on acquisition spend.</p><p lang="zh">配了 ±20% 敏感度的增量收入情景，以及 LTV 对比 CPA 的买量回本判断。</p></div>
+      </div>
+
+      <h3 class="data-case"><span lang="en">3 · Day-2 retention study</span><span lang="zh">3 · 次留专题</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Grouping players by their current progress made high-progress groups look sticky by definition: the players who stayed are the ones who progressed.</p><p lang="zh">按玩家「当前进度」分组，高进度组天然显得留存高：留下来的人本来就是进度高的人。</p></div>
+        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Separated snapshot attributes from day-1 event data and reported only on the latter.</p><p lang="zh">把「当前快照」类字段和「首日事件」数据分开，只用后者做汇报口径。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">First-session progression depth as the strongest day-2 predictor, and the highest-ROI player segment to move.</p><p lang="zh">找出次留最强的预测因素是首日推进深度，并定位了最值得撬动的玩家人群。</p></div>
+      </div>
+
+      <h3 class="data-case"><span lang="en">4 · Post-launch retrospective</span><span lang="zh">4 · 改版上线后复盘</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">A monetisation rework and an onboarding change shipped together. Did either one actually work, or did traffic change?</p><p lang="zh">商业化改版和新手流程改动同时上线。到底哪个起了作用，还是只是流量变了？</p></div>
+        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Designed a before/after read that controlled for active-user and acquisition changes, separating design-driven lift from traffic-driven lift.</p><p lang="zh">设计前后对比口径，控制活跃和买量的变化，把「设计带来的提升」和「流量带来的提升」分开。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">An honest null result: payment efficiency improved, but the onboarding change did not move retention, so the next iteration targeted first-session depth instead.</p><p lang="zh">如实汇报无效结果：付费效率提升了，新手流程改动却没有带动留存，所以下一轮改为直接针对首日推进深度。</p></div>
+      </div>
+
+      <h3 class="data-case"><span lang="en">5 · Metric definitions and repeatable methods</span><span lang="zh">5 · 指标体系与方法沉淀</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Reports disagreed because the same metric was defined differently in different places.</p><p lang="zh">同一个指标在不同地方定义不同，导致报表对不上。</p></div>
+        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Wrote a data requirements document with a 38-metric dictionary (locked definitions, formulas and granularity), drill-down dimensions and instrumentation requirements.</p><p lang="zh">撰写数据需求文档：38 个指标的字典（口径、公式、粒度全部锁定），加下钻维度和埋点需求。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Analytics and engineering built reporting from it. The analysis approach became a reusable four-level template (describe → locate → drive → verify) and a version-update attribution runbook.</p><p lang="zh">数据团队和程序据此搭建报表。分析方法也整理成可复用的四层模板（描述 → 定位 → 驱动 → 验证）和版本更新归因手册。</p></div>
+      </div>
+    </section>
+
+    <section class="proj-block" id="projects">
+      <h2><span lang="en">Public projects</span><span lang="zh">公开项目</span></h2>
+      <div class="pro-grid">
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Live tool</span><span lang="zh">在线可用</span></span></p>
+          <h3 class="pro-title">Gacha <em>Economy Sim</em></h3>
+          <p lang="en">Compares three pity rules with 20,000 seeded trials each, measuring acquisition cost and total issuance separately, and states what the experiment cannot tell you.</p>
+          <p lang="zh">用三种保底规则各跑 2 万次固定种子模拟，把获取成本和总投放分开测量，并写明这个实验回答不了什么。</p>
+          <div class="proj-links"><a class="primary" href="projects/gacha.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Solo · Analysis</span><span lang="zh">独立 · 分析</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">second-pass</h3>
+          <p lang="en">Audience attention versus shot content in films, with every answer grounded in a real ClickHouse query. The obvious story did not survive: attention rises toward the end of almost every film regardless of content, so raw correlations are confounded. All six content features failed significance on the full sample, and the write-up notes the threshold was not yet corrected for multiple comparisons.</p>
+          <p lang="zh">分析电影中观众注意力和镜头内容的关系，每个回答都来自真实的 ClickHouse 查询。最直观的结论没有站住：几乎每部片子后半段的注意力都会上升，和内容无关，所以直接做相关会被这个趋势干扰。六个内容特征在全样本上都没有通过显著性检验，并注明阈值还没做多重比较校正。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Skills</span><span lang="zh">技能</span></h2>
+      <p lang="en">SQL (joins, aggregation, window functions, CTEs) · Python (pandas, openpyxl reporting) · ThinkingData · experiment design · funnel, retention and cohort analysis · LTV and payer-tier modelling · event-schema design · Excel modelling</p>
+      <p lang="zh">SQL（JOIN、聚合、窗口函数、CTE）· Python（pandas、openpyxl 报表）· ThinkingData · 实验设计 · 漏斗、留存与分群分析 · LTV 与付费分层 · 埋点事件设计 · Excel 建模</p>
+    </section>
+
+    <section class="proj-block" id="contact">
+      <h2><span lang="en">Contact</span><span lang="zh">联系</span></h2>
+      <p lang="en">Open to data analyst and product analyst roles in London. Email <a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a> for my CV.</p>
+      <p lang="zh">正在寻找伦敦的数据分析、产品分析岗位。简历请邮件索取：<a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a>。</p>
+      <div class="proj-links">
+        <a href="https://www.linkedin.com/in/suzy99-su/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/suzyeth" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="index.html"><span lang="en">Game design portfolio →</span><span lang="zh">游戏策划作品集 →</span></a>
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

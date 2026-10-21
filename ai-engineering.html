@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applied AI Engineering · Suzy Su</title>
+<meta name="description" content="Applied AI engineer: LLM apps and agents, evaluation that tests the headline claim, deterministic gates, and deployed services with CI.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/ai-engineering.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Applied AI Engineering · Suzy Su">
+<meta property="og:description" content="Applied AI engineer: LLM apps and agents, evaluation that tests the headline claim, deterministic gates, and deployed services with CI.">
+<meta property="og:url" content="https://suzyeth.github.io/ai-engineering.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="style.css?v=20261021-data">
+<script src="assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="index.html" class="brand">SUSU / AI ENGINEERING</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="#evidence"><span lang="en">Evidence</span><span lang="zh">能力对照</span></a>
+      <a href="#projects"><span lang="en">Projects</span><span lang="zh">项目</span></a>
+      <a href="#at-work"><span lang="en">At work</span><span lang="zh">工作中</span></a>
+      <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Applied AI engineering · Evaluation · London</span><span lang="zh">应用 AI 工程 · 评测 · 伦敦</span></p>
+      <h1 class="proj-title">LLM systems, <em>tested before they're trusted</em></h1>
+      <p class="proj-tag">Python · TypeScript · LLM apps &amp; agents · Evaluation · APIs &amp; deployment</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">I build LLM applications and the checks that decide whether they actually work: statistical tests against the headline claim, held-out evaluation, deterministic gates beside the model, and deployments with health checks and CI. The projects below are public and you can run them; the work examples are from a live F2P game, anonymised.</span>
+      <span lang="zh">我做 LLM 应用，也做判断它们是否真的有效的检验：针对核心卖点的统计检验、留出数据的评测、模型旁边的确定性闸门，以及带健康检查和 CI 的部署。下面的项目都公开、可以自己跑；工作中的例子来自一款已上线的 F2P 手游，已匿名。</span>
+    </p>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Test the selling claim first</span><span lang="zh">先测最能卖的说法</span></h3><p lang="en">second-pass tested its own headline idea on day one. It did not survive, and the write-up says so.</p><p lang="zh">second-pass 第一天就测了项目最核心的卖点。结果没站住，文档里如实写明。</p></div>
+      <div><h3><span lang="en">Publish the bad result</span><span lang="zh">结果不好也照实发布</span></h3><p lang="en">table-for-two reports its learned policy at 0/10 on the full task, and explains why.</p><p lang="zh">table-for-two 如实汇报学习策略在完整任务上 0/10，并解释了原因。</p></div>
+      <div><h3><span lang="en">Never let the model be the only gate</span><span lang="zh">不让模型当唯一的关卡</span></h3><p lang="en">In evidence-first-job-search an LLM reviewer scores against a rubric, and a deterministic fact check still has to pass.</p><p lang="zh">evidence-first-job-search 里，LLM 评审按评分标准打分之后，还要过一道确定性的事实检查。</p></div>
+    </div>
+
+    <section class="proj-block" id="evidence">
+      <h2><span lang="en">What AI engineering roles ask for, and where to see it</span><span lang="zh">AI 工程岗位要求的能力，以及对应的证据</span></h2>
+      <table class="evidence">
+        <thead><tr><th><span lang="en">Requirement</span><span lang="zh">要求</span></th><th><span lang="en">Evidence</span><span lang="zh">证据</span></th></tr></thead>
+        <tbody>
+          <tr><th><span lang="en">Building LLM apps and agents</span><span lang="zh">构建 LLM 应用和 agent</span></th><td><span lang="en"><a href="#p-second">second-pass</a>: a Gemini agent (Google ADK) whose every answer comes from a real ClickHouse query run through an MCP server · <a href="#p-artdex">ArtDex</a>: Claude vision on AWS Bedrock</span><span lang="zh"><a href="#p-second">second-pass</a>：基于 Google ADK 的 Gemini agent，每个回答都来自经 MCP 服务器执行的真实 ClickHouse 查询 · <a href="#p-artdex">ArtDex</a>：AWS Bedrock 上的 Claude 视觉识别</span></td></tr>
+          <tr><th><span lang="en">Evaluating model output</span><span lang="zh">评测模型输出</span></th><td><span lang="en"><a href="#p-second">second-pass</a>: Bonferroni-corrected tests across three films, plus a re-scoring control · <a href="#p-table">table-for-two</a>: 30 never-seen seeds and a Wilson interval on every success rate · <a href="#p-efjs">evidence-first-job-search</a>: rubric-based LLM reviewer with a hard veto, run in a separate session</span><span lang="zh"><a href="#p-second">second-pass</a>：三部片的 Bonferroni 校正检验，加一组重新打分的对照 · <a href="#p-table">table-for-two</a>：30 个从没见过的种子，每个成功率都带 Wilson 区间 · <a href="#p-efjs">evidence-first-job-search</a>：按评分标准打分、带一票否决项的 LLM 评审，在单独的会话里运行</span></td></tr>
+          <tr><th><span lang="en">APIs and deployment</span><span lang="zh">API 与部署</span></th><td><span lang="en"><a href="#p-second">second-pass</a>: FastAPI with health and readiness probes, request IDs and streaming; Docker image built in CI; deployed on Cloud Run with secrets from Secret Manager · <a href="#p-artdex">ArtDex</a>: deployed on real AWS (Bedrock, DynamoDB, S3)</span><span lang="zh"><a href="#p-second">second-pass</a>：FastAPI，带健康检查和就绪探针、请求 ID、流式响应；CI 里构建 Docker 镜像；部署在 Cloud Run，密钥来自 Secret Manager · <a href="#p-artdex">ArtDex</a>：部署在真实的 AWS 上（Bedrock、DynamoDB、S3）</span></td></tr>
+          <tr><th><span lang="en">Engineering basics: tests, Git, CI</span><span lang="zh">工程基本功：测试、Git、CI</span></th><td><span lang="en"><a href="#p-efjs">evidence-first-job-search</a>: 190 tests, 97% coverage, CI on Ubuntu and Windows · <a href="#p-gridbot">gridbot</a>: pytest and ruff across Python 3.9–3.12 · <a href="#p-rollcall">Roll Call</a>: 128 tests</span><span lang="zh"><a href="#p-efjs">evidence-first-job-search</a>：190 个测试、覆盖率 97%，CI 跑在 Ubuntu 和 Windows 上 · <a href="#p-gridbot">gridbot</a>：pytest 和 ruff，覆盖 Python 3.9–3.12 · <a href="#p-rollcall">Roll Call</a>：128 个测试</span></td></tr>
+          <tr><th><span lang="en">Shipped to real people</span><span lang="zh">真正交给人用过</span></th><td><span lang="en"><a href="#at-work">At work</a>: my playtest engine on a live build; AI coding-assistant setup used by about six designers · <a href="#p-rollcall">Roll Call</a>: award winner, live · <a href="#p-artdex">ArtDex</a>: live app</span><span lang="zh"><a href="#at-work">工作中</a>：自建走查引擎跑线上版本；我配置的 AI 编码助手约 6 名策划在用 · <a href="#p-rollcall">Roll Call</a>：获奖作品，在线可玩 · <a href="#p-artdex">ArtDex</a>：在线应用</span></td></tr>
+          <tr><th><span lang="en">Explaining it to non-technical people</span><span lang="zh">讲给非技术的人听</span></th><td><span lang="en"><a href="#p-efjs">evidence-first-job-search</a>: a three-step quickstart written for non-technical users, README in English and Chinese</span><span lang="zh"><a href="#p-efjs">evidence-first-job-search</a>：写给非技术用户的三步上手教程，中英双语 README</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="proj-block" id="projects">
+      <h2><span lang="en">Projects</span><span lang="zh">项目</span></h2>
+      <div class="pro-grid">
+        <article class="pro-card" id="p-second">
+          <p class="pro-meta"><span lang="en">Solo · AI-assisted (Claude)</span><span lang="zh">独立 · AI 协助开发（Claude）</span><span class="card-status"><span lang="en">Live · open source</span><span lang="zh">在线 · 开源</span></span></p>
+          <h3 class="pro-title">second-pass <em>A null result, made to stick</em></h3>
+          <figure class="pro-fig"><img src="ai/assets/second-pass-architecture.png" alt="second-pass data and agent architecture" width="2720" height="2400" loading="lazy" decoding="async"></figure>
+          <p lang="en">Every answer is grounded in a real ClickHouse query run through an MCP server. The project's own selling point was tested on day one and failed: across three films and 18 tests against Bonferroni-corrected thresholds, one result cleared the floor by a hair and did not replicate. The write-up also publishes my own errors: end credits had been scored as film, which produced the original 4.40× headline (1.28× on the film itself). Served by FastAPI in a Docker image on Cloud Run; CI runs the tests, builds the image and re-runs the analysis scripts.</p>
+          <p lang="zh">每个回答都来自经 MCP 服务器执行的真实 ClickHouse 查询。项目自己的核心卖点第一天就被测了，结果没站住：三部片、18 项检验按 Bonferroni 校正门槛判，只有一项勉强过线且不能复现。文档也公开了我自己的错误：片尾字幕曾被当成正片打分，造成最初「后半段注意力 4.40 倍」的结论（正片本身是 1.28 倍）。服务用 FastAPI，打包成 Docker 镜像部署在 Cloud Run；CI 会跑测试、构建镜像，并重跑分析脚本。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a><a href="ai/second-pass.html"><span lang="en">Case notes →</span><span lang="zh">案例摘要 →</span></a></div>
+        </article>
+        <article class="pro-card" id="p-table">
+          <p class="pro-meta"><span lang="en">Solo · AI-assisted (Claude)</span><span lang="zh">独立 · AI 协助开发（Claude）</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">table-for-two <em>Learned robot policy</em></h3>
+          <figure class="pro-fig"><img src="ai/assets/table-for-two-cover.png" alt="Two simulated robot arms setting a table" width="1600" height="900" loading="lazy" decoding="async"></figure>
+          <p lang="en">An evaluation designed to resist self-deception: 10 evaluation seeds plus 30 never-seen seeds, with a Wilson confidence interval on every success rate. The learned policy scored 0/10 on the full table task, reported with the reasons, against a scripted pipeline at 10/10. INT8 quantisation cut CPU inference from 16.5 ms to 4.9 ms. Submitted to the Intel Physical AI Online Challenge.</p>
+          <p lang="zh">为防自欺而设计的评测：10 个评测种子加 30 个从没见过的种子，每个成功率都带 Wilson 置信区间。学习策略在完整任务上 0/10，照实汇报并解释原因，脚本流程为 10/10。INT8 量化把 CPU 推理从 16.5 ms 降到 4.9 ms。已提交到 Intel Physical AI 线上挑战赛。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/table-for-two" target="_blank" rel="noopener">GitHub ↗</a><a href="ai/table-for-two.html"><span lang="en">Case notes →</span><span lang="zh">案例摘要 →</span></a></div>
+        </article>
+        <article class="pro-card" id="p-artdex">
+          <p class="pro-meta"><span lang="en">Solo · AI-assisted (Claude Code)</span><span lang="zh">独立 · AI 协助开发（Claude Code）</span><span class="card-status"><span lang="en">Live app</span><span lang="zh">在线应用</span></span></p>
+          <h3 class="pro-title">ArtDex <em>Vision product on AWS</em></h3>
+          <figure class="pro-fig"><img src="ai/assets/artdex-capture.png" alt="ArtDex identifying an artwork and adding it to a collection" width="1600" height="900" loading="lazy" decoding="async"></figure>
+          <p lang="en">A museum companion: photograph an artwork, Claude vision on Bedrock identifies it, and the visit is saved to a personal collection. GPS narrows the candidates and manual search is the fallback when recognition is unsure. Built on Next.js with DynamoDB and S3; photos stay private and the browser only gets short-lived presigned URLs.</p>
+          <p lang="zh">博物馆伴游应用：拍下作品，Bedrock 上的 Claude 视觉模型识别出是哪一件，这次参观就存进个人收藏。GPS 先缩小候选范围，识别没把握时可以手动搜索。基于 Next.js、DynamoDB 和 S3；照片保持私有，浏览器只拿到短时有效的预签名链接。</p>
+          <div class="proj-links"><a href="https://artdex-fawn.vercel.app" target="_blank" rel="noopener"><span lang="en">Open live app ↗</span><span lang="zh">打开在线应用 ↗</span></a><a href="https://github.com/suzyeth/artdex" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card" id="p-efjs">
+          <p class="pro-meta"><span lang="en">AI-assisted build (with Claude) · Developer tool</span><span lang="zh">AI 协助开发（Claude）· 开发者工具</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">evidence-first-job-search</h3>
+          <p lang="en">A public job-search workflow for AI coding assistants. An LLM reviewer scores a CV against a five-dimension rubric with a truthfulness veto, in a separate session from the model that wrote it; a deterministic fact check then fails the build if any number, skill or metric is missing from the fact base. Command-line tools check the UK sponsor register. 190 tests at 97% coverage, CI on Ubuntu and Windows with Python 3.10 and 3.12.</p>
+          <p lang="zh">给 AI 编码助手用的公开求职工作流。LLM 评审按五个维度的评分标准给简历打分，「真实性」一项可一票否决，而且在和写稿模型分开的会话里运行；之后还有一道确定性的事实检查，只要有数字、技能或指标不在事实库里就直接失败。另有查询英国担保名册的命令行工具。190 个测试、覆盖率 97%，CI 跑在 Ubuntu 和 Windows、Python 3.10 和 3.12 上。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/evidence-first-job-search" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card" id="p-gridbot">
+          <p class="pro-meta"><span lang="en">Solo · AI-assisted (Claude)</span><span lang="zh">独立 · AI 协助开发（Claude）</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">gridbot <em>Black-box test automation</em></h3>
+          <p lang="en">Black-box UI testing for Android builds that UIAutomator and Appium can't reach. pytest and ruff run in GitHub Actions across Python 3.9–3.12, and the README states the framework's limits, including 50–500 ms OCR latency.</p>
+          <p lang="zh">给 UIAutomator 和 Appium 读不到的 Android 版本做黑盒界面测试。GitHub Actions 跑 pytest 和 ruff，覆盖 Python 3.9–3.12；README 写明了框架的局限，包括 50–500 ms 的 OCR 延迟。</p>
+          <div class="proj-links"><a href="projects/gridbot.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a><a href="https://github.com/suzyeth/gridbot" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card" id="p-rollcall">
+          <p class="pro-meta"><span lang="en">VibeHack London 2026</span><span lang="zh">VibeHack London 2026</span><span class="card-status"><span lang="en">Award · live</span><span lang="zh">获奖 · 在线</span></span></p>
+          <h3 class="pro-title">Roll Call <em>Group-chat story game</em></h3>
+          <p lang="en">Winner of "Best Product Integration with Z.ai" at VibeHack London 2026. A branching-story game for group chats, built with Next.js, TypeScript and Zod schemas, with 128 tests. Built with Claude Code on GLM; the game itself runs on pre-written branches and deterministic logic.</p>
+          <p lang="zh">VibeHack London 2026「Best Product Integration with Z.ai」获奖作品。在群聊里玩的分支剧情游戏，用 Next.js、TypeScript 和 Zod 结构校验，128 个测试。开发时用的是 Claude Code（GLM 模型）；游戏本身跑的是预写的分支剧情和确定性逻辑。</p>
+          <div class="proj-links"><a href="https://vibe-roles.vercel.app" target="_blank" rel="noopener"><span lang="en">Play ↗</span><span lang="zh">试玩 ↗</span></a><a href="https://github.com/suzyeth/vibe-roles" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="proj-block" id="at-work">
+      <h2><span lang="en">At work</span><span lang="zh">工作中</span></h2>
+      <p lang="en">From a live F2P mobile title; studio and game are anonymised and nothing here links to private code.</p>
+      <p lang="zh">来自一款已上线的 F2P 手游；工作室和游戏名已匿名，这里不链接任何私有代码。</p>
+      <div class="pro-grid">
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Private · at work</span><span lang="zh">私有 · 工作中</span></p>
+          <h3 class="pro-title"><span lang="en">AI playtest on a live build</span><span lang="zh">在线上版本上做 AI 走查</span></h3>
+          <p lang="en">A general-purpose playtest engine of my own, with all game-specific knowledge in swappable profiles; it has run across six titles and versions, including an externally published game. On a live build the first run produced 13 severity-ranked findings with repro evidence. When a recording subsystem silently wrote empty files, I marked the cause unconfirmed and downgraded the two findings that depended on playback.</p>
+          <p lang="zh">自建的通用走查引擎，和具体游戏相关的知识都放在可替换的配置里，已在六个游戏和版本上跑过，其中一个是外部已上线的游戏。在线上版本上第一次运行就产出 13 条按严重程度分级、带复现证据的问题。录像子系统悄悄写出空文件时，我把原因标为「未确认」，并把依赖录像的两条结论主动降级。</p>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Private · at work</span><span lang="zh">私有 · 工作中</span></p>
+          <h3 class="pro-title"><span lang="en">AI coding assistants for a design team</span><span lang="zh">给策划团队配置 AI 编码助手</span></h3>
+          <p lang="en">Wrote shared rule files, shared skills and commands, and workflows for AI coding assistants, and helped colleagues get started. Used mainly by the six or so designers in a team of 50+.</p>
+          <p lang="zh">为 AI 编码助手写共享规则文件、共享 skill 和命令、搭工作流，并带同事上手。主要由 50 多人团队里的约 6 名策划使用。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Skills</span><span lang="zh">技能</span></h2>
+      <p lang="en">Python · TypeScript · FastAPI · Pydantic and Zod structured outputs · Claude API, Gemini API (Google ADK) · MCP integration · LLM-as-judge with rubrics · statistical testing (Bonferroni, Wilson intervals) · pytest, Vitest, GitHub Actions · Docker · GCP Cloud Run · AWS Bedrock, DynamoDB, S3 · OpenVINO quantisation · Claude Code and Cursor</p>
+      <p lang="zh">Python · TypeScript · FastAPI · Pydantic 与 Zod 结构化输出 · Claude API、Gemini API（Google ADK）· MCP 集成 · 基于评分标准的 LLM 评审 · 统计检验（Bonferroni、Wilson 区间）· pytest、Vitest、GitHub Actions · Docker · GCP Cloud Run · AWS Bedrock、DynamoDB、S3 · OpenVINO 量化 · Claude Code 与 Cursor</p>
+    </section>
+
+    <section class="proj-block" id="contact">
+      <h2><span lang="en">Contact</span><span lang="zh">联系</span></h2>
+      <p lang="en">Open to applied AI engineer and AI evaluation roles in London. Email <a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a> for my CV.</p>
+      <p lang="zh">正在寻找伦敦的应用 AI 工程、AI 评测岗位。简历请邮件索取：<a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a>。</p>
+      <div class="proj-links">
+        <a href="https://www.linkedin.com/in/suzy99-su/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/suzyeth" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="ai/"><span lang="en">AI &amp; creative technology →</span><span lang="zh">AI 与创意技术 →</span></a>
+        <a href="index.html"><span lang="en">Game design portfolio →</span><span lang="zh">游戏策划作品集 →</span></a>
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

@@ -1170,3 +1170,23 @@ body.zh .pro-card ul[lang="zh"] { display:grid; }
   .proj-pdo { grid-template-columns:1fr; }
   .proj-pdo > div + div { border-left:0; border-top:1px solid var(--ink-fade); }
 }
+
+/* ---- Track pages: evidence map + project figures (2026-10-21) ---- */
+.evidence { width:100%; border-collapse:collapse; margin:8px 0 0; font-size:14.5px; line-height:1.55; }
+.evidence th, .evidence td { text-align:left; vertical-align:top; padding:12px 14px; border-top:1px solid var(--ink-fade); }
+.evidence thead th { font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mute); border-top:0; padding-top:0; }
+.evidence tbody th { width:32%; font-weight:600; color:var(--ink); }
+.evidence td { color:#4d5960; }
+.evidence td a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--ink-fade); }
+.evidence td a:hover { text-decoration-color:var(--ink); }
+.pro-fig { margin:0; border:1px solid var(--ink-fade); border-radius:6px; overflow:hidden; background:var(--bg-cream); }
+.pro-fig img, .pro-fig svg { display:block; width:100%; height:auto; }
+.pro-fig figcaption { padding:8px 12px; font-size:12px; line-height:1.5; color:var(--ink-mute); border-top:1px solid var(--ink-fade); background:var(--surface-solid); }
+.pro-fig svg text { font-family:var(--sans); }
+.pro-fig .bar-k { fill:#2a78d6; }
+.pro-fig .bar-g { fill:#eb6834; }
+@media (max-width: 640px) {
+  .evidence thead { display:none; }
+  .evidence tr { display:block; border-top:1px solid var(--ink-fade); padding:12px 0; }
+  .evidence th, .evidence td, .evidence tbody th { display:block; border:0; padding:2px 0; width:auto; }
+}

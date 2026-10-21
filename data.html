@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Data Analysis · Suzy Su</title>
-<meta name="description" content="Data analysis on a live F2P game: diagnostics, experiment design, retention studies and metric definitions.">
+<meta name="description" content="Data analyst: SQL and dbt models that reconcile, experiment design with guardrails, retention and cohort analysis, plus public projects you can run.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="style.css?v=20261018-pdo">
+<link rel="stylesheet" href="style.css?v=20261021-data">
 <script src="assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -32,6 +32,7 @@
   <a href="index.html" class="brand">SUSU / DATA</a>
   <nav class="hud-r" aria-label="Primary">
     <div class="hud-links" id="hudLinks">
+      <a href="#evidence"><span lang="en">Evidence</span><span lang="zh">能力对照</span></a>
       <a href="#methods"><span lang="en">Methods</span><span lang="zh">方法案例</span></a>
       <a href="#projects"><span lang="en">Projects</span><span lang="zh">公开项目</span></a>
       <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
@@ -53,8 +54,8 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">I define the metrics, drive the instrumentation, run live diagnostics and design A/B tests with guardrails, and I care most about getting the causal reasoning right before it reaches a report. Work examples are anonymised and show methods, not figures.</span>
-      <span lang="zh">我负责定义指标、推动埋点、做上线后的数据诊断，并设计带护栏指标的 A/B 实验。我最看重的是在结论写进报告之前，先把因果推理理清楚。工作中的案例已匿名，只讲方法，不写业务数值。</span>
+      <span lang="en">I turn product data into decisions: SQL models that reconcile with the raw data, A/B tests with guardrails fixed in advance, and retention reads that avoid circular reasoning. Below are methods from a live F2P game (anonymised, no business figures) and public projects you can run yourself.</span>
+      <span lang="zh">我把产品数据变成决策：能和原始数据对上账的 SQL 模型、提前定好护栏指标的 A/B 实验、避开循环论证的留存分析。下面是一款已上线 F2P 手游里的方法案例（已匿名，不写业务数值），以及可以自己跑起来的公开项目。</span>
     </p>
 
     <ul class="stat-row">
@@ -64,40 +65,55 @@
       <li class="stat"><b>8%</b><span lang="en">paying-user rate on a shipped idle card RPG</span><span lang="zh">付费率，已上线的放置卡牌 RPG</span></li>
     </ul>
 
+    <section class="proj-block" id="evidence">
+      <h2><span lang="en">What data roles ask for, and where to see it</span><span lang="zh">数据岗位要求的能力，以及对应的证据</span></h2>
+      <table class="evidence">
+        <thead><tr><th><span lang="en">Requirement</span><span lang="zh">要求</span></th><th><span lang="en">Evidence</span><span lang="zh">证据</span></th></tr></thead>
+        <tbody>
+          <tr><th><span lang="en">SQL and data modelling</span><span lang="zh">SQL 与数据建模</span></th><td><span lang="en"><a href="#p-dbt">dbt starter</a>: staging → intermediate → marts, window functions, 56 data tests including reconciliation checks</span><span lang="zh"><a href="#p-dbt">dbt 项目</a>：staging → intermediate → marts 三层、窗口函数、56 个数据测试（含对账测试）</span></td></tr>
+          <tr><th><span lang="en">Retention, cohorts and funnels</span><span lang="zh">留存、分群与漏斗</span></th><td><span lang="en"><a href="#p-dbt">Cohort-retention mart</a> · <a href="#m3">Day-2 retention study</a> · <a href="#m1">First-month diagnostic</a></span><span lang="zh"><a href="#p-dbt">cohort 留存 mart</a> · <a href="#m3">次留专题</a> · <a href="#m1">开服首月诊断</a></span></td></tr>
+          <tr><th><span lang="en">Experiment design and causal reasoning</span><span lang="zh">实验设计与因果推理</span></th><td><span lang="en"><a href="#m2">A/B test design</a> · <a href="#m4">Post-launch retrospective</a> · <a href="#p-second">second-pass</a> (Bonferroni-corrected tests)</span><span lang="zh"><a href="#m2">A/B 实验设计</a> · <a href="#m4">改版复盘</a> · <a href="#p-second">second-pass</a>（Bonferroni 校正检验）</span></td></tr>
+          <tr><th><span lang="en">Python, statistics and ML</span><span lang="zh">Python、统计与机器学习</span></th><td><span lang="en"><a href="#p-ml">Grouped cross-validation</a> (logistic regression, LightGBM) · <a href="#p-gacha">Gacha Economy Sim</a> (fixed-seed Monte Carlo)</span><span lang="zh"><a href="#p-ml">分组交叉验证</a>（逻辑回归、LightGBM）· <a href="#p-gacha">抽卡经济模拟器</a>（固定种子蒙特卡洛）</span></td></tr>
+          <tr><th><span lang="en">Analysis that becomes a decision</span><span lang="zh">分析落到决策</span></th><td><span lang="en"><a href="#m1">Diagnostic</a> · <a href="#m4">Retrospective</a> · <a href="#m5">38-metric data spec</a></span><span lang="zh"><a href="#m1">首月诊断</a> · <a href="#m4">改版复盘</a> · <a href="#m5">38 个指标的数据需求文档</a></span></td></tr>
+          <tr><th><span lang="en">Reproducible, tested work</span><span lang="zh">可复现、有测试</span></th><td><span lang="en">dbt tests and pytest suites run in GitHub Actions; fixed random seeds in every simulation</span><span lang="zh">dbt 测试和 pytest 在 GitHub Actions 里自动运行；所有模拟都用固定随机种子</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
     <section class="proj-block" id="methods">
       <h2><span lang="en">Methods from live work</span><span lang="zh">工作中的方法案例</span></h2>
       <p lang="en">From a live F2P mobile title (live since May 2026). Studio and game are anonymised; no business figures are shown.</p>
       <p lang="zh">来自一款已上线运营的 F2P 手游（2026 年 5 月上线）。工作室和游戏名已匿名，不展示任何业务数值。</p>
 
-      <h3 class="data-case"><span lang="en">1 · First-month live diagnostic</span><span lang="zh">1 · 开服首月数据诊断</span></h3>
+      <h3 class="data-case" id="m1"><span lang="en">1 · First-month live diagnostic</span><span lang="zh">1 · 开服首月数据诊断</span></h3>
       <div class="proj-pdo">
         <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">After launch, the team needed to know which problems were real and which were noise across many separate reports.</p><p lang="zh">上线后，团队需要从大量分散的报表里分清哪些是真问题、哪些是噪音。</p></div>
         <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Ingested 11 analytics reports and cross-validated key KPIs through business reconciliation before trusting any of them.</p><p lang="zh">汇总 11 份报表，先用业务勾稽关系交叉校验关键指标，再决定信哪些数据。</p></div>
         <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Three systemic issues, each backed by several metrics: uneven acquisition quality, shallow payment depth, and difficulty walls that churn players rather than convert them.</p><p lang="zh">找出三个系统性问题，每个都有多项指标佐证：买量质量参差、付费深度偏浅、关卡卡点导致流失而不是转化。</p></div>
       </div>
 
-      <h3 class="data-case"><span lang="en">2 · A/B test design</span><span lang="zh">2 · A/B 实验设计</span></h3>
+      <h3 class="data-case" id="m2"><span lang="en">2 · A/B test design</span><span lang="zh">2 · A/B 实验设计</span></h3>
       <div class="proj-pdo">
         <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Test a mid-tier monetisation offer without hurting retention or inviting early, biased stops.</p><p lang="zh">测试一个中档商业化礼包，既不能伤留存，也要避免提前看结果带来的偏差。</p></div>
         <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">One primary metric (ARPPU), retention and refund rate as guardrails, sample plan and stop rule fixed in advance, results re-checked by payer segment.</p><p lang="zh">一个主指标（ARPPU），留存和退款率作护栏；样本量和停止规则提前定好；按付费分层复核结果。</p></div>
         <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Backed by incremental-revenue scenarios with ±20% sensitivity and an LTV-versus-CPA break-even read on acquisition spend.</p><p lang="zh">配了 ±20% 敏感度的增量收入情景，以及 LTV 对比 CPA 的买量回本判断。</p></div>
       </div>
 
-      <h3 class="data-case"><span lang="en">3 · Day-2 retention study</span><span lang="zh">3 · 次留专题</span></h3>
+      <h3 class="data-case" id="m3"><span lang="en">3 · Day-2 retention study</span><span lang="zh">3 · 次留专题</span></h3>
       <div class="proj-pdo">
         <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Grouping players by their current progress made high-progress groups look sticky by definition: the players who stayed are the ones who progressed.</p><p lang="zh">按玩家「当前进度」分组，高进度组天然显得留存高：留下来的人本来就是进度高的人。</p></div>
         <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Separated snapshot attributes from day-1 event data and reported only on the latter.</p><p lang="zh">把「当前快照」类字段和「首日事件」数据分开，只用后者做汇报口径。</p></div>
         <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">First-session progression depth as the strongest day-2 predictor, and the highest-ROI player segment to move.</p><p lang="zh">找出次留最强的预测因素是首日推进深度，并定位了最值得撬动的玩家人群。</p></div>
       </div>
 
-      <h3 class="data-case"><span lang="en">4 · Post-launch retrospective</span><span lang="zh">4 · 改版上线后复盘</span></h3>
+      <h3 class="data-case" id="m4"><span lang="en">4 · Post-launch retrospective</span><span lang="zh">4 · 改版上线后复盘</span></h3>
       <div class="proj-pdo">
         <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">A monetisation rework and an onboarding change shipped together. Did either one actually work, or did traffic change?</p><p lang="zh">商业化改版和新手流程改动同时上线。到底哪个起了作用，还是只是流量变了？</p></div>
         <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Designed a before/after read that controlled for active-user and acquisition changes, separating design-driven lift from traffic-driven lift.</p><p lang="zh">设计前后对比口径，控制活跃和买量的变化，把「设计带来的提升」和「流量带来的提升」分开。</p></div>
         <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">An honest null result: payment efficiency improved, but the onboarding change did not move retention, so the next iteration targeted first-session depth instead.</p><p lang="zh">如实汇报无效结果：付费效率提升了，新手流程改动却没有带动留存，所以下一轮改为直接针对首日推进深度。</p></div>
       </div>
 
-      <h3 class="data-case"><span lang="en">5 · Metric definitions and repeatable methods</span><span lang="zh">5 · 指标体系与方法沉淀</span></h3>
+      <h3 class="data-case" id="m5"><span lang="en">5 · Metric definitions and repeatable methods</span><span lang="zh">5 · 指标体系与方法沉淀</span></h3>
       <div class="proj-pdo">
         <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Reports disagreed because the same metric was defined differently in different places.</p><p lang="zh">同一个指标在不同地方定义不同，导致报表对不上。</p></div>
         <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Wrote a data requirements document with a 38-metric dictionary (locked definitions, formulas and granularity), drill-down dimensions and instrumentation requirements.</p><p lang="zh">撰写数据需求文档：38 个指标的字典（口径、公式、粒度全部锁定），加下钻维度和埋点需求。</p></div>
@@ -108,16 +124,107 @@
     <section class="proj-block" id="projects">
       <h2><span lang="en">Public projects</span><span lang="zh">公开项目</span></h2>
       <div class="pro-grid">
-        <article class="pro-card">
+        <article class="pro-card" id="p-dbt">
+          <p class="pro-meta"><span lang="en">AI-assisted build (with Claude) · Analytics engineering</span><span lang="zh">AI 协助开发（Claude）· 分析工程</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">dbt <em>starter on DuckDB</em></h3>
+          <figure class="pro-fig">
+<svg viewBox="0 0 520 190" role="img" aria-labelledby="dbtLinTitle">
+<title id="dbtLinTitle">dbt lineage: three seeds, three staging models, two intermediate models and three marts</title>
+<text x="8" y="16" font-size="9" letter-spacing="1.2" fill="#9a9a98">SEEDS</text>
+<text x="116" y="16" font-size="9" letter-spacing="1.2" fill="#9a9a98">STAGING</text>
+<text x="224" y="16" font-size="9" letter-spacing="1.2" fill="#9a9a98">INTERMEDIATE</text>
+<text x="352" y="16" font-size="9" letter-spacing="1.2" fill="#9a9a98">MARTS</text>
+<path d="M100 42 C114 42 102 42 116 42" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M100 92 C114 92 102 92 116 92" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M100 142 C114 142 102 142 116 142" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M208 92 C222 92 210 92 224 92" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M208 142 C222 142 210 142 224 142" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M336 92 C350 92 338 117 352 117" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M336 142 C350 142 338 117 352 117" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M336 92 C350 92 338 167 352 167" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M208 42 C222 42 338 42 352 42" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<path d="M382 106.0 L382 53.0" fill="none" stroke="#b9b9b6" stroke-width="1.2"/>
+<rect x="8" y="31.0" width="92" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="15" y="45.5" font-size="9.5" fill="#141414">raw_customers</text>
+<rect x="8" y="81.0" width="92" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="15" y="95.5" font-size="9.5" fill="#141414">raw_orders</text>
+<rect x="8" y="131.0" width="92" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="15" y="145.5" font-size="9.5" fill="#141414">raw_payments</text>
+<rect x="116" y="31.0" width="92" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="123" y="45.5" font-size="9.5" fill="#141414">stg_customers</text>
+<rect x="116" y="81.0" width="92" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="123" y="95.5" font-size="9.5" fill="#141414">stg_orders</text>
+<rect x="116" y="131.0" width="92" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="123" y="145.5" font-size="9.5" fill="#141414">stg_payments</text>
+<rect x="224" y="81.0" width="112" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="231" y="95.5" font-size="9.5" fill="#141414">int_customer_orders</text>
+<rect x="224" y="131.0" width="112" height="22" rx="4" fill="#ffffff" stroke="#141414" stroke-opacity="0.25"/>
+<text x="231" y="145.5" font-size="9.5" fill="#141414">int_order_payments</text>
+<rect x="352" y="31.0" width="160" height="22" rx="4" fill="#141414" stroke="#141414" stroke-opacity="1"/>
+<text x="359" y="45.5" font-size="9.5" fill="#ffffff">dim_customers</text>
+<rect x="352" y="106.0" width="160" height="22" rx="4" fill="#141414" stroke="#141414" stroke-opacity="1"/>
+<text x="359" y="120.5" font-size="9.5" fill="#ffffff">fct_orders</text>
+<rect x="352" y="156.0" width="160" height="22" rx="4" fill="#141414" stroke="#141414" stroke-opacity="1"/>
+<text x="359" y="170.5" font-size="9.5" fill="#ffffff">fct_customer_cohort_retention</text>
+</svg>
+            <figcaption><span lang="en">Model lineage. Marts are filled.</span><span lang="zh">模型血缘图，深色为 mart 层。</span></figcaption>
+          </figure>
+          <p lang="en">Public jaffle_shop sample data, modelled in three layers so each question (revenue by order, customer value, monthly retention) is answered by one tested mart. Order sequence and cohort month come from window functions. 56 data tests pass, including three reconciliation checks: revenue in the marts equals raw payments, every order is counted once, and month-zero retention is exactly 100%. Generated docs and a CI build that fails on any test failure.</p>
+          <p lang="zh">用 dbt 官方公开样例数据 jaffle_shop，分三层建模，让「每单收入、客户价值、月度留存」三个问题各由一张有测试的 mart 表回答。订单序号和 cohort 月份用窗口函数算出。56 个数据测试全部通过，其中三条是对账测试：mart 里的总收入等于原始支付总额、每单只计一次、首月留存恰好是 100%。附自动生成的文档，CI 里任何测试失败都会让构建失败。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/dbt-public-starter" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card" id="p-ml">
+          <p class="pro-meta"><span lang="en">AI-assisted build (with Claude) · Machine learning</span><span lang="zh">AI 协助开发（Claude）· 机器学习</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">Grouped <em>cross-validation</em></h3>
+          <figure class="pro-fig">
+<svg viewBox="0 0 420 196" role="img" aria-labelledby="cvTitle">
+<title id="cvTitle">Macro-F1 by model: random K-fold versus leave-one-well-out</title>
+<rect class="bar-k" x="128" y="8" width="10" height="10" rx="2"/><text x="144" y="17" font-size="10.5" fill="#4d5960">Random K-fold</text>
+<rect class="bar-g" x="236" y="8" width="10" height="10" rx="2"/><text x="252" y="17" font-size="10.5" fill="#4d5960">Leave one well out</text>
+<line x1="128.0" y1="30" x2="128.0" y2="176" stroke="#141414" stroke-opacity=".08"/>
+<text x="128.0" y="190" font-size="9" fill="#9a9a98" text-anchor="middle">0.0</text>
+<line x1="190.5" y1="30" x2="190.5" y2="176" stroke="#141414" stroke-opacity=".08"/>
+<text x="190.5" y="190" font-size="9" fill="#9a9a98" text-anchor="middle">0.2</text>
+<line x1="253.0" y1="30" x2="253.0" y2="176" stroke="#141414" stroke-opacity=".08"/>
+<text x="253.0" y="190" font-size="9" fill="#9a9a98" text-anchor="middle">0.4</text>
+<line x1="315.5" y1="30" x2="315.5" y2="176" stroke="#141414" stroke-opacity=".08"/>
+<text x="315.5" y="190" font-size="9" fill="#9a9a98" text-anchor="middle">0.6</text>
+<line x1="378.0" y1="30" x2="378.0" y2="176" stroke="#141414" stroke-opacity=".08"/>
+<text x="378.0" y="190" font-size="9" fill="#9a9a98" text-anchor="middle">0.8</text>
+<text x="120" y="59" font-size="10.5" fill="#141414" text-anchor="end">Majority class</text>
+<rect class="bar-k" x="128" y="40" width="13.1" height="16" rx="3"><title>Majority class, random K-fold: macro-F1 0.042</title></rect>
+<text x="146.1" y="52" font-size="10" fill="#4d5960">0.042</text>
+<rect class="bar-g" x="128" y="58" width="13.1" height="16" rx="3"><title>Majority class, leave one well out: macro-F1 0.042</title></rect>
+<text x="146.1" y="70" font-size="10" fill="#4d5960">0.042</text>
+<text x="120" y="107" font-size="10.5" fill="#141414" text-anchor="end">Logistic regression</text>
+<rect class="bar-k" x="128" y="88" width="155.3" height="16" rx="3"><title>Logistic regression, random K-fold: macro-F1 0.497</title></rect>
+<text x="288.3" y="100" font-size="10" fill="#4d5960">0.497</text>
+<rect class="bar-g" x="128" y="106" width="118.4" height="16" rx="3"><title>Logistic regression, leave one well out: macro-F1 0.379</title></rect>
+<text x="251.4" y="118" font-size="10" fill="#4d5960">0.379</text>
+<text x="120" y="155" font-size="10.5" fill="#141414" text-anchor="end">LightGBM</text>
+<rect class="bar-k" x="128" y="136" width="222.2" height="16" rx="3"><title>LightGBM, random K-fold: macro-F1 0.711</title></rect>
+<text x="355.2" y="148" font-size="10" fill="#4d5960">0.711</text>
+<rect class="bar-g" x="128" y="154" width="118.8" height="16" rx="3"><title>LightGBM, leave one well out: macro-F1 0.380</title></rect>
+<text x="251.8" y="166" font-size="10" fill="#4d5960">0.380</text>
+</svg>
+            <figcaption><span lang="en">Macro-F1 from the repository's results.csv.</span><span lang="zh">macro-F1，数据来自仓库里的 results.csv。</span></figcaption>
+          </figure>
+          <p lang="en">Rock-type classification from well logs on a public dataset (3,164 rows, 7 wells, 9 classes). Scored twice: shuffled K-fold, and holding out whole wells, which is how the model would really be used. Random K-fold made LightGBM look like a 0.71 macro-F1 model, clearly ahead of logistic regression; held out by well it scores 0.38 and ties it. The leak inflated the score and would have picked the wrong model. 26 tests.</p>
+          <p lang="zh">用公开测井数据（3,164 行、7 口井、9 类岩相）做岩相分类，评估两次：随机打乱的 K 折，以及整口井留出（这才是模型真实的用法）。随机 K 折下 LightGBM 的 macro-F1 是 0.71，明显好过逻辑回归；按井留出后只有 0.38，和逻辑回归打平。数据泄漏抬高了分数，还会让人选错模型。26 个测试。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/tabular-ml-public" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card" id="p-gacha">
           <p class="pro-meta"><span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Live tool</span><span lang="zh">在线可用</span></span></p>
           <h3 class="pro-title">Gacha <em>Economy Sim</em></h3>
+          <figure class="pro-fig"><img src="assets/gameplay/gacha-result.png" alt="Gacha Economy Sim: target-driven simulation with percentile cost table" width="1152" height="720" loading="lazy" decoding="async"></figure>
           <p lang="en">Compares three pity rules with 20,000 seeded trials each, measuring acquisition cost and total issuance separately, and states what the experiment cannot tell you.</p>
           <p lang="zh">用三种保底规则各跑 2 万次固定种子模拟，把获取成本和总投放分开测量，并写明这个实验回答不了什么。</p>
           <div class="proj-links"><a class="primary" href="projects/gacha.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a></div>
         </article>
-        <article class="pro-card">
+        <article class="pro-card" id="p-second">
           <p class="pro-meta"><span lang="en">Solo · Analysis</span><span lang="zh">独立 · 分析</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
           <h3 class="pro-title">second-pass</h3>
+          <figure class="pro-fig"><img src="ai/assets/second-pass-architecture.png" alt="second-pass data and agent architecture" width="2720" height="2400" loading="lazy" decoding="async"></figure>
           <p lang="en">Audience attention versus shot content in films, with every answer grounded in a real ClickHouse query. The obvious story did not survive: attention rises toward the end of almost every film regardless of content, so raw correlations are confounded. Across three films and 18 tests against Bonferroni-corrected thresholds, one result cleared the floor by a hair and did not replicate. The write-up also publishes my own errors: end credits had been scored as film, which produced the original 4.40× headline (1.28× on the film itself).</p>
           <p lang="zh">分析电影中观众注意力和镜头内容的关系，每个回答都来自真实的 ClickHouse 查询。最直观的结论没有站住：几乎每部片子后半段的注意力都会上升，和内容无关，所以直接做相关会被这个趋势干扰。三部片、18 项检验按 Bonferroni 校正后的阈值判断，只有一项勉强过线，而且没有复现。文档也公开了我自己的错误：片尾字幕曾被当作正片打分，最初“后半段是前半段 4.40 倍”的结论由此而来（正片本身是 1.28 倍）。</p>
           <div class="proj-links"><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a></div>
@@ -127,8 +234,8 @@
 
     <section class="proj-block">
       <h2><span lang="en">Skills</span><span lang="zh">技能</span></h2>
-      <p lang="en">SQL (joins, aggregation, window functions, CTEs) · Python (pandas, openpyxl reporting) · ThinkingData · experiment design · funnel, retention and cohort analysis · LTV and payer-tier modelling · event-schema design · Excel modelling</p>
-      <p lang="zh">SQL（JOIN、聚合、窗口函数、CTE）· Python（pandas、openpyxl 报表）· ThinkingData · 实验设计 · 漏斗、留存与分群分析 · LTV 与付费分层 · 埋点事件设计 · Excel 建模</p>
+      <p lang="en">SQL (joins, aggregation, window functions, CTEs) · dbt (dbt-core on DuckDB) · Python (pandas, scikit-learn, LightGBM, openpyxl reporting) · pytest, GitHub Actions · ThinkingData · experiment design · funnel, retention and cohort analysis · LTV and payer-tier modelling · event-schema design · Excel modelling</p>
+      <p lang="zh">SQL（JOIN、聚合、窗口函数、CTE）· dbt（dbt-core，DuckDB）· Python（pandas、scikit-learn、LightGBM、openpyxl 报表）· pytest、GitHub Actions · ThinkingData · 实验设计 · 漏斗、留存与分群分析 · LTV 与付费分层 · 埋点事件设计 · Excel 建模</p>
     </section>
 
     <section class="proj-block" id="contact">

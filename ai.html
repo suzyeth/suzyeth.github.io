@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applied AI · Suzy Su</title>
+<meta name="description" content="Evaluation harnesses, regression suites and grounding checks for AI systems that don't give the same answer twice.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/ai.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Applied AI · Suzy Su">
+<meta property="og:description" content="Evaluation harnesses, regression suites and grounding checks for AI systems that don't give the same answer twice.">
+<meta property="og:url" content="https://suzyeth.github.io/ai.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="style.css?v=20261018-pdo">
+<script src="assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="index.html" class="brand">SUSU / APPLIED AI</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="#projects"><span lang="en">Projects</span><span lang="zh">项目</span></a>
+      <a href="#at-work"><span lang="en">At work</span><span lang="zh">工作中</span></a>
+      <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Applied AI · Evaluation &amp; testing · London</span><span lang="zh">应用 AI · 评测与测试 · 伦敦</span></p>
+      <h1 class="proj-title">Testing AI systems that <em>don't give the same answer twice</em></h1>
+      <p class="proj-tag">Eval harnesses · Golden datasets · Regression suites · Grounding checks · Python · TypeScript</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">I build evaluation harnesses, golden datasets, regression suites and grounding checks that decide whether an AI system actually did what it claims. Never trust a self-report; test the claim that sells the project first; publish the result even when it kills the story.</span>
+      <span lang="zh">我做评测框架、黄金数据集、回归测试和依据检查，用来判断一个 AI 系统是否真的做到了它声称的事。我的原则是：不信系统的自我报告；先测最能卖的那个说法；结果不好也照实发布。</span>
+    </p>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Never trust a self-report</span><span lang="zh">不信自我报告</span></h3><p lang="en">earwitness re-derives what happened on a call from the transcript alone, instead of accepting the provider's own verdict.</p><p lang="zh">earwitness 只根据通话记录重建实际发生了什么，不接受服务商自己给出的结论。</p></div>
+      <div><h3><span lang="en">Test the selling claim first</span><span lang="zh">先测最能卖的说法</span></h3><p lang="en">second-pass tested its own headline idea on day one. It did not survive, and the write-up says so.</p><p lang="zh">second-pass 第一天就测了项目最核心的卖点。结果没站住，文档里如实写明。</p></div>
+      <div><h3><span lang="en">Publish the bad result</span><span lang="zh">结果不好也照实发布</span></h3><p lang="en">table-for-two reports its learned policy at 0/10 on the full task, and explains why.</p><p lang="zh">table-for-two 如实汇报学习策略在完整任务上 0/10，并解释了原因。</p></div>
+    </div>
+
+    <section class="proj-block" id="projects">
+      <h2><span lang="en">Projects</span><span lang="zh">项目</span></h2>
+      <div class="pro-grid">
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">AI-assisted build (with Claude)</span><span lang="zh">AI 辅助开发（Claude）</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">earwitness</h3>
+          <p lang="en">An independent verification layer for conversational phone agents. It rebuilds what actually happened on a call from transcript evidence and never accepts the provider's self-report. The assertion engine is split by dimension: grounded, terminated cleanly, never leaked instructions. 101 test cases across 18 files, all passing.</p>
+          <p lang="zh">为电话对话 agent 做的独立核验层。只根据通话记录重建实际发生了什么，从不接受服务商的自报结果。断言引擎按维度拆分：有依据、正常结束、没有泄露指令。18 个文件共 101 个测试用例，全部通过。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/earwitness" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Solo · AI-assisted (Claude)</span><span lang="zh">独立 · AI 辅助开发（Claude）</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">second-pass <em>A null result, made to stick</em></h3>
+          <p lang="en">Every answer is grounded in a real ClickHouse query run through an MCP server. The project's own selling point was tested on day one and failed: across three films and 18 tests against Bonferroni-corrected thresholds, one result cleared the floor by a hair and did not replicate. The write-up also publishes my own errors: end credits had been scored as film, which produced the original 4.40× headline (1.28× on the film itself).</p>
+          <p lang="zh">每个回答都来自通过 MCP 服务器执行的真实 ClickHouse 查询。项目自己的核心卖点第一天就被测了，结果没站住：三部片、18 项检验按 Bonferroni 校正门槛判，只有一项勉强过线且不能复现。文档也公开了我自己的错误：片尾字幕曾被当成正片打分，造成最初「后半段注意力 4.40 倍」的结论（正片本身是 1.28 倍）。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Solo · AI-assisted (Claude)</span><span lang="zh">独立 · AI 辅助开发（Claude）</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">table-for-two <em>Learned robot policy</em></h3>
+          <p lang="en">An evaluation designed to resist self-deception: 10 evaluation seeds plus 30 never-seen seeds, with a Wilson confidence interval on every success rate. The learned policy scored 0/10 on the full table task, reported with the reasons, against a scripted pipeline at 10/10. INT8 quantisation cut inference from 16.5 ms to 4.9 ms. Submitted to the Intel Physical AI Online Challenge.</p>
+          <p lang="zh">为防自欺而设计的评测：10 个评测种子加 30 个从没见过的种子，每个成功率都带 Wilson 置信区间。学习策略在完整任务上 0/10，照实汇报并解释原因，脚本流程为 10/10。INT8 量化把推理从 16.5 ms 降到 4.9 ms。已提交到 Intel Physical AI 线上挑战赛。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/table-for-two" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">2026 – present</span><span lang="zh">2026 至今</span><span class="card-status"><span lang="en">Code on request</span><span lang="zh">代码可索取</span></span></p>
+          <h3 class="pro-title">Confession <em>Dual-LLM game engine</em></h3>
+          <p lang="en">An interrogation-game engine with the judge split from the actor behind a pure-code guard layer: a fully jailbroken actor still cannot leak locked secrets. A deterministic offline mode, and 190 tests across 20 files, including a jailbreak regression suite.</p>
+          <p lang="zh">审讯游戏引擎：裁判和演员分开，中间是纯代码的防护层，演员即使被完全越狱也泄露不了锁定的秘密。带确定性的离线模式，20 个文件共 190 个测试，含越狱回归测试。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/confession-architecture" target="_blank" rel="noopener"><span lang="en">Architecture write-up ↗</span><span lang="zh">架构文档 ↗</span></a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">AI-assisted build (with Claude)</span><span lang="zh">AI 辅助开发（Claude）</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
+          <h3 class="pro-title">gridbot <em>Black-box test automation</em></h3>
+          <p lang="en">Black-box UI testing for Android builds that UIAutomator and Appium can't reach. pytest and ruff run in GitHub Actions across Python 3.9–3.12, and the README states the framework's limits, including 50–500 ms OCR latency.</p>
+          <p lang="zh">给 UIAutomator 和 Appium 读不到的 Android 版本做黑盒界面测试。GitHub Actions 跑 pytest 和 ruff，覆盖 Python 3.9–3.12；README 写明了框架的局限，包括 50–500 ms 的 OCR 延迟。</p>
+          <div class="proj-links"><a class="primary" href="projects/gridbot.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a><a href="https://github.com/suzyeth/gridbot" target="_blank" rel="noopener">GitHub ↗</a></div>
+        </article>
+        <article class="pro-card">
+          <p class="pro-meta"><span lang="en">Self-built tool · AI-assisted (Claude)</span><span lang="zh">自建工具 · AI 辅助开发（Claude）</span><span class="card-status"><span lang="en">Private</span><span lang="zh">私有</span></span></p>
+          <h3 class="pro-title">playtest-agent <em>Playtest engine</em></h3>
+          <p lang="en">A general-purpose playtest engine where all game-specific knowledge lives in swappable profiles; it has run across six titles and versions. Each known screen maps to one whitelisted action, and an unrecognised static screen is escalated to a human. In a full first-session run it made zero mis-taps on payment buttons.</p>
+          <p lang="zh">通用的游戏走查引擎，所有和具体游戏相关的知识都放在可替换的配置里，已在六个游戏和版本上跑过。每个已知界面只对应一个白名单操作，遇到不认识的静止界面就交给人工。完整的首日实测里零误点付费按钮。</p>
+        </article>
+      </div>
+      <p class="data-also" lang="en"><strong>Also:</strong> <a href="https://vibe-roles.vercel.app" target="_blank" rel="noopener">Roll Call</a>, winner of "Best Product Integration with Z.ai" at VibeHack London 2026, 128 tests · <a href="https://github.com/suzyeth/hatua" target="_blank" rel="noopener">hatua</a>, a 5-agent pipeline whose code-level grounding check rejects any recommendation it can't trace to retrieved data · <a href="https://github.com/suzyeth/due-diligence" target="_blank" rel="noopener">due-diligence</a>, an agent on Bedrock and Lambda that cites gov.uk for every conclusion.</p>
+      <p class="data-also" lang="zh"><strong>还有：</strong><a href="https://vibe-roles.vercel.app" target="_blank" rel="noopener">Roll Call</a>，VibeHack London 2026「Best Product Integration with Z.ai」获奖作，128 个测试 · <a href="https://github.com/suzyeth/hatua" target="_blank" rel="noopener">hatua</a>，5 个 agent 的流程，代码级依据检查会拒绝任何查不到出处的建议 · <a href="https://github.com/suzyeth/due-diligence" target="_blank" rel="noopener">due-diligence</a>，运行在 Bedrock 和 Lambda 上的 agent，每个结论都引用 gov.uk。</p>
+    </section>
+
+    <section class="proj-block" id="at-work">
+      <h2><span lang="en">At work</span><span lang="zh">工作中</span></h2>
+      <p lang="en">From a live F2P mobile title; studio and game are anonymised.</p>
+      <p lang="zh">来自一款已上线的 F2P 手游；工作室和游戏名已匿名。</p>
+      <div class="pro-grid">
+        <article class="pro-card">
+          <h3 class="pro-title"><span lang="en">AI playtest on a live build</span><span lang="zh">在线上版本上做 AI 走查</span></h3>
+          <p lang="en">Drove a live build with my own playtest engine. The first run produced 13 severity-ranked findings with repro evidence. When a recording subsystem silently wrote empty files, I marked the cause unconfirmed and downgraded the two findings that depended on playback.</p>
+          <p lang="zh">用自己的走查引擎跑线上版本，第一次就产出 13 条按严重程度分级、带复现证据的问题。录像子系统悄悄写出空文件时，我把原因标为「未确认」，并把依赖录像的两条结论主动降级。</p>
+        </article>
+        <article class="pro-card">
+          <h3 class="pro-title"><span lang="en">Evidence-graded teardown</span><span lang="zh">按证据分级的竞品拆解</span></h3>
+          <p lang="en">Graded every claim by evidence strength and barred unverified claims from conclusions. After joining live payment data I refuted three of my own findings, and signed off 28 conclusions through a line-by-line review ledger.</p>
+          <p lang="zh">每条结论都按证据强弱分级，未经验证的不能进结论。接入真实付费数据后推翻了自己的三条结论，28 条结论逐条过评审台账后才签字。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Skills</span><span lang="zh">技能</span></h2>
+      <p lang="en">Evaluation frameworks and harnesses · golden datasets · regression suites, including jailbreak and prompt regressions · adversarial testing · test design for non-deterministic systems · Wilson confidence intervals · latency measurement · Python, TypeScript · Pytest, Vitest, GitHub Actions · Claude API, Gemini API · RAG · MCP · multi-agent orchestration · AWS Bedrock and Lambda · OpenVINO quantisation</p>
+      <p lang="zh">评测框架 · 黄金数据集 · 回归测试（含越狱和提示词回归）· 对抗测试 · 非确定性系统的测试设计 · Wilson 置信区间 · 延迟测量 · Python、TypeScript · Pytest、Vitest、GitHub Actions · Claude API、Gemini API · RAG · MCP · 多智能体编排 · AWS Bedrock 与 Lambda · OpenVINO 量化</p>
+    </section>
+
+    <section class="proj-block" id="contact">
+      <h2><span lang="en">Contact</span><span lang="zh">联系</span></h2>
+      <p lang="en">Open to applied AI, AI evaluation and QA automation roles in London. Email <a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a> for my CV.</p>
+      <p lang="zh">正在寻找伦敦的应用 AI、AI 评测和测试自动化岗位。简历请邮件索取：<a href="mailto:suzysu418@gmail.com">suzysu418@gmail.com</a>。</p>
+      <div class="proj-links">
+        <a href="https://www.linkedin.com/in/suzy99-su/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/suzyeth" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="index.html"><span lang="en">Game design portfolio →</span><span lang="zh">游戏策划作品集 →</span></a>
+      </div>
+    </section>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

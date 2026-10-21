@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Respond to Signal 404 — Jam Case Study · Suzy Su</title>
-<meta name="description" content="Case study for Respond to Signal 404, a 2D pixel-horror puzzle co-designed and solely programmed in a 72-hour Ludum Dare jam by a six-person team.">
+<meta name="description" content="A 72-hour team project that turns searching for a radio signal into a horror puzzle.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Respond to Signal 404 — Jam Case Study">
-<meta property="og:description" content="A 2D pixel-horror signal-detection puzzle: co-designed and shipped as sole programmer in a 72-hour Ludum Dare jam.">
+<meta property="og:description" content="A 72-hour team project that turns searching for a radio signal into a horror puzzle.">
 <meta property="og:url" content="https://suzyeth.github.io/projects/ld59.html">
 <meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
 <meta property="og:locale" content="en_GB">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="../assets/fonts.css">
-<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
 <script src="../assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -58,66 +58,70 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">A 2D pixel-horror puzzle built in 72 hours. I co-designed the signal-detection mechanic, then shipped the entire game as the team's sole programmer — six people, three days, live on itch.io.</span>
-      <span lang="zh">一款 72 小时做出来的 2D 像素恐怖解谜。我联合设计了信号检测机制，并作为团队唯一程序员把整个游戏落地——6 个人、3 天、已上线 itch.io。</span>
+      <span lang="en">A 72-hour team project that turns searching for a radio signal into a horror puzzle. I co-designed the central mechanic and was the sole programmer on a six-person team, implementing the Unity game and its WebGL build.</span>
+      <span lang="zh">一个在 72 小时内完成的团队恐怖解谜项目，把寻找无线电信号变成核心玩法。我参与核心机制设计，并担任六人团队中的唯一程序员，负责 Unity 游戏实现与 WebGL 版本。</span>
     </p>
-
-    <div class="proj-media">
-      <picture>
-        <source type="image/webp" srcset="../assets/ld59-cover.webp" />
-        <img src="../assets/ld59-cover.jpg" alt="Respond to Signal 404 — 2D pixel-art horror puzzle game" width="800" height="600" loading="lazy" decoding="async" />
-      </picture>
-    </div>
-
-    <section class="proj-grid">
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
-        <p lang="en">Turn "tuning a radio for a faint signal" into a tense horror puzzle — make careful listening the core verb, so dread builds out of the player's own attention rather than a jump scare.</p>
-        <p lang="zh">把"调收音机找微弱信号"变成一个紧张的恐怖解谜——让"仔细听"成为核心动词，让恐惧从玩家自己的专注里长出来，而不是靠 jump scare。</p>
-      </div>
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
-        <p lang="en">Sweep the signal → read the feedback → narrow in on the source → uncover the next fragment of the story → repeat under mounting dread.</p>
-        <p lang="zh">扫描信号 → 读取反馈 → 逼近信号源 → 揭开下一段故事碎片 → 在不断累积的不安中重复。</p>
-      </div>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
-      <p lang="en">On a six-person team I was the only programmer, so every gameplay system — signal detection, puzzle state, scene flow, UI — was mine to build in Unity 2022 (C#). I shipped a working WebGL build to itch.io inside the 72-hour window and co-handled the audio that carries most of the game's tension.</p>
-      <p lang="zh">6 人团队里我是唯一程序员，所以每一个玩法系统——信号检测、解谜状态、场景流程、UI——都由我在 Unity 2022（C#）里实现。我在 72 小时内把可玩的 WebGL 版本发布到 itch.io，并联合负责承载了大部分张力的音频。</p>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🎯 The Design</span><span lang="zh">🎯 设计思路</span></h2>
-      <p lang="en">Co-designed with Cheng Min, the puzzle progression is built so each solved signal both advances the story and tightens the mood. The constraint of a jam — three days, one programmer — pushed the design toward one strong, legible mechanic rather than a pile of half-finished ones.</p>
-      <p lang="zh">与 Cheng Min 联合设计，解谜流程让每解开一个信号既推进故事、又收紧氛围。Jam 的约束——3 天、1 个程序——逼着设计聚焦在一个强而清晰的机制上，而不是堆一堆做不完的功能。</p>
-    </section>
 
     <div class="proj-meta">
       <div>
-        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
-        <p lang="en">Co-designer (with Cheng Min) · sole programmer on a 6-person team · co-handled audio.</p>
-        <p lang="zh">联合设计师（与 Cheng Min）· 6 人团队中唯一程序员 · 联合负责音频。</p>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Sole programmer; co-design with Cheng Min; shared audio work.</p><p lang="zh">唯一程序员；与 Cheng Min 联合设计，共同负责音频。</p>
       </div>
       <div>
-        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
-        <p lang="en">72-hour jam · 6-person team · public on itch + Ludum Dare for rating.</p>
-        <p lang="zh">72 小时 jam · 6 人团队 · itch + Ludum Dare 公开评分。</p>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">72-hour jam · six-person team.</p><p lang="zh">72 小时 Jam · 六人团队。</p>
       </div>
       <div>
-        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
         <p>Unity 2022 · C# · WebGL</p>
       </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">72 hours, six people and one programmer: the scope had to fit what one person could build.</p><p lang="zh">72 小时、六个人、只有一个程序：规模必须控制在一个人做得完的范围里。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Centre the game on one mechanic, searching for a signal, and let puzzle state carry the story forward.</p><p lang="zh">整个游戏围绕一个机制（搜索信号），用谜题状态推进故事。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">A WebGL build delivered within the jam and playable on itch.io.</p><p lang="zh">在比赛时限内交付网页版，可以在 itch.io 上试玩。</p></div>
     </div>
 
     <div class="proj-links">
       <a class="primary" href="https://cheng-min.itch.io/respond-to-signal-404" target="_blank" rel="noopener"><span lang="en">▶ Play on itch.io</span><span lang="zh">▶ itch.io 试玩</span></a>
     </div>
+<div class="gameplay-gallery case-lead-figure"><figure>
+        <a href="../assets/gameplay/ld59-01.png" target="_blank" rel="noopener"><img src="../assets/gameplay/ld59-01.png" width="984" height="567" loading="lazy" decoding="async" alt="Corridor interaction with an E-to-close-door prompt."></a>
+        <figcaption><span lang="en">Corridor interaction with an E-to-close-door prompt.</span><span lang="zh">走廊中的门交互，屏幕显示 E 键关闭提示。</span></figcaption>
+      </figure></div>
+
+
+
+    <section class="proj-block">
+      <h2><span lang="en">Listening becomes the puzzle</span><span lang="zh">让聆听成为解谜动作</span></h2>
+      <p lang="en">The player sweeps for a signal, reads the feedback, narrows down its source and uncovers the next story fragment. The design puts attention at the centre of the horror: searching and interpreting carry the tension alongside the audiovisual presentation.</p>
+      <p lang="zh">玩家搜索信号、辨认反馈、缩小来源范围，再发现下一段故事。设计把注意力放在恐怖体验的中心：搜索与判断本身，和视听表现共同承担紧张感。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Implementing the exploration flow</span><span lang="zh">探索流程的实现</span></h2>
+      <p lang="en"><strong>Detection and progression.</strong> I implemented signal detection and puzzle state in Unity C#. Detection supports the search; puzzle state tracks progression, while scene flow and UI carry the player into the next part of the experience.</p>
+<p lang="zh"><strong>检测与推进。</strong>我用 Unity C# 实现信号检测和谜题状态：检测支持搜索过程，谜题状态记录推进，场景流程与 UI 衔接后续体验。</p><p lang="en"><strong>Team boundary.</strong> I co-designed the game with Cheng Min, was the sole programmer and shared the audio work. The six-person team delivered the WebGL build hosted on Cheng Min’s itch.io account.</p>
+<p lang="zh"><strong>协作分工。</strong>我与 Cheng Min 联合设计，作为唯一程序员完成程序实现，并共同负责音频。六人团队交付 WebGL 版本，发布在 Cheng Min 的 itch.io 账号。</p>
+    <div class="gameplay-gallery"><figure>
+        <a href="../assets/gameplay/ld59-02.png" target="_blank" rel="noopener"><img src="../assets/gameplay/ld59-02.png" width="987" height="556" loading="lazy" decoding="async" alt="Item pickup and dialogue share the exploration screen."></a>
+        <figcaption><span lang="en">Item pickup and dialogue share the exploration screen.</span><span lang="zh">拾取提示与角色对白出现在同一个探索场景中。</span></figcaption>
+      </figure></div></section>
+
+    <section class="proj-block">
+      <h2><span lang="en">One mechanic within a jam deadline</span><span lang="zh">限时内围绕一个机制完成体验</span></h2>
+      <p lang="en">With three days and one programmer, scope mattered as much as implementation. The project centres on signal detection and uses puzzle progression to advance the story, keeping the gameplay systems focused enough to deliver a WebGL build within the jam.</p>
+      <p lang="zh">三天时间、一个程序员，控制范围与实现同样重要。项目围绕信号检测展开，用谜题推进故事，把开发集中在一套核心交互上，并在比赛时限内交付 WebGL 版本。</p>
+    </section>
+
+
+
+
 
     <nav class="proj-nav" aria-label="Project navigation">
-      <a href="sand-garden.html"><span lang="en">← Robot Karesansui</span><span lang="zh">← Robot Karesansui</span></a>
-      <a href="gridbot.html"><span lang="en">Next: gridbot →</span><span lang="zh">下一个：gridbot →</span></a>
+      <a href="cocktail-rendering.html"><span lang="en">← Kitchen Bar</span><span lang="zh">← 厨房调酒</span></a>
+      <a href="gacha.html"><span lang="en">Next: Gacha Economy Sim →</span><span lang="zh">下一个：抽卡模拟器 →</span></a>
     </nav>
 
   </article>
@@ -126,8 +130,8 @@
 <footer class="foot">
   <div class="container foot-inner">
     <span>© 2026 Suzy Su · London</span>
-    <span class="foot-mute" lang="en">Last updated June 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
   </div>
 </footer>
 

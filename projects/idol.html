@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project:IDOL — Team Game Case Study · Suzy Su</title>
+<meta name="description" content="An idol-management card roguelite built by a six-person team in 21 days, with a web interface running inside Unity.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/idol.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project:IDOL — Team Game Case Study">
+<meta property="og:description" content="An idol-management card roguelite built by a six-person team in 21 days, with a web interface running inside Unity.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/idol.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
+<script src="../assets/lenis.min.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="hud">
+  <a href="../index.html" class="brand">SUSU / PORTFOLIO</a>
+  <nav class="hud-r" aria-label="Primary">
+    <div class="hud-links" id="hudLinks">
+      <a href="../index.html#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
+      <a href="../index.html#about"><span lang="en">About</span><span lang="zh">关于</span></a>
+      <a href="../index.html#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+    </div>
+    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
+    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+  <article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">TapTap 21-Day Game Challenge · In development · Project Lead</span><span lang="zh">TapTap 聚光灯 21 天挑战 · 开发中 · 项目负责</span></p>
+      <h1 class="proj-title">Project:<em>IDOL</em></h1>
+      <p class="proj-tag">Unity 6 · WebView2 · Idol-Management Card Roguelite · PC + Android</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">An idol-management card roguelite built by a six-person team in 21 days. Players plan each idol's schedule across node-based runs, play cards in live-stream battles and unlock story arcs between runs. I lead the team, set up the Unity project, own integration, and made the save and progress flow reliable.</span>
+      <span lang="zh">六人团队在 21 天内制作的偶像养成卡牌 roguelite。玩家在节点式的单局里安排偶像行程，在直播间里打牌对战，局与局之间解锁偶像剧情。我负责统筹团队、搭建 Unity 工程、管理代码集成，并让存档和进度流程稳定可靠。</span>
+    </p>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Project lead; integration; save/progress reliability; UI interaction and battle feedback.</p><p lang="zh">项目负责；代码集成；存档与进度的可靠性；界面交互与战斗反馈。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">21-day challenge · six-person team · submission due October 2026.</p><p lang="zh">21 天挑战 · 六人团队 · 2026 年 10 月提交。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>Unity 6 · C# · WebView2 · HTML / CSS / JS · Node tests</p>
+      </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">In battle, relics changed stats silently and action cards jumped straight to a final score. Players saw numbers move but not why.</p><p lang="zh">战斗中遗物生效时数值悄悄变化，行动卡直接跳出最终分数。玩家看到数字在变，却不知道为什么。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Rework the presentation one beat of the battle at a time: relics resolve one by one into a fixed ledger, and each action-card score is built as a formula from its sources.</p><p lang="zh">按战斗环节逐个重做表现：遗物逐个结算进固定的结算栏，行动卡分数拆成算式，每个数字从来源飞进来。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">Every score now shows where it comes from, with rules untouched: scores match across 6,000 game states. On a review branch, not yet merged.</p><p lang="zh">现在每个分数都看得出来源，规则没有改动：6,000 种状态下得分完全一致。目前在评审分支上，还没合进主线。</p></div>
+    </div>
+
+    <div class="gameplay-gallery case-lead-figure"><figure>
+        <a href="../assets/gameplay/idol-01.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/idol-01.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="The backstage hub: the current idol on the left, the start-live panel and menu tiles on the right."></a>
+        <figcaption><span lang="en">The backstage hub: pick an idol, start a live run, or open upgrades, story and archive. Work-in-progress build.</span><span lang="zh">后台大厅：选择偶像、开始直播，或进入强化、剧情和图鉴。开发中版本。</span></figcaption>
+      </figure></div>
+
+    <section class="proj-block">
+      <h2><span lang="en">A web interface inside Unity</span><span lang="zh">Unity 里跑网页界面</span></h2>
+      <p lang="en">The interface is plain HTML, CSS and JavaScript, shown inside Unity through an embedded WebView2 that captures straight into a Unity texture. Unity and the page talk over a typed command and event contract: Unity sends content and progress down, and the page reports every screen change, card play and result back up. This split let teammates iterate on screens in a browser while game rules stayed in C#.</p>
+      <p lang="zh">界面用原生 HTML、CSS 和 JavaScript 写，通过内嵌的 WebView2 显示在 Unity 里，画面直接抓取到 Unity 纹理。Unity 和网页之间有一套定义好的命令和事件协议：Unity 往下发内容和进度，网页把每次切换界面、出牌和结算报回来。这样队友可以在浏览器里改界面，游戏规则留在 C# 里。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Leading and integrating a six-person team</span><span lang="zh">统筹六人团队，管理集成</span></h2>
+      <p lang="en"><strong>Integration.</strong> I created the Unity project on day one and merged the team's parallel work (interface, input fixes and a headless battle module) through reviewed pull requests, keeping one branch the whole team could build from.</p>
+      <p lang="zh"><strong>集成。</strong>第一天由我建好 Unity 工程，之后通过评审过的 PR 合并大家并行开发的内容（界面、输入修复、无界面的战斗模块），保证全队始终有一条能直接构建的主线。</p>
+      <p lang="en"><strong>Team boundary.</strong> Teammates built the battle engine, the first interface build, the art, card illustrations and voice. My code work is integration, save reliability, interaction fixes and battle trigger feedback.</p>
+      <p lang="zh"><strong>协作分工。</strong>战斗引擎、界面首版、美术、卡牌插图和配音由队友完成。我的代码工作集中在集成、存档可靠性、交互修复和战斗触发反馈。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Making progress hard to lose or exploit</span><span lang="zh">让进度不会丢，也没法钻空子</span></h2>
+      <p lang="en">A teammate built the save layer; I hardened it against the cases that break trust in a roguelite. The game now writes a checkpoint before every battle, so reloading can't undo a loss. Purchases are committed before the screen changes. A save that loses a revision conflict reloads the session explicitly. A rejected save offers a clear way out instead of trapping the player behind a dialog. Autosave stays quiet unless it is slow or failing. Each fix has a Node regression test.</p>
+      <p lang="zh">存档底层由队友搭建，我负责处理那些会让 roguelite 玩家失去信任的情况。现在每场战斗前都会写检查点，读档撤销不了败局；购买在切换界面之前先提交；存档发生版本冲突时明确重载会话；存档被拒绝时给出清楚的出口，不会把玩家卡在弹窗里；自动保存平时不打扰，只在变慢或失败时提示。每一处修复都配了 Node 回归测试。</p>
+    <div class="gameplay-gallery"><figure>
+        <a href="../assets/gameplay/idol-02.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/idol-02.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="A live-stream scene with a chibi idol, scrolling viewer comments and a comment input bar."></a>
+        <figcaption><span lang="en">A schedule node plays out as a live stream, with viewer comments scrolling past. Work-in-progress build.</span><span lang="zh">行程节点以直播画面呈现，弹幕从屏幕上滚过。开发中版本。</span></figcaption>
+      </figure></div></section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Battle feedback: showing where every number comes from</span><span lang="zh">战斗反馈：让每个数字看得出来源</span></h2>
+      <p lang="en">In the original battle, relics changed stats with no animation, and an action card jumped straight to a final score. Players could see numbers change but not why. I reworked the presentation one beat of a battle at a time (opening, turn start, strategy card, action card, turn end), recording old and new versions of each beat side by side so the team could compare them.</p>
+      <p lang="zh">原来的战斗里，遗物生效时数值直接变，没有任何表现；行动卡打出去直接跳出最终分数。玩家能看到数字在变，却不知道为什么。我按一场战斗的 5 个环节（开场、回合开始、策略卡、行动卡、回合结束）逐个重做表现，每个环节都录了新旧对比，方便团队一起判断。</p>
+      <p lang="en"><strong>Research first.</strong> Before changing anything, I studied the scoring moments of five card games (Balatro, Slay the Spire, Marvel Snap, Hearthstone, Luck be a Landlord) frame by frame. They share four habits: numbers appear at their source, there is a fixed place to read the ledger, the rhythm is even, and effects resolve fast while the show plays out slower.</p>
+      <p lang="zh"><strong>先做调研。</strong>动手之前，我逐帧分析了 5 款卡牌游戏的结算时刻（小丑牌、杀戮尖塔、漫威终极逆转、炉石传说、幸运房东）。它们有四个共同做法：数字从来源处冒出来，有固定位置可以看账，节拍均匀，生效快、演出慢。</p>
+      <p lang="en"><strong>Opening and turn start.</strong> Relics now resolve one at a time down the gem column. Each gem lights up, and a fixed ledger beside the column shows the relic's name, its effect and the value before and after. Every turn keeps the same beat, and the deal starts as the last relic lights up, so the extra feedback costs about 1.5 seconds per turn.</p>
+      <p lang="zh"><strong>开场和回合开始。</strong>遗物沿宝石列从上到下逐个结算：宝石亮起，旁边固定的结算栏显示遗物名、效果和数值前后变化。每个回合节拍一致，最后一个遗物亮起时同时开始发牌，所以多出来的反馈每回合只占约 1.5 秒。</p>
+      <div class="gameplay-gallery"><figure>
+        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-opening-new-poster.jpg" controls aria-label="Battle opening: relics resolve one at a time with a ledger beside the gem column."><source src="../assets/idol-opening-new.mp4" type="video/mp4" /></video>
+        <figcaption><span lang="en">New opening: relics resolve one by one, with the ledger beside the gem column.</span><span lang="zh">新版开场：遗物逐个结算，宝石列旁是结算栏。</span></figcaption>
+      </figure></div>
+      <p lang="en"><strong>Scoring an action card.</strong> The card now stays on stage and a colour-coded formula builds under it (996 × 100% × 1.17 = 1,165), with each number flying in from where it comes from: viewers, the card's own percentage, and the charm bonus. The shout, gifts and screen shake wait until the total lands, scaled by how the score compares with the target.</p>
+      <p lang="zh"><strong>行动卡得分。</strong>卡牌留在舞台上，正下方逐步出现彩色算式（996 × 100% × 1.17 = 1,165），每个数字从它的来源飞进来：同接、卡面百分比、魅力加成。喊字、礼物和震屏要等总分落下才出现，强度按得分和目标分的比例分档。</p>
+      <div class="gameplay-gallery"><figure>
+        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-score-old-poster.jpg" controls aria-label="Old version: the action card jumps straight to a final score."><source src="../assets/idol-score-old.mp4" type="video/mp4" /></video>
+        <figcaption><span lang="en">Before: the score appears at once, with no way to see how it was built.</span><span lang="zh">旧版：分数一下子出现，看不出怎么算出来。</span></figcaption>
+      </figure><figure>
+        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-score-new-poster.jpg" controls aria-label="New version: a colour-coded formula builds under the card before the total lands."><source src="../assets/idol-score-new.mp4" type="video/mp4" /></video>
+        <figcaption><span lang="en">After: the same card, with the formula assembled before the payoff.</span><span lang="zh">新版：同一张卡，先拼出算式，再出高潮。</span></figcaption>
+      </figure></div>
+      <p lang="en"><strong>What I dropped or held back.</strong> A reworked strategy-card effect went back to the original after review. My first turn-end version labelled a resource effect in a way that read like enemy damage, so that beat is on hold until the team picks one of three options. I wrote out the underlying rule step by step so the decision could be made on the rule, not on my animation.</p>
+      <p lang="zh"><strong>放弃和暂缓的部分。</strong>策略卡的新效果评审后退回了原版。回合结束的第一版里，我给一个资源效果起的提示读起来像敌人造成的伤害，所以这个环节暂缓，等团队在三个方案里选定。我把背后的规则一步步写清楚，让大家按规则本身做决定，而不是被我的动画带着走。</p>
+      <p lang="en"><strong>Rules untouched.</strong> The work changes presentation only. The scoring code now also records each factor so the formula can be shown; comparing all 18 action cards across 6,000 game states, scores are identical before and after. Opening, turn start and action-card scoring are on a review branch and not yet merged.</p>
+      <p lang="zh"><strong>规则没有改。</strong>这次只改表现。计分代码多记录了每个得分因子，用来显示算式；18 张行动卡在 6,000 种状态下逐一对比，改前改后得分完全一致。开场、回合开始和行动卡得分这三部分在评审分支上，还没合进主线。</p>
+    </section>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="ma.html"><span lang="en">← MA Prototype Collection</span><span lang="zh">← 硕士原型合集</span></a>
+      <a href="../index.html#work"><span lang="en">All work</span><span lang="zh">返回作品</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo videos only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+</body>
+</html>

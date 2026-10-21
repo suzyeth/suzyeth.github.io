@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>gridbot — Black-box QA Toolkit Case Study · Suzy Su</title>
-<meta name="description" content="Case study for gridbot, an install-from-source Android automation toolkit for designers and QA that works where UIAutomator and Appium fail — built on ADB and PaddleOCR.">
+<meta name="description" content="An open-source Android automation toolkit for screen-based checks when a game exposes few useful UI elements.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="gridbot — Black-box QA Toolkit Case Study">
-<meta property="og:description" content="An install-from-source Android automation toolkit for designers and QA: capture, input, OCR, navigator and recorder modules for apps the standard tools can't see.">
+<meta property="og:description" content="An open-source Android automation toolkit for screen-based checks when a game exposes few useful UI elements.">
 <meta property="og:url" content="https://suzyeth.github.io/projects/gridbot.html">
 <meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
 <meta property="og:locale" content="en_GB">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="../assets/fonts.css">
-<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
 <script src="../assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -58,71 +58,86 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">An Android automation toolkit for designers and QA, built to work exactly where the standard tools don't — inside custom rendering engines and third-party games that UIAutomator and Appium can't see into.</span>
-      <span lang="zh">一个面向策划与 QA 的 Android 自动化工具包，专门针对标准工具失效的场景——自定义渲染引擎、第三方游戏，那些 UIAutomator 和 Appium 看不进去的地方。</span>
+      <span lang="en">An open-source Android automation toolkit for screen-based checks when a game exposes few useful UI elements. I built modular capture, input, OCR and navigation tools that can be combined into repeatable flows.</span>
+      <span lang="zh">一个开源 Android 自动化工具包，用于游戏缺少可用 UI 元素时的屏幕检查。我构建了可组合的截图、输入、OCR 与导航模块，让重复操作可以组织成流程。</span>
     </p>
-
-    <div class="proj-media is-terminal">
-<pre>$ pip install -e ".[ocr]"
-▸ capture   ✓
-▸ input     ✓
-▸ ocr       ✓ paddle
-▸ navigator ✓
-▸ recorder  ✓
-
-› ready_state: idle
-_</pre>
-    </div>
-
-    <section class="proj-grid">
-      <div class="proj-block proj-note">
-        <h2><span lang="en">The Problem</span><span lang="zh">要解决的问题</span></h2>
-        <p lang="en">Game UIs render into a single canvas, so the accessibility tree most automation relies on is empty. UIAutomator and Appium see nothing to click. Designers and QA are left tapping through repetitive checks by hand.</p>
-        <p lang="zh">游戏 UI 渲染进一整块 canvas，所以多数自动化依赖的无障碍树是空的。UIAutomator 和 Appium 找不到可点的东西。策划和 QA 只能手动一遍遍点重复的检查。</p>
-      </div>
-      <div class="proj-block proj-note">
-        <h2><span lang="en">The Approach</span><span lang="zh">解决思路</span></h2>
-        <p lang="en">Drive the device the way a person does — see the screen, read it, act on it. Capture frames over ADB, find elements with OCR instead of the view tree, then navigate and record flows as reusable scripts.</p>
-        <p lang="zh">像人一样操作设备——看屏、读屏、再动手。通过 ADB 抓帧，用 OCR 而非视图树找元素，再把流程导航和录制成可复用脚本。</p>
-      </div>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
-      <p lang="en">gridbot is a modular package — <code>capture · input · ocr · navigator · recorder · state</code> — so each piece can be used on its own or composed into a full flow. <code>capture</code> and <code>input</code> talk to the device over ADB; <code>ocr</code> wraps PaddleOCR to locate on-screen text; <code>navigator</code> walks YAML state graphs; <code>recorder</code> captures a session into a replayable script. It ships as an alpha (0.1.x), MIT-licensed, installed from source with <code>pip install -e ".[ocr]"</code> — not yet on PyPI.</p>
-      <p lang="zh">gridbot 是一个模块化的包——<code>capture · input · ocr · navigator · recorder · state</code>——每个模块都能单独用，也能组合成完整流程。<code>capture</code> 和 <code>input</code> 通过 ADB 与设备通信；<code>ocr</code> 封装 PaddleOCR 来定位屏上文字；<code>navigator</code> 走 YAML 状态图；<code>recorder</code> 把一次会话录成可回放脚本。目前是 Alpha（0.1.x），MIT 协议，从源码安装（<code>pip install -e ".[ocr]"</code>），暂未发布到 PyPI。</p>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🎯 Why a Designer Built It</span><span lang="zh">🎯 为什么是策划来做</span></h2>
-      <p lang="en">The tool comes straight out of the day job: a designer who needs to verify economy and progression behaviour across builds, but can't get engineering time for one-off QA scripts. Packaging it as a clean, importable API was a deliberate choice — the point is that the next designer or tester can pick it up without a build pipeline.</p>
-      <p lang="zh">这个工具直接来自日常工作：一个需要在不同版本间验证经济与成长表现、却很难拿到工程排期写一次性 QA 脚本的策划。把它打包成干净、可直接 import 的 API 是刻意的——目的就是让下一个策划或测试不用搭构建环境就能直接用。</p>
-    </section>
 
     <div class="proj-meta">
       <div>
-        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
-        <p lang="en">Solo — architecture, API design, packaging, docs.</p>
-        <p lang="zh">独立 — 架构、API 设计、打包、文档。</p>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Capture, input and OCR modules; API design and documentation.</p><p lang="zh">截图、输入与 OCR 模块；API 设计与文档。</p>
       </div>
       <div>
-        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
-        <p lang="en">Alpha 0.1.x · MIT · install from source (not yet on PyPI).</p>
-        <p lang="zh">Alpha 0.1.x · MIT · 从源码安装（暂未发布到 PyPI）。</p>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Solo · alpha 0.1.x · install from source.</p><p lang="zh">独立开发 · alpha 0.1.x · 源码安装。</p>
       </div>
       <div>
-        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
-        <p>Python 3.9+ · ADB · PaddleOCR · YAML state graphs</p>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>Python · ADB · PaddleOCR</p>
       </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Custom-rendered game screens expose little through the standard UI hierarchy, so element-based automation can't see them.</p><p lang="zh">自绘的游戏界面在标准 UI 层级里几乎没有信息，基于元素的自动化工具看不到它们。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Work from pixels: ADB screenshots, OCR to find visible text, ADB taps, as independent modules plus a YAML-driven navigator.</p><p lang="zh">从像素出发：ADB 截图、OCR 找屏幕上的文字、ADB 点击，做成可单独使用的模块，再加一个按 YAML 走流程的导航器。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">An MIT-licensed alpha for repeatable menu and workflow checks. Trade-off: OCR adds latency and it is not frame-accurate.</p><p lang="zh">MIT 协议的 alpha 版，适合可重复的菜单和流程检查。代价是 OCR 有延迟，做不到逐帧精确。</p></div>
     </div>
 
     <div class="proj-links">
       <a class="primary" href="https://github.com/suzyeth/gridbot" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
 
+
+
+    <section class="proj-block case-flow-section">
+      <h2><span lang="en">From screen to action</span><span lang="zh">从屏幕到操作</span></h2>
+      <ol class="case-flow">
+        <li><h3><span lang="en">Capture</span><span lang="zh">截图</span></h3><p lang="en">ADB provides an image of the current screen.</p><p lang="zh">通过 ADB 获取当前屏幕图像。</p></li>
+        <li><h3><span lang="en">Locate</span><span lang="zh">定位</span></h3><p lang="en">OCR finds the visible target text and its position.</p><p lang="zh">OCR 找到可见的目标文字与位置。</p></li>
+        <li><h3><span lang="en">Act</span><span lang="zh">操作</span></h3><p lang="en">ADB sends the tap; the next capture reveals the resulting screen.</p><p lang="zh">ADB 发送点击，再次截图查看操作后的界面。</p></li>
+      </ol>
+      <p class="case-flow-note"><span lang="en">The example below only taps when a text match is found. OCR needs readable text; it does not identify arbitrary game objects.</span><span lang="zh">下方示例只有匹配到文字才会点击。OCR 依赖可读文字，并不识别任意游戏物体。</span></p>
+        <div class="proj-media is-terminal">
+<pre><code>from gridbot import AdbCapture, AdbInput, OcrEngine
+
+cap = AdbCapture()
+inp = AdbInput()
+ocr = OcrEngine.get(fast=True)
+
+screen = cap.screenshot()
+button = ocr.find_text(screen, "Settings")
+if button:
+    inp.tap(*button.center)</code></pre>
+    </div>
+</section>
+
+    <section class="proj-block">
+      <h2><span lang="en">When the screen is the interface</span><span lang="zh">当屏幕是可用的操作入口</span></h2>
+      <p lang="en">Custom-rendered game screens may expose little useful information through the standard UI hierarchy. gridbot uses ADB screenshots and OCR to locate visible text, then sends taps or swipes through ADB. It provides a screen-based route when element-based automation is insufficient.</p>
+      <p lang="zh">自定义渲染的游戏界面，可能无法通过标准 UI 层级提供足够的信息。gridbot 通过 ADB 截图，用 OCR 定位可见文字，再经 ADB 发送点击或滑动。当基于元素的自动化不够用时，它提供基于屏幕的操作路径。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Composable checks</span><span lang="zh">可组合的检查流程</span></h2>
+      <p lang="en"><strong>Separate responsibilities.</strong> Capture returns a screen image; input sends an action; OCR finds visible text. These modules can be used independently, so a small script does not need to adopt the whole toolkit.</p>
+<p lang="zh"><strong>拆分职责。</strong>截图模块返回画面，输入模块发送操作，OCR 模块寻找可见文字。各模块可以独立使用，小脚本不需要接入整套工具。</p><p lang="en"><strong>Organise longer flows.</strong> The navigator follows YAML state graphs, and the recorder captures interactions for replay. These provide ways to organise repeated steps beyond the single text-and-tap example above.</p>
+<p lang="zh"><strong>组织较长流程。</strong>导航模块执行 YAML 状态图，录制模块记录交互以供回放，用于组织比上方单次文字匹配与点击更长的重复步骤。</p><p lang="en"><strong>Evidence shown.</strong> The snippet is an API usage example. I owned the architecture, API design, packaging and documentation.</p>
+<p lang="zh"><strong>当前展示。</strong>此代码片段为 API 用法示例。我负责架构、API 设计、打包与文档。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">The tradeoff: pixels instead of app internals</span><span lang="zh">取舍：通过像素操作</span></h2>
+      <p lang="en">Screen-based automation does not require modifying the target application, but text recognition introduces latency and depends on visible, readable content. It is a fit for repeatable menu and workflow checks, not a claim of frame-accurate gameplay control. The current release is an MIT-licensed alpha installed from source; it is not yet on PyPI.</p>
+      <p lang="zh">基于屏幕的自动化无需修改目标应用，但文字识别有延迟，也依赖内容可见、可读。它适合重复的菜单与流程检查，不代表能进行逐帧精确的游戏控制。当前版本采用 MIT 协议，处于 Alpha 阶段，需要从源码安装，尚未发布到 PyPI。</p>
+    </section>
+
+
+
+
+
     <nav class="proj-nav" aria-label="Project navigation">
-      <a href="ld59.html"><span lang="en">← Respond to Signal 404</span><span lang="zh">← Respond to Signal 404</span></a>
-      <a href="gacha.html"><span lang="en">Next: Gacha Economy Sim →</span><span lang="zh">下一个：Gacha Economy Sim →</span></a>
+      <a href="metagame.html"><span lang="en">← MetaGame</span><span lang="zh">← MetaGame</span></a>
+      <a href="hypha.html"><span lang="en">Next: Hypha →</span><span lang="zh">下一个：Hypha →</span></a>
     </nav>
 
   </article>
@@ -131,8 +146,8 @@ _</pre>
 <footer class="foot">
   <div class="container foot-inner">
     <span>© 2026 Suzy Su · London</span>
-    <span class="foot-mute" lang="en">Last updated June 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
   </div>
 </footer>
 

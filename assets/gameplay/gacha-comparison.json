@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-01",
+  "kind": "New synthetic portfolio experiment, not historical playtest or commercial data",
+  "seed": 20261001,
+  "trials": 20000,
+  "maxPulls": 120,
+  "baseRareRate": 0.02,
+  "targetShareOfRare": 0.5,
+  "pityResetsOnAnyRare": true,
+  "results": [
+    {
+      "period": 80,
+      "stats": {
+        "count": 20000,
+        "succeeded": 15871,
+        "failed": 4129,
+        "failureRate": 0.20645,
+        "p50": 51,
+        "p75": 80,
+        "p90": 97,
+        "p99": 118,
+        "mean": 52.5984500031504,
+        "min": 1,
+        "max": 120
+      },
+      "exactSuccessRate": 0.7939114036888544,
+      "checkpoints": [
+        {
+          "pulls": 30,
+          "successRate": 0.2589
+        },
+        {
+          "pulls": 60,
+          "successRate": 0.4479
+        },
+        {
+          "pulls": 80,
+          "successRate": 0.6457
+        },
+        {
+          "pulls": 120,
+          "successRate": 0.79355
+        }
+      ]
+    },
+    {
+      "period": 60,
+      "stats": {
+        "count": 20000,
+        "succeeded": 17088,
+        "failed": 2912,
+        "failureRate": 0.1456,
+        "p50": 56,
+        "p75": 68,
+        "p90": 99,
+        "p99": 120,
+        "mean": 51.7684925093633,
+        "min": 1,
+        "max": 120
+      },
+      "exactSuccessRate": 0.8534939777763777,
+      "checkpoints": [
+        {
+          "pulls": 30,
+          "successRate": 0.2571
+        },
+        {
+          "pulls": 60,
+          "successRate": 0.599
+        },
+        {
+          "pulls": 80,
+          "successRate": 0.69505
+        },
+        {
+          "pulls": 120,
+          "successRate": 0.8544
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hypha — One-Button GGJ Game Case Study · Suzy Su</title>
-<meta name="description" content="Case study for Hypha, a one-button web game about a mycelium reaching toward the surface, built in 48 hours for Global Game Jam 2023.">
+<meta name="description" content="A one-button timing game made with an artist in 48 hours for Global Game Jam 2023.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hypha — One-Button GGJ Game Case Study">
-<meta property="og:description" content="A one-button game about a mycelium reaching for the surface — click to absorb nutrients or dodge hazards. Built in 48 hours for Global Game Jam 2023.">
+<meta property="og:description" content="A one-button timing game made with an artist in 48 hours for Global Game Jam 2023.">
 <meta property="og:url" content="https://suzyeth.github.io/projects/hypha.html">
 <meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
 <meta property="og:locale" content="en_GB">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="../assets/fonts.css">
-<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
 <script src="../assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -58,60 +58,69 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">A one-button game about a mycelium reaching toward the surface. Click the centre to absorb nutrients, or dodge what would harm the hyphae. Built in 48 hours for Global Game Jam 2023.</span>
-      <span lang="zh">一款关于菌丝向地表生长的单键游戏。点击中心吸收养分，或躲开会伤害菌丝的东西。48 小时内为 Global Game Jam 2023 做出。</span>
+      <span lang="en">A one-button timing game made with an artist in 48 hours for Global Game Jam 2023. I handled game design and Unity development; Cheng Min created the art. The player times nutrient collection while avoiding hazards as the mycelium grows.</span>
+      <span lang="zh">一个与美术搭档在 Global Game Jam 2023 的 48 小时内完成的单键时机游戏。我负责游戏设计与 Unity 开发，Cheng Min 负责美术。玩家把握时机收集养分、避开危险，让菌丝生长。</span>
     </p>
-
-    <div class="proj-media">
-      <picture>
-        <source type="image/webp" srcset="../assets/hypha-cover.webp" />
-        <img src="../assets/hypha-cover.jpg" alt="Hypha — one-button web game about a mycelium reaching toward the surface" width="800" height="600" loading="lazy" decoding="async" />
-      </picture>
-    </div>
-
-    <section class="proj-grid">
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
-        <p lang="en">Get a complete, readable feeling out of a single input. With one button, the whole design budget goes into timing and rhythm — when to click, when to wait — so the organic growth of the mycelium reads as a felt loop rather than a UI.</p>
-        <p lang="zh">用一个输入做出完整、可读的体验。只有一个按钮时，所有设计预算都压在时机与节奏上——什么时候点、什么时候等——让菌丝的有机生长成为一种能"感觉到"的循环，而不是一个 UI。</p>
-      </div>
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
-        <p lang="en">Watch the hypha reach outward → time a click to absorb a nutrient → release before a hazard crosses the centre → grow a little further → repeat as the margins tighten.</p>
-        <p lang="zh">看菌丝向外伸展 → 卡准时机点击吸收养分 → 在有害物穿过中心前松手 → 再长一点 → 在容错越来越小的过程中重复。</p>
-      </div>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
-      <p lang="en">A single-input timing puzzle built around organic mushroom growth, scoped to fit a 48-hour jam. Made in Unity (C#) and shipped as an HTML5 / WebGL build on itch, with art by Cheng Min. The tight scope was the point — one mechanic, tuned until it feels good, rather than three that don't.</p>
-      <p lang="zh">一个围绕有机菌菇生长的单键节奏玩法，体量按 48 小时 jam 来定。用 Unity（C#）制作，以 HTML5 / WebGL 发布到 itch，美术由 Cheng Min 负责。"小而紧"正是重点——一个机制，调到手感对，而不是三个都半途而废。</p>
-    </section>
 
     <div class="proj-meta">
       <div>
-        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
-        <p lang="en">Game designer + Unity developer; art by Cheng Min.</p>
-        <p lang="zh">游戏设计 + Unity 开发；美术 Cheng Min。</p>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Timing-mechanic design and Unity implementation.</p><p lang="zh">时机机制设计与 Unity 实现。</p>
       </div>
       <div>
-        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
-        <p lang="en">Global Game Jam 2023 · 2-person team · HTML5 web build on itch.</p>
-        <p lang="zh">Global Game Jam 2023 · 2 人团队 · HTML5 网页版发布到 itch。</p>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">48-hour jam · two people; art by Cheng Min.</p><p lang="zh">48 小时 Jam · 两人合作；Cheng Min 负责美术。</p>
       </div>
       <div>
-        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
         <p>Unity · C# · WebGL</p>
       </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">48 hours and two people: the game needed one idea small enough to finish and polish.</p><p lang="zh">48 小时、两个人：玩法必须小到能做完并打磨好。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">One input with two intentions, act or hold back, so timing carries the play instead of a large set of controls.</p><p lang="zh">一个按键承担两种意图（出手或等待），让时机判断撑起玩法，而不是靠很多操作。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">A finished WebGL jam game, playable on itch.io.</p><p lang="zh">完成的网页版 Jam 游戏，可以在 itch.io 上试玩。</p></div>
     </div>
 
     <div class="proj-links">
       <a class="primary" href="https://ssu997.itch.io/hypha" target="_blank" rel="noopener"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
     </div>
 
+        <section class="proj-block gameplay-gallery">
+      <h2><span lang="en">Inside the game</span><span lang="zh">游戏画面</span></h2>
+      <figure>
+        <a href="../assets/gameplay/hypha-01.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/hypha-01.jpg" width="3220" height="3132" loading="lazy" decoding="async" alt="Published game image showing the central mushrooms, branching hyphae and glowing markers."></a>
+        <figcaption><span lang="en">Published game image showing the central mushrooms, branching hyphae and glowing markers.</span><span lang="zh">已发布的游戏画面：中央蘑菇、向外分布的菌丝与发光标记。</span></figcaption>
+      </figure>
+      <p class="gameplay-source"><a href="https://ssu997.itch.io/hypha" target="_blank" rel="noopener"><span lang="en">Images from the published itch.io page · open an image for full size ↗</span><span lang="zh">图片来自已发布的 itch.io 页面 · 点击图片查看原图 ↗</span></a></p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">One input, two intentions</span><span lang="zh">一个输入，两种意图</span></h2>
+      <p lang="en">The player watches the centre, clicks to absorb nutrients and waits when a hazard makes acting unsafe. The decision is when to act and when to hold back, so timing carries the interaction instead of a large set of controls.</p>
+      <p lang="zh">玩家观察中心区域，点击吸收养分，在危险出现时等待。选择集中在何时行动、何时克制，因此交互由时机承担，而非依靠多种操作。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">A scope that fits 48 hours</span><span lang="zh">适合 48 小时的范围</span></h2>
+      <p lang="en">The game stays with one mechanic and an organic growth theme. Keeping the input simple concentrates the work on the relationship between timing, hazards and readable feedback, while leaving room for the two-person team to complete a browser build.</p>
+      <p lang="zh">游戏围绕一个机制和有机生长的主题展开。简化输入后，工作集中在时机、危险与清晰反馈的关系上，也让两人团队有余力完成浏览器版本。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Contribution and delivery</span><span lang="zh">贡献与交付</span></h2>
+      <p lang="en">I designed the mechanic and implemented the game in Unity with C#. Cheng Min supplied the art. The result is a small HTML5/WebGL jam game on itch.io, presented here as a focused collaboration rather than a large systems project.</p>
+      <p lang="zh">我设计机制，并用 Unity 与 C# 实现游戏，Cheng Min 提供美术。最终成果是发布在 itch.io 的小型 HTML5/WebGL Jam 游戏，展示的是一次聚焦的协作与交付。</p>
+    </section>
+
+
+
+
+
     <nav class="proj-nav" aria-label="Project navigation">
-      <a href="ma.html"><span lang="en">← MA Game Design</span><span lang="zh">← MA Game Design</span></a>
-      <a href="metagame.html"><span lang="en">Next: MetaGame →</span><span lang="zh">下一个：MetaGame →</span></a>
+      <a href="gridbot.html"><span lang="en">← gridbot</span><span lang="zh">← gridbot</span></a>
+      <a href="ma.html"><span lang="en">Next: MA Prototype Collection →</span><span lang="zh">下一个：硕士原型合集 →</span></a>
     </nav>
 
   </article>
@@ -120,8 +129,8 @@
 <footer class="foot">
   <div class="container foot-inner">
     <span>© 2026 Suzy Su · London</span>
-    <span class="foot-mute" lang="en">Last updated June 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
   </div>
 </footer>
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MetaGame — Meta-narrative Platformer Case Study · Suzy Su</title>
-<meta name="description" content="Case study for MetaGame, a meta-narrative platformer where you play a tester moving through three iterative versions of the same game — the playtest loop turned into the level.">
+<meta name="description" content="A solo platformer that puts the player in the role of a playtester.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="MetaGame — Meta-narrative Platformer Case Study">
-<meta property="og:description" content="A metagame about making a platformer: play a tester through three iterative versions, leaving feedback on each — the playtest loop as the level.">
+<meta property="og:description" content="A solo platformer that puts the player in the role of a playtester.">
 <meta property="og:url" content="https://suzyeth.github.io/projects/metagame.html">
 <meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
 <meta property="og:locale" content="en_GB">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="../assets/fonts.css">
-<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
 <script src="../assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -58,60 +58,78 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">A metagame about making a platformer. You play a tester moving through three iterative versions of the same game, leaving feedback on each — the playtest loop itself turned into the level.</span>
-      <span lang="zh">一款"做平台跳跃"的元游戏。你扮演一名测试员，依次跑通同一款游戏的三个迭代版本，并对每个版本留下反馈——把 playtest 循环本身做成了关卡。</span>
+      <span lang="en">A solo platformer that puts the player in the role of a playtester. Across three versions of the same game, play, feedback and revision become the structure of the story. I designed the concept and levels and implemented the Unity WebGL build.</span>
+      <span lang="zh">一个让玩家扮演试玩者的独立平台游戏。同一游戏的三个版本，把游玩、反馈和修改组成故事结构。我负责概念、关卡设计，以及 Unity WebGL 版本的实现。</span>
     </p>
-
-    <div class="proj-media">
-      <picture>
-        <source type="image/webp" srcset="../assets/metagame-cover.webp" />
-        <img src="../assets/metagame-cover.jpg" alt="MetaGame — a meta-narrative platformer about playtesting a platformer" width="800" height="600" loading="lazy" decoding="async" />
-      </picture>
-    </div>
-
-    <section class="proj-grid">
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
-        <p lang="en">Make the act of playtesting the subject of the game. Instead of hiding iteration behind the scenes, put the player inside it — so the experience of "this version is rough, here's why" becomes the content.</p>
-        <p lang="zh">把"做 playtest"这件事本身变成游戏的主题。与其把迭代藏在幕后，不如让玩家身处其中——让"这个版本很糙、糙在哪里"的体验，成为内容本身。</p>
-      </div>
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Player Loop</span><span lang="zh">玩家循环</span></h2>
-        <p lang="en">Play a version → hit its rough edges → leave in-fiction feedback → watch the next version change in response → carry the meta-narrative forward.</p>
-        <p lang="zh">玩一个版本 → 撞上它粗糙的地方 → 在叙事内留下反馈 → 看下一个版本据此变化 → 把元叙事往前推进。</p>
-      </div>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
-      <p lang="en">Three iterative platformer "versions" are wrapped inside a single tester loop, with combat, spike obstacles, and in-fiction feedback prompts tying the layers together. Built solo in Unity (C#) and shipped as an HTML5 / WebGL build on itch. The structural trick is that each "version" has to be deliberately, legibly imperfect — broken on purpose, but readable as broken.</p>
-      <p lang="zh">三个迭代的平台跳跃"版本"被包进同一个测试员循环里，用战斗、尖刺障碍和叙事内的反馈机制把各层串起来。独立用 Unity（C#）制作，以 HTML5 / WebGL 发布到 itch。结构上的关键在于：每个"版本"都必须是刻意的、可读的不完美——故意做坏，但坏得让人看得懂。</p>
-    </section>
 
     <div class="proj-meta">
       <div>
-        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
-        <p lang="en">Solo — concept, three-stage level design, Unity implementation.</p>
-        <p lang="zh">独立 — 概念、三段式关卡设计、Unity 实现。</p>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Three-stage level design and Unity implementation.</p><p lang="zh">三阶段关卡设计与 Unity 实现。</p>
       </div>
       <div>
-        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
-        <p lang="en">MA Term 3 · UAL LCC, 2023 · HTML5 web build · public on itch.</p>
-        <p lang="zh">UAL LCC 硕士第三学期, 2023 · HTML5 网页版 · 发布到 itch。</p>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Solo MA project · published on itch.io.</p><p lang="zh">独立硕士项目 · 已发布到 itch.io。</p>
       </div>
       <div>
-        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
         <p>Unity · C# · WebGL</p>
       </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">A deliberately unfinished version must still tell the player enough to act; otherwise it just looks like an unclear game.</p><p lang="zh">故意做得不完整的版本，仍要让玩家知道该怎么做；否则看起来只是一个没做好的游戏。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Bring development language into the fiction: a designer character gives instructions, and feedback prompts and a DATA screen expose speed, jump and HP.</p><p lang="zh">把开发用语做进剧情：由设计师角色给出操作说明，反馈提示和 DATA 界面把速度、跳跃、生命值摆到玩家面前。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">Three authored versions that play as a playtester's story, published as a WebGL build on itch.io.</p><p lang="zh">三个预设版本组成一段试玩者的故事，网页版发布在 itch.io。</p></div>
     </div>
 
     <div class="proj-links">
       <a class="primary" href="https://ssu997.itch.io/metagame" target="_blank" rel="noopener"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
     </div>
+<div class="gameplay-gallery case-lead-figure"><figure>
+        <a href="../assets/gameplay/metagame-01.png" target="_blank" rel="noopener"><img src="../assets/gameplay/metagame-01.png" width="1502" height="879" loading="lazy" decoding="async" alt="A feedback prompt asks the player to choose a colour for health."></a>
+        <figcaption><span lang="en">A feedback prompt asks the player to choose a colour for health.</span><span lang="zh">反馈界面让玩家选择用哪种颜色表示生命值。</span></figcaption>
+      </figure></div>
+
+
+
+    <section class="proj-block case-flow-section">
+      <h2><span lang="en">The playtester loop</span><span lang="zh">试玩者循环</span></h2>
+      <ol class="case-flow">
+        <li><h3><span lang="en">Play</span><span lang="zh">游玩</span></h3><p lang="en">Encounter the platforming rules and obstacles of a version.</p><p lang="zh">体验一个版本中的平台规则与障碍。</p></li>
+        <li><h3><span lang="en">Respond</span><span lang="zh">反馈</span></h3><p lang="en">Leave feedback through prompts inside the fiction.</p><p lang="zh">通过剧情内的提示留下反馈。</p></li>
+        <li><h3><span lang="en">Revisit</span><span lang="zh">再体验</span></h3><p lang="en">Move to the next authored version and encounter its changes.</p><p lang="zh">进入下一个预设版本，体验其中的变化。</p></li>
+      </ol>
+      <p class="case-flow-note"><span lang="en">This diagram shows the narrative loop, not a reconstruction of the three individual levels.</span><span lang="zh">此图展示叙事循环，不代替三个具体关卡的对照。</span></p>
+    <div class="gameplay-gallery"><figure>
+        <a href="../assets/gameplay/metagame-02.png" target="_blank" rel="noopener"><img src="../assets/gameplay/metagame-02.png" width="1497" height="929" loading="lazy" decoding="async" alt="The designer character explains movement inside the platforming scene."></a>
+        <figcaption><span lang="en">The designer character explains movement inside the platforming scene.</span><span lang="zh">“设计师”角色在平台关卡内说明移动方式。</span></figcaption>
+      </figure></div></section>
+
+<section class="proj-block">
+      <h2><span lang="en">Designed imperfections</span><span lang="zh">有意设计的不完善</span></h2>
+      <p lang="en"><strong>Design problem.</strong> An unfinished version must still communicate enough for the player to act. Otherwise, the intended fiction becomes indistinguishable from an unclear game.</p>
+<p lang="zh"><strong>设计问题。</strong>一个“尚未完成”的版本仍需提供足够的信息，让玩家知道如何行动，否则预设的叙事会变成单纯的难以理解。</p><p lang="en"><strong>Presentation.</strong> Movement instructions come from a designer character inside the scene. Feedback prompts and the DATA screen bring development language into the playable space: speed, jump, attack, HP and slide distance become visible parts of that framing.</p>
+<p lang="zh"><strong>呈现方式。</strong>场景中的设计师角色解释移动；反馈提示和 DATA 界面把开发语言带进游戏。速度、跳跃、攻击、生命值与滑行距离成为玩家可见的内容。</p><p lang="en"><strong>Scope.</strong> The three versions are authored stages. These screenshots show the framing and parameter interface, rather than a controlled comparison of every change between versions.</p>
+<p lang="zh"><strong>范围。</strong>三个版本是预先设计的阶段。现有截图展示叙事包装与参数界面，尚不足以逐项对照三个版本的改动。</p>
+    <div class="gameplay-gallery"><figure>
+        <a href="../assets/gameplay/metagame-03.png" target="_blank" rel="noopener"><img src="../assets/gameplay/metagame-03.png" width="1116" height="635" loading="lazy" decoding="async" alt="The DATA screen exposes speed, jumping, attack, HP and slide distance."></a>
+        <figcaption><span lang="en">The DATA screen exposes speed, jumping, attack, HP and slide distance.</span><span lang="zh">DATA 界面展示速度、跳跃、攻击、生命值与滑行距离参数。</span></figcaption>
+      </figure></div></section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Implementation and delivery</span><span lang="zh">实现与交付</span></h2>
+      <p lang="en">I developed the concept, three-stage level structure and Unity C# implementation, and published a WebGL build. The three authored versions turn development stages into a sequence the player can experience.</p>
+      <p lang="zh">我负责概念、三个阶段的关卡结构与 Unity C# 实现，并发布 WebGL 版本。三个预先设计的版本，把开发阶段转化为玩家可以亲自经历的过程。</p>
+    </section>
+
+
+
+
 
     <nav class="proj-nav" aria-label="Project navigation">
-      <a href="hypha.html"><span lang="en">← Hypha</span><span lang="zh">← Hypha</span></a>
-      <a href="../index.html#work"><span lang="en">All work →</span><span lang="zh">返回全部作品 →</span></a>
+      <a href="sand-garden.html"><span lang="en">← Robot Karesansui</span><span lang="zh">← 枯山水</span></a>
+      <a href="gridbot.html"><span lang="en">Next: gridbot →</span><span lang="zh">下一个：gridbot →</span></a>
     </nav>
 
   </article>
@@ -120,8 +138,8 @@
 <footer class="foot">
   <div class="container foot-inner">
     <span>© 2026 Suzy Su · London</span>
-    <span class="foot-mute" lang="en">Last updated June 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
   </div>
 </footer>
 

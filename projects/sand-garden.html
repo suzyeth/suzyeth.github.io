@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Robot Karesansui — WebGL Zen Sim Case Study · Suzy Su</title>
-<meta name="description" content="Case study for Robot Karesansui, a shader-drawn zen-garden simulation in React-Three-Fiber: a tireless rake-bot, battery FSM, day/night and weather systems — with zero asset pipeline.">
+<meta name="description" content="An autonomous zen garden where a robot rakes sand, returns to recharge and continues as weather and light change.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robot Karesansui — WebGL Zen Sim Case Study">
-<meta property="og:description" content="A shader-drawn zen garden that runs itself: rake-bot FSM, day/night cycle, weather tiers, eight fauna — no textures, no asset pipeline.">
+<meta property="og:description" content="An autonomous zen garden where a robot rakes sand, returns to recharge and continues as weather and light change.">
 <meta property="og:url" content="https://suzyeth.github.io/projects/sand-garden.html">
 <meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
 <meta property="og:locale" content="en_GB">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="../assets/fonts.css">
-<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
 <script src="../assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -58,65 +58,74 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">A small robot perpetually rakes ripple patterns into a dry zen garden. I built it to find out how much living, self-running atmosphere one designer can compose entirely in shaders — no textures, no imported models, just simulation and state machines.</span>
-      <span lang="zh">一个小机器人不停在枯山水里耙出波纹。我做它，是想知道：一个设计师，只用 shader 能营造出多少"活的、自运转的"氛围——没有贴图、没有导入模型，只有模拟和状态机。</span>
+      <span lang="en">An autonomous zen garden where a robot rakes sand, returns to recharge and continues as weather and light change. I built the simulation, shaders, robot state machine and synthesised audio to explore atmosphere through interacting systems.</span>
+      <span lang="zh">一个自主运转的枯山水庭院：机器人耙沙、返回充电，再随天气与光照变化继续工作。我负责模拟、着色器、机器人状态机和合成音频，探索多个系统如何共同营造氛围。</span>
     </p>
-
-    <div class="proj-media">
-      <video loop muted playsinline preload="none" poster="../assets/sandgarden-poster.jpg" data-lazy-video aria-label="Robot Karesansui — a robot raking concentric ripples into a shader-drawn zen garden">
-        <source src="../assets/sandgarden-demo.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <section class="proj-grid">
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
-        <p lang="en">Make a calm, autonomous scene that feels alive without a single imported asset. Every grain of sand, ripple, and creature is drawn procedurally and driven by its own state — the system, not the player, keeps it moving.</p>
-        <p lang="zh">做一个平静、能自己运转、却感觉"活着"的场景，且不导入任何资源。每一粒沙、每一道波纹、每一只生物都程序化绘制、由各自的状态驱动——让系统而不是玩家来维持它的运转。</p>
-      </div>
-      <div class="proj-block proj-note">
-        <h2><span lang="en">The System Loop</span><span lang="zh">系统循环</span></h2>
-        <p lang="en">Rake the garden → battery drains → a two-leg approach back to the dock to recharge → day rolls into night → weather shifts through rain tiers → fauna come and go → the grooves slowly fade and the cycle begins again.</p>
-        <p lang="zh">耙园 → 电量下降 → 两段式归坞充电 → 白天转入夜晚 → 天气在不同雨势间切换 → 生物来去 → 凹痕缓慢消退，循环重新开始。</p>
-      </div>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
-      <p lang="en">The core is a heightfield sand simulation (1024×1024) with diffusion and drift; the rake teeth etch real grooves into the field that slowly relax back to flat. The robot follows a pre-computed Catmull-Rom path aligned pixel-for-pixel with the shader's concentric ripples, so its motion and the visible pattern always agree. A battery FSM handles a two-leg dock approach; a 3-minute day/night cycle and a weather state machine with three rain tiers keep the mood shifting. The whole thing is ~5k lines of TypeScript in a single-page R3F scene, with <code>zero</code> asset pipeline — everything is in-shader except the ambient audio, which is synthesised through the Web Audio API.</p>
-      <p lang="zh">核心是一套 1024×1024 的 heightfield 沙地模拟，带扩散与漂移；耙齿在高度场上刻出真实凹痕，再缓慢松弛回平。机器人沿预计算的 Catmull-Rom 路径行进，与 shader 的同心波纹逐像素对齐，所以它的运动和画面里的纹路始终一致。电量状态机负责两段式归坞；3 分钟昼夜循环与含三档雨势的天气状态机让氛围持续变化。整体约 5k 行 TypeScript，单页 R3F 场景，<code>零</code>资源管线——除环境音由 Web Audio API 合成外，全部在 shader 里绘制。</p>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🎯 The Detail That Sells It</span><span lang="zh">🎯 让它可信的细节</span></h2>
-      <p lang="en">Atmosphere lives in the small life on top of the system. Eight fauna species — dragonfly, gecko, frog, sparrow, beetle, butterfly, fireflies, and falling leaves — drift through on their own timers, so the garden never reads as static or as a busy screensaver. The tuning work was pacing: how often weather turns, how long night lasts, how quickly grooves fade — enough change to feel alive, slow enough to stay calm.</p>
-      <p lang="zh">氛围来自系统之上那些"小生命"。八种生物——蜻蜓、壁虎、青蛙、麻雀、甲虫、蝴蝶、萤火虫、落叶——各按自己的节拍出现，让花园既不显得呆板，也不像忙乱的屏保。调优主要是节奏：天气多久变一次、夜晚多长、凹痕多快消退——变化要足够"活"，又要慢到足够"静"。</p>
-    </section>
 
     <div class="proj-meta">
       <div>
-        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
-        <p lang="en">Solo — simulation engine, shaders, robot FSM, synthesised audio.</p>
-        <p lang="zh">独立 — 模拟引擎、shader、机器人状态机、合成音频。</p>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Sand simulation, shaders, robot states and ambient audio.</p><p lang="zh">沙面模拟、着色器、机器人状态机与环境音效。</p>
       </div>
       <div>
-        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
-        <p lang="en">~5k LOC TypeScript · single-page R3F scene · zero asset pipeline.</p>
-        <p lang="zh">约 5k 行 TypeScript · 单页 R3F 场景 · 零资源管线。</p>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Solo project · autonomous garden simulation.</p><p lang="zh">独立项目 · 自主运转的庭院模拟。</p>
       </div>
       <div>
-        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
-        <p>Vite · React 18 · TypeScript · Three.js (R3F + drei) · zustand · Web Audio API</p>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>TypeScript · React Three Fiber · Web Audio API</p>
       </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Keep a quiet garden feeling alive without crowding its calm routine.</p><p lang="zh">让一个安静的庭院有生气，又不打破它的平静。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Run two linked rhythms: a robot that rakes and returns to charge, and an environment cycle of day, night and three rain tiers, over a sand heightfield that slowly forgets.</p><p lang="zh">两个相连的节奏：机器人耙沙、没电回去充电；环境按昼夜和三档雨循环；沙面高度图会慢慢抹平痕迹。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">An autonomous garden simulation that runs in the browser.</p><p lang="zh">一个能在浏览器里自己运转的庭院模拟。</p></div>
     </div>
 
     <div class="proj-links">
+      <a class="primary" href="https://suzyeth.github.io/sand-garden/" target="_blank" rel="noopener"><span lang="en">▶ Open in browser</span><span lang="zh">▶ 浏览器打开</span></a>
       <a href="https://github.com/suzyeth/sand-garden" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
 
+    <div class="proj-media">
+      <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/sandgarden-poster.jpg?v=20261017" controls aria-label="Robot Karesansui — a robot raking concentric ripples into a shader-drawn zen garden">
+        <source src="../assets/sandgarden-demo.mp4?v=20261017" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-block case-flow-section">
+      <h2><span lang="en">Two connected rhythms</span><span lang="zh">两个相连的节奏</span></h2>
+      <ol class="case-flow">
+        <li><h3><span lang="en">Rake</span><span lang="zh">耙沙</span></h3><p lang="en">Robot movement leaves grooves in the heightfield.</p><p lang="zh">机器人移动，在高度场留下沙痕。</p></li>
+        <li><h3><span lang="en">Recharge</span><span lang="zh">充电</span></h3><p lang="en">Battery state sends the robot back to its dock.</p><p lang="zh">电池状态触发返回充电座。</p></li>
+        <li><h3><span lang="en">Continue</span><span lang="zh">继续</span></h3><p lang="en">Raking resumes while grooves and the environment evolve.</p><p lang="zh">耙沙继续，沙痕与环境同时变化。</p></li>
+      </ol>
+      <p class="case-flow-note"><span lang="en">Weather and day/night run alongside this robot routine; they are not extra steps in its battery cycle.</span><span lang="zh">天气与昼夜在机器人流程之外持续运行，并非电池循环中的额外步骤。</span></p>
+    </section>
+
+<section class="proj-block">
+      <h2><span lang="en">Keeping motion and marks aligned</span><span lang="zh">让动作与沙痕对齐</span></h2>
+      <p lang="en">A 1024 × 1024 heightfield stores the sand simulation, with diffusion and drift relaxing the grooves. The robot follows a precomputed Catmull-Rom path aligned with the ripple pattern. A battery state machine controls the two-leg approach to the dock; separate environment states handle the three-minute day/night cycle and three rain tiers.</p>
+      <p lang="zh">1024 × 1024 的高度场保存沙面状态，通过扩散与漂移让沟槽逐渐恢复。机器人沿预计算的 Catmull-Rom 路径行动，并与波纹图案对齐。电池状态机控制分两段返回充电座的路线，独立的环境状态负责三分钟昼夜循环与三个雨量等级。</p>
+    <div class="gameplay-gallery"><figure><a href="../assets/sandgarden-poster.jpg?v=20261017" target="_blank" rel="noopener"><img src="../assets/sandgarden-poster.jpg?v=20261017" alt="The existing overview shows the sand pattern, stones and garden layout." width="1400" height="788" loading="lazy" decoding="async"></a><figcaption><span lang="en">The existing overview shows the sand pattern, stones and garden layout.</span><span lang="zh">现有全景展示沙纹、石组与庭院布局。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Procedural detail, restrained pacing</span><span lang="zh">程序化细节与克制的节奏</span></h2>
+      <p lang="en">The scene uses procedural geometry and shaders, with synthesised environmental sound through the Web Audio API alongside generated background music. The design constraint is pacing: groove decay, weather changes and animal arrivals need enough variation to keep the garden alive without crowding its quiet routine. This is an atmosphere and simulation study rather than a conventional game loop.</p>
+      <p lang="zh">场景使用程序化几何与着色器，环境音效通过 Web Audio API 合成，并搭配生成的背景音乐。设计上的约束在于节奏：沙痕消退、天气切换与动物出现需要带来变化，又不能打断庭院平静的日常。这是氛围与模拟研究，而非传统的目标驱动游戏循环。</p>
+    <div class="gameplay-gallery"><figure><a href="../assets/gameplay/sandgarden-rain.png" target="_blank" rel="noopener"><img src="../assets/gameplay/sandgarden-rain.png" alt="Rain and haze change the same garden’s atmosphere. Frame captured from the existing demo recording." width="1280" height="720" loading="lazy" decoding="async"></a><figcaption><span lang="en">Rain and haze change the same garden’s atmosphere. Frame captured from the existing demo recording.</span><span lang="zh">降雨与雾气改变同一庭院的氛围。画面截取自现有演示录屏。</span></figcaption></figure></div>
+    </section>
+
+
+
+
+
+
     <nav class="proj-nav" aria-label="Project navigation">
-      <a href="cocktail-rendering.html"><span lang="en">← Kitchen Bar</span><span lang="zh">← 厨房调酒</span></a>
-      <a href="ld59.html"><span lang="en">Next: Respond to Signal 404 →</span><span lang="zh">下一个：Respond to Signal 404 →</span></a>
+      <a href="gacha.html"><span lang="en">← Gacha Economy Sim</span><span lang="zh">← 抽卡模拟器</span></a>
+      <a href="metagame.html"><span lang="en">Next: MetaGame →</span><span lang="zh">下一个：MetaGame →</span></a>
     </nav>
 
   </article>
@@ -125,8 +134,8 @@
 <footer class="foot">
   <div class="container foot-inner">
     <span>© 2026 Suzy Su · London</span>
-    <span class="foot-mute" lang="en">Last updated June 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
   </div>
 </footer>
 

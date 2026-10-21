@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gacha Economy Sim — Numerical Tool Case Study · Suzy Su</title>
-<meta name="description" content="Case study for a real-time gacha-economy simulator: edit pool weights and pity, run a Monte Carlo of 1000 players, and read P50/P90 pull-cost distributions instantly.">
+<meta name="description" content="A designer-facing tool for exploring how pool weights and pity rules change the cost of acquiring a target item.">
 <meta name="author" content="Suzy Su">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#ffffff">
@@ -12,7 +12,7 @@
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gacha Economy Sim — Numerical Tool Case Study">
-<meta property="og:description" content="A real-time gacha-economy simulator for numerical designers: edit rules, run a Monte Carlo, read P50/P90 pull-cost distributions — no engineer round-trip.">
+<meta property="og:description" content="A designer-facing tool for exploring how pool weights and pity rules change the cost of acquiring a target item.">
 <meta property="og:url" content="https://suzyeth.github.io/projects/gacha.html">
 <meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
 <meta property="og:locale" content="en_GB">
@@ -21,7 +21,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="../assets/fonts.css">
-<link rel="stylesheet" href="../style.css?v=20260701-review-fixes">
+<link rel="stylesheet" href="../style.css?v=20261018-pdo">
 <script src="../assets/lenis.min.js" defer></script>
 </head>
 <body>
@@ -58,65 +58,80 @@
     </header>
 
     <p class="proj-lede">
-      <span lang="en">A real-time gacha-economy simulator for numerical designers: edit pool weights and pity periods and watch the P50/P90 pull-cost distribution update instantly — no engineer round-trip, no spreadsheet guesswork.</span>
-      <span lang="zh">面向数值策划的实时抽卡经济模拟器：改池子权重和保底周期，立刻看到 P50/P90 抽数成本分布更新——不用等工程师介入，也不靠 Excel 估。</span>
+      <span lang="en">A designer-facing tool for exploring how pool weights and pity rules change the cost of acquiring a target item. I built the draw engine, rule interface and simulation UI so a configuration can be edited, simulated and compared in one workflow.</span>
+      <span lang="zh">一个供策划探索“卡池权重和保底规则如何影响目标获取成本”的工具。我负责抽卡引擎、规则接口与模拟界面，把配置修改、模拟和结果比较放进同一工作流。</span>
     </p>
-
-    <div class="proj-media">
-      <video loop muted playsinline preload="none" poster="../assets/gacha-poster.jpg" data-lazy-video aria-label="Gacha economy simulator — target-driven pull-cost percentile dashboard running a 1000-player simulation">
-        <source src="../assets/gacha-demo.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <section class="proj-grid">
-      <div class="proj-block proj-note">
-        <h2><span lang="en">Design Goal</span><span lang="zh">设计目标</span></h2>
-        <p lang="en">Collapse the slow loop between "change a gacha rule" and "see what it actually costs real players" down to a single interaction a designer can run themselves — and make the answer trustworthy enough to ship a banner on.</p>
-        <p lang="zh">把"改一条抽卡规则"到"看清它对真实玩家到底要多少钱"之间那条慢循环，压缩成一个策划自己就能跑的交互——并且让结果可信到能据此上线一个卡池。</p>
-      </div>
-      <div class="proj-block proj-note">
-        <h2><span lang="en">The Workflow</span><span lang="zh">使用流程</span></h2>
-        <p lang="en">Edit weights / % / pity inline → run a target-driven simulation of 1000 players pulling until they hit item X → read the P50/P75/P90/P99 cost → save the scheme or import JSON / xlsx.</p>
-        <p lang="zh">权重 / 概率 / 保底周期就地编辑 → 跑目标驱动模拟，1000 名玩家各自抽到目标 X 为止 → 读 P50/P75/P90/P99 成本 → 保存方案或导入 JSON / xlsx。</p>
-      </div>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🔧 The Build</span><span lang="zh">🔧 程序实现</span></h2>
-      <p lang="en">At the core is a pure, 2-level draw engine with a 4-hook plugin-rule interface, so mechanics like pity or a scripted first-draw are rules rather than special cases. Heavy runs — 100k-pull batches — go off the main thread into a Web Worker and return in ~500ms, with results charted in ECharts. The engine is covered by 60 tests and validated within ±0.4% of closed-form values over 200k Monte Carlo pulls, so the numbers are not just plausible, they're checked.</p>
-      <p lang="zh">核心是一个纯函数的二级抽卡引擎，配 4-hook 插件式规则接口，于是保底、首抽脚本这类机制都成了"规则"而非特例。重计算——10 万抽批量——被丢到 Web Worker 的主线程外，约 500ms 返回，结果用 ECharts 绘制。引擎有 60 个测试，并在 20 万次蒙特卡洛抽样下与闭式解误差 ±0.4% 内——所以数字不只是"看起来对"，而是被核对过的。</p>
-    </section>
-
-    <section class="proj-block">
-      <h2><span lang="en">🎯 The Insight It Surfaces</span><span lang="zh">🎯 它暴露出的问题</span></h2>
-      <p lang="en">Running real distributions instead of point estimates revealed that the common spreadsheet drop-rate formula overstates true rates by roughly 20% — exactly the kind of quiet error that under-prices a banner and breaks an economy. That gap is the whole reason a tool like this earns its place next to the spreadsheet.</p>
-      <p lang="zh">用真实分布而非点估计去跑，暴露出常见的 Excel 掉率公式比真实概率高估约 20%——正是这种悄无声息的误差，会让一个卡池定价过低、把经济拖垮。这个差距，就是这样一个工具值得摆在 Excel 旁边的全部理由。</p>
-    </section>
 
     <div class="proj-meta">
       <div>
-        <h3><span lang="en">Role</span><span lang="zh">角色</span></h3>
-        <p lang="en">Solo — engine architecture, plugin-rule design, UI, test suite.</p>
-        <p lang="zh">独立 — 引擎架构、插件式规则设计、UI、测试。</p>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Simulation engine, configurable rules, results UI and tests.</p><p lang="zh">模拟引擎、可配置规则、结果界面与测试。</p>
       </div>
       <div>
-        <h3><span lang="en">Scale</span><span lang="zh">规模</span></h3>
-        <p lang="en">60 tests · ±0.4% vs closed-form over 200k MC pulls · 100k-pull batches ~500ms off-thread.</p>
-        <p lang="zh">60 个测试 · 20 万抽下与闭式解误差 ±0.4% · 10 万抽批量约 500ms（主线程外）。</p>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Solo tool · target-cost simulation.</p><p lang="zh">独立工具 · 目标成本模拟。</p>
       </div>
       <div>
-        <h3><span lang="en">Stack</span><span lang="zh">技术栈</span></h3>
-        <p>React 19 · TypeScript · Zustand · Zod · Web Worker · ECharts · Vitest</p>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>React · TypeScript · Web Worker · ECharts</p>
       </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Example goal: let 90% of players reach a target item within 120 pulls without raising the expected number of rare items.</p><p lang="zh">示例目标：让 90% 的玩家在 120 抽内拿到目标物品，同时不增加稀有物品的期望投放。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Compare three pity rules with 20,000 seeded trials each, measuring acquisition cost and total issuance separately.</p><p lang="zh">用三种保底规则各跑 20,000 次固定种子的模拟，把获取成本和总投放分开测量。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">Option C reaches 91.96% with unchanged rare issuance; shortening pity gives about 14% more rares yet only 85.35%. No claims about spending or retention.</p><p lang="zh">方案 C 达到 91.96%，稀有投放不变；缩短保底多发约 14% 稀有，却只有 85.35%。不涉及付费或留存的结论。</p></div>
     </div>
 
     <div class="proj-links">
       <a class="primary" href="https://gacha-simulator-ten.vercel.app" target="_blank" rel="noopener"><span lang="en">▶ Live demo</span><span lang="zh">▶ 在线试用</span></a>
     </div>
 
+    <p class="case-caveat"><span lang="en">Reading the demo: cost percentiles describe successful trials only. Check the unsuccessful-trial rate alongside them.</span><span lang="zh">演示口径：成本百分位仅统计成功样本，请同时查看未成功比例。</span></p>
+    <div class="proj-media">
+      <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/gacha-poster.jpg?v=20261017b" controls aria-label="Gacha economy simulator — target-driven pull-cost percentile dashboard running a 1000-player simulation">
+        <source src="../assets/gacha-demo.mp4?v=20261017" type="video/mp4" />
+      </video>
+    </div>
+
+
+<section class="proj-block" id="rule-comparison"><h2><span lang="en">Design comparison · target access versus reward supply</span><span lang="zh">设计对照 · 目标获取与奖励投放的取舍</span></h2><p lang="en"><strong>Question.</strong> Can target acquisition reach 90% within 120 pulls without increasing the baseline expected number of rare items? These are explicit example constraints, not targets derived from a live economy. This synthetic experiment was run on 1 October 2026.</p><p lang="zh"><strong>问题。</strong>能否让 120 抽内的目标获取率达到 90%，同时不增加基准方案的稀有物期望投放量？这是明确设定的示例约束，不是从实际运营经济推导出的指标。实验于 2026 年 10 月 1 日新运行。</p><p lang="en"><strong>Three options.</strong> All pools use a 2% base rare rate and two equal-weight rare items. A uses 80-pull rare pity. B shortens it to 60. C retains 80, but a non-target rare guarantees the next rare is the target. Common drops preserve that protection; a target clears it. Every rare drop resets rarity pity. C is a new experiment-only plugin using the existing engine hooks, not a feature of the published demo.</p><p lang="zh"><strong>三种方案。</strong>基础稀有概率均为 2%，稀有组内两个道具等权重。A 为 80 抽稀有保底；B 缩短为 60 抽；C 保留 80 抽，但获得非目标稀有后，下一次稀有必为目标。普通掉落保留目标保护，获得目标则清除；任何稀有掉落都会重置稀有保底。C 是使用现有引擎接口新增的实验插件，尚不是线上演示功能。</p><p lang="en"><strong>Two measurements.</strong> First-target trials stop at acquisition or 120 pulls and measure budget coverage. Fixed-budget trials always finish 120 pulls and count all rewards. Each mode runs 20,000 fresh trials per option; first-target seed 20261001, fixed-budget seed 20261002. This separates acquisition cost from total issuance.</p><p lang="zh"><strong>两种测量。</strong>首次获取试验在获得目标或达到 120 抽时停止，衡量预算覆盖率；固定预算试验始终抽满 120 次，统计全部奖励。每种模式、每个方案均运行 20,000 次新状态试验；首次获取种子为 20261001，固定预算种子为 20261002。这样将首次获取成本与总体投放分开。</p><div class="comparison-scroll"><table class="comparison-table"><thead><tr><th><span lang="en">Measure</span><span lang="zh">指标</span></th><th>A</th><th>B</th><th>C</th></tr></thead><tbody><tr><th><span lang="en">Pity period</span><span lang="zh">稀有保底周期</span></th><td>80</td><td>60</td><td>80</td></tr><tr><th><span lang="en">Target protection</span><span lang="zh">目标保护</span></th><td>—</td><td>—</td><td><span lang="en">Next rare after a non-target</span><span lang="zh">非目标稀有后的下一次稀有</span></td></tr><tr><th><span lang="en">Target within 120 pulls · simulated</span><span lang="zh">120 抽内获得目标 · 模拟</span></th><td>79.36%</td><td>85.44%</td><td>92.04%</td></tr><tr><th><span lang="en">Rare items per 120 pulls · simulated</span><span lang="zh">抽满 120 次的平均稀有数量 · 模拟</span></th><td>2.770</td><td>3.152</td><td>2.764</td></tr><tr><th><span lang="en">Target items per 120 pulls · simulated</span><span lang="zh">抽满 120 次的平均目标数量 · 模拟</span></th><td>1.392</td><td>1.587</td><td>1.735</td></tr><tr><th><span lang="en">Target probability · exact</span><span lang="zh">目标获取概率 · 精确值</span></th><td>79.39%</td><td>85.35%</td><td>91.96%</td></tr><tr><th><span lang="en">Rare items per 120 pulls · exact</span><span lang="zh">抽满 120 次的平均稀有数量 · 精确值</span></th><td>2.758</td><td>3.143</td><td>2.758</td></tr></tbody></table></div><p lang="en"><strong>Decision under these constraints.</strong> C meets the example target: its exact acquisition probability is 91.96%, with unchanged expected rare issuance. B increases expected rare issuance by about 14% yet reaches only 85.35% target coverage. I would take C forward for this particular goal, rather than spend additional rare supply on both rare items.</p><p lang="zh"><strong>约束下的选择。</strong>C 满足示例目标：精确目标获取概率为 91.96%，稀有物期望投放量保持不变。B 的稀有物期望投放量增加约 14%，目标覆盖率却只有 85.35%。针对这个目标，我会优先继续验证 C，而不是通过同时增加两类稀有道具的投放来改善目标获取。</p><p lang="en"><strong>Cost of that choice.</strong> C shifts the composition of rare rewards toward the target; unchanged total rarity does not mean unchanged economic value. It also adds a protection state that must be explained and persisted. B may fit a different goal where more rare rewards of either type are desirable. Neither experiment establishes effects on spending, retention or satisfaction.</p><p lang="zh"><strong>选择的代价。</strong>C 将稀有奖励的构成向目标倾斜；稀有总量不变，不代表经济价值不变。它还增加了需要向玩家解释并持久化保存的保护状态。如果目标是提高两类稀有奖励的整体获得量，B 可能更合适。本实验没有验证付费、留存或满意度的变化。</p><p lang="en"><strong>Validation.</strong> Checks cover protection activation, persistence through common drops, target override and reset. Independent state-probability recurrence cross-checks success and expected issuance. A and C have identical exact rare issuance; their small simulated difference is sampling variation. Conditional cost percentiles remain secondary because each option has a different successful subset.</p><p lang="zh"><strong>验证。</strong>检查覆盖保护触发、普通掉落后的保留、目标强制选择与状态重置。独立状态概率递推交叉验证成功率和期望投放。A 与 C 的精确稀有投放相同，模拟中的小差异来自抽样波动。成功样本内百分位只作为辅助指标，因为各方案的成功样本构成不同。</p><p><a href="../assets/gameplay/gacha-tradeoff.json" download><span lang="en">Download configurations, seeds and results (JSON) ↓</span><span lang="zh">下载配置、种子与结果（JSON）↓</span></a></p></section>
+<section class="proj-block">
+      <h2><span lang="en">From a rule to a distribution</span><span lang="zh">从规则到成本分布</span></h2>
+      <p lang="en">Edit pool weights and pity periods, choose a target item, then run repeated simulated players up to a chosen pull limit. The output includes successful acquisitions, the fraction that did not acquire the target, and pull-cost statistics. Configurations can be saved or imported through JSON and xlsx.</p>
+      <p lang="zh">修改卡池权重与保底周期，选择目标道具，再让模拟玩家在指定抽数上限内反复尝试。输出包括成功人数、未获得目标的比例和抽数成本统计。配置可以保存，也可以通过 JSON 与 xlsx 导入。</p>
+    <div class="gameplay-gallery"><figure><a href="../assets/gameplay/gacha-config.png" target="_blank" rel="noopener"><img src="../assets/gameplay/gacha-config.png" alt="Editable weights and cyclic-pity rules sit beside the target simulation controls. Captured while a run is in progress." width="1152" height="720" loading="lazy" decoding="async"></a><figcaption><span lang="en">Editable weights and cyclic-pity rules sit beside the target simulation controls. Captured while a run is in progress.</span><span lang="zh">可编辑权重与周期保底规则，和目标模拟配置并列展示。截图时模拟正在运行。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Separating rules from the engine</span><span lang="zh">把规则与引擎分开</span></h2>
+      <p lang="en">The engine draws a bucket first, then an item within it. A four-hook rule interface keeps cyclic pity and scripted first draws separate from the base draw process. Large batches run in a Web Worker so the interface can remain responsive; ECharts displays the results. I owned the engine architecture, rule interface, UI and tests.</p>
+      <p lang="zh">引擎先抽取分组，再在组内抽取道具。四个 hook 组成的规则接口，把周期保底、首抽脚本与基础抽取流程分开。较大的模拟批次交给 Web Worker，界面继续响应，结果由 ECharts 展示。我负责引擎架构、规则接口、界面与测试。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">What the comparison can tell us</span><span lang="zh">比较结果能说明什么</span></h2>
+      <p lang="en">An additive estimate such as random probability + 1 / pity period may diverge from a simulation when resets and rule interactions change the effective rate. The useful comparison is between the same configured rules expressed as a formula and executed by the engine. A discrepancy is a reason to inspect those assumptions, not a universal correction factor for every gacha system.</p>
+      <p lang="zh">当计数重置与规则相互作用改变实际概率时，“随机概率 + 1 / 保底周期”这类加法估算可能与模拟产生偏差。有效的比较，是让公式与引擎描述同一组配置规则，再检查差异来自哪里。这个差异提示我们复查假设，不能当成所有抽卡系统通用的修正比例。</p>
+    <p lang="en">For the captured run, 47.6% of trials miss the target within 500 pulls. That is enough to conclude that this configuration does not give 90% of trials the target within that budget. It does not identify which rule should change. Comparing a revised configuration would require another run under the same target and pull limit; the controlled example above provides a separate comparison.</p>
+      <p lang="zh">现有录屏中，47.6% 的试验在 500 抽内未获得目标。由此可以判断：这套配置无法让 90% 的试验在该预算内获得目标。但它还不能告诉我们应该修改哪条规则。评估修改方案，需要在相同目标与抽数上限下再次运行；上方合成示例提供了一组独立的受控对照。</p>
+</section>
+
+    <section class="proj-block">
+      <h2><span lang="en">How to read the current results</span><span lang="zh">当前结果的统计口径</span></h2>
+      <p lang="en">The current implementation calculates P50/P75/P90/P99 only among trials that acquired the target before the pull limit. These are conditional percentiles, not percentiles for all simulated players. For example, if only 52.4% succeed within 500 pulls, the full-population P90 is beyond 500 and cannot be estimated from the successful subset alone. Read the failure rate alongside the table; the current interface labels need this qualification.</p>
+      <p lang="zh">当前实现的 P50/P75/P90/P99 只统计在抽数上限内成功获得目标的试验。这是成功样本内的条件百分位，不能代表全部模拟玩家。例如，若 500 抽内只有 52.4% 成功，全体玩家的 P90 就在 500 抽以外，不能只用成功样本推算。阅读表格时必须同时看未成功比例；当前界面上的标签需要补充这一限定。</p>
+    <div class="gameplay-gallery"><figure><a href="../assets/gameplay/gacha-result.png" target="_blank" rel="noopener"><img src="../assets/gameplay/gacha-result.png" alt="The result reports 47.6% unsuccessful trials at the 500-pull limit. The displayed percentiles cover successful trials only; they do not describe all players." width="1152" height="720" loading="lazy" decoding="async"></a><figcaption><span lang="en">The result reports 47.6% unsuccessful trials at the 500-pull limit. The displayed percentiles cover successful trials only; they do not describe all players.</span><span lang="zh">结果显示，抽数上限为 500 时有 47.6% 的试验未成功。画面中的百分位只覆盖成功样本，不能代表全部玩家。</span></figcaption></figure></div>
+    </section>
+
+
+
+
+
+
     <nav class="proj-nav" aria-label="Project navigation">
-      <a href="gridbot.html"><span lang="en">← gridbot</span><span lang="zh">← gridbot</span></a>
-      <a href="ma.html"><span lang="en">Next: MA Game Design →</span><span lang="zh">下一个：MA Game Design →</span></a>
+      <a href="ld59.html"><span lang="en">← Respond to Signal 404</span><span lang="zh">← Respond to Signal 404</span></a>
+      <a href="sand-garden.html"><span lang="en">Next: Robot Karesansui →</span><span lang="zh">下一个：枯山水 →</span></a>
     </nav>
 
   </article>
@@ -125,8 +140,8 @@
 <footer class="foot">
   <div class="container foot-inner">
     <span>© 2026 Suzy Su · London</span>
-    <span class="foot-mute" lang="en">Last updated June 2026</span>
-    <span class="foot-mute" lang="zh">2026 年 6 月更新</span>
+    <span class="foot-mute" lang="en">Last updated October 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 10 月更新</span>
   </div>
 </footer>
 

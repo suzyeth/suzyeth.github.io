@@ -59,7 +59,7 @@
     document.getElementById('explorer-title').textContent = card.dataset.title;
     document.querySelector('#explorer-description [lang="en"]').textContent = card.dataset.descriptionEn;
     document.querySelector('#explorer-description [lang="zh"]').textContent = card.dataset.descriptionZh;
-    document.querySelector('.explorer-count').textContent = `0${index + 1} / 05`;
+    document.querySelector('.explorer-count').textContent = `0${index + 1} / 0${cards.length}`;
     open.href = card.dataset.destination;
     if (card.dataset.destination.startsWith('https:')) { open.target = '_blank'; open.rel = 'noopener'; }
     else { open.removeAttribute('target'); open.removeAttribute('rel'); }

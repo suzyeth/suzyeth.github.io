@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Earwitness — Suzy / AI Lab</title><meta name="description" content="Earwitness: project evidence, process and limitations by Suzy Su."><link rel="canonical" href="https://suzyeth.github.io/ai/earwitness.html"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/vendor/fonts.css"><link rel="stylesheet" href="style.css?v=20261008-published"><link rel="stylesheet" href="motion.css?v=20261008-published"><link rel="stylesheet" href="archive.css?v=20261008-published"><link rel="stylesheet" href="case.css?v=20261008-published"></head><body class="case-page case-earwitness"><a class="skip-link" href="#case-detail"><span lang="en">Skip to case details</span><span lang="zh">跳到案例详情</span></a><header class="site-header"><a class="brand" href="index.html">SUZY / AI LAB</a><nav class="nav"><a href="index.html#work"><span lang="en">← All projects</span><span lang="zh">← 全部项目</span></a><button class="lang-toggle" id="langToggle" type="button" aria-label="Toggle language">EN / 中</button></nav></header><main><section class="case-hero wrap"><p class="eyebrow"><span lang="en">Project file</span><span lang="zh">项目档案</span> / 04</p><h1>Earwitness</h1><div class="case-intro"><div class="project-meta"><span>Agent evaluation</span><span>Evidence · LLM judge · Telephony</span><span>2026</span></div><p class="project-lede"><span lang="en">An independent evidence layer for phone agents that catches the gap between a provider's success claim and what the call actually proves.</span><span lang="zh">一个面向电话智能体的独立证据层：它能找出服务商“任务已完成”与真实通话证据之间的差距。</span></p><div class="project-links"><a href="https://github.com/suzyeth/earwitness" target="_blank" rel="noopener"><span lang="en">Inspect the evidence</span><span lang="zh">查看证据</span> ↗</a></div></div><dl class="proof-strip">
+            <div><dt><span lang="en">Status</span><span lang="zh">状态</span></dt><dd><span lang="en">Solo hackathon evaluator</span><span lang="zh">独立黑客松评估器</span></dd></div>
+            <div><dt><span lang="en">Evidence</span><span lang="zh">证据</span></dt><dd><span lang="en">1 real call · 101 offline tests</span><span lang="zh">1 通真实电话 · 101 项离线测试</span></dd></div>
+            <div><dt><span lang="en">Outcome</span><span lang="zh">结果</span></dt><dd><span lang="en">False success claim caught</span><span lang="zh">捕获错误的成功声明</span></dd></div>
+            <div><dt><span lang="en">Limit</span><span lang="zh">局限</span></dt><dd><span lang="en">No production users yet</span><span lang="zh">尚无生产用户</span></dd></div>
+          </dl></section>    <section class="reveal-chapter" aria-labelledby="reveal-title">
+      <div class="reveal-stage">
+        <img class="reveal-image" src="assets/cover-earwitness.svg" alt="Earwitness — project visual" width="1600" height="900">
+        <div class="reveal-shade" aria-hidden="true"></div>
+        <svg class="reveal-paper" viewBox="0 0 1440 1000" preserveAspectRatio="none" aria-hidden="true"><path fill="#f0f0eb" d="M0 0H1440V735C1380 770 1300 719 1240 707S1150 735 1100 675S1000 730 941 653S841 691 791 588S711 611 655 643S568 615 509 697S407 640 345 707S252 707 189 762S77 809 0 790Z"/></svg>
+        <div class="reveal-chapter-links"><a href="#case-detail"><span lang="en">Read the case</span><span lang="zh">阅读案例</span></a><a href="index.html#work"><span lang="en">All projects ↗</span><span lang="zh">全部项目 ↗</span></a></div>
+        <span class="reveal-mark mark-left" aria-hidden="true">+</span><span class="reveal-mark mark-right" aria-hidden="true">+</span>
+        <div class="reveal-caption"><p><span lang="en">04 / Earwitness</span><span lang="zh">04 / Earwitness</span></p><h2 id="reveal-title"><span lang="en">Listen to the evidence.</span><span lang="zh">听见证据。</span></h2><div class="reveal-caption-bottom"><span lang="en">A real prototype. A testable claim.</span><span lang="zh">可运行的原型，可验证的主张。</span><span aria-hidden="true">↓</span></div></div>
+      </div>
+    </section><article class="project project-terminal project-split" id="case-detail">
+        <div class="project-copy wrap-narrow">
+          
+          
+          
+          
+          
+          <details class="case-notes" open>
+            <summary><span lang="en">Approach & evidence</span><span lang="zh">方法与验证</span><span aria-hidden="true">−</span></summary>
+            <div class="case-grid">
+              <div><b><span lang="en">Failure found</span><span lang="zh">发现的失败</span></b><p><span lang="en">A real fixture exposed a call marked complete even though its transcript proved the requested outcome never happened.</span><span lang="zh">真实测试发现：一通电话被标记为完成，但通话记录证明目标并未达成。</span></p></div>
+              <div><b><span lang="en">Proof</span><span lang="zh">验证</span></b><p><span lang="en">Evidence-linked assertions and reproducible scorecards keep every verdict inspectable instead of trusting a provider status.</span><span lang="zh">证据链接断言与可复现评分卡让每个判定都可检查，而不是盲信服务商状态。</span></p></div>
+            </div>
+          </details>
+        </div>
+        <div class="terminal-visual" aria-label="Earwitness evidence scorecard">
+          <div class="terminal-bar"><span></span><span></span><span></span><b>EARWITNESS / SCORECARD</b></div>
+          <pre><code><i>PROVIDER</i> task_status  <strong>COMPLETED</strong>
+
+<i>TRANSCRIPT</i> requested outcome
+             not confirmed
+
+<i>ASSERTION</i> completion_claim
+            evidence  MISSING
+            verdict   <strong>FAIL</strong>
+
+<i>TRACE</i>  02:14—02:39
+        linked to source audio
+
+<strong>CLAIM OVERRIDDEN BY EVIDENCE</strong></code></pre>
+          <span class="media-index">04</span>
+        </div>
+      </article><nav class="case-next wrap"><a href="index.html#work"><span lang="en">← Back to archive</span><span lang="zh">← 返回档案馆</span></a><a href="table-for-two.html"><span lang="en">Next project</span><span lang="zh">下一个项目</span> / Table for Two ↗</a></nav></main><footer><span>© 2026 Suzy Su</span><a href="mailto:suzysu418@gmail.com"><span lang="en">Get in touch ↗</span><span lang="zh">联系我 ↗</span></a></footer><script src="script.js?v=20261008-published"></script><script src="chapter-reveal.js?v=20261008-published"></script></body></html>

@@ -71,6 +71,7 @@
         <thead><tr><th><span lang="en">Requirement</span><span lang="zh">要求</span></th><th><span lang="en">Evidence</span><span lang="zh">证据</span></th></tr></thead>
         <tbody>
           <tr><th><span lang="en">SQL and data modelling</span><span lang="zh">SQL 与数据建模</span></th><td><span lang="en"><a href="#p-dbt">dbt starter</a>: staging → intermediate → marts, window functions, 56 data tests including reconciliation checks</span><span lang="zh"><a href="#p-dbt">dbt 项目</a>：staging → intermediate → marts 三层、窗口函数、56 个数据测试（含对账测试）</span></td></tr>
+          <tr><th><span lang="en">BI tools and dashboards</span><span lang="zh">BI 工具与看板</span></th><td><span lang="en"><a href="#p-bi">jaffle_shop dashboard</a>: public Tableau Public dashboard, and the same report in Power BI Desktop with a data model and DAX measures</span><span lang="zh"><a href="#p-bi">jaffle_shop 看板</a>：公开的 Tableau Public 看板，以及在 Power BI Desktop 里做的同一份报表（数据模型 + DAX 度量值）</span></td></tr>
           <tr><th><span lang="en">Retention, cohorts and funnels</span><span lang="zh">留存、分群与漏斗</span></th><td><span lang="en"><a href="#p-dbt">Cohort-retention mart</a> · <a href="#m3">Day-2 retention study</a> · <a href="#m1">First-month diagnostic</a></span><span lang="zh"><a href="#p-dbt">cohort 留存 mart</a> · <a href="#m3">次留专题</a> · <a href="#m1">开服首月诊断</a></span></td></tr>
           <tr><th><span lang="en">Experiment design and causal reasoning</span><span lang="zh">实验设计与因果推理</span></th><td><span lang="en"><a href="#m2">A/B test design</a> · <a href="#m4">Post-launch retrospective</a> · <a href="#p-second">second-pass</a> (Bonferroni-corrected tests)</span><span lang="zh"><a href="#m2">A/B 实验设计</a> · <a href="#m4">改版复盘</a> · <a href="#p-second">second-pass</a>（Bonferroni 校正检验）</span></td></tr>
           <tr><th><span lang="en">Python, statistics and ML</span><span lang="zh">Python、统计与机器学习</span></th><td><span lang="en"><a href="#p-ml">Grouped cross-validation</a> (logistic regression, LightGBM) · <a href="#p-gacha">Gacha Economy Sim</a> (fixed-seed Monte Carlo)</span><span lang="zh"><a href="#p-ml">分组交叉验证</a>（逻辑回归、LightGBM）· <a href="#p-gacha">抽卡经济模拟器</a>（固定种子蒙特卡洛）</span></td></tr>
@@ -213,6 +214,16 @@
           <p lang="zh">用公开测井数据（3,164 行、7 口井、9 类岩相）做岩相分类，评估两次：随机打乱的 K 折，以及整口井留出（这才是模型真实的用法）。随机 K 折下 LightGBM 的 macro-F1 是 0.71，明显好过逻辑回归；按井留出后只有 0.38，和逻辑回归打平。数据泄漏抬高了分数，还会让人选错模型。26 个测试。</p>
           <div class="proj-links"><a href="https://github.com/suzyeth/tabular-ml-public" target="_blank" rel="noopener">GitHub ↗</a></div>
         </article>
+        <article class="pro-card" id="p-bi">
+          <p class="pro-meta"><span lang="en">Built myself (AI-guided) · BI</span><span lang="zh">本人动手（AI 指导）· BI</span><span class="card-status"><span lang="en">Public dashboard</span><span lang="zh">公开看板</span></span></p>
+          <h3 class="pro-title">jaffle_shop <em>dashboard</em></h3>
+          <figure class="pro-fig"><img src="assets/gameplay/bi-dashboard.jpg" alt="Dashboard with revenue, orders and repeat-rate cards, a cohort retention heatmap, monthly revenue and customer segments" width="1600" height="917" loading="lazy" decoding="async">
+            <figcaption><span lang="en">Power BI Desktop version. The Tableau Public version shows the same three charts.</span><span lang="zh">Power BI Desktop 版本；Tableau Public 版本是同样的三张图。</span></figcaption>
+          </figure>
+          <p lang="en">The three marts from the dbt project, turned into a dashboard: a cohort-retention heatmap, monthly revenue and customer segments. Published on Tableau Public, and rebuilt in Power BI Desktop with a relationship between orders and customers, three DAX measures (revenue, orders, repeat rate) and a heatmap made from a matrix with conditional formatting. Public sample data; April is partial and the dashboard says so.</p>
+          <p lang="zh">把 dbt 项目的三张 mart 表做成看板：cohort 留存热力图、月度收入、客户分层。发布在 Tableau Public 上；又在 Power BI Desktop 里重做一遍，建了订单表和客户表的关联、三个 DAX 度量值（收入、订单数、复购率），热力图用矩阵加条件格式做出。数据是公开样例；4 月数据不完整，看板上已注明。</p>
+          <div class="proj-links"><a class="primary" href="https://public.tableau.com/app/profile/ziwei.su5374/viz/jaffle_shopcohortretentiondbtDuckDB/jaffle_shopcohortretentiondbtDuckDB" target="_blank" rel="noopener"><span lang="en">Open on Tableau Public ↗</span><span lang="zh">在 Tableau Public 打开 ↗</span></a></div>
+        </article>
         <article class="pro-card" id="p-gacha">
           <p class="pro-meta"><span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Live tool</span><span lang="zh">在线可用</span></span></p>
           <h3 class="pro-title">Gacha <em>Economy Sim</em></h3>
@@ -234,8 +245,8 @@
 
     <section class="proj-block">
       <h2><span lang="en">Skills</span><span lang="zh">技能</span></h2>
-      <p lang="en">SQL (joins, aggregation, window functions, CTEs) · dbt (dbt-core on DuckDB) · Python (pandas, scikit-learn, LightGBM, openpyxl reporting) · pytest, GitHub Actions · ThinkingData · experiment design · funnel, retention and cohort analysis · LTV and payer-tier modelling · event-schema design · Excel modelling</p>
-      <p lang="zh">SQL（JOIN、聚合、窗口函数、CTE）· dbt（dbt-core，DuckDB）· Python（pandas、scikit-learn、LightGBM、openpyxl 报表）· pytest、GitHub Actions · ThinkingData · 实验设计 · 漏斗、留存与分群分析 · LTV 与付费分层 · 埋点事件设计 · Excel 建模</p>
+      <p lang="en">SQL (joins, aggregation, window functions, CTEs) · dbt (dbt-core on DuckDB) · Python (pandas, scikit-learn, LightGBM, openpyxl reporting) · pytest, GitHub Actions · Tableau Public · Power BI Desktop (DAX) · ThinkingData · experiment design · funnel, retention and cohort analysis · LTV and payer-tier modelling · event-schema design · Excel modelling</p>
+      <p lang="zh">SQL（JOIN、聚合、窗口函数、CTE）· dbt（dbt-core，DuckDB）· Python（pandas、scikit-learn、LightGBM、openpyxl 报表）· pytest、GitHub Actions · Tableau Public · Power BI Desktop（DAX）· ThinkingData · 实验设计 · 漏斗、留存与分群分析 · LTV 与付费分层 · 埋点事件设计 · Excel 建模</p>
     </section>
 
     <section class="proj-block" id="contact">

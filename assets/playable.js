@@ -1,21 +1,24 @@
 (() => {
   const games = {
+    cocktail: ['Kitchen Bar',new URL('../play/kitchen/',document.currentScript.src).href],
     idol: ['Project:IDOL','https://suzyeth.github.io/project-idol/en/','https://suzyeth.github.io/project-idol/'],
     tarduck: ['tarduck','https://suzyeth.github.io/escape-from-duckkov/'],
     'sand-garden': ['Robot Karesansui','https://suzyeth.github.io/sand-garden/'],
     metagame: ['MetaGame','https://itch.io/embed-upload/9230855?color=111111','https://ssu997.itch.io/metagame'],
     hypha: ['Hypha','https://itch.io/embed-upload/10272502?color=111111','https://ssu997.itch.io/hypha'],
     ld59: ['Respond to Signal 404','https://itch.io/embed-upload/17491322?color=111111','https://cheng-min.itch.io/respond-to-signal-404'],
+    ma: ['Interstellar Adventure','https://itch.io/embed-upload/9254347?color=111111','https://cheng-min.itch.io/interstellar-adventure'],
     gacha: ['Gacha Economy Sim','https://gacha-simulator-ten.vercel.app']
   };
   const pair=(en,zh)=>`<span lang="en">${en}</span><span lang="zh">${zh}</span>`;
-  const button=(id)=>`<button type="button" class="play-here" data-play-game="${id}">${pair('▶ Play here','▶ 在此试玩')}</button>`;
+  const button=(id)=>`<button type="button" class="play-here" data-play-game="${id}">${id==='ma'?pair('▶ Play Interstellar Adventure','▶ 试玩 Interstellar Adventure'):pair('▶ Play here','▶ 在此试玩')}</button>`;
   document.querySelectorAll('.card:not(.marquee-clone)').forEach(card=>{
     if(games[card.dataset.id]) card.querySelector('.card-text')?.insertAdjacentHTML('beforeend',button(card.dataset.id));
   });
   const page=location.pathname.split('/').pop().replace('.html','');
+  if(page==='cocktail-rendering') document.querySelector('.proj-meta')?.insertAdjacentHTML('afterend',`<div class="proj-links">${button('cocktail')}</div>`);
   
-  if(page==='ma') document.querySelector('.proj-links')?.insertAdjacentHTML('afterbegin',`<p>MetaGame ${button('metagame')} · Hypha ${button('hypha')}</p>`);
+  if(page==='ma') document.querySelector('.proj-links')?.insertAdjacentHTML('afterbegin',`<div>${button('ma')}<p>MetaGame ${button('metagame')} · Hypha ${button('hypha')}</p></div>`);
   document.querySelectorAll('a').forEach(a=>{
     const id=Object.keys(games).find(id=>a.href===(games[id][2]||games[id][1]) || a.href===games[id][1]);
     if(id && (a.closest('.detail-links') || (a.closest('.proj-links') && page!=='idol'))){
@@ -37,7 +40,10 @@
     const trigger=e.target.closest('[data-play-game]'); if(!trigger || !games[trigger.dataset.playGame]) return;
     if(e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
     e.preventDefault(); current=[...games[trigger.dataset.playGame]];
-    if(trigger.dataset.playGame==='idol' && document.body.classList.contains('zh')) current[1]=current[2];
+    if(trigger.dataset.playGame==='idol') {
+      if(document.body.classList.contains('zh')) current[1]=current[2];
+      current[2]=current[1];
+    }
     opener=trigger; overflow=document.body.style.overflow;
     dialog.querySelector('h2').textContent=current[0];
     dialog.querySelector('.play-footer a').href=current[2]||current[1];

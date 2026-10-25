@@ -72,6 +72,7 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="assets/playable.css?v=20261025">
 </head>
 <body>
 
@@ -834,8 +835,8 @@ _</pre>
   const isTouchCarousel = () => window.matchMedia('(max-width: 640px)').matches;
 
   carousel.addEventListener('pointerdown', (e) => {
-    if (e.button !== 0) return;
-    if (isTouchCarousel()) return;   // phones use native scroll-snap, not custom drag
+    if (e.button !== 0 || e.target.closest('button, a')) return;
+    if (isTouchCarousel() || carousel.querySelector('[data-play-game]')) return;   // phones use native scroll-snap, not custom drag
     isDragging = true;
     dragStartX = e.clientX;
     dragStartOffset = carousel.classList.contains('is-user-controlled')
@@ -1023,5 +1024,6 @@ window.addEventListener('load', () => {
 });
 </script>
 
+<script src="assets/playable.js?v=20261025"></script>
 </body>
 </html>

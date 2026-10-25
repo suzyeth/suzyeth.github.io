@@ -23,6 +23,18 @@
 <link rel="stylesheet" href="../assets/fonts.css">
 <link rel="stylesheet" href="../style.css?v=20261021-data">
 <script src="../assets/lenis.min.js" defer></script>
+<style>
+/* Click-to-load embed of the playable web build (page-specific, so kept out of style.css). */
+.game-embed { position:relative; width:100%; aspect-ratio:16/9; margin:28px 0 0; border-radius:8px; overflow:hidden; background:#000; border:1px solid var(--line); }
+.game-embed iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+.game-embed-start { position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; cursor:pointer; background:#000; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; }
+.game-embed-start img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.55; transition:opacity .25s ease; }
+.game-embed-start:hover img, .game-embed-start:focus-visible img { opacity:.4; }
+.game-embed-cta { position:relative; padding:14px 28px; border-radius:8px; background:#fff; color:#141414; font-family:var(--mono); font-size:15px; letter-spacing:.04em; }
+.game-embed-note { position:relative; color:#fff; font-family:var(--mono); font-size:12px; letter-spacing:.04em; text-shadow:0 1px 4px rgba(0,0,0,.6); padding:0 16px; text-align:center; }
+.proj-links .game-embed-full { display:inline-flex; align-items:center; gap:6px; padding:11px 20px; border-radius:8px; border:1px solid var(--accent); background:var(--accent); color:#fbfcf8; font-family:var(--mono); font-size:13px; letter-spacing:.04em; cursor:pointer; }
+.game-embed:fullscreen { border:0; border-radius:0; aspect-ratio:auto; }
+</style>
 </head>
 <body>
 
@@ -77,8 +89,16 @@
       </div>
     </div>
 
+    <div class="game-embed" id="gameEmbed">
+      <button type="button" class="game-embed-start" id="gameEmbedStart">
+        <img src="../assets/gameplay/idol-01.jpg" width="1600" height="900" alt="" loading="lazy" decoding="async">
+        <span class="game-embed-cta"><span lang="en">▶ Play here</span><span lang="zh">▶ 在这里试玩</span></span>
+        <span class="game-embed-note"><span lang="en">Chinese UI · best on desktop · sound on · about 90 MB, loads on click</span><span lang="zh">中文界面 · 建议电脑端 · 有声音 · 约 90 MB，点击后才加载</span></span>
+      </button>
+    </div>
     <div class="proj-links">
-      <a class="primary" href="https://suzyeth.github.io/project-idol/" target="_blank" rel="noopener"><span lang="en">▶ Play in browser (Chinese UI · desktop)</span><span lang="zh">▶ 浏览器试玩（建议电脑端）</span></a>
+      <button type="button" class="game-embed-full" id="gameEmbedFull"><span lang="en">⛶ Fullscreen</span><span lang="zh">⛶ 全屏</span></button>
+      <a href="https://suzyeth.github.io/project-idol/" target="_blank" rel="noopener"><span lang="en">Open in new tab ↗</span><span lang="zh">在新标签页打开 ↗</span></a>
     </div>
 
     <div class="proj-pdo">
@@ -203,6 +223,29 @@
     entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
   }, { threshold: .25 });
   vids.forEach(v => io.observe(v));
+})();
+
+// Playable build: load the iframe only when the visitor asks for it (~90 MB).
+(function () {
+  const box = document.getElementById('gameEmbed');
+  const start = document.getElementById('gameEmbedStart');
+  const full = document.getElementById('gameEmbedFull');
+  if (!box || !start) return;
+  const load = () => {
+    if (box.querySelector('iframe')) return;
+    const frame = document.createElement('iframe');
+    frame.src = 'https://suzyeth.github.io/project-idol/';
+    frame.title = 'Project:IDOL — playable web build';
+    frame.allow = 'autoplay; fullscreen';
+    frame.setAttribute('allowfullscreen', '');
+    start.replaceWith(frame);
+    frame.focus();
+  };
+  start.addEventListener('click', load);
+  if (full) full.addEventListener('click', () => {
+    load();
+    if (box.requestFullscreen) box.requestFullscreen().catch(() => {});
+  });
 })();
 
 // Lenis smooth scroll (optional).

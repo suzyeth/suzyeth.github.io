@@ -93,12 +93,13 @@
       <button type="button" class="game-embed-start" id="gameEmbedStart">
         <img src="../assets/gameplay/idol-01.jpg" width="1600" height="900" alt="" loading="lazy" decoding="async">
         <span class="game-embed-cta"><span lang="en">▶ Play here</span><span lang="zh">▶ 在这里试玩</span></span>
-        <span class="game-embed-note"><span lang="en">Chinese UI · best on desktop · sound on · about 90 MB, loads on click</span><span lang="zh">中文界面 · 建议电脑端 · 有声音 · 约 90 MB，点击后才加载</span></span>
+        <span class="game-embed-note"><span lang="en">English build · best on desktop · sound on · loads on click</span><span lang="zh">中文版 · 建议电脑端 · 有声音 · 点击后才加载</span></span>
       </button>
     </div>
     <div class="proj-links">
       <button type="button" class="game-embed-full" id="gameEmbedFull"><span lang="en">⛶ Fullscreen</span><span lang="zh">⛶ 全屏</span></button>
-      <a href="https://suzyeth.github.io/project-idol/" target="_blank" rel="noopener"><span lang="en">Open in new tab ↗</span><span lang="zh">在新标签页打开 ↗</span></a>
+      <a href="https://suzyeth.github.io/project-idol/en/" target="_blank" rel="noopener" data-game-tab><span lang="en">Open in new tab ↗</span><span lang="zh">在新标签页打开 ↗</span></a>
+      <a href="https://suzyeth.github.io/project-idol/" target="_blank" rel="noopener"><span lang="en">中文版 ↗</span><span lang="zh">English version ↗</span></a>
     </div>
 
     <div class="proj-pdo">
@@ -231,10 +232,21 @@
   const start = document.getElementById('gameEmbedStart');
   const full = document.getElementById('gameEmbedFull');
   if (!box || !start) return;
+  // The English build lives in en/; the page language picks which one loads.
+  const BASE = 'https://suzyeth.github.io/project-idol/';
+  const gameUrl = () => document.body.classList.contains('zh') ? BASE : BASE + 'en/';
+  const tab = document.querySelector('[data-game-tab]');
+  const other = tab && tab.nextElementSibling;
+  const syncLinks = () => {
+    if (tab) tab.href = gameUrl();
+    if (other) other.href = document.body.classList.contains('zh') ? BASE + 'en/' : BASE;
+  };
+  syncLinks();
+  new MutationObserver(syncLinks).observe(document.body, { attributes: true, attributeFilter: ['class'] });
   const load = () => {
     if (box.querySelector('iframe')) return;
     const frame = document.createElement('iframe');
-    frame.src = 'https://suzyeth.github.io/project-idol/';
+    frame.src = gameUrl();
     frame.title = 'Project:IDOL — playable web build';
     frame.allow = 'autoplay; fullscreen';
     frame.setAttribute('allowfullscreen', '');

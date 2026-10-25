@@ -85,7 +85,7 @@
     </div>
 
     <div class="gameplay-gallery case-lead-figure"><figure>
-        <a href="../assets/gameplay/idol-01.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/idol-01.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="The backstage hub: the current idol on the left, the start-live panel and menu tiles on the right."></a>
+        <a href="../assets/gameplay/idol-01-en.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/idol-01-en.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="The backstage hub: the current idol on the left, the start-live panel and menu tiles on the right."></a>
         <figcaption><span lang="en">The backstage hub: pick an idol, start a live run, or open upgrades, story and archive. Work-in-progress build.</span><span lang="zh">后台大厅：选择偶像、开始直播，或进入强化、剧情和图鉴。开发中版本。</span></figcaption>
       </figure></div>
 
@@ -108,7 +108,7 @@
       <p lang="en">A teammate built the save layer; I hardened it against the cases that break trust in a roguelite. The game now writes a checkpoint before every battle, so reloading can't undo a loss. Purchases are committed before the screen changes. A save that loses a revision conflict reloads the session explicitly. A rejected save offers a clear way out instead of trapping the player behind a dialog. Autosave stays quiet unless it is slow or failing. Each fix has a Node regression test.</p>
       <p lang="zh">存档底层由队友搭建，我负责处理那些会让 roguelite 玩家失去信任的情况。现在每场战斗前都会写检查点，读档撤销不了败局；购买在切换界面之前先提交；存档发生版本冲突时明确重载会话；存档被拒绝时给出清楚的出口，不会把玩家卡在弹窗里；自动保存平时不打扰，只在变慢或失败时提示。每一处修复都配了 Node 回归测试。</p>
     <div class="gameplay-gallery"><figure>
-        <a href="../assets/gameplay/idol-02.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/idol-02.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="A live-stream scene with a chibi idol, scrolling viewer comments and a comment input bar."></a>
+        <a href="../assets/gameplay/idol-02-en.jpg" target="_blank" rel="noopener"><img src="../assets/gameplay/idol-02-en.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="A live-stream scene with a chibi idol, scrolling viewer comments and a comment input bar."></a>
         <figcaption><span lang="en">A schedule node plays out as a live stream, with viewer comments scrolling past. Work-in-progress build.</span><span lang="zh">行程节点以直播画面呈现，弹幕从屏幕上滚过。开发中版本。</span></figcaption>
       </figure></div></section>
 
@@ -121,17 +121,17 @@
       <p lang="en"><strong>Opening and turn start.</strong> Relics now resolve one at a time down the gem column. Each gem lights up, and a fixed ledger beside the column shows the relic's name, its effect and the value before and after. Every turn keeps the same beat, and the deal starts as the last relic lights up, so the extra feedback adds only a short pause each turn.</p>
       <p lang="zh"><strong>开场和回合开始。</strong>遗物沿宝石列从上到下逐个结算：宝石亮起，旁边固定的结算栏显示遗物名、效果和数值前后变化。每个回合节拍一致，最后一个遗物亮起时同时开始发牌，所以多出来的反馈每回合只多一小段停顿。</p>
       <div class="gameplay-gallery"><figure>
-        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-opening-new-poster.jpg" controls aria-label="Battle opening: relics resolve one at a time with a ledger beside the gem column."><source src="../assets/idol-opening-new.mp4" type="video/mp4" /></video>
+        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-opening-new-en-poster.jpg" controls aria-label="Battle opening: relics resolve one at a time with a ledger beside the gem column."><source src="../assets/idol-opening-new-en.mp4" type="video/mp4" /></video>
         <figcaption><span lang="en">New opening: relics resolve one by one, with the ledger beside the gem column.</span><span lang="zh">新版开场：遗物逐个结算，宝石列旁是结算栏。</span></figcaption>
       </figure></div>
-      <p lang="en"><strong>Scoring an action card.</strong> The card now stays on stage and a colour-coded formula builds under it (996 × 100% × 1.17 = 1,165), with each number flying in from where it comes from: viewers, the card's own percentage, and the charm bonus. The shout, gifts and screen shake wait until the total lands, scaled by how the score compares with the target.</p>
-      <p lang="zh"><strong>行动卡得分。</strong>卡牌留在舞台上，正下方逐步出现彩色算式（996 × 100% × 1.17 = 1,165），每个数字从它的来源飞进来：同接、卡面百分比、魅力加成。喊字、礼物和震屏要等总分落下才出现，强度按得分和目标分的比例分档。</p>
+      <p lang="en"><strong>Scoring an action card.</strong> The card now stays on stage and a colour-coded formula builds under it (600 × 100% × 1.1 = 660), with each number flying in from where it comes from: viewers, the card's own percentage, and the charm bonus. The shout, gifts and screen shake wait until the total lands, scaled by how the score compares with the target.</p>
+      <p lang="zh"><strong>行动卡得分。</strong>卡牌留在舞台上，正下方逐步出现彩色算式（600 × 100% × 1.1 = 660），每个数字从它的来源飞进来：同接、卡面百分比、魅力加成。喊字、礼物和震屏要等总分落下才出现，强度按得分和目标分的比例分档。</p>
       <div class="gameplay-gallery"><figure>
-        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-score-old-poster.jpg" controls aria-label="Old version: the action card jumps straight to a final score."><source src="../assets/idol-score-old.mp4" type="video/mp4" /></video>
+        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-score-old-en-poster.jpg" controls aria-label="Old version: the action card jumps straight to a final score."><source src="../assets/idol-score-old-en.mp4" type="video/mp4" /></video>
         <figcaption><span lang="en">Before: the score appears at once, with no way to see how it was built.</span><span lang="zh">旧版：分数一下子出现，看不出怎么算出来。</span></figcaption>
       </figure><figure>
-        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-score-new-poster.jpg" controls aria-label="New version: a colour-coded formula builds under the card before the total lands."><source src="../assets/idol-score-new.mp4" type="video/mp4" /></video>
-        <figcaption><span lang="en">After: the same card, with the formula assembled before the payoff.</span><span lang="zh">新版：同一张卡，先拼出算式，再出高潮。</span></figcaption>
+        <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/idol-score-new-en-poster.jpg" controls aria-label="New version: a colour-coded formula builds under the card before the total lands."><source src="../assets/idol-score-new-en.mp4" type="video/mp4" /></video>
+        <figcaption><span lang="en">After: an action card scores with the formula assembled before the payoff.</span><span lang="zh">新版：行动卡得分时先拼出算式，再出高潮。</span></figcaption>
       </figure></div>
       <p lang="en"><strong>What I dropped or held back.</strong> A reworked strategy-card effect went back to the original after review. My first turn-end version labelled a resource effect in a way that read like enemy damage, so that beat is on hold until the team picks one of three options. I wrote out the underlying rule step by step so the decision could be made on the rule, not on my animation.</p>
       <p lang="zh"><strong>放弃和暂缓的部分。</strong>策略卡的新效果评审后退回了原版。回合结束的第一版里，我给一个资源效果起的提示读起来像敌人造成的伤害，所以这个环节暂缓，等团队在三个方案里选定。我把背后的规则一步步写清楚，让大家按规则本身做决定，而不是被我的动画带着走。</p>

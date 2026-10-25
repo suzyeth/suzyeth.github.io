@@ -22,9 +22,10 @@
 
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="style.css?v=20261021-data">
-<script src="assets/lenis.min.js" defer></script>
+
+<link rel="stylesheet" href="assets/career-editorial.css?v=20261023-reading-flow">
 </head>
-<body>
+<body class="track-page track-data">
 
 <a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
 
@@ -32,11 +33,11 @@
   <a href="index.html" class="brand">SUSU / DATA</a>
   <nav class="hud-r" aria-label="Primary">
     <div class="hud-links" id="hudLinks">
-      <a href="#evidence"><span lang="en">Evidence</span><span lang="zh">能力对照</span></a>
-      <a href="#methods"><span lang="en">Methods</span><span lang="zh">方法案例</span></a>
-      <a href="#projects"><span lang="en">Projects</span><span lang="zh">公开项目</span></a>
-      <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
-    </div>
+<a href="#about"><span lang="en">About</span><span lang="zh">关于我</span></a>
+<a href="#projects"><span lang="en">Projects</span><span lang="zh">公开项目</span></a>
+<a href="#methods"><span lang="en">Methods</span><span lang="zh">方法案例</span></a>
+<a href="#evidence"><span lang="en">Evidence</span><span lang="zh">能力对照</span></a>
+<a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a></div>
     <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
     <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
       <span class="menu-bars" aria-hidden="true"></span>
@@ -47,88 +48,27 @@
 <main id="main">
   <article class="proj-wrap">
 
-    <header class="proj-head">
-      <p class="proj-eyebrow"><span lang="en">Data analysis · F2P mobile · London</span><span lang="zh">数据分析 · F2P 手游 · 伦敦</span></p>
-      <h1 class="proj-title">Data analysis on a <em>live F2P game</em></h1>
-      <p class="proj-tag">SQL · Python · Experiment design · Retention &amp; funnels · Metric definitions</p>
-    </header>
+<nav class="track-nav" aria-label="Portfolio directions"><a href="index.html"><span lang="en">Games</span><span lang="zh">游戏</span></a><a href="ai/"><span lang="en">Creative technology</span><span lang="zh">创意技术</span></a><a href="ai-engineering.html"><span lang="en">AI engineering</span><span lang="zh">AI 工程</span></a><a href="data.html" aria-current="page"><span lang="en">Data analysis</span><span lang="zh">数据分析</span></a><a href="tools.html"><span lang="en">Tools</span><span lang="zh">工具</span></a></nav><div class="edition-line"><span><span lang="en">SELECTED WORK / 02</span><span lang="zh">精选作品 / 02</span></span><span>SUZY SU · LONDON</span><span>2026</span></div><div class="editorial-masthead"><span lang="en">Data &amp; Decisions</span><span lang="zh">数据与决策</span></div><header class="track-hero"><div class="hero-copy"><p class="track-eyebrow"><span lang="en">SUZY SU / DATA & PRODUCT ANALYSIS</span><span lang="zh">苏紫薇 / 数据与产品分析</span></p><h1><span lang="en">Suzy <em>(Ziwei) Su</em></span><span lang="zh">苏紫薇 <em>Suzy Su</em></span></h1><p lang="en">I’m a London-based game designer with hands-on product analysis experience. I investigate retention and monetisation in live games, and use public SQL, dbt and BI projects to demonstrate my analytical workflow.</p><p lang="zh">我是苏紫薇，现居伦敦，有游戏设计与产品分析实践经验。我在上线游戏中调查留存和商业化问题，并通过公开的 SQL、dbt 与 BI 项目展示完整的分析过程。</p><p class="track-tags">SQL / Power BI / Tableau / Python / dbt</p><div class="track-actions"><a class="track-button" href="#projects"><span lang="en">Explore selected work ↓</span><span lang="zh">查看精选项目 ↓</span></a><a href="mailto:suzysu418@gmail.com"><span lang="en">Get in touch ↗</span><span lang="zh">联系我 ↗</span></a></div><p class="track-location"><span lang="en">Seeking data analyst / product analyst roles</span><span lang="zh">求职方向：数据分析 / 产品分析</span></p></div><a class="hero-visual" href="#p-bi"><div class="board-label"><span lang="en">FEATURED / SQL TO DASHBOARD</span><span lang="zh">精选 / 从 SQL 到看板</span></div><img src="assets/gameplay/bi-dashboard.jpg" width="1600" height="917" alt="Power BI dashboard: revenue, orders, repeat-customer rate and retention" data-alt-en="Power BI dashboard: revenue, orders, repeat-customer rate and retention" data-alt-zh="Power BI 看板：收入、订单数、复购率与留存"><div class="preview-caption"><span lang="en">A tested data model. A readable dashboard.</span><span lang="zh">经过测试的数据模型，清楚可读的看板。</span><span>↗</span></div></a></header>
+<section class="editorial-profile" id="about" aria-labelledby="profile-title">
+  <figure class="profile-portrait"><picture><source type="image/webp" srcset="assets/profile.webp"><img src="assets/profile.jpg" width="800" height="800" alt="Suzy Su" data-alt-en="Suzy Su" data-alt-zh="苏紫薇" loading="lazy" decoding="async"></picture></figure>
+  <header class="profile-heading"><p class="track-eyebrow"><span lang="en">THE PERSON BEHIND THE WORK</span><span lang="zh">作品背后的我</span></p><h2 id="profile-title"><span lang="en">From product questions to decisions.</span><span lang="zh">从产品问题出发，让分析支持决策。</span></h2></header>
+  <div class="profile-story"><p lang="en">Across two shipped mobile titles, my F2P systems and economy work expanded into metric definitions, retention analysis and reviews of product changes. I reconcile reports, design experiment plans and turn findings into recommendations.</p><p lang="zh">我参与过两款已上线手游，从 F2P 系统与经济设计延伸到指标定义、留存分析和改版复盘。我的工作包括核对报表、设计实验方案，并把发现转成建议。</p><p lang="en">The public projects below demonstrate SQL modelling, BI reporting and validation using practice data. The workplace cases then show how I approach real product questions. Each project states the limits of its conclusions.</p><p lang="zh">下方公开项目用练习数据展示 SQL 建模、BI 报表与验证方法，随后的工作案例说明我如何处理真实产品问题。各项目都写明了结论的适用边界。</p><div class="profile-route-links"><a href="#methods"><span lang="en">Product analysis at work ↓</span><span lang="zh">工作中的分析案例 ↓</span></a><a href="#evidence"><span lang="en">Analytical skills & evidence ↓</span><span lang="zh">分析能力与证据 ↓</span></a><a href="mailto:suzysu418@gmail.com"><span lang="en">Email for my CV ↗</span><span lang="zh">邮件索取简历 ↗</span></a></div></div>
+  <dl class="profile-facts"><div><dt><span lang="en">Based in</span><span lang="zh">所在地</span></dt><dd><span lang="en">London, UK</span><span lang="zh">英国 · 伦敦</span></dd></div><div><dt><span lang="en">Education</span><span lang="zh">教育背景</span></dt><dd><span lang="en">MA Game Design<br>UAL · London College of Communication, 2023</span><span lang="zh">游戏设计硕士<br>伦敦艺术大学 · 伦敦传媒学院，2023</span></dd><dd><span lang="en">BE Engineering Geology<br>Jilin University, 2020</span><span lang="zh">工程地质工学学士<br>吉林大学，2020</span></dd></div><div><dt><span lang="en">Languages</span><span lang="zh">语言</span></dt><dd><span lang="en">Mandarin · native<br>English · working proficiency</span><span lang="zh">中文 · 母语<br>英文 · 工作语言</span></dd></div></dl>
+</section>
+<section class="proj-block" id="projects">
+      <h2><span lang="en">Selected work.</span><span lang="zh">精选作品。</span></h2>
+      <details class="project-directory" open><summary><span lang="en">Project index · 6</span><span lang="zh">项目目录 · 6</span><span class="directory-action"><span lang="en">Browse</span><span lang="zh">展开查看</span></span></summary><nav class="project-index" aria-label="Project index"><a href="#p-olist"><span class="index-number">01</span><span>Olist <span class="index-subtitle"><span lang="en">late deliveries</span><span lang="zh">配送延迟</span></span></span><span aria-hidden="true">↗</span></a><a href="#p-bi"><span class="index-number">02</span><span>jaffle_shop <span class="index-subtitle"><span lang="en">dashboard</span><span lang="zh">分析看板</span></span></span><span aria-hidden="true">↗</span></a><a href="#p-dbt"><span class="index-number">03</span><span>dbt <span class="index-subtitle"><span lang="en">starter on DuckDB</span><span lang="zh">基于 DuckDB 的建模项目</span></span></span><span aria-hidden="true">↗</span></a><a href="#p-ml"><span class="index-number">04</span><span><span lang="en">Grouped</span><span lang="zh">分组</span> <span class="index-subtitle"><span lang="en">cross-validation</span><span lang="zh">交叉验证</span></span></span><span aria-hidden="true">↗</span></a><a href="#p-gacha"><span class="index-number">05</span><span>Gacha <span class="index-subtitle"><span lang="en">Economy Sim</span><span lang="zh">经济模拟器</span></span></span><span aria-hidden="true">↗</span></a><a href="#p-second"><span class="index-number">06</span><span>second-pass</span><span aria-hidden="true">↗</span></a></nav></details><div class="pro-grid"><article class="pro-card editorial-story has-visual featured-case" id="p-olist"><header class="project-heading"><h3 class="pro-title">Olist <em><span lang="en">late deliveries vs repeat customers</span><span lang="zh">配送延迟与复购</span></em></h3><p class="pro-meta"><span lang="en">Product analysis · BI</span><span lang="zh">产品分析 · BI</span><span class="card-status"><span lang="en">Public dashboard</span><span lang="zh">公开看板</span></span></p></header><div class="project-visual"><figure class="pro-fig"><a class="image-link" href="https://public.tableau.com/app/profile/ziwei.su5374/viz/Olist-latedeliveriescostreviewsnotrepeatcustomers/1" target="_blank" rel="noopener"><img src="assets/gameplay/olist-dashboard.jpg" alt="Olist dashboard: the question, three findings, and bad reviews and repeat purchase by first-delivery timing" data-alt-en="Olist dashboard: the question, three findings, and bad reviews and repeat purchase by first-delivery timing" data-alt-zh="Olist 看板：问题、三条发现，以及按首单配送是否延迟划分的差评率和复购率" width="1199" height="690" loading="lazy" decoding="async"></a><figcaption><span lang="en">Top of the dashboard. The full version adds repeat by category and a cohort heatmap ↗</span><span lang="zh">看板上半部分；完整版还有按品类的复购和 cohort 热力图 ↗</span></figcaption></figure></div><div class="project-body"><p class="contribution-label"><span lang="en">My work</span><span lang="zh">我的工作</span></p><p class="pipeline-label"><span lang="en">OLIST / FROM QUESTION TO RECOMMENDATION</span><span lang="zh">OLIST / 从问题到建议</span></p><div class="data-pipeline"><span><span lang="en">01 / Business question</span><span lang="zh">01 / 业务问题</span></span><span><span lang="en">02 / DuckDB SQL</span><span lang="zh">02 / DuckDB SQL</span></span><span><span lang="en">03 / Significance check</span><span lang="zh">03 / 显著性检验</span></span><span><span lang="en">04 / Dashboard + recommendation</span><span lang="zh">04 / 看板 + 建议</span></span></div>
+          <p lang="en">Real public marketplace data (99,441 orders). Almost nobody buys twice on Olist: 1.95% of 55,259 first-time customers ordered again within 180 days. Is a bad first delivery the reason? Late first deliveries drew 58.2% one- or two-star reviews against 9.4% on time, but showed no significant difference in repeat purchase (1.69% vs 1.98%, z = 1.30). First-order category showed a wider spread (3.19% vs 1.05%). I chose the question and built the Tableau dashboard.</p>
+          <p lang="zh">用的是真实的公开电商数据（99,441 单）。Olist 上几乎没人买第二次：55,259 位首单顾客里，180 天内再下单的只有 1.95%。是第一次配送没做好导致的吗？首单延迟的顾客给 1–2 星的比例是 58.2%，按时送达的只有 9.4%；但复购率没有显著差别（1.69% 对 1.98%，z = 1.30）。首单品类之间的差距反而更大（3.19% 对 1.05%）。问题由我选定，Tableau 看板由我制作。</p>
+          <aside class="reading-note"><b><span lang="en">Reading the result</span><span lang="zh">如何解读结果</span></b><p><span lang="en">Recommendation: treat late delivery as a reputation problem, and test repeat-purchase campaigns for high-repeat categories against a holdout group. This is observational data, so the patterns are correlations. Review caught two errors before publishing: 797 "second orders" were split checkouts within an hour, so a repeat now needs a 24-hour gap, and a null-handling error in Tableau had understated the bad-review rate.</span><span lang="zh">建议：把配送延迟当口碑问题处理；针对高复购品类的首单顾客做复购营销，先和对照组比较再推广。这是观察数据，看到的只是相关关系。发布前复查发现两处错误：有 797 个「第二单」其实是一小时内的拆单结账，所以复购改为至少间隔 24 小时；Tableau 里的空值处理曾让差评率被低估。</span></p></aside><p class="scope-note"><span lang="en">Olist public dataset (CC BY-NC-SA 4.0) · 55,259 first-time customers · Tableau Public</span><span lang="zh">Olist 公开数据集（CC BY-NC-SA 4.0）· 55,259 位首单顾客 · Tableau Public</span></p><div class="proj-links"><a class="primary" href="https://public.tableau.com/app/profile/ziwei.su5374/viz/Olist-latedeliveriescostreviewsnotrepeatcustomers/1" target="_blank" rel="noopener"><span lang="en">Open on Tableau Public ↗</span><span lang="zh">在 Tableau Public 打开 ↗</span></a></div></div></article><article class="pro-card editorial-story has-visual" id="p-bi"><header class="project-heading"><h3 class="pro-title">jaffle_shop <em><span lang="en">dashboard</span><span lang="zh">分析看板</span></em></h3><p class="pro-meta"><span lang="en">BI</span><span lang="zh">BI</span><span class="card-status"><span lang="en">Public dashboard</span><span lang="zh">公开看板</span></span></p></header><div class="project-visual"><figure class="pro-fig"><a href="assets/gameplay/bi-dashboard.jpg" target="_blank" rel="noopener"><img src="assets/gameplay/bi-dashboard.jpg" alt="Dashboard with revenue, orders and repeat-rate cards, a cohort retention heatmap, monthly revenue and customer segments" data-alt-en="Dashboard with revenue, orders and repeat-rate cards, a cohort retention heatmap, monthly revenue and customer segments" data-alt-zh="看板展示收入、订单数、复购率、留存热力图、月度收入与客户分层" width="1600" height="917" loading="lazy" decoding="async"></a>
+            <figcaption><span lang="en">Power BI Desktop version. The Tableau Public version shows the same three charts.</span><span lang="zh">Power BI Desktop 版本；Tableau Public 版本是同样的三张图。</span></figcaption>
+          </figure></div><div class="project-body"><p class="contribution-label"><span lang="en">My work</span><span lang="zh">我的工作</span></p><p class="pipeline-label"><span lang="en">JAFFLE_SHOP / FROM SOURCE TO REPORT</span><span lang="zh">JAFFLE_SHOP / 从数据源到报表</span></p><div class="data-pipeline"><span><span lang="en">01 / Public data</span><span lang="zh">01 / 公开数据</span></span><span><span lang="en">02 / SQL + dbt</span><span lang="zh">02 / SQL + dbt</span></span><span><span lang="en">03 / 56 data tests</span><span lang="zh">03 / 56 个数据测试</span></span><span><span lang="en">04 / BI + interpretation</span><span lang="zh">04 / 看板与解读</span></span></div>
 
-    <p class="proj-lede">
-      <span lang="en">I turn product data into decisions: SQL models that reconcile with the raw data, A/B tests with guardrails fixed in advance, and retention reads that avoid circular reasoning. Below are methods from a live F2P game (anonymised, no business figures) and public projects you can run yourself.</span>
-      <span lang="zh">我把产品数据变成决策：能和原始数据对上账的 SQL 模型、提前定好护栏指标的 A/B 实验、避开循环论证的留存分析。下面是一款已上线 F2P 手游里的方法案例（已匿名，不写业务数值），以及可以自己跑起来的公开项目。</span>
-    </p>
 
-    <ul class="stat-row">
-      <li class="stat"><b>11</b><span lang="en">analytics reports cross-checked in a first-month diagnostic</span><span lang="zh">份报表交叉核对，用于开服首月诊断</span></li>
-      <li class="stat"><b>38</b><span lang="en">metrics defined in a monetisation data spec</span><span lang="zh">个指标，写进商业化数据需求文档</span></li>
-      <li class="stat"><b>200k</b><span lang="en">fixed-seed Monte Carlo runs to price a gacha event</span><span lang="zh">次固定种子蒙特卡洛，用于抽卡活动定价</span></li>
-      <li class="stat"><b>8%</b><span lang="en">paying-user rate on a shipped idle card RPG</span><span lang="zh">付费率，已上线的放置卡牌 RPG</span></li>
-    </ul>
 
-    <section class="proj-block" id="evidence">
-      <h2><span lang="en">What data roles ask for, and where to see it</span><span lang="zh">数据岗位要求的能力，以及对应的证据</span></h2>
-      <table class="evidence">
-        <thead><tr><th><span lang="en">Requirement</span><span lang="zh">要求</span></th><th><span lang="en">Evidence</span><span lang="zh">证据</span></th></tr></thead>
-        <tbody>
-          <tr><th><span lang="en">SQL and data modelling</span><span lang="zh">SQL 与数据建模</span></th><td><span lang="en"><a href="#p-dbt">dbt starter</a>: staging → intermediate → marts, window functions, 56 data tests including reconciliation checks</span><span lang="zh"><a href="#p-dbt">dbt 项目</a>：staging → intermediate → marts 三层、窗口函数、56 个数据测试（含对账测试）</span></td></tr>
-          <tr><th><span lang="en">BI tools and dashboards</span><span lang="zh">BI 工具与看板</span></th><td><span lang="en"><a href="#p-bi">jaffle_shop dashboard</a>: public Tableau Public dashboard, and the same report in Power BI Desktop with a data model and DAX measures</span><span lang="zh"><a href="#p-bi">jaffle_shop 看板</a>：公开的 Tableau Public 看板，以及在 Power BI Desktop 里做的同一份报表（数据模型 + DAX 度量值）</span></td></tr>
-          <tr><th><span lang="en">Retention, cohorts and funnels</span><span lang="zh">留存、分群与漏斗</span></th><td><span lang="en"><a href="#p-dbt">Cohort-retention mart</a> · <a href="#m3">Day-2 retention study</a> · <a href="#m1">First-month diagnostic</a></span><span lang="zh"><a href="#p-dbt">cohort 留存 mart</a> · <a href="#m3">次留专题</a> · <a href="#m1">开服首月诊断</a></span></td></tr>
-          <tr><th><span lang="en">Experiment design and causal reasoning</span><span lang="zh">实验设计与因果推理</span></th><td><span lang="en"><a href="#m2">A/B test design</a> · <a href="#m4">Post-launch retrospective</a> · <a href="#p-second">second-pass</a> (Bonferroni-corrected tests)</span><span lang="zh"><a href="#m2">A/B 实验设计</a> · <a href="#m4">改版复盘</a> · <a href="#p-second">second-pass</a>（Bonferroni 校正检验）</span></td></tr>
-          <tr><th><span lang="en">Python, statistics and ML</span><span lang="zh">Python、统计与机器学习</span></th><td><span lang="en"><a href="#p-ml">Grouped cross-validation</a> (logistic regression, LightGBM) · <a href="#p-gacha">Gacha Economy Sim</a> (fixed-seed Monte Carlo)</span><span lang="zh"><a href="#p-ml">分组交叉验证</a>（逻辑回归、LightGBM）· <a href="#p-gacha">抽卡经济模拟器</a>（固定种子蒙特卡洛）</span></td></tr>
-          <tr><th><span lang="en">Analysis that becomes a decision</span><span lang="zh">分析落到决策</span></th><td><span lang="en"><a href="#m1">Diagnostic</a> · <a href="#m4">Retrospective</a> · <a href="#m5">38-metric data spec</a></span><span lang="zh"><a href="#m1">首月诊断</a> · <a href="#m4">改版复盘</a> · <a href="#m5">38 个指标的数据需求文档</a></span></td></tr>
-          <tr><th><span lang="en">Reproducible, tested work</span><span lang="zh">可复现、有测试</span></th><td><span lang="en">dbt tests and pytest suites run in GitHub Actions; fixed random seeds in every simulation</span><span lang="zh">dbt 测试和 pytest 在 GitHub Actions 里自动运行；所有模拟都用固定随机种子</span></td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="proj-block" id="methods">
-      <h2><span lang="en">Methods from live work</span><span lang="zh">工作中的方法案例</span></h2>
-      <p lang="en">From a live F2P mobile title (live since May 2026). Studio and game are anonymised; no business figures are shown.</p>
-      <p lang="zh">来自一款已上线运营的 F2P 手游（2026 年 5 月上线）。工作室和游戏名已匿名，不展示任何业务数值。</p>
-
-      <h3 class="data-case" id="m1"><span lang="en">1 · First-month live diagnostic</span><span lang="zh">1 · 开服首月数据诊断</span></h3>
-      <div class="proj-pdo">
-        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">After launch, the team needed to know which problems were real and which were noise across many separate reports.</p><p lang="zh">上线后，团队需要从大量分散的报表里分清哪些是真问题、哪些是噪音。</p></div>
-        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Ingested 11 analytics reports and cross-validated key KPIs through business reconciliation before trusting any of them.</p><p lang="zh">汇总 11 份报表，先用业务勾稽关系交叉校验关键指标，再决定信哪些数据。</p></div>
-        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Three systemic issues, each backed by several metrics: uneven acquisition quality, shallow payment depth, and difficulty walls that churn players rather than convert them.</p><p lang="zh">找出三个系统性问题，每个都有多项指标佐证：买量质量参差、付费深度偏浅、关卡卡点导致流失而不是转化。</p></div>
-      </div>
-
-      <h3 class="data-case" id="m2"><span lang="en">2 · A/B test design</span><span lang="zh">2 · A/B 实验设计</span></h3>
-      <div class="proj-pdo">
-        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Test a mid-tier monetisation offer without hurting retention or inviting early, biased stops.</p><p lang="zh">测试一个中档商业化礼包，既不能伤留存，也要避免提前看结果带来的偏差。</p></div>
-        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">One primary metric (ARPPU), retention and refund rate as guardrails, sample plan and stop rule fixed in advance, results re-checked by payer segment.</p><p lang="zh">一个主指标（ARPPU），留存和退款率作护栏；样本量和停止规则提前定好；按付费分层复核结果。</p></div>
-        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Backed by incremental-revenue scenarios with ±20% sensitivity and an LTV-versus-CPA break-even read on acquisition spend.</p><p lang="zh">配了 ±20% 敏感度的增量收入情景，以及 LTV 对比 CPA 的买量回本判断。</p></div>
-      </div>
-
-      <h3 class="data-case" id="m3"><span lang="en">3 · Day-2 retention study</span><span lang="zh">3 · 次留专题</span></h3>
-      <div class="proj-pdo">
-        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Grouping players by their current progress made high-progress groups look sticky by definition: the players who stayed are the ones who progressed.</p><p lang="zh">按玩家「当前进度」分组，高进度组天然显得留存高：留下来的人本来就是进度高的人。</p></div>
-        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Separated snapshot attributes from day-1 event data and reported only on the latter.</p><p lang="zh">把「当前快照」类字段和「首日事件」数据分开，只用后者做汇报口径。</p></div>
-        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">First-session progression depth as the strongest day-2 predictor, and the highest-ROI player segment to move.</p><p lang="zh">找出次留最强的预测因素是首日推进深度，并定位了最值得撬动的玩家人群。</p></div>
-      </div>
-
-      <h3 class="data-case" id="m4"><span lang="en">4 · Post-launch retrospective</span><span lang="zh">4 · 改版上线后复盘</span></h3>
-      <div class="proj-pdo">
-        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">A monetisation rework and an onboarding change shipped together. Did either one actually work, or did traffic change?</p><p lang="zh">商业化改版和新手流程改动同时上线。到底哪个起了作用，还是只是流量变了？</p></div>
-        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Designed a before/after read that controlled for active-user and acquisition changes, separating design-driven lift from traffic-driven lift.</p><p lang="zh">设计前后对比口径，控制活跃和买量的变化，把「设计带来的提升」和「流量带来的提升」分开。</p></div>
-        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">An honest null result: payment efficiency improved, but the onboarding change did not move retention, so the next iteration targeted first-session depth instead.</p><p lang="zh">如实汇报无效结果：付费效率提升了，新手流程改动却没有带动留存，所以下一轮改为直接针对首日推进深度。</p></div>
-      </div>
-
-      <h3 class="data-case" id="m5"><span lang="en">5 · Metric definitions and repeatable methods</span><span lang="zh">5 · 指标体系与方法沉淀</span></h3>
-      <div class="proj-pdo">
-        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Reports disagreed because the same metric was defined differently in different places.</p><p lang="zh">同一个指标在不同地方定义不同，导致报表对不上。</p></div>
-        <div><h3><span lang="en">Approach</span><span lang="zh">做法</span></h3><p lang="en">Wrote a data requirements document with a 38-metric dictionary (locked definitions, formulas and granularity), drill-down dimensions and instrumentation requirements.</p><p lang="zh">撰写数据需求文档：38 个指标的字典（口径、公式、粒度全部锁定），加下钻维度和埋点需求。</p></div>
-        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Analytics and engineering built reporting from it. The analysis approach became a reusable four-level template (describe → locate → drive → verify) and a version-update attribution runbook.</p><p lang="zh">数据团队和程序据此搭建报表。分析方法也整理成可复用的四层模板（描述 → 定位 → 驱动 → 验证）和版本更新归因手册。</p></div>
-      </div>
-    </section>
-
-    <section class="proj-block" id="projects">
-      <h2><span lang="en">Public projects</span><span lang="zh">公开项目</span></h2>
-      <div class="pro-grid">
-        <article class="pro-card" id="p-dbt">
-          <p class="pro-meta"><span lang="en">AI-assisted build (with Claude) · Analytics engineering</span><span lang="zh">AI 协助开发（Claude）· 分析工程</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
-          <h3 class="pro-title">dbt <em>starter on DuckDB</em></h3>
-          <figure class="pro-fig">
+          <p lang="en">I turned the three marts from the dbt project into a dashboard: a cohort-retention heatmap, monthly revenue and customer segments. Published on Tableau Public, and rebuilt in Power BI Desktop with a relationship between orders and customers, three DAX measures (revenue, orders, repeat rate) and a heatmap made from a matrix with conditional formatting. </p>
+          <p lang="zh">我把 dbt 项目的三张 mart 表做成看板：cohort 留存热力图、月度收入、客户分层。发布在 Tableau Public 上；又在 Power BI Desktop 里重做一遍，建了订单表和客户表的关联、三个 DAX 度量值（收入、订单数、复购率），热力图用矩阵加条件格式做出。</p>
+          <aside class="reading-note"><b><span lang="en">Reading the report</span><span lang="zh">如何解读这份报表</span></b><p><span lang="en">April is a partial month, so its revenue should not be compared directly with complete months. With only 99 sample orders, this demonstrates the reporting method rather than a business trend. Next check: compare equal observation windows and show cohort sizes alongside retention.</span><span lang="zh">4 月数据不完整，不能直接与完整月份比较收入。样例仅有 99 笔订单，因此这里展示报表方法，不据此推断业务趋势。下一步检查：统一观察窗口，并在留存旁标注各 cohort 的人数。</span></p></aside><p class="scope-note"><span lang="en">Public training data · 99 orders · Power BI Desktop, not a production BI deployment.</span><span lang="zh">公开练习数据 · 99 笔订单 · Power BI Desktop，非生产 BI 部署。</span></p><div class="proj-links"><a class="primary" href="https://public.tableau.com/app/profile/ziwei.su5374/viz/jaffle_shopcohortretentiondbtDuckDB/jaffle_shopcohortretentiondbtDuckDB" target="_blank" rel="noopener"><span lang="en">Open on Tableau Public ↗</span><span lang="zh">在 Tableau Public 打开 ↗</span></a><a href="assets/gameplay/bi-dashboard.jpg" target="_blank" rel="noopener"><span lang="en">Full-size dashboard ↗</span><span lang="zh">查看看板原图 ↗</span></a><a href="#p-dbt"><span lang="en">Inspect the SQL model ↓</span><span lang="zh">查看 SQL 模型 ↓</span></a></div></div></article><article class="pro-card editorial-story has-visual" id="p-dbt"><header class="project-heading"><h3 class="pro-title">dbt <em><span lang="en">starter on DuckDB</span><span lang="zh">基于 DuckDB 的建模项目</span></em></h3><p class="pro-meta"><span lang="en">Analytics engineering</span><span lang="zh">分析工程</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p></header><div class="project-visual"><figure class="pro-fig">
 <svg viewBox="0 0 520 190" role="img" aria-labelledby="dbtLinTitle">
 <title id="dbtLinTitle">dbt lineage: three seeds, three staging models, two intermediate models and three marts</title>
 <text x="8" y="16" font-size="9" letter-spacing="1.2" fill="#9a9a98">SEEDS</text>
@@ -169,15 +109,9 @@
 <text x="359" y="170.5" font-size="9.5" fill="#ffffff">fct_customer_cohort_retention</text>
 </svg>
             <figcaption><span lang="en">Model lineage. Marts are filled.</span><span lang="zh">模型血缘图，深色为 mart 层。</span></figcaption>
-          </figure>
-          <p lang="en">Public jaffle_shop sample data, modelled in three layers so each question (revenue by order, customer value, monthly retention) is answered by one tested mart. Order sequence and cohort month come from window functions. 56 data tests pass, including three reconciliation checks: revenue in the marts equals raw payments, every order is counted once, and month-zero retention is exactly 100%. Generated docs and a CI build that fails on any test failure.</p>
-          <p lang="zh">用 dbt 官方公开样例数据 jaffle_shop，分三层建模，让「每单收入、客户价值、月度留存」三个问题各由一张有测试的 mart 表回答。订单序号和 cohort 月份用窗口函数算出。56 个数据测试全部通过，其中三条是对账测试：mart 里的总收入等于原始支付总额、每单只计一次、首月留存恰好是 100%。附自动生成的文档，CI 里任何测试失败都会让构建失败。</p>
-          <div class="proj-links"><a href="https://github.com/suzyeth/dbt-public-starter" target="_blank" rel="noopener">GitHub ↗</a></div>
-        </article>
-        <article class="pro-card" id="p-ml">
-          <p class="pro-meta"><span lang="en">AI-assisted build (with Claude) · Machine learning</span><span lang="zh">AI 协助开发（Claude）· 机器学习</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
-          <h3 class="pro-title">Grouped <em>cross-validation</em></h3>
-          <figure class="pro-fig">
+          </figure></div><div class="project-body"><p class="contribution-label"><span lang="en">My work</span><span lang="zh">我的工作</span></p><p lang="en">I modelled public jaffle_shop sample data in three layers so each question (revenue by order, customer value, monthly retention) is answered by one tested mart. Order sequence and cohort month come from window functions. 56 data tests pass, including three reconciliation checks: revenue in the marts equals raw payments, every order is counted once, and month-zero retention is exactly 100%. Generated docs and a CI build that fails on any test failure.</p>
+          <p lang="zh">我用 dbt 官方公开样例数据 jaffle_shop 分三层建模，让「每单收入、客户价值、月度留存」三个问题各由一张有测试的 mart 表回答。订单序号和 cohort 月份用窗口函数算出。56 个数据测试全部通过，其中三条是对账测试：mart 里的总收入等于原始支付总额、每单只计一次、首月留存恰好是 100%。附自动生成的文档，CI 里任何测试失败都会让构建失败。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/dbt-public-starter" target="_blank" rel="noopener">GitHub ↗</a></div></div></article><article class="pro-card editorial-story has-visual" id="p-ml"><header class="project-heading"><h3 class="pro-title"><span lang="en">Grouped</span><span lang="zh">分组</span> <em><span lang="en">cross-validation</span><span lang="zh">交叉验证</span></em></h3><p class="pro-meta"><span lang="en">Machine learning</span><span lang="zh">机器学习</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p></header><div class="project-visual"><figure class="pro-fig">
 <svg viewBox="0 0 420 196" role="img" aria-labelledby="cvTitle">
 <title id="cvTitle">Macro-F1 by model: random K-fold versus leave-one-well-out</title>
 <rect class="bar-k" x="128" y="8" width="10" height="10" rx="2"/><text x="144" y="17" font-size="10.5" fill="#4d5960">Random K-fold</text>
@@ -209,45 +143,63 @@
 <text x="251.8" y="166" font-size="10" fill="#4d5960">0.380</text>
 </svg>
             <figcaption><span lang="en">Macro-F1 from the repository's results.csv.</span><span lang="zh">macro-F1，数据来自仓库里的 results.csv。</span></figcaption>
-          </figure>
-          <p lang="en">Rock-type classification from well logs on a public dataset (3,164 rows, 7 wells, 9 classes). Scored twice: shuffled K-fold, and holding out whole wells, which is how the model would really be used. Random K-fold made LightGBM look like a 0.71 macro-F1 model, clearly ahead of logistic regression; held out by well it scores 0.38 and ties it. The leak inflated the score and would have picked the wrong model. 26 tests.</p>
-          <p lang="zh">用公开测井数据（3,164 行、7 口井、9 类岩相）做岩相分类，评估两次：随机打乱的 K 折，以及整口井留出（这才是模型真实的用法）。随机 K 折下 LightGBM 的 macro-F1 是 0.71，明显好过逻辑回归；按井留出后只有 0.38，和逻辑回归打平。数据泄漏抬高了分数，还会让人选错模型。26 个测试。</p>
-          <div class="proj-links"><a href="https://github.com/suzyeth/tabular-ml-public" target="_blank" rel="noopener">GitHub ↗</a></div>
-        </article>
-        <article class="pro-card" id="p-bi">
-          <p class="pro-meta"><span lang="en">Built myself (AI-guided) · BI</span><span lang="zh">本人动手（AI 指导）· BI</span><span class="card-status"><span lang="en">Public dashboard</span><span lang="zh">公开看板</span></span></p>
-          <h3 class="pro-title">jaffle_shop <em>dashboard</em></h3>
-          <figure class="pro-fig"><img src="assets/gameplay/bi-dashboard.jpg" alt="Dashboard with revenue, orders and repeat-rate cards, a cohort retention heatmap, monthly revenue and customer segments" width="1600" height="917" loading="lazy" decoding="async">
-            <figcaption><span lang="en">Power BI Desktop version. The Tableau Public version shows the same three charts.</span><span lang="zh">Power BI Desktop 版本；Tableau Public 版本是同样的三张图。</span></figcaption>
-          </figure>
-          <p lang="en">The three marts from the dbt project, turned into a dashboard: a cohort-retention heatmap, monthly revenue and customer segments. Published on Tableau Public, and rebuilt in Power BI Desktop with a relationship between orders and customers, three DAX measures (revenue, orders, repeat rate) and a heatmap made from a matrix with conditional formatting. Public sample data; April is partial and the dashboard says so.</p>
-          <p lang="zh">把 dbt 项目的三张 mart 表做成看板：cohort 留存热力图、月度收入、客户分层。发布在 Tableau Public 上；又在 Power BI Desktop 里重做一遍，建了订单表和客户表的关联、三个 DAX 度量值（收入、订单数、复购率），热力图用矩阵加条件格式做出。数据是公开样例；4 月数据不完整，看板上已注明。</p>
-          <div class="proj-links"><a class="primary" href="https://public.tableau.com/app/profile/ziwei.su5374/viz/jaffle_shopcohortretentiondbtDuckDB/jaffle_shopcohortretentiondbtDuckDB" target="_blank" rel="noopener"><span lang="en">Open on Tableau Public ↗</span><span lang="zh">在 Tableau Public 打开 ↗</span></a></div>
-        </article>
-        <article class="pro-card" id="p-gacha">
-          <p class="pro-meta"><span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Live tool</span><span lang="zh">在线可用</span></span></p>
-          <h3 class="pro-title">Gacha <em>Economy Sim</em></h3>
-          <figure class="pro-fig"><img src="assets/gameplay/gacha-result.png" alt="Gacha Economy Sim: target-driven simulation with percentile cost table" width="1152" height="720" loading="lazy" decoding="async"></figure>
-          <p lang="en">Compares three pity rules with 20,000 seeded trials each, measuring acquisition cost and total issuance separately, and states what the experiment cannot tell you.</p>
-          <p lang="zh">用三种保底规则各跑 2 万次固定种子模拟，把获取成本和总投放分开测量，并写明这个实验回答不了什么。</p>
-          <div class="proj-links"><a class="primary" href="projects/gacha.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a></div>
-        </article>
-        <article class="pro-card" id="p-second">
-          <p class="pro-meta"><span lang="en">Solo · Analysis</span><span lang="zh">独立 · 分析</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
-          <h3 class="pro-title">second-pass</h3>
-          <figure class="pro-fig"><img src="ai/assets/second-pass-architecture.png" alt="second-pass data and agent architecture" width="2720" height="2400" loading="lazy" decoding="async"></figure>
-          <p lang="en">Audience attention versus shot content in films, with every answer grounded in a real ClickHouse query. The obvious story did not survive: attention rises toward the end of almost every film regardless of content, so raw correlations are confounded. Across three films and 18 tests against Bonferroni-corrected thresholds, one result cleared the floor by a hair and did not replicate. The write-up also publishes my own errors: end credits had been scored as film, which produced the original 4.40× headline (1.28× on the film itself).</p>
-          <p lang="zh">分析电影中观众注意力和镜头内容的关系，每个回答都来自真实的 ClickHouse 查询。最直观的结论没有站住：几乎每部片子后半段的注意力都会上升，和内容无关，所以直接做相关会被这个趋势干扰。三部片、18 项检验按 Bonferroni 校正后的阈值判断，只有一项勉强过线，而且没有复现。文档也公开了我自己的错误：片尾字幕曾被当作正片打分，最初“后半段是前半段 4.40 倍”的结论由此而来（正片本身是 1.28 倍）。</p>
-          <div class="proj-links"><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a></div>
-        </article>
+          </figure></div><div class="project-body"><p class="contribution-label"><span lang="en">My work</span><span lang="zh">我的工作</span></p><p lang="en">I compared validation strategies for rock-type classification from well logs on a public dataset (3,164 rows, 7 wells, 9 classes). Scored twice: shuffled K-fold, and holding out whole wells, which is how the model would really be used. Random K-fold made LightGBM look like a 0.71 macro-F1 model, clearly ahead of logistic regression; held out by well it scores 0.38 and ties it. The leak inflated the score and would have picked the wrong model. 26 tests.</p>
+          <p lang="zh">我用公开测井数据（3,164 行、7 口井、9 类岩相）做岩相分类，评估两次：随机打乱的 K 折，以及整口井留出（这才是模型真实的用法）。随机 K 折下 LightGBM 的 macro-F1 是 0.71，明显好过逻辑回归；按井留出后只有 0.38，和逻辑回归打平。数据泄漏抬高了分数，还会让人选错模型。26 个测试。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/tabular-ml-public" target="_blank" rel="noopener">GitHub ↗</a></div></div></article><article class="pro-card editorial-story has-visual" id="p-gacha"><header class="project-heading"><h3 class="pro-title">Gacha <em><span lang="en">Economy Sim</span><span lang="zh">经济模拟器</span></em></h3><p class="pro-meta"><span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Live tool</span><span lang="zh">在线可用</span></span></p></header><div class="project-visual"><figure class="pro-fig"><a class="image-link" href="assets/gameplay/gacha-result.png" target="_blank" rel="noopener"><img src="assets/gameplay/gacha-result.png" alt="Gacha Economy Sim: target-driven simulation with percentile cost table" data-alt-en="Gacha Economy Sim: target-driven simulation with percentile cost table" data-alt-zh="抽卡经济模拟器：目标驱动模拟及成本分位数表" width="1152" height="720" loading="lazy" decoding="async"></a><figcaption><span lang="en">Open full-size image ↗</span><span lang="zh">点击图片查看原图 ↗</span></figcaption></figure></div><div class="project-body"><p class="contribution-label"><span lang="en">My work</span><span lang="zh">我的工作</span></p><p lang="en">I compared three pity rules with 20,000 seeded trials each, measuring acquisition cost and total issuance separately, and stated what the experiment cannot tell you.</p>
+          <p lang="zh">我用三种保底规则各跑 2 万次固定种子模拟，把获取成本和总投放分开测量，并写明这个实验回答不了什么。</p>
+          <div class="proj-links"><a class="primary" href="projects/gacha.html"><span lang="en">Case study →</span><span lang="zh">查看案例 →</span></a></div></div></article><article class="pro-card editorial-story has-visual" id="p-second"><header class="project-heading"><h3 class="pro-title">second-pass</h3><p class="pro-meta"><span lang="en">Solo · Analysis</span><span lang="zh">独立 · 分析</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p></header><div class="project-visual"><figure class="pro-fig"><a class="image-link" href="ai/assets/second-pass-architecture.png" target="_blank" rel="noopener"><img src="ai/assets/second-pass-architecture.png" alt="second-pass data and agent architecture" data-alt-en="second-pass data and agent architecture" data-alt-zh="second-pass 数据与 agent 架构图" width="2720" height="2400" loading="lazy" decoding="async"></a><figcaption><span lang="en">Original architecture (ClickHouse Cloud). The current deployment embeds ClickHouse in the Cloud Run image. Open full-size ↗</span><span lang="zh">原始架构图（ClickHouse Cloud）；当前部署已将 ClickHouse 放入 Cloud Run 镜像。点击查看原图 ↗</span></figcaption></figure></div><div class="project-body"><p class="contribution-label"><span lang="en">My work</span><span lang="zh">我的工作</span></p><p lang="en">I analysed audience attention versus shot content in films, grounding the analysis in real ClickHouse queries. The obvious story did not survive: attention rises toward the end of almost every film regardless of content, so raw correlations are confounded. Across three films and 18 tests against Bonferroni-corrected thresholds, one result cleared the floor by a hair and did not replicate. The write-up also publishes my own errors: end credits had been scored as film, which produced the original 4.40× headline (1.28× on the film itself).</p>
+          <p lang="zh">我分析电影中观众注意力和镜头内容的关系，通过真实的 ClickHouse 查询为回答提供依据。最直观的结论没有站住：几乎每部片子后半段的注意力都会上升，和内容无关，所以直接做相关会被这个趋势干扰。三部片、18 项检验按 Bonferroni 校正后的阈值判断，只有一项勉强过线，而且没有复现。文档也公开了我自己的错误：片尾字幕曾被当作正片打分，最初“后半段是前半段 4.40 倍”的结论由此而来（正片本身是 1.28 倍）。</p>
+          <div class="proj-links"><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a></div></div></article></div></section>
+
+
+    <section class="proj-block" id="methods">
+      <h2><span lang="en">Methods from live work</span><span lang="zh">工作中的方法案例</span></h2>
+      <p lang="en">From a live F2P mobile title (live since May 2026). Studio and game are anonymised; no business figures are shown.</p>
+      <p lang="zh">来自一款已上线运营的 F2P 手游（2026 年 5 月上线）。工作室和游戏名已匿名，不展示任何业务数值。</p>
+
+      <h3 class="data-case" id="m1"><span lang="en">1 · First-month live diagnostic</span><span lang="zh">1 · 开服首月数据诊断</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">After launch, the team needed to know which problems were real and which were noise across many separate reports.</p><p lang="zh">上线后，团队需要从大量分散的报表里分清哪些是真问题、哪些是噪音。</p></div>
+        <div><h3><span lang="en">My approach</span><span lang="zh">我的做法</span></h3><p lang="en">Ingested 11 analytics reports and cross-validated key KPIs through business reconciliation before trusting any of them.</p><p lang="zh">汇总 11 份报表，先用业务勾稽关系交叉校验关键指标，再决定信哪些数据。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Three systemic issues, each backed by several metrics: uneven acquisition quality, shallow payment depth, and difficulty walls that churn players rather than convert them.</p><p lang="zh">找出三个系统性问题，每个都有多项指标佐证：买量质量参差、付费深度偏浅、关卡卡点导致流失而不是转化。</p></div>
+      </div>
+
+      <h3 class="data-case" id="m2"><span lang="en">2 · A/B test design</span><span lang="zh">2 · A/B 实验设计</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Test a mid-tier monetisation offer without hurting retention or inviting early, biased stops.</p><p lang="zh">测试一个中档商业化礼包，既不能伤留存，也要避免提前看结果带来的偏差。</p></div>
+        <div><h3><span lang="en">My approach</span><span lang="zh">我的做法</span></h3><p lang="en">One primary metric (ARPPU), retention and refund rate as guardrails, sample plan and stop rule fixed in advance, planned segment-level re-checks.</p><p lang="zh">一个主指标（ARPPU），留存和退款率作护栏；样本量和停止规则提前定好；计划按付费分层复核结果。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Backed by incremental-revenue scenarios with ±20% sensitivity and an LTV-versus-CPA break-even read on acquisition spend.</p><p lang="zh">配了 ±20% 敏感度的增量收入情景，以及 LTV 对比 CPA 的买量回本判断。</p></div>
+      </div>
+
+      <h3 class="data-case" id="m3"><span lang="en">3 · Day-2 retention study</span><span lang="zh">3 · 次留专题</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Grouping players by their current progress made high-progress groups look sticky by definition: the players who stayed are the ones who progressed.</p><p lang="zh">按玩家「当前进度」分组，高进度组天然显得留存高：留下来的人本来就是进度高的人。</p></div>
+        <div><h3><span lang="en">My approach</span><span lang="zh">我的做法</span></h3><p lang="en">Separated snapshot attributes from day-1 event data and reported only on the latter.</p><p lang="zh">把「当前快照」类字段和「首日事件」数据分开，只用后者做汇报口径。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">First-session progression depth as the strongest day-2 predictor, and the highest-ROI player segment to move.</p><p lang="zh">找出次留最强的预测因素是首日推进深度，并定位了最值得撬动的玩家人群。</p></div>
+      </div>
+
+      <h3 class="data-case" id="m4"><span lang="en">4 · Post-launch retrospective</span><span lang="zh">4 · 改版上线后复盘</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">A monetisation rework and an onboarding change shipped together. Did either one actually work, or did traffic change?</p><p lang="zh">商业化改版和新手流程改动同时上线。到底哪个起了作用，还是只是流量变了？</p></div>
+        <div><h3><span lang="en">My approach</span><span lang="zh">我的做法</span></h3><p lang="en">Designed a before/after read that controlled for active-user and acquisition changes, separating design-driven lift from traffic-driven lift.</p><p lang="zh">设计前后对比口径，控制活跃和买量的变化，把「设计带来的提升」和「流量带来的提升」分开。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">An honest null result: payment efficiency improved, but the onboarding change did not move retention, so I recommended targeting first-session depth in the next iteration.</p><p lang="zh">如实汇报无效结果：付费效率提升了，新手流程改动却没有带动留存，因此我建议下一轮针对首日推进深度继续优化。</p></div>
+      </div>
+
+      <h3 class="data-case" id="m5"><span lang="en">5 · Metric definitions and repeatable methods</span><span lang="zh">5 · 指标体系与方法沉淀</span></h3>
+      <div class="proj-pdo">
+        <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Reports disagreed because the same metric was defined differently in different places.</p><p lang="zh">同一个指标在不同地方定义不同，导致报表对不上。</p></div>
+        <div><h3><span lang="en">My approach</span><span lang="zh">我的做法</span></h3><p lang="en">Wrote a data requirements document with a 38-metric dictionary (locked definitions, formulas and granularity), drill-down dimensions and instrumentation requirements.</p><p lang="zh">撰写数据需求文档：38 个指标的字典（口径、公式、粒度全部锁定），加下钻维度和埋点需求。</p></div>
+        <div><h3><span lang="en">What it shows</span><span lang="zh">体现的能力</span></h3><p lang="en">Analytics and engineering built reporting from it. The analysis approach became a reusable four-level template (describe → locate → drive → verify) and a version-update attribution runbook.</p><p lang="zh">数据团队和程序据此搭建报表。分析方法也整理成可复用的四层模板（描述 → 定位 → 驱动 → 验证）和版本更新归因手册。</p></div>
       </div>
     </section>
+<section class="proj-block" id="evidence"><h2><span lang="en">Skills, with evidence.</span><span lang="zh">能力与证据。</span></h2><table class="evidence"><thead><tr><th><span lang="en">Skill</span><span lang="zh">能力</span></th><th><span lang="en">Where to look</span><span lang="zh">对应案例</span></th></tr></thead><tbody><tr><th scope="row"><span lang="en">SQL & data quality</span><span lang="zh">SQL 与数据质量</span></th><td><a href="#p-dbt">dbt ↗</a><br><span lang="en">Layered models and reconciliation tests</span><span lang="zh">分层建模与对账测试</span></td></tr><tr><th scope="row"><span lang="en">BI reporting</span><span lang="zh">BI 报表</span></th><td><a href="#p-olist">Olist ↗</a> · <a href="#p-bi">jaffle_shop ↗</a><br><span lang="en">Analysis dashboard on real data; data relationships and DAX</span><span lang="zh">真实数据上的分析看板；数据关联与 DAX</span></td></tr><tr><th scope="row"><span lang="en">Retention & product diagnosis</span><span lang="zh">留存与产品诊断</span></th><td><a href="#m3"><span lang="en">Day-2 retention</span><span lang="zh">次留专题</span> ↗</a><br><span lang="en">Event definitions and cohort interpretation</span><span lang="zh">事件口径与分群解读</span></td></tr><tr><th scope="row"><span lang="en">Experiment design</span><span lang="zh">实验设计</span></th><td><a href="#m2"><span lang="en">A/B test plan</span><span lang="zh">A/B 实验方案</span> ↗</a><br><span lang="en">Primary metric, guardrails and stopping rules</span><span lang="zh">主指标、护栏与停止规则</span></td></tr><tr><th scope="row"><span lang="en">Statistics & validation</span><span lang="zh">统计与验证</span></th><td><a href="#p-ml"><span lang="en">Grouped cross-validation</span><span lang="zh">分组交叉验证</span> ↗</a><br><span lang="en">Random versus held-out evaluation</span><span lang="zh">随机划分与分组留出对比</span></td></tr><tr><th scope="row"><span lang="en">Analysis into action</span><span lang="zh">分析落到行动</span></th><td><a href="#p-olist">Olist ↗</a> · <a href="#m4"><span lang="en">Post-launch review</span><span lang="zh">改版复盘</span> ↗</a><br><span lang="en">Recommendations grounded in observed results</span><span lang="zh">基于观察结果提出迭代建议</span></td></tr></tbody></table></section>
 
-    <section class="proj-block">
-      <h2><span lang="en">Skills</span><span lang="zh">技能</span></h2>
+
+
+    <section class="proj-block tools-inventory"><details><summary><span lang="en">Full toolset</span><span lang="zh">完整工具与方法清单</span></summary>
       <p lang="en">SQL (joins, aggregation, window functions, CTEs) · dbt (dbt-core on DuckDB) · Python (pandas, scikit-learn, LightGBM, openpyxl reporting) · pytest, GitHub Actions · Tableau Public · Power BI Desktop (DAX) · ThinkingData · experiment design · funnel, retention and cohort analysis · LTV and payer-tier modelling · event-schema design · Excel modelling</p>
       <p lang="zh">SQL（JOIN、聚合、窗口函数、CTE）· dbt（dbt-core，DuckDB）· Python（pandas、scikit-learn、LightGBM、openpyxl 报表）· pytest、GitHub Actions · Tableau Public · Power BI Desktop（DAX）· ThinkingData · 实验设计 · 漏斗、留存与分群分析 · LTV 与付费分层 · 埋点事件设计 · Excel 建模</p>
-    </section>
+    </details></section>
 
     <section class="proj-block" id="contact">
       <h2><span lang="en">Contact</span><span lang="zh">联系</span></h2>
@@ -279,12 +231,18 @@
   const apply = (l) => {
     document.body.classList.toggle('zh', l === 'zh');
     document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
-    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+    if (btn) {
+      btn.setAttribute('aria-pressed', String(l === 'zh'));
+      btn.setAttribute('aria-label', l === 'zh' ? '切换到英文' : 'Switch to Chinese');
+    }
+    document.querySelectorAll('[data-alt-en]').forEach(el => el.alt = el.dataset[l === 'zh' ? 'altZh' : 'altEn']);
   };
-  apply(localStorage.getItem(KEY) || 'en');
+  let saved = 'en';
+  try { saved = localStorage.getItem(KEY) || 'en'; } catch (_) {}
+  apply(saved);
   if (btn) btn.addEventListener('click', () => {
     const next = document.body.classList.contains('zh') ? 'en' : 'zh';
-    localStorage.setItem(KEY, next);
+    try { localStorage.setItem(KEY, next); } catch (_) {}
     apply(next);
   });
 })();
@@ -306,14 +264,9 @@
   });
 })();
 
-// Lenis smooth scroll (optional).
-window.addEventListener('load', () => {
-  if (typeof Lenis === 'undefined') return;
-  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
-  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-});
+
 </script>
 
+<script src="assets/career-tracks.js?v=20261023-reading-flow" defer></script>
 </body>
 </html>

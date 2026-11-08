@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static, bilingual (English / 简体中文) portfolio site for game designer Ziwei Su ("Suzy Su" / 苏紫薇). Plain HTML + CSS with a little inline JS — **no build step, no package manager, no framework, no bundler, no test runner, no linter.** Editing files is the entire workflow; "deploying" is uploading the directory (GitHub Pages).
+A static, bilingual (English / 简体中文) portfolio site for game designer Suzy Su ("Suzy Su" / Suzy Su). Plain HTML + CSS with a little inline JS — **no build step, no package manager, no framework, no bundler, no test runner, no linter.** Editing files is the entire workflow; "deploying" is uploading the directory (GitHub Pages).
 
 It is no longer a single page: `index.html` is the homepage, and `projects/<id>.html` are per-project case-study pages linked from the Work cards.
 
@@ -64,7 +64,7 @@ At `≤640px` the section links collapse into a dropdown behind `#menuToggle` (h
 
 ### NDA / confidentiality rule (hard)
 
-The portfolio shows **only personal-project work** alongside high-level descriptions of professional experience. Do not add screenshots, diagrams, or any asset from an employer's work. Professional titles stay anonymous (use type descriptions like "F2P RPG (East Asia)" / "F2P Roguelike Shooter"). The credibility strip is deliberately vague. `assets/` is personal-project media only.
+The portfolio shows **only personal-project work** alongside high-level descriptions of professional experience. Do not add screenshots, diagrams, or any asset from an employer's work. Professional titles stay anonymous (use type descriptions like "F2P mobile title" / "F2P mobile title"). The credibility strip is deliberately vague. `assets/` is personal-project media only.
 
 ### Removed legacy references
 
@@ -74,7 +74,9 @@ The pre-redesign page linked to hand-authored case-study files and a `resume.pdf
 
 - **Bilingual pairing** — every translatable string is EN + ZH with `lang` attributes (see above).
 - **CSS cache-busting** — every HTML `<link rel="stylesheet">` loads `style.css?v=YYYYMMDD-label`. When you change `style.css`, bump the label **and update it in every HTML file** (`index.html` + all `projects/*.html`) so returning visitors get fresh CSS. All 10 pages are currently on `20260701-review-fixes` — keep them in lockstep.
-- **Identity to keep in sync** — email `suzysu418@gmail.com`, GitHub `suzyeth`, itch `ssu997`, brand `SUSU`. Display name is `Suzy Su` (EN) / `苏紫薇`·`紫薇` (ZH), used across `<title>`, `meta` author, contact, and footer on every page — keep it consistent when editing any page.
+- **Identity to keep in sync** — email `suzysu418@gmail.com`, GitHub `suzyeth`, itch `ssu997`, brand `SUSU`. Display name is `Suzy Su` (EN) / `Suzy Su`·`Suzy` (ZH), used across `<title>`, `meta` author, contact, and footer on every page — keep it consistent when editing any page.
 - **Adding a project** — new `projects/<id>.html` (copy an existing page) + a card in `index.html`'s carousel with a `.detail-links a.case` link to it + fix the `.proj-nav` prev/next on the neighbouring pages + bump/sync the CSS version.
 - **Theming** — edit `:root` tokens in `style.css`; grep for stray hardcoded hex in the retheme layers (see Theming above).
 - `img/` (empty), `variants/`, `_from-portfolio-salvage/`, `*.bak-*`, `.gstack/`, `._*` are history/tooling — not production source.
+
+Privacy: use only Suzy Su for public identity in both languages. Do not publish legal-name aliases, employer names, launch regions/dates, or the paying-user-rate figure removed at the user’s request.

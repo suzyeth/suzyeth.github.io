@@ -1,6 +1,6 @@
-# Ziwei Su — Portfolio
+# Suzy Su — Portfolio
 
-Personal portfolio of **Ziwei Su**, Game Designer based in London.
+Personal portfolio of **Suzy Su**, Game Designer based in London.
 
 🌐 Live: https://suzyeth.github.io
 
@@ -33,7 +33,7 @@ Fraunces (serif) + Inter (sans) + JetBrains Mono (mono) via Google Fonts. Option
 
 ## License
 
-Code: MIT. Content / design: © 2026 Ziwei Su.
+Code: MIT. Content / design: © 2026 Suzy Su.
 
 ## Playable portfolio
 

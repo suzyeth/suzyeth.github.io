@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Don't Let It Show · 别让他看出来</title>
+<link rel="stylesheet" href="../kit/kit.css">
+<style>
+  /* Jace as a film close-up: large, cropped by the frame bottom, colour-graded toward the plum/champagne palette */
+  .ch2-portrait { position: absolute; left: -15px; top: 150px; width: 420px; height: 547px; pointer-events: none;
+    transform-origin: 50% 35%; will-change: transform; transition: opacity .45s ease-out, filter .35s ease-out;
+    filter: saturate(.8) contrast(1.04) brightness(.86); }
+  /* flustered: soften and darken him so the red HUD state reads first */
+  .ch2-portrait.flustered { filter: saturate(.7) brightness(.62) blur(1.5px); }
+  #kit-game { transition: filter .45s ease-out; }
+  /* painted close-up: feather the photo's edges into the rooftop scene */
+  .ch2-portrait .kit-photo { object-position: 50% 15%;
+    -webkit-mask-image: radial-gradient(ellipse 62% 70% at 50% 38%, #000 52%, transparent 100%);
+            mask-image: radial-gradient(ellipse 62% 70% at 50% 38%, #000 52%, transparent 100%); }
+</style>
+</head>
+<body>
+<script src="../kit/kit.js"></script>
+<script src="../kit/wallet.js"></script>
+<script src="../kit/frame.js"></script>
+<script src="art.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Off Camera — Story Mini-Game Prototypes Case Study · Suzy Su</title>
+<meta name="description" content="Four playable story mini-games for an interactive romance series: a runner, a heartbeat timing game, a styling challenge and match-3, where how you play picks the next scene.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/off-camera.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Off Camera — Story Mini-Game Prototypes Case Study">
+<meta property="og:description" content="Four playable story mini-games for an interactive romance series: a runner, a heartbeat timing game, a styling challenge and match-3, where how you play picks the next scene.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/off-camera.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20261021-data">
+<script src="../assets/lenis.min.js" defer></script>
+<link rel="stylesheet" href="../assets/playable.css?v=20261025-inline">
+<link rel="stylesheet" href="../assets/portfolio-nav.css?v=20261026-islands-nav-3">
+<script src="../assets/portfolio-nav.js?v=20261026-islands-nav-3" defer></script>
+</head>
+<body class="portfolio-site">
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="portfolio-header">
+  <div class="portfolio-topbar">
+    <a class="portfolio-brand" href="../index.html">SUZY SU</a>
+    <span class="portfolio-caption"><span lang="en">PORTFOLIO / SELECT A DIRECTION</span><span lang="zh">作品集 / 选择方向</span></span>
+    <div class="portfolio-controls">
+      <button type="button" class="portfolio-language" id="langToggle" aria-label="Switch to Chinese" aria-pressed="false">EN / 中</button>
+    </div>
+  </div>
+  <nav class="portfolio-global" id="portfolioNavigation" aria-label="Portfolio / 作品集"><a href="../index.html" aria-current="location" aria-label="Game design / 游戏设计"><span class="portfolio-route-full"><span lang="en">Game design</span><span lang="zh">游戏设计</span></span><span class="portfolio-route-short"><span lang="en">Games</span><span lang="zh">游戏</span></span></a><a href="../ai/" aria-label="Creative technology / 创意技术"><span class="portfolio-route-full"><span lang="en">Creative technology</span><span lang="zh">创意技术</span></span><span class="portfolio-route-short"><span lang="en">Creative</span><span lang="zh">创意技术</span></span></a><a href="../ai-engineering.html" aria-label="AI engineering / AI 工程"><span class="portfolio-route-full"><span lang="en">AI engineering</span><span lang="zh">AI 工程</span></span><span class="portfolio-route-short"><span lang="en">AI Eng.</span><span lang="zh">AI 工程</span></span></a><a href="../data.html" aria-label="Data analysis / 数据分析"><span class="portfolio-route-full"><span lang="en">Data analysis</span><span lang="zh">数据分析</span></span><span class="portfolio-route-short"><span lang="en">Data</span><span lang="zh">数据分析</span></span></a><a href="../tools.html" aria-label="Tools & technology / 工具与技术"><span class="portfolio-route-full"><span lang="en">Tools & technology</span><span lang="zh">工具与技术</span></span><span class="portfolio-route-short"><span lang="en">Tools</span><span lang="zh">工具</span></span></a></nav>
+</header>
+
+<main id="main">
+<article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Solo · AI-assisted (Claude Code) · Design prototype · Nov 2026</span><span lang="zh">独立 · AI 协助开发（Claude Code）· 设计原型 · 2026 年 11 月</span></p>
+      <h1 class="proj-title">Off <em>Camera</em></h1>
+      <p class="proj-tag">JavaScript · Canvas 2D · Story Mini-Games · Retry Economy</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">An original four-episode rock-star romance where each episode ends in a mini-game, and how you play picks the next scene. I built it as a game-design interview prototype for an interactive-series studio: four mini-game types (reflex, timing, decisions, puzzle), each with difficulty presets, an event funnel and an optional, fair retry economy. Playable in the browser, in English or Chinese.</span>
+      <span lang="zh">一部原创的四集摇滚明星恋爱短剧：每集结尾是一个小游戏，玩得怎么样决定下一幕。这是我为一家互动短剧公司的游戏策划面试做的原型：四种小游戏类型（反应、时机、决策、解谜），每种都有难度预设、埋点漏斗和可选、公平的重试经济。浏览器里就能玩，中英文切换。</span>
+    </p>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Story, mini-game and economy design, tuning and design notes; code written with Claude Code.</p><p lang="zh">剧情、小游戏与经济设计、调参和设计文档；代码借助 Claude Code 编写。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Interview prototype · original story and characters · character art AI-generated.</p><p lang="zh">面试原型 · 剧情和角色原创 · 角色美术由 AI 生成。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>JavaScript · Canvas 2D · SVG · Web Audio · no build step</p>
+      </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">In most story apps a mini-game is a gate between two videos: lose and you're stuck, or you pay.</p><p lang="zh">大多数剧情应用里，小游戏只是两段视频之间的关卡：输了就卡住，要么付费。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Make each game the scene itself. Winning and losing both lead to a fully written branch, and earlier results change later episodes.</p><p lang="zh">让小游戏本身就是剧情。赢和输都通向写好的分支，前面的结果会改变后面几集。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">Four playable episodes on one shared kit: dialogue, tutorials, results, tuning, analytics and a mock gem-and-energy economy.</p><p lang="zh">四集可玩，共用一套组件：对白、教学、结算、调参、埋点，以及模拟的钻石和体力经济。</p></div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="../play/off-camera/index.html" target="_blank" rel="noopener"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
+      <a href="../play/off-camera/ch1-dodge/index.html?designer=1" target="_blank" rel="noopener"><span lang="en">Designer mode ↗</span><span lang="zh">设计师模式 ↗</span></a>
+    </div>
+
+    <div class="proj-media">
+      <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/off-camera/gameplay-poster.jpg" controls aria-label="Off Camera gameplay: runner, heartbeat timing, styling and match-3">
+        <source src="../assets/off-camera/gameplay.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-block case-flow-section">
+      <h2><span lang="en">Every episode works the same way</span><span lang="zh">每一集的结构相同</span></h2>
+      <ol class="case-flow">
+        <li><h3><span lang="en">Scene</span><span lang="zh">剧情</span></h3><p lang="en">Dialogue with one choice that changes the game that follows.</p><p lang="zh">一段对白，其中一个选择会改变接下来的玩法。</p></li>
+        <li><h3><span lang="en">Play</span><span lang="zh">游戏</span></h3><p lang="en">A short mini-game; the HUD always shows time or moves left and how far you are from the goal.</p><p lang="zh">一个短小游戏；界面随时显示剩余时间或步数，以及离目标还差多少。</p></li>
+        <li><h3><span lang="en">Branch</span><span lang="zh">分支</span></h3><p lang="en">Win or lose, the story continues on a different written branch. Failing never blocks the story.</p><p lang="zh">赢或输，剧情都走进不同的分支。失败从不卡住剧情。</p></li>
+      </ol>
+      <div class="gameplay-gallery"><figure><a href="../assets/off-camera/four-games.jpg" target="_blank" rel="noopener"><img src="../assets/off-camera/four-games.jpg" alt="The four mini-games: three-lane runner, hold-to-breathe heartbeat, timed styling, match-3" width="1600" height="774" loading="lazy" decoding="async"></a><figcaption><span lang="en">Episodes 1–4: dodge the crowd to sneak out, keep your heartbeat in the sweet spot, style him to a theme brief, and match tiles to decide the headline.</span><span lang="zh">第 1–4 集：躲开人群溜出去、把心跳稳在心动区、按主题给他造型、消除方块决定头条。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">The game is the scene</span><span lang="zh">游戏本身就是剧情</span></h2>
+      <p lang="en">Each mechanic was chosen for what it means in the story. Dodging fans and paparazzi is him slipping out of his own party to see you. Holding to breathe is keeping your cool on a rooftop date while his lines push your heartbeat around; a timing prompt appears when he leans in. Styling to theme tags is your first red carpet as his stylist, and the livestream chat reacts to the look. Match-3 is deciding whether the world finds out about you. Results carry forward: a viral photo in episode 1 keeps his phone buzzing in episode 2, and whether he confesses in episode 2 changes what episodes 3 and 4 start with.</p>
+      <p lang="zh">每个玩法都是按它在剧情里的意义挑的。躲开粉丝和狗仔，就是他从自己的派对溜出来见你；按住呼吸，就是天台约会时保持镇定，他的台词会让心跳起伏，他靠近时会出现时机提示；按主题标签造型，是你作为造型师的第一次红毯，直播弹幕会对造型做出反应；三消是决定要不要让全世界知道你。结果会延续：第一集拍到的照片爆火，第二集他手机就响个不停；第二集他有没有告白，会改变第三、四集的开局。</p>
+      <div class="gameplay-gallery"><figure><a href="../assets/off-camera/redcarpet.jpg" target="_blank" rel="noopener"><img src="../assets/off-camera/redcarpet.jpg" alt="Episode 3: styling against a theme brief, then the red-carpet reveal with livestream chat" width="900" height="870" loading="lazy" decoding="async"></a><figcaption><span lang="en">Episode 3: style against the theme brief, then the red-carpet reveal with the livestream chat.</span><span lang="zh">第三集：按主题造型，然后红毯亮相，直播弹幕实时反应。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Paying is convenience, never an advantage over the story</span><span lang="zh">付费只是方便，不能凌驾于剧情</span></h2>
+      <p lang="en">Watching the story and taking any branch never costs energy or money. After a loss, the retry order is one free retry, then 1 energy per retry (a rewarded ad refills one), then optional gem boosters that only make the next round easier. Energy caps at 5 and refills one every 10 minutes. In episode 3, premium outfit pieces cost gems to unlock but are free to try on, and a brute-force check confirms none scores below the best free piece in its slot, so three stars stays reachable for free. In episode 4, "+5 moves" continues the same board, offered at the moment of a near miss. All purchases and ads are simulated.</p>
+      <p lang="zh">看剧情、走任何分支都不花体力也不花钱。输了之后的重试顺序是：一次免费，之后每次 1 体力（看激励广告可以补 1 点），再之后才是可选的钻石道具，道具只让下一局更容易。体力上限 5，每 10 分钟恢复 1 点。第三集的付费服装要钻石解锁，但试穿免费；穷举检查确认每个付费单品都不低于同部位最好的免费单品，所以不花钱也能拿三星。第四集的「+5 步」在同一盘上继续，在差一点就赢的时候出现。所有购买和广告都是模拟的。</p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Built to be tuned</span><span lang="zh">为调参而做</span></h2>
+      <p lang="en">Difficulty follows story position: every episode has three presets (story start, standard, late story), switchable live from the tools panel. One event funnel runs through all four episodes (intro complete → play start → play end → retry → story continue), plus key events per game, viewable in a local event log. Designer mode adds a side panel per episode with its core loop, story hook and retry rules. Art, text, parameters and both branches are separated from the core rules, so each game could become a template creators fill in.</p>
+      <p lang="zh">难度跟着剧情位置走：每集都有三档预设（剧情开头、标准、剧情中后期），可以在工具面板里实时切换。四集共用一条埋点漏斗（看完开场 → 开始游戏 → 结束游戏 → 重试 → 继续剧情），每个玩法再加关键事件，可以在本地日志里查看。设计师模式会在每集旁边显示核心循环、剧情钩子和重试规则。美术、文案、参数和两条分支都和核心规则分开，每个玩法都可以变成让创作者填内容的模板。</p>
+      <div class="gameplay-gallery"><figure><a href="../assets/off-camera/desktop-frame.jpg" target="_blank" rel="noopener"><img src="../assets/off-camera/desktop-frame.jpg" alt="Desktop view of episode 2 with the controls panel on the left and the next-episode card on the right" width="1600" height="1000" loading="lazy" decoding="async"></a><figcaption><span lang="en">On desktop the phone-sized game sits between a how-to-play panel and the next episode. Character art is AI-generated; scenes and UI are drawn in code.</span><span lang="zh">桌面端：手机尺寸的游戏两侧是玩法说明和下一集入口。角色美术由 AI 生成，场景和界面用代码绘制。</span></figcaption></figure></div>
+      <p class="case-flow-note"><span lang="en">Limits: balance was tested with scripted bots, not players; prices are placeholders.</span><span lang="zh">局限：数值平衡用脚本机器人测试，没有真人测试；价格是占位数值。</span></p>
+    </section>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="idol.html"><span lang="en">← Project:IDOL</span><span lang="zh">← Project:IDOL</span></a>
+      <a href="vr-aquarium.html"><span lang="en">Next: VR Aquarium →</span><span lang="zh">下一个：VR 水族箱 →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated November 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 11 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  if (document.querySelector('.portfolio-header')) return;
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+<script src="../assets/playable.js?v=20261025-inline"></script>
+</body>
+</html>

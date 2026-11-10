@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Off Camera · Interactive Series</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700;800&display=swap">
+<style>
+  :root { --bg:#0b0a0f; --card:#16131b; --line:rgba(255,255,255,.1); --cream:#f6efe9; --muted:rgba(246,239,233,.6);
+    --pink:#f4a6c6; --champ:#d9b892;
+    --f-script:"Great Vibes","Segoe Script",cursive; --f-serif:"Cormorant Garamond",Georgia,serif;
+    --f-sans:"DM Sans","Segoe UI",system-ui,"PingFang SC","Microsoft YaHei",sans-serif; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--cream); font-family: var(--f-sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px 60px; }
+  header { display:flex; align-items:center; justify-content:space-between; padding: 18px 0; }
+  .brand { font-family: var(--f-script); font-size: 34px; line-height: 1; }
+  .brand small { font-family: var(--f-sans); font-size: 11px; color: var(--muted); letter-spacing: 1px; margin-left: 8px; vertical-align: middle; }
+  .brand { white-space: nowrap; }
+  @media (max-width: 560px) { .brand small { display:none; } .tag-proto { font-size: 10px; } }
+  .tag-proto { font-size: 11px; color: var(--muted); border: 1px solid var(--line); padding: 6px 10px; border-radius: 999px; }
+
+  .hero { position: relative; border-radius: 22px; overflow: hidden; min-height: 420px; display:flex; align-items:flex-end;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(255,120,170,.45) 0 3%, transparent 12%),
+      radial-gradient(circle at 80% 22%, rgba(120,190,255,.35) 0 3%, transparent 12%),
+      radial-gradient(circle at 62% 46%, rgba(255,214,160,.35) 0 2%, transparent 9%),
+      radial-gradient(circle at 35% 62%, rgba(255,214,160,.25) 0 2%, transparent 8%),
+      radial-gradient(ellipse at 70% 120%, rgba(244,166,198,.35), transparent 60%),
+      linear-gradient(180deg, #24152c 0%, #120c16 70%, #0b0a0f 100%); }
+  .hero::after { content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(11,10,15,.85) 0%, rgba(11,10,15,.2) 70%), linear-gradient(0deg, rgba(11,10,15,.9), transparent 50%); }
+  .hero-in { position: relative; z-index: 2; padding: 28px; max-width: 560px; }
+  .hero .ep { font-family: var(--f-serif); font-style: italic; color: var(--muted); letter-spacing: 2px; font-size: 14px; }
+  .hero h1 { font-family: var(--f-script); font-weight: 400; font-size: clamp(56px, 10vw, 92px); line-height: .95; margin: 6px 0 10px; color: #fff;
+    text-shadow: 0 4px 30px rgba(244,166,198,.35); }
+  .hero p { color: #e9dfe6; line-height: 1.6; margin: 0 0 6px; font-size: 15px; }
+  .hero p.zh { color: var(--muted); font-size: 13.5px; }
+  .pills { display:flex; gap:8px; flex-wrap:wrap; margin: 14px 0 18px; }
+  .pills span { font-size: 12.5px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.1); border: 1px solid var(--line); }
+  .play { display:inline-flex; align-items:center; gap:8px; background: var(--cream); color: #16101a; font-weight: 800; padding: 12px 22px; border-radius: 999px; text-decoration: none; }
+
+  h2.sec { font-size: 24px; margin: 38px 0 14px; font-weight: 800; }
+  h2.sec small { font-size: 13px; font-weight: 400; color: var(--muted); margin-left: 8px; }
+  .row { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .ep-card { text-decoration: none; display:block; }
+  .poster { position: relative; aspect-ratio: 2 / 3; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); transition: transform .2s; }
+  .ep-card:hover .poster { transform: translateY(-4px); }
+  .poster .bg { position:absolute; inset:0; }
+  .poster .num { z-index: 2; top: 10px; left: 10px; padding: 4px 9px; border-radius: 999px; background: rgba(11,10,15,.55); backdrop-filter: blur(6px); }
+  .poster .state, .poster .tt { z-index: 2; }
+  .poster .cover { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 25%; transition: transform .5s; }
+  .ep-card:hover .poster .cover { transform: scale(1.04); }
+  .poster .shade { position:absolute; inset:0; background: linear-gradient(0deg, rgba(11,10,15,.95) 0%, rgba(11,10,15,.1) 55%); }
+  .poster .num { position:absolute; top: 12px; left: 14px; font-size: 11px; letter-spacing: 2px; color: var(--champ); font-weight: 700; }
+  .poster .state { position:absolute; top: 10px; right: 10px; font-size: 11px; padding: 4px 9px; border-radius: 999px; background: rgba(0,0,0,.45); border: 1px solid var(--line); backdrop-filter: blur(6px); }
+  .poster .state.win { color: var(--pink); border-color: rgba(244,166,198,.5); }
+  .poster .state.lose { color: var(--champ); }
+  .poster .tt { position:absolute; left: 14px; right: 14px; bottom: 14px; }
+  .poster .tt b { display:block; font-family: var(--f-script); font-weight: 400; font-size: 38px; line-height: 1; color: #fff; }
+  .poster .tt i { display:block; font-family: var(--f-serif); font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .poster .fig { position:absolute; bottom: 18%; width: 92%; left: 4%; height: 74%; }
+  .poster .fig.pair-l { width: 70%; left: -8%; height: 64%; bottom: 20%; }
+  .poster .fig.pair-r { width: 74%; left: 32%; height: 70%; bottom: 18%; }
+  .poster .fig svg { width: 100%; height: 100%; }
+  .poster .flare { position:absolute; inset:0; mix-blend-mode: screen; pointer-events:none; }
+  .hero-art { position:absolute; right: 0; top: 0; height: 100%; width: min(72%, 760px); object-fit: cover; object-position: 60% 30%; z-index: 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%); mask-image: linear-gradient(90deg, transparent 0%, #000 38%); }
+  @media (max-width: 700px) { .hero-art { width: 100%; opacity: .55; -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 95%); mask-image: linear-gradient(180deg, #000 30%, transparent 95%); } }
+  .hero .fig svg { width: 100%; height: 100%; }
+  .fig .kit-photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block;
+    -webkit-mask-image: radial-gradient(ellipse 60% 66% at 50% 40%, #000 50%, transparent 100%);
+            mask-image: radial-gradient(ellipse 60% 66% at 50% 40%, #000 50%, transparent 100%); }
+  .poster .fig { bottom: 12%; height: 82%; }
+  .poster .fig.pair-l { width: 64%; left: -6%; height: 74%; bottom: 14%; }
+  .poster .fig.pair-r { width: 66%; left: 38%; height: 80%; bottom: 12%; }
+  .poster .fig.pair-l .kit-photo { -webkit-mask-image: linear-gradient(90deg, #000 62%, transparent 96%); mask-image: linear-gradient(90deg, #000 62%, transparent 96%); }
+  .poster .fig.pair-r .kit-photo { -webkit-mask-image: linear-gradient(90deg, transparent 4%, #000 36%); mask-image: linear-gradient(90deg, transparent 4%, #000 36%); }
+  .hero::after { z-index: 1; }
+  body.lang-zh .hero h1, body.lang-zh .brand > span, body.lang-zh .poster .tt b { font-family: var(--f-serif); font-weight: 600; }
+  body.lang-zh .hero h1 { font-size: clamp(44px, 8vw, 72px); }
+  body.lang-zh .poster .tt b { font-size: 30px; }
+  body.lang-zh .brand > span { font-size: 24px; }
+  .meta { padding: 10px 2px 0; }
+  .meta .t { font-weight: 700; font-size: 15px; }
+  .meta .g { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  .meta .d { font-size: 13px; color: #d9cfd8; margin-top: 8px; line-height: 1.55; }
+  .meta .d.zh { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+
+  .how { margin-top: 40px; display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 16px; }
+  .box { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 18px 16px; }
+  .box h3 { margin: 0 0 8px; font-size: 15px; }
+  .box ol, .box ul { margin: 0; padding-left: 18px; line-height: 1.75; font-size: 13.5px; color: #e2d8e0; }
+  .box .zh { color: var(--muted); font-size: 12.5px; }
+  .links { display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+  .links a, .links button { font: inherit; font-size: 13px; color: var(--cream); background: rgba(255,255,255,.06); border: 1px solid var(--line);
+    padding: 9px 14px; border-radius: 999px; text-decoration: none; cursor: pointer; }
+  .links a:hover, .links button:hover { border-color: var(--pink); }
+  footer { margin-top: 36px; font-size: 12px; color: rgba(246,239,233,.45); line-height: 1.6; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><span data-en="Off Camera" data-zh="镜头之外"></span><small data-en="INTERACTIVE SERIES" data-zh="互动短剧"></small></div>
+    <div style="display:flex;gap:8px;align-items:center"><button id="langBtn" class="tag-proto" style="cursor:pointer;background:none;color:inherit;font:inherit;font-size:11px"></button></div>
+  </header>
+
+  <section class="hero"><img class="hero-art" src="assets/covers/hero.jpg" alt="" draggable="false">
+    <div class="hero-in">
+      <div class="ep" data-en="A ROCK-STAR ROMANCE IN 4 EPISODES" data-zh="四集摇滚明星恋爱短剧"></div>
+      <h1 data-en="Off Camera" data-zh="镜头之外"></h1>
+      <p data-en="The most famous man in LA has one secret. It's you. Jace Monroe fronts the biggest band in the world; you're the new stylist on his tour who knew him before the fame. Every episode ends in a mini-game, and how you play decides the next scene." data-zh="全洛杉矶最有名的男人只有一个秘密——就是你。杰斯·门罗是全球最红乐队的主唱，你是他巡演的新任造型师，也是他成名前就认识的人。每集结尾都有一个小游戏，你玩的结果决定下一幕怎么演。"></p>
+      <div class="pills"><span data-en="Romance" data-zh="恋爱"></span><span data-en="Rock star" data-zh="摇滚明星"></span><span data-en="Mini-games" data-zh="小游戏"></span><span data-en="Branching" data-zh="分支剧情"></span></div>
+      <a class="play" href="ch1-dodge/index.html" id="playBtn"></a>
+    </div>
+  </section>
+
+  <h2 class="sec"><span data-en="Episodes" data-zh="剧集"></span><small data-en="One mini-game per episode · win or lose, the story goes on" data-zh="每集一个小游戏 · 成功失败都能继续"></small></h2>
+  <div class="row" id="eps"></div>
+
+  <div class="how" data-designer>
+    <div class="box">
+      <h3 data-en="Every episode" data-zh="每集结构"></h3>
+      <ol>
+        <li data-en="Story scene with one choice that changes the game" data-zh="剧情对白，有一个会改变玩法的选择"></li>
+        <li data-en="A short mini-game (runner, timing, styling, match-3); you always see how far you are from the goal" data-zh="一个短小游戏（跑酷、时机、换装、三消），随时知道离目标还差多少"></li>
+        <li data-en="Win or lose, the story continues on a different branch" data-zh="成功或失败都会进入不同的剧情分支"></li>
+        <li data-en="Optional retry: free once, then 1 energy; gems buy boosters (all simulated)" data-zh="可选重试：免费一次，之后消耗 1 体力；钻石可以买道具（均为模拟）"></li>
+      </ol>
+    </div>
+    <div class="box">
+      <h3 data-en="Designer tools" data-zh="设计工具"></h3>
+      <ul>
+        <li data-en="Top bar: gems and energy are always on screen; tap them for the store and refills" data-zh="顶栏常驻钻石和体力，点开是商店和体力补充"></li>
+        <li data-en="Sliders icon: tuning presets (story start / standard / late story) and the event log" data-zh="滑杆图标：调参预设（剧情开头 / 标准 / 中后期）和埋点日志"></li>
+        <li data-en="EN / ZH button: switches the whole game between English and Chinese" data-zh="语言按钮：整个游戏在中文和英文之间切换"></li>
+      </ul>
+      <div class="links">
+        <a href="../../projects/off-camera.html" data-en="Design case study" data-zh="设计案例"></a>
+        <button id="reset" data-en="Reset story" data-zh="清空剧情进度"></button>
+      </div>
+    </div>
+  </div>
+  <footer data-en="© 2026 Off Camera · An original interactive series" data-zh="© 2026 镜头之外 · 原创互动短剧"></footer>
+</div>
+<script src="kit/kit.js"></script>
+<script>
+  (function () {
+    var read = function () { try { return JSON.parse(localStorage.getItem('off-camera-story-v1') || '{}'); } catch (e) { return {}; } };
+    var lang = 'en'; try { lang = localStorage.getItem('off-camera-lang') === 'zh' ? 'zh' : 'en'; } catch (e) { /* storage blocked */ }
+    var L = function (en, zh) { return lang === 'zh' ? zh : en; };
+    var EP = [
+      { id: 'ch1', n: 1, href: 'ch1-dodge/index.html', cast: [['luyu', 'normal', { cap: true }]],
+        title: ['Sneak Out', '溜出去'], tag: ["He can't be seen tonight.", '今晚，他不能被认出来。'], genre: ['Swipe runner · dodge & collect · 60s', '滑动跑酷 · 躲避与收集 · 60 秒'],
+        d: ['Jace ditches his own album-launch party to meet you on the hotel rooftop. Swipe past fans and paparazzi, grab a disguise, make it upstairs unseen.', '杰斯从自己的专辑发布派对溜出来，去酒店天台见你。滑动躲开粉丝和狗仔，凑齐伪装，别被拍到。'],
+        win: ['Made it', '准时赴约'], lose: ['#WhoIsJacesGirl', '#杰斯的神秘女孩#'],
+        bg: 'radial-gradient(circle at 20% 30%, rgba(255,120,170,.6) 0 4%, transparent 14%), radial-gradient(circle at 78% 24%, rgba(120,200,255,.5) 0 4%, transparent 14%), radial-gradient(circle at 55% 52%, rgba(255,210,140,.4) 0 3%, transparent 12%), linear-gradient(180deg,#2a1530,#0e0a12)' },
+      { id: 'ch2', n: 2, href: 'ch2-heartbeat/index.html', cast: [['me', 'blush'], ['luyu', 'smile']],
+        title: ["Don't Let It Show", '别让他看出来'], tag: ["Keep your cool. He won't.", '你要稳住，他可不会。'], genre: ['Hold to breathe · timing · 45s', '按住呼吸 · 时机点按 · 45 秒'],
+        d: ['Alone on the rooftop with LA at your feet. Every line he says moves your heartbeat. Keep it in the sweet spot and catch the moment he leans in.', '天台上只有你们俩，脚下是洛杉矶的灯海。他每句话都会让心跳波动，稳住心动区，抓住他靠近的那一刻。'],
+        win: ['It was always you', '一直都是你'], lose: ['Saved by the publicist', '被公关打断'],
+        bg: 'radial-gradient(circle at 25% 28%, rgba(255,214,160,.7) 0 2%, transparent 7%), radial-gradient(circle at 70% 22%, rgba(255,214,160,.6) 0 2%, transparent 7%), radial-gradient(ellipse at 50% 110%, rgba(255,170,120,.4), transparent 60%), linear-gradient(180deg,#101634,#2a1a36 60%,#120c14)' },
+      { id: 'ch3', n: 3, href: 'ch3-redcarpet/index.html', cast: [['luyu', 'smile']],
+        title: ['Red Carpet Reveal', '红毯亮相'], tag: ['All eyes on him. His eyes on you.', '所有目光都在他身上，他只看着你。'], genre: ['Timed styling · theme tags · live chat · 45s', '限时换装 · 主题标签 · 直播评论 · 45 秒'],
+        d: ['The Crown Music Awards. Style him to a three-word brief before the clock runs out. When the flashes go off, the livestream chat tells you how you did.', '皇冠音乐奖。按三个关键词限时给他搭配。闪光灯亮起时，直播评论会告诉你结果。'],
+        win: ['Best dressed', '全场最佳造型'], lose: ['He wore it anyway', '他还是穿着它'],
+        bg: 'radial-gradient(circle at 12% 26%, rgba(255,226,170,.75) 0 3%, transparent 9%), radial-gradient(circle at 88% 26%, rgba(255,226,170,.75) 0 3%, transparent 9%), radial-gradient(circle at 12% 46%, rgba(255,226,170,.6) 0 3%, transparent 9%), radial-gradient(circle at 88% 46%, rgba(255,226,170,.6) 0 3%, transparent 9%), linear-gradient(180deg,#32182a,#120a10)' },
+      { id: 'ch4', n: 4, href: 'ch4-headline/index.html', cast: [['me', 'smile'], ['luyu', 'smile']],
+        title: ['The Morning After', '头条之后'], tag: ['Every tabloid has the photo.', '每家小报都登了那张照片。'], genre: ['Match-3 · moves-based · story goals', '三消 · 限步数 · 剧情目标'],
+        d: ['The morning after the awards, every headline asks who he was looking at. Match tiles to push the story your way: go public, or keep it secret one more week.', '颁奖礼后的早上，所有头条都在问他看的是谁。三消把舆论推向你想要的方向：公开，还是再瞒一周。'],
+        win: ["Yes, she's with me", '对，她是我的人'], lose: ['No comment', '无可奉告'],
+        bg: 'radial-gradient(ellipse at 70% 10%, rgba(255,230,190,.55), transparent 45%), radial-gradient(circle at 20% 60%, rgba(244,166,198,.35) 0 3%, transparent 12%), linear-gradient(180deg,#3a2a30,#140c12)' },
+    ];
+    var pick = function (pair) { return lang === 'zh' ? pair[1] : pair[0]; };
+    var figs = function (cast) {
+      if (!window.Kit) return '';
+      if (cast.length === 1) return '<div class="fig">' + Kit.portraitSVG(cast[0][0], cast[0][1], cast[0][2]) + '</div>';
+      return '<div class="fig pair-l">' + Kit.portraitSVG(cast[0][0], cast[0][1], cast[0][2]) + '</div><div class="fig pair-r">' + Kit.portraitSVG(cast[1][0], cast[1][1], cast[1][2]) + '</div>';
+    };
+    var designer = false;
+    try { var qd = new URLSearchParams(location.search).get('designer'); if (qd === '1' || qd === '0') localStorage.setItem('off-camera-designer', qd); designer = localStorage.getItem('off-camera-designer') === '1'; } catch (e) { /* storage blocked */ }
+    document.querySelectorAll('[data-designer]').forEach(function (n) { n.hidden = !designer; });
+    var render = function () {
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      document.body.classList.toggle('lang-zh', lang === 'zh');
+      document.title = L('Off Camera · Interactive Series', '镜头之外 · 互动短剧');
+      document.querySelectorAll('[data-en]').forEach(function (n) { n.textContent = lang === 'zh' ? n.getAttribute('data-zh') : n.getAttribute('data-en'); });
+      document.getElementById('langBtn').textContent = lang === 'zh' ? 'EN' : 'ZH';
+      document.getElementById('langBtn').title = L('Switch to Chinese', '切换到英文');
+      var s = read();
+      document.getElementById('eps').innerHTML = EP.map(function (e) {
+        var r = s[e.id];
+        var st = r ? '<span class="state ' + (r.success ? 'win' : 'lose') + '">' + (r.success ? '♥ ' + pick(e.win) : '↳ ' + pick(e.lose)) + '</span>' : '';
+        return '<a class="ep-card" href="' + e.href + '"><div class="poster"><div class="bg" style="background:' + e.bg + '"></div><img class="cover" src="assets/covers/ep' + e.n + '.jpg" alt="" loading="lazy" draggable="false">' +
+          '<div class="shade"></div><div class="num">' + L('EPISODE ' + e.n, '第' + e.n + '集') + '</div>' + st + '<div class="tt"><b>' + pick(e.title) + '</b><i>' + pick(e.tag) + '</i></div></div>' +
+          '<div class="meta"><div class="t">' + pick(e.title) + '</div><div class="g">' + pick(e.genre) + '</div><div class="d">' + pick(e.d) + '</div></div></a>';
+      }).join('');
+      var next = !s.ch1 ? 0 : !s.ch2 ? 1 : !s.ch3 ? 2 : !s.ch4 ? 3 : 0;
+      var pb = document.getElementById('playBtn');
+      pb.href = EP[next].href;
+      pb.textContent = s.ch1 ? L('▶ Continue · Ep ' + EP[next].n, '▶ 继续 · 第' + EP[next].n + '集') : L('▶ Play · Ep 1', '▶ 开始 · 第1集');
+    };
+    document.getElementById('langBtn').onclick = function () {
+      lang = lang === 'zh' ? 'en' : 'zh';
+      try { localStorage.setItem('off-camera-lang', lang); } catch (e) { /* storage blocked: switch for this visit only */ }
+      render();
+    };
+    document.getElementById('reset').onclick = function () { try { localStorage.removeItem('off-camera-story-v1'); } catch (e) { /* storage blocked */ } render(); };
+    render();
+  })();
+</script>
+</body>
+</html>

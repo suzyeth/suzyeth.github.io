@@ -43,7 +43,7 @@
 <link rel="preload" href="assets/fonts/Inter-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
 
-<link rel="stylesheet" href="style.css?v=20261021-data">
+<link rel="stylesheet" href="style.css?v=20261110-work-split">
 
 <!-- Optional smooth-scroll enhancement (page works without it) -->
 <script src="assets/lenis.min.js" defer></script>
@@ -204,14 +204,9 @@
         <span lang="en">Selected Work</span>
         <span lang="zh">精选作品</span>
       </h2>
-      <div class="work-filter" role="group" aria-label="Filter projects by type">
-        <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="zh">全部</span></button>
-        <button type="button" class="filter-btn" data-filter="games" aria-pressed="false"><span lang="en">Games</span><span lang="zh">游戏</span></button>
-        <button type="button" class="filter-btn" data-filter="tools" aria-pressed="false"><span lang="en">Tech &amp; Tools</span><span lang="zh">技术与工具</span></button>
-      </div>
     </header>
 
-    <p class="eyebrow work-group-label" data-reveal><span lang="en">Systems &amp; tools</span><span lang="zh">系统与工具</span></p>
+    <p class="eyebrow work-group-label" data-reveal><span lang="en">Main projects</span><span lang="zh">主要项目</span></p>
     <div class="work-carousel" aria-label="Featured project carousel">
 
       <!-- 01 idol -->
@@ -302,52 +297,9 @@
         </div>
       </article>
 
-      <!-- 05 game-gate -->
-      <article class="card" data-reveal data-id="game-gate" data-cat="tools">
-        <a class="card-media" data-preview-video="assets/game-gate/eight-pixels.mp4" href="projects/game-gate.html" aria-label="game-gate — View case study / 查看项目案例">
-          <video loop muted playsinline preload="none" poster="assets/game-gate/poster.jpg" data-lazy-video aria-label="game-gate — a shop button eight pixels shorter than the start button">
-            <source src="assets/game-gate/eight-pixels.mp4" type="video/mp4" />
-          </video>
-        </a>
-        <div class="card-text">
-          <p class="card-id">05 · <span lang="en">Solo · GitLab AI Hackathon</span><span lang="zh">独立 · GitLab AI 黑客松</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
-          <h3 class="card-title">game-<em>gate</em></h3>
-          <p class="card-tag">Playwright · GitLab CI/CD · GitLab Duo Agents</p>
-          <p class="card-blurb"><span lang="en">Pipelines stay green while a button shrinks by eight pixels <b>→ CI plays the game, an agent reviews it, a person approves the fix.</b></span><span lang="zh">按钮矮了八个像素，流水线照样全绿 <b>→ CI 试玩游戏，智能体评审，人来批准修复。</b></span></p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-game-gate"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-game-gate" hidden>
-          <div class="detail-grid detail-grid-summary"><div><h4><span lang="en">My contribution</span><span lang="zh">个人贡献</span></h4><p lang="en">Solo: design rules, checks, CI component, agent flow and film; AI-assisted build.</p><p lang="zh">独立完成：设计规则、检查项、CI 组件、智能体流程和演示片；AI 协助开发。</p></div><div><h4><span lang="en">Inside the case</span><span lang="zh">案例看点</span></h4><p lang="en">Screen-size and data checks, an agent that overrules a bad fix, and design-spec matching.</p><p lang="zh">屏幕尺寸与数据检查、否决错误修法的智能体，以及对照设计稿检查。</p></div></div>
-          <div class="detail-links">
-            <a class="case" href="projects/game-gate.html"><span lang="en">Full case study →</span><span lang="zh">完整案例 →</span></a>
-            <a href="https://www.youtube.com/watch?v=_KbnKGHUIj8" target="_blank" rel="noopener" class="primary"><span lang="en">▶ Watch film</span><span lang="zh">▶ 观看演示片</span></a>
-            <a href="https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43588409/showcase" target="_blank" rel="noopener">GitLab ↗</a>
-          </div>
-        </div>
-      </article>
 
-      <!-- 06 liveops -->
-      <article class="card" data-reveal data-id="liveops" data-cat="tools">
-        <a class="card-media" href="projects/liveops.html" aria-label="liveops — View case study / 查看项目案例">
-          <img src="assets/liveops/unexplained.jpg" alt="LiveOps Investigator — a finding where the whole shortfall is reported as not explained" width="1280" height="720" loading="lazy" decoding="async" />
-        </a>
-        <div class="card-text">
-          <p class="card-id">06 · <span lang="en">Solo · Open Agent Hackathon</span><span lang="zh">独立 · Open Agent 黑客松</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
-          <h3 class="card-title">LiveOps <em>Investigator</em></h3>
-          <p class="card-tag">TypeScript · Postgres · Federated SQL · Local LLM</p>
-          <p class="card-blurb"><span lang="en">More players came to the event but revenue fell short <b>→ an agent that sizes each cause in dollars and says what it can't explain.</b></span><span lang="zh">活动人多了，收入却没跟上 <b>→ 一个给每个原因估出金额、并说明哪些解释不了的 Agent。</b></span></p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-liveops"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-liveops" hidden>
-          <div class="detail-grid detail-grid-summary"><div><h4><span lang="en">My contribution</span><span lang="zh">个人贡献</span></h4><p lang="en">Solo: scenario and data design, investigation rules, review flow and demo; AI-assisted build.</p><p lang="zh">独立完成：场景与数据设计、调查规则、审核流程和演示；AI 协助开发。</p></div><div><h4><span lang="en">Inside the case</span><span lang="zh">案例看点</span></h4><p lang="en">Three planted cases on synthetic data, and a model that never touches the numbers.</p><p lang="zh">合成数据里的三个埋点案例，以及一个从不碰数字的模型。</p></div></div>
-          <div class="detail-links">
-            <a class="case" href="projects/liveops.html"><span lang="en">Full case study →</span><span lang="zh">完整案例 →</span></a>
-            <a href="https://github.com/suzyeth/liveops-investigator" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
 
-      <!-- 07 tarduck -->
+      <!-- 05 tarduck -->
       <article class="card" data-reveal data-id="tarduck" data-cat="games">
         <a class="card-media tarduck-art" data-preview-video="assets/tarduck-demo.mp4" href="projects/tarduck.html" aria-label="tarduck — View case study / 查看项目案例">
           <video loop muted playsinline preload="none" poster="assets/tarduck-poster.jpg" data-lazy-video aria-label="tarduck — browser extraction shooter, isometric 3D raid overview with mission HUD">
@@ -355,7 +307,7 @@
           </video>
         </a>
         <div class="card-text">
-          <p class="card-id">07 · <span lang="en">Solo · Cursor Vibe Jam 2026</span><span lang="zh">独立 · Cursor Vibe Jam 2026</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
+          <p class="card-id">05 · <span lang="en">Solo · Cursor Vibe Jam 2026</span><span lang="zh">独立 · Cursor Vibe Jam 2026</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
           <h3 class="card-title">tarduck</h3>
           <p class="card-tag">Solo · Three.js · Browser Extraction Shooter</p>
           <p class="card-blurb"><span lang="en">Make "keep looting or leave" matter in every raid <b>→ a playable raid loop in 30 days.</b></span><span lang="zh">让「继续搜刮还是撤离」每局都有分量 <b>→ 30 天做出可玩的战局循环。</b></span></p>
@@ -371,27 +323,8 @@
         </div>
       </article>
 
-      <!-- 08 cocktail -->
-      <article class="card" data-reveal data-id="cocktail" data-cat="tools">
-        <a class="card-media" href="projects/cocktail-rendering.html" aria-label="cocktail — View case study / 查看项目案例">
-          <img src="assets/cocktail/cover.png" alt="Kitchen Bar — procedural liquid and glass rendering showcase: refraction, color presets, layered pour" width="800" height="600" loading="lazy" decoding="async" />
-        </a>
-        <div class="card-text">
-          <p class="card-id">08 · <span lang="en">Tech art · Personal</span><span lang="zh">技术美术 · 个人项目</span><span class="card-status"><span lang="en">In development</span><span lang="zh">开发中</span></span></p>
-          <h3 class="card-title"><span lang="en">Kitchen Bar</span><span lang="zh">厨房调酒</span></h3>
-          <p class="card-tag">Unity · URP · Procedural Liquid/Glass · Custom Shader</p>
-          <p class="card-blurb"><span lang="en">Ice made players aim at one level and get scored on another <b>→ one shared level for visuals and scoring.</b></span><span lang="zh">冰块让玩家对准的液面和评分用的不是同一个 <b>→ 画面和评分改用同一个液面。</b></span></p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-cocktail"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-cocktail" hidden>
-          <div class="detail-grid detail-grid-summary"><div><h4><span lang="en">My contribution</span><span lang="zh">个人贡献</span></h4><p lang="en">Liquid and glass rendering; cup asset tools.</p><p lang="zh">液体与玻璃渲染；酒杯资源工具。</p></div><div><h4><span lang="en">Inside the case</span><span lang="zh">案例看点</span></h4><p lang="en">Surface iterations, shared scoring state and reusable cup tools.</p><p lang="zh">液面迭代、统一评分数值与可复用酒杯工具。</p></div></div>
-          <div class="detail-links">
-            <a class="case" href="projects/cocktail-rendering.html"><span lang="en">Full case study →</span><span lang="zh">完整案例 →</span></a>
-          </div>
-        </div>
-      </article>
 
-      <!-- 12 ld59 -->
+      <!-- 07 ld59 -->
       <article class="card" data-reveal data-id="ld59" data-cat="games">
         <a class="card-media ld59-art" href="projects/ld59.html" aria-label="ld59 — View case study / 查看项目案例">
           <picture>
@@ -400,7 +333,7 @@
           </picture>
         </a>
         <div class="card-text">
-          <p class="card-id">12 · <span lang="en">Sole programmer · Ludum Dare 59</span><span lang="zh">唯一程序 · Ludum Dare 59</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
+          <p class="card-id">07 · <span lang="en">Sole programmer · Ludum Dare 59</span><span lang="zh">唯一程序 · Ludum Dare 59</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
           <h3 class="card-title">Respond to <em>Signal 404</em></h3>
           <p class="card-tag">Sole Programmer · Unity · 2D Pixel Horror</p>
           <p class="card-blurb"><span lang="en">72 hours and one programmer <b>→ one signal-search mechanic, shipped as a WebGL build.</b></span><span lang="zh">72 小时、只有一个程序 <b>→ 围绕信号搜索一个机制，按时交付网页版。</b></span></p>
@@ -415,30 +348,8 @@
         </div>
       </article>
 
-      <!-- 09 gacha -->
-      <article class="card" data-reveal data-id="gacha" data-cat="tools">
-        <a class="card-media gacha-art" data-preview-video="assets/gacha-demo.mp4" href="projects/gacha.html" aria-label="gacha — View case study / 查看项目案例">
-          <video loop muted playsinline preload="none" poster="assets/gacha-poster.jpg?v=20261017b" data-lazy-video aria-label="Gacha economy simulator — target-driven pull-cost percentile dashboard, running a 1000-player simulation">
-            <source src="assets/gacha-demo.mp4?v=20261017" type="video/mp4" />
-          </video>
-        </a>
-        <div class="card-text">
-          <p class="card-id">09 · <span lang="en">Solo · Numerical tool</span><span lang="zh">独立 · 数值工具</span><span class="card-status"><span lang="en">Live tool</span><span lang="zh">在线可用</span></span></p>
-          <h3 class="card-title">Gacha <em>Economy Sim</em></h3>
-          <p class="card-tag">React · TypeScript · Monte Carlo · Web Worker</p>
-          <p class="card-blurb"><span lang="en">Reach a target in 90% of runs within 120 pulls, without extra rares <b>→ one pity rule does it at 91.96%.</b></span><span lang="zh">120 抽内 90% 拿到目标，又不多发稀有 <b>→ 一种保底规则做到了 91.96%。</b></span></p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-gacha"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-gacha" hidden>
-          <div class="detail-grid detail-grid-summary"><div><h4><span lang="en">My contribution</span><span lang="zh">个人贡献</span></h4><p lang="en">Simulation engine, configurable rules, results UI and tests.</p><p lang="zh">模拟引擎、可配置规则、结果界面与测试。</p></div><div><h4><span lang="en">Inside the case</span><span lang="zh">案例看点</span></h4><p lang="en">Rule interfaces, simulation output and conditional percentiles.</p><p lang="zh">规则接口、模拟结果与条件百分位口径。</p></div></div>
-          <div class="detail-links">
-            <a class="case" href="projects/gacha.html"><span lang="en">Full case study →</span><span lang="zh">完整案例 →</span></a>
-            <a href="https://gacha-simulator-ten.vercel.app" target="_blank" rel="noopener" class="primary"><span lang="en">▶ Live demo</span><span lang="zh">▶ 在线试用</span></a>
-          </div>
-        </div>
-      </article>
 
-      <!-- 10 sand-garden -->
+      <!-- 06 sand-garden -->
       <article class="card" data-reveal data-id="sand-garden" data-cat="games">
         <a class="card-media sand-garden-art" data-preview-video="assets/sandgarden-demo.mp4" href="projects/sand-garden.html" aria-label="sand-garden — View case study / 查看项目案例">
           <video loop muted playsinline preload="none" poster="assets/sandgarden-poster.jpg?v=20261017" data-lazy-video aria-label="Robot Karesansui — a robot raking concentric ripple patterns into a shader-drawn zen garden">
@@ -446,7 +357,7 @@
           </video>
         </a>
         <div class="card-text">
-          <p class="card-id">10 · <span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可在线体验</span></span></p>
+          <p class="card-id">06 · <span lang="en">Solo · Simulation</span><span lang="zh">独立 · 模拟</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可在线体验</span></span></p>
           <h3 class="card-title">Robot <em>Karesansui</em></h3>
           <p class="card-tag">Solo · R3F · WebGL Zen Sim</p>
           <p class="card-blurb"><span lang="en">Keep a quiet garden alive without crowding it <b>→ raking, weather and day/night run as linked rhythms.</b></span><span lang="zh">让安静的庭院有生气又不嘈杂 <b>→ 耙沙、天气和昼夜按各自节奏相互衔接。</b></span></p>
@@ -462,7 +373,7 @@
         </div>
       </article>
 
-      <!-- 13 metagame -->
+      <!-- 08 metagame -->
       <article class="card" data-reveal data-id="metagame" data-cat="games">
         <a class="card-media metagame-art" href="projects/metagame.html" aria-label="metagame — View case study / 查看项目案例">
           <picture>
@@ -471,7 +382,7 @@
           </picture>
         </a>
         <div class="card-text">
-          <p class="card-id">13 · <span lang="en">Solo · UAL MA Term 3</span><span lang="zh">独立 · UAL 硕士第三学期</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
+          <p class="card-id">08 · <span lang="en">Solo · UAL MA Term 3</span><span lang="zh">独立 · UAL 硕士第三学期</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
           <h3 class="card-title"><em>MetaGame</em></h3>
           <p class="card-tag">MA Term 3 · Unity · Meta-narrative Platformer</p>
           <p class="card-blurb"><span lang="en">A deliberately rough build still has to be readable <b>→ feedback and parameters built into the story.</b></span><span lang="zh">故意做得粗糙的版本也要让玩家看得懂 <b>→ 把反馈和参数做进剧情里。</b></span></p>
@@ -486,36 +397,8 @@
         </div>
       </article>
 
-      <!-- 11 gridbot -->
-      <article class="card" data-reveal data-id="gridbot" data-cat="tools">
-        <a class="card-media terminal-art" href="projects/gridbot.html" aria-label="gridbot — View case study / 查看项目案例">
-<pre>$ pip install -e ".[ocr]"
-▸ capture   ✓
-▸ input     ✓
-▸ ocr       ✓ paddle
-▸ navigator ✓
-▸ recorder  ✓
 
-› ready_state: idle
-_</pre>
-        </a>
-        <div class="card-text">
-          <p class="card-id">11 · <span lang="en">Solo · QA tooling</span><span lang="zh">独立 · QA 工具</span><span class="card-status"><span lang="en">Open source</span><span lang="zh">开源</span></span></p>
-          <h3 class="card-title">gridbot — <em>Black-box QA</em></h3>
-          <p class="card-tag">Python · ADB · PaddleOCR · alpha (from source)</p>
-          <p class="card-blurb"><span lang="en">Game screens that standard automation can't read <b>→ repeatable checks driven by on-screen text.</b></span><span lang="zh">标准自动化工具读不懂的游戏界面 <b>→ 靠屏幕上的文字做可重复的检查。</b></span></p>
-          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-gridbot"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
-        </div>
-        <div class="card-detail" id="card-detail-gridbot" hidden>
-          <div class="detail-grid detail-grid-summary"><div><h4><span lang="en">My contribution</span><span lang="zh">个人贡献</span></h4><p lang="en">Capture, input and OCR modules; API design and documentation.</p><p lang="zh">截图、输入与 OCR 模块；API 设计与文档。</p></div><div><h4><span lang="en">Inside the case</span><span lang="zh">案例看点</span></h4><p lang="en">Module boundaries, API examples and automation limits.</p><p lang="zh">模块分工、API 示例与自动化适用范围。</p></div></div>
-          <div class="detail-links">
-            <a class="case" href="projects/gridbot.html"><span lang="en">Full case study →</span><span lang="zh">完整案例 →</span></a>
-            <a href="https://github.com/suzyeth/gridbot" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 14 hypha -->
+      <!-- 09 hypha -->
       <article class="card" data-reveal data-id="hypha" data-cat="games">
         <a class="card-media hypha-art" href="projects/hypha.html" aria-label="hypha — View case study / 查看项目案例">
           <picture>
@@ -524,7 +407,7 @@ _</pre>
           </picture>
         </a>
         <div class="card-text">
-          <p class="card-id">14 · <span lang="en">Design + Unity · GGJ 2023</span><span lang="zh">设计与开发 · GGJ 2023</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
+          <p class="card-id">09 · <span lang="en">Design + Unity · GGJ 2023</span><span lang="zh">设计与开发 · GGJ 2023</span><span class="card-status"><span lang="en">Playable</span><span lang="zh">可试玩</span></span></p>
           <h3 class="card-title"><em>Hypha</em></h3>
           <p class="card-tag">GGJ 2023 · Unity · One-Button Web Game</p>
           <p class="card-blurb"><span lang="en">One button and 48 hours <b>→ timing decides when to act and when to wait.</b></span><span lang="zh">一个按键、48 小时 <b>→ 靠时机判断何时出手、何时等待。</b></span></p>
@@ -539,13 +422,13 @@ _</pre>
         </div>
       </article>
 
-      <!-- 15 ma -->
+      <!-- 10 ma -->
       <article class="card" data-reveal data-id="ma" data-cat="games">
         <a class="card-media ma-art" data-preview-video="assets/ma-ending.mp4" href="projects/ma.html" aria-label="ma — View case study / 查看项目案例">
           <video src="assets/ma-ending.mp4" loop muted playsinline preload="none" data-lazy-video></video>
         </a>
         <div class="card-text">
-          <p class="card-id">15 · <span lang="en">Coursework · UAL 2022–2023</span><span lang="zh">课程作品 · UAL 2022–2023</span><span class="card-status"><span lang="en">Early work</span><span lang="zh">早期作品</span></span></p>
+          <p class="card-id">10 · <span lang="en">Coursework · UAL 2022–2023</span><span lang="zh">课程作品 · UAL 2022–2023</span><span class="card-status"><span lang="en">Early work</span><span lang="zh">早期作品</span></span></p>
           <h3 class="card-title"><span lang="en">MA Prototype Collection</span><span lang="zh">硕士原型合集</span></h3>
           <p class="card-tag">Unity · C# · 3 Prototypes</p>
           <p class="card-blurb"><span lang="en">Early experiments in puzzle mechanics, platforming and timing; links to individual cases.</span><span lang="zh">解谜、平台跳跃与时机机制的早期探索，以及独立案例入口。</span></p>
@@ -841,7 +724,7 @@ _</pre>
 
 
   const allCards = Array.from(carousel.querySelectorAll('.card'));
-  const featuredIds = new Set(['idol', 'off-camera', 'vr-aquarium', 'vr-sheepdog', 'game-gate', 'liveops', 'tarduck', 'cocktail', 'gacha', 'sand-garden', 'gridbot']);
+  const featuredIds = new Set(['idol', 'off-camera', 'vr-aquarium', 'vr-sheepdog', 'tarduck', 'sand-garden']);
   const sourceCards = allCards.filter(card => featuredIds.has(card.dataset.id));
 
   allCards.forEach((card) => {

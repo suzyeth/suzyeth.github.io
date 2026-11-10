@@ -151,7 +151,7 @@
     <section class="lab" id="lab">
       <div class="wrap">
         <header class="section-head lab-head" data-reveal>
-          <p class="eyebrow"><span lang="en">Working lab / 04—05</span><span lang="zh">进行中的实验室 / 04—05</span></p>
+          <p class="eyebrow"><span lang="en">Working lab / 04—10</span><span lang="zh">进行中的实验室 / 04—10</span></p>
           <h2 class="motion-heading"><span lang="en">Agents, pipelines<br>and useful experiments.</span><span lang="zh">智能体、生产管线<br>与有用的实验。</span></h2>
           <div class="filters" role="group" aria-label="Filter lab projects">
             <button class="filter is-active" type="button" data-filter="all"><span lang="en">All</span><span lang="zh">全部</span></button>
@@ -172,6 +172,36 @@
             <div><p class="lab-no">05 / PIPELINE</p><h3>Comfy Gateway</h3>
             <p><span lang="en">A private local production layer for image generation, editing, video continuation and upscaling.</span><span lang="zh">私有的本地生产层，覆盖图像生成、编辑、视频续接与超分。</span></p>
             <div class="lab-proof"><span lang="en">Private local tool · visual evidence pending</span><span lang="zh">私有本地工具 · 视觉证据待补充</span></div></div>
+          </article>
+          <article class="lab-card" data-cat="agents" data-reveal>
+            <a class="lab-cover" href="../projects/liveops.html" aria-label="LiveOps Investigator — project details / 项目介绍"><img src="../assets/liveops/unexplained.jpg" width="1280" height="720" alt="LiveOps Investigator finding that reports the whole shortfall as not explained" loading="lazy" decoding="async"></a><p class="lab-no">06 / AGENT</p><h3>LiveOps Investigator</h3>
+            <p><span lang="en">An agent that explains why a live event missed revenue. SQL computes every number; the model only writes the explanation, and says when a gap can't be explained.</span><span lang="zh">解释活动收入为什么没达标的 Agent。所有数字由 SQL 计算，模型只负责写解释，解释不了的缺口会直接说出来。</span></p>
+            <div class="lab-proof"><span lang="en">Postgres · federated SQL · local LLM · 3 planted cases solved</span><span lang="zh">Postgres · 联邦 SQL · 本地模型 · 3 个埋点案例跑通</span></div>
+            <div class="lab-links"><a href="../projects/liveops.html"><span lang="en">Project details →</span><span lang="zh">项目介绍 →</span></a><a class="lab-source" href="https://github.com/suzyeth/liveops-investigator" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </article>
+          <article class="lab-card" data-cat="agents" data-reveal>
+            <a class="lab-cover" href="../projects/game-gate.html" data-preview-video="assets/game-gate/eight-pixels.mp4" aria-label="game-gate — project details / 项目介绍"><img src="../assets/game-gate/poster.jpg" width="1280" height="720" alt="game-gate: a shop button eight pixels shorter than the start button" loading="lazy" decoding="async"></a><p class="lab-no">07 / REVIEW GATE</p><h3>game-gate</h3>
+            <p><span lang="en">A pre-merge gate for web games: CI plays the build, an agent judges it against written design rules, and only a person can approve the fix.</span><span lang="zh">网页游戏的合并前门禁：CI 试玩构建，智能体对照写明的设计规则评审，批准修复的只能是人。</span></p>
+            <div class="lab-proof"><span lang="en">Playwright · GitLab CI/CD · Duo Agent Platform · human approval</span><span lang="zh">Playwright · GitLab CI/CD · Duo 智能体 · 人工批准</span></div>
+            <div class="lab-links"><a href="../projects/game-gate.html"><span lang="en">Project details →</span><span lang="zh">项目介绍 →</span></a><a class="lab-source" href="https://www.youtube.com/watch?v=_KbnKGHUIj8" target="_blank" rel="noopener"><span lang="en">Film ↗</span><span lang="zh">演示片 ↗</span></a><a class="lab-source" href="https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43588409/showcase" target="_blank" rel="noopener">GitLab ↗</a></div>
+          </article>
+          <article class="lab-card" data-cat="agents" data-reveal>
+            <a class="lab-cover" href="earwitness.html" aria-label="Earwitness — project details / 项目介绍"><img src="assets/cover-earwitness.svg" width="1600" height="900" alt="Earwitness cover" loading="lazy" decoding="async"></a><p class="lab-no">08 / EVALUATION</p><h3>Earwitness</h3>
+            <p><span lang="en">An independent evidence layer for phone agents that catches the gap between a provider's success claim and what the call actually proves.</span><span lang="zh">面向电话智能体的独立证据层，找出服务商「任务已完成」与真实通话证据之间的差距。</span></p>
+            <div class="lab-proof"><span lang="en">1 real call · 101 offline tests · false success claim caught</span><span lang="zh">1 通真实电话 · 101 项离线测试 · 捕获错误的成功声明</span></div>
+            <div class="lab-links"><a href="earwitness.html"><span lang="en">Project details →</span><span lang="zh">项目介绍 →</span></a><a class="lab-source" href="https://github.com/suzyeth/earwitness" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </article>
+          <article class="lab-card" data-cat="agents" data-reveal>
+            <a class="lab-cover" href="show-your-marks.html" data-preview-video="ai/assets/show-your-marks-demo.mp4" aria-label="Show Your Marks — project details / 项目介绍"><img src="https://i.ytimg.com/vi/3jgTBU9ih7w/hqdefault.jpg" width="480" height="360" alt="Show Your Marks demo video cover" loading="lazy" decoding="async"></a><p class="lab-no">09 / EVALUATION</p><h3>Show Your Marks</h3>
+            <p><span lang="en">A consultation-practice prototype that keeps the rubric judge apart from the simulated patient. Code controls which facts the patient can reveal, and every mark links to the dialogue that earned it.</span><span lang="zh">模拟问诊练习原型，评分裁判与模拟病人分离。代码控制病人能说出哪些事实，每一分都链接到对应的对话。</span></p>
+            <div class="lab-proof"><span lang="en">94% exact-line accuracy on re-test · 987 tests passed</span><span lang="zh">复测精确行准确率 94% · 987 项测试通过</span></div>
+            <div class="lab-links"><a href="show-your-marks.html"><span lang="en">Project details & video →</span><span lang="zh">项目介绍与视频 →</span></a><a class="lab-source" href="https://osce-patient.onrender.com" target="_blank" rel="noopener">Live demo ↗</a><a class="lab-source" href="https://github.com/suzyeth/osce-patient" target="_blank" rel="noopener">GitHub ↗</a></div>
+          </article>
+          <article class="lab-card" data-cat="creative" data-reveal>
+            <a class="lab-cover" href="roll-call.html" data-preview-youtube="mo6rYFPqxsU" aria-label="Roll Call — project details / 项目介绍"><img src="https://i.ytimg.com/vi/mo6rYFPqxsU/hqdefault.jpg" width="480" height="360" alt="Roll Call demo video cover" loading="lazy" decoding="async"></a><p class="lab-no">10 / GAME</p><h3>Roll Call</h3>
+            <p><span lang="en">A group-chat branching story game, built with Xiaomin Fan. The story runs on pre-written branches and deterministic logic.</span><span lang="zh">群聊式分支剧情游戏，与 Xiaomin Fan 合作。剧情运行在预写分支和确定性逻辑上。</span></p>
+            <div class="lab-proof"><span lang="en">VibeHack London 2026 award · Next.js · Zod · 128 tests</span><span lang="zh">VibeHack London 2026 获奖 · Next.js · Zod · 128 项测试</span></div>
+            <div class="lab-links"><a href="roll-call.html"><span lang="en">Project details & video →</span><span lang="zh">项目介绍与视频 →</span></a><a class="lab-source" href="https://vibe-roles.vercel.app" target="_blank" rel="noopener"><span lang="en">Play ↗</span><span lang="zh">试玩 ↗</span></a><a class="lab-source" href="https://github.com/suzyeth/vibe-roles" target="_blank" rel="noopener">GitHub ↗</a></div>
           </article>
         </div>
       </div>

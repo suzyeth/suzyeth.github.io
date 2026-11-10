@@ -1190,3 +1190,13 @@ body.zh .pro-card ul[lang="zh"] { display:grid; }
   .evidence tr { display:block; border-top:1px solid var(--ink-fade); padding:12px 0; }
   .evidence th, .evidence td, .evidence tbody th { display:block; border:0; padding:2px 0; width:auto; }
 }
+
+/* Jams & MA work: compact secondary cards (2026-11-10) ---------------- */
+.work-list .card { grid-template-rows: 140px 1fr; box-shadow: none; }
+.work-list .card-text { padding: 16px 18px; gap: 6px; }
+.work-list .card-tag,
+.work-list .card-contribution { display: none; }
+.work-list .card-blurb { font-size: .8rem; }
+.work-list .card-blurb b { font-weight: 500; }
+.work-list .play-here { align-self: flex-start; padding: 6px 12px; font-size: 12px; margin: 4px 0 0; }
+.work-list .card-link { font-size: 11px; }

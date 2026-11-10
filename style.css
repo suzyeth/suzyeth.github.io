@@ -1200,3 +1200,31 @@ body.zh .pro-card ul[lang="zh"] { display:grid; }
 .work-list .card-blurb b { font-weight: 500; }
 .work-list .play-here { align-self: flex-start; padding: 6px 12px; font-size: 12px; margin: 4px 0 0; }
 .work-list .card-link { font-size: 11px; }
+
+/* Work section as static grids (2026-11-10) ------------------------ */
+.work .work-carousel.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  overflow: visible;
+  scroll-snap-type: none;
+  mask-image: none; -webkit-mask-image: none;
+  contain: none;
+  cursor: auto;
+  padding-bottom: 0;
+}
+.work .work-carousel.work-grid .card { flex: none; min-width: 0; animation: none; transform: none; }
+.work .work-carousel.work-grid .card:hover { transform: translateY(-3px); }
+.work .work-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1000px) {
+  .work .work-carousel.work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work .work-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .work .work-carousel.work-grid { grid-template-columns: 1fr; overflow: visible; }
+  .work .work-list { gap: 14px; }
+  .work .work-list .card { grid-template-rows: 110px 1fr; }
+  .work .work-list .card-text { padding: 12px; }
+  .work .work-list .card-blurb { display: none; }
+}
+@media (max-width: 360px) { .work .work-list { grid-template-columns: 1fr; } }

@@ -43,7 +43,7 @@
 <link rel="preload" href="assets/fonts/Inter-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts.css">
 
-<link rel="stylesheet" href="style.css?v=20261110-work-split">
+<link rel="stylesheet" href="style.css?v=20261110-work-grid">
 
 <!-- Optional smooth-scroll enhancement (page works without it) -->
 <script src="assets/lenis.min.js" defer></script>
@@ -204,7 +204,7 @@
     </header>
 
     <p class="eyebrow work-group-label" data-reveal><span lang="en">Main projects</span><span lang="zh">主要项目</span></p>
-    <div class="work-carousel" aria-label="Featured project carousel">
+    <div class="work-carousel work-grid" aria-label="Main projects">
 
       <!-- 01 idol -->
       <article class="card" data-reveal data-id="idol" data-cat="games">
@@ -419,13 +419,34 @@
         </div>
       </article>
 
-      <!-- 10 ma -->
+      <!-- 10 roll-call -->
+      <article class="card" data-reveal data-id="roll-call" data-cat="games">
+        <a class="card-media" data-preview-youtube="mo6rYFPqxsU" href="ai/roll-call.html" aria-label="roll-call — View case study / 查看项目案例">
+          <img src="https://i.ytimg.com/vi/mo6rYFPqxsU/hqdefault.jpg" alt="Roll Call — a branching story told in a group chat" width="480" height="360" loading="lazy" decoding="async" />
+        </a>
+        <div class="card-text">
+          <p class="card-id">10 · <span lang="en">Two-person team · VibeHack London 2026</span><span lang="zh">双人团队 · VibeHack London 2026</span><span class="card-status"><span lang="en">Award</span><span lang="zh">获奖</span></span></p>
+          <h3 class="card-title">Roll <em>Call</em></h3>
+          <p class="card-tag">Next.js · TypeScript · Branching Story</p>
+          <p class="card-blurb"><span lang="en">A story game told in a group chat <b>→ pre-written branches and deterministic logic, 128 tests.</b></span><span lang="zh">在群聊里讲的剧情游戏 <b>→ 预写分支加确定性逻辑，128 项测试。</b></span></p>
+          <button class="card-expand" aria-expanded="false" aria-controls="card-detail-roll-call"><span lang="en">More details</span><span lang="zh">展开详情</span></button>
+        </div>
+        <div class="card-detail" id="card-detail-roll-call" hidden>
+          <div class="detail-grid detail-grid-summary"><div><h4><span lang="en">My contribution</span><span lang="zh">个人贡献</span></h4><p lang="en">Game design, frontend, testing and integration, with Xiaomin Fan.</p><p lang="zh">与 Xiaomin Fan 合作：玩法设计、前端、测试与集成。</p></div><div><h4><span lang="en">Inside the case</span><span lang="zh">案例看点</span></h4><p lang="en">Best Product Integration with Z.ai at VibeHack London 2026.</p><p lang="zh">VibeHack London 2026「Best Product Integration with Z.ai」。</p></div></div>
+          <div class="detail-links">
+            <a class="case" href="ai/roll-call.html"><span lang="en">Full case study →</span><span lang="zh">完整案例 →</span></a>
+            <a href="https://vibe-roles.vercel.app" target="_blank" rel="noopener" class="primary"><span lang="en">▶ Play in browser</span><span lang="zh">▶ 浏览器试玩</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11 ma -->
       <article class="card" data-reveal data-id="ma" data-cat="games">
         <a class="card-media ma-art" data-preview-video="assets/ma-ending.mp4" href="projects/ma.html" aria-label="ma — View case study / 查看项目案例">
           <video src="assets/ma-ending.mp4" loop muted playsinline preload="none" data-lazy-video></video>
         </a>
         <div class="card-text">
-          <p class="card-id">10 · <span lang="en">Coursework · UAL 2022–2023</span><span lang="zh">课程作品 · UAL 2022–2023</span><span class="card-status"><span lang="en">Early work</span><span lang="zh">早期作品</span></span></p>
+          <p class="card-id">11 · <span lang="en">Coursework · UAL 2022–2023</span><span lang="zh">课程作品 · UAL 2022–2023</span><span class="card-status"><span lang="en">Early work</span><span lang="zh">早期作品</span></span></p>
           <h3 class="card-title"><span lang="en">MA Prototype Collection</span><span lang="zh">硕士原型合集</span></h3>
           <p class="card-tag">Unity · C# · 3 Prototypes</p>
           <p class="card-blurb"><span lang="en">Early experiments in puzzle mechanics, platforming and timing; links to individual cases.</span><span lang="zh">解谜、平台跳跃与时机机制的早期探索，以及独立案例入口。</span></p>
@@ -713,7 +734,7 @@
   });
 })();
 
-// Project carousel + grid ---------------------------------
+// Project grids: main projects + compact Jams & MA list ------
 (function () {
   const carousel = document.querySelector('.work-carousel');
   const list = document.querySelector('.work-list');
@@ -767,100 +788,7 @@
     card.setAttribute('role', 'link');
   });
 
-  sourceCards.forEach((card) => {
-    const clone = card.cloneNode(true);
-    clone.classList.add('marquee-clone');
-    clone.setAttribute('aria-hidden', 'true');
-    clone.removeAttribute('role');
-    clone.setAttribute('tabindex', '-1');
-    clone.removeAttribute('data-reveal');
-    clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-    clone.querySelectorAll('a, button, video').forEach(el => {
-      el.setAttribute('tabindex', '-1');
-      if (el.tagName === 'BUTTON') el.setAttribute('disabled', '');
-    });
-    const detail = clone.querySelector('.card-detail');
-    if (detail) detail.setAttribute('hidden', '');
-    carousel.appendChild(clone);
-  });
-
   allCards.filter(card => !featuredIds.has(card.dataset.id)).forEach(card => card.remove());
-  const setMarqueeDistance = () => {
-    const originals = sourceCards.filter(card => getComputedStyle(card).display !== 'none');
-    if (!originals.length) return;
-    const gap = parseFloat(getComputedStyle(carousel).columnGap || getComputedStyle(carousel).gap) || 0;
-    const distance = originals.reduce((sum, card) => sum + card.getBoundingClientRect().width + gap, 0);
-    carousel.style.setProperty('--marquee-distance', `${Math.max(1, distance)}px`);
-    carousel.classList.add('is-marquee-ready');
-  };
-
-  const getCurrentOffset = () => {
-    const first = carousel.querySelector('.card:not(.marquee-clone)');
-    if (!first) return 0;
-    const transform = getComputedStyle(first).transform;
-    if (!transform || transform === 'none') return 0;
-    const values = transform.match(/matrix.*\((.+)\)/);
-    if (!values) return 0;
-    const parts = values[1].split(',').map(v => parseFloat(v.trim()));
-    return Number.isFinite(parts[4]) ? parts[4] : 0;
-  };
-
-  let dragStartX = 0;
-  let dragStartOffset = 0;
-  let isDragging = false;
-
-  const setManualOffset = (value) => {
-    const distance = parseFloat(getComputedStyle(carousel).getPropertyValue('--marquee-distance')) || 1;
-    const min = -distance;
-    const max = 0;
-    const next = Math.max(min, Math.min(max, value));
-    carousel.style.setProperty('--marquee-offset', `${next}px`);
-    return next;
-  };
-
-  const isTouchCarousel = () => window.matchMedia('(max-width: 640px)').matches;
-
-  carousel.addEventListener('pointerdown', (e) => {
-    if (e.button !== 0 || e.target.closest('button, a')) return;
-    if (isTouchCarousel() || carousel.querySelector('[data-play-game]')) return;   // phones use native scroll-snap, not custom drag
-    isDragging = true;
-    dragStartX = e.clientX;
-    dragStartOffset = carousel.classList.contains('is-user-controlled')
-      ? parseFloat(getComputedStyle(carousel).getPropertyValue('--marquee-offset')) || 0
-      : getCurrentOffset();
-    carousel.classList.add('is-user-controlled', 'is-dragging');
-    setManualOffset(dragStartOffset);
-    // Capture only after a real drag so taps retain their link target.
-  });
-
-  carousel.addEventListener('pointermove', (e) => {
-    if (!isDragging) return;
-    if (Math.abs(e.clientX - dragStartX) > 8 && !carousel.hasPointerCapture(e.pointerId)) {
-      carousel.setPointerCapture(e.pointerId);
-    }
-    setManualOffset(dragStartOffset + e.clientX - dragStartX);
-  });
-
-  const endDrag = (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    const offset = parseFloat(getComputedStyle(carousel).getPropertyValue('--marquee-offset')) || 0;
-    const distance = parseFloat(getComputedStyle(carousel).getPropertyValue('--marquee-distance')) || 1;
-    const progress = Math.min(1, Math.max(0, Math.abs(offset) / distance));
-    carousel.style.setProperty('--marquee-delay', `${-(progress * 52)}s`);
-    carousel.classList.remove('is-user-controlled');
-    carousel.classList.remove('is-dragging');
-    if (carousel.hasPointerCapture(e.pointerId)) carousel.releasePointerCapture(e.pointerId);
-  };
-
-  carousel.addEventListener('dragstart', (e) => e.preventDefault());
-  window.addEventListener('pointerup', endDrag);
-  carousel.addEventListener('pointercancel', endDrag);
-
-  window.addEventListener('load', setMarqueeDistance);
-  window.addEventListener('resize', setMarqueeDistance);
-  setMarqueeDistance();
-  window.setWorkMarqueeDistance = setMarqueeDistance;
 })();
 
 // Project card expand/collapse ---------------------------------

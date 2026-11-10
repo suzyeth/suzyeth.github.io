@@ -1,0 +1,21 @@
+.video-case .case-hero{max-width:1000px}.video-case .project-demo{margin:36px 0 0}.video-case-detail{max-width:900px;padding-top:44px;padding-bottom:64px}.video-case-detail h2{font-size:clamp(28px,5vw,44px);line-height:1.15;margin-bottom:28px}.video-case-detail p{font-size:17px;line-height:1.8;margin:18px 0}.video-case .proj-links,.video-case .lab-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:24px 0}.video-case-detail .metric-strip{display:flex;flex-wrap:wrap;gap:28px;border-block:1px solid #ccc;padding:24px 0;margin:28px 0}.video-case-detail .metric-strip>div{display:grid;gap:8px}.video-case-detail strong{font-size:26px}.video-case-detail .judge-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;line-height:1.7}.video-case-detail .scope-note{font-size:14px}.project-demo[id]{scroll-margin-top:120px}@media(max-width:600px){.video-case .case-hero h1{font-size:clamp(38px,11vw,64px);overflow-wrap:anywhere}.video-case-detail{padding-top:28px;padding-bottom:36px}.video-case-detail p{font-size:16px}.video-case .project-demo{margin-top:24px}}
+
+/* Shared case-study rhythm across all six video projects. */
+.case-page .case-hero{max-width:1120px;margin-inline:auto;padding-top:136px;padding-bottom:44px}
+.case-page .case-hero h1{font-family:var(--sans,Arial,sans-serif);font-size:clamp(44px,7.5vw,100px);font-weight:500;line-height:1.04;overflow-wrap:anywhere;margin:30px 0}
+.case-section-nav{display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap;margin-bottom:40px;padding-bottom:16px;border-bottom:1px solid var(--line,#ccc);font:12px/1.6 var(--sans,Arial,sans-serif)}
+.case-section-nav>div{display:flex;gap:24px}.case-section-nav a{display:inline-flex;align-items:center;min-height:40px;text-decoration:none}
+.case-section-nav a:hover,.case-next a:hover{text-decoration:underline;text-underline-offset:5px}
+.case-section-nav a:focus-visible,.case-next a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.case-page .case-hero>.project-demo{width:100%;margin:36px 0 0}
+.case-page .project-demo{scroll-margin-top:120px}
+.case-page #case-detail{scroll-margin-top:120px}
+.case-page .case-next{max-width:1120px;align-items:flex-start;gap:20px 36px;flex-wrap:wrap;font-family:var(--sans,Arial,sans-serif)}
+.case-page .case-next a{min-height:44px;display:inline-flex;align-items:center}
+.workflow-evidence{margin:28px 0 0}.workflow-evidence video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#161616}.workflow-evidence figcaption{font-size:12px;line-height:1.7;margin-top:10px}
+@media(max-width:680px){
+ .case-page .case-hero{padding-top:116px;padding-bottom:24px}.case-section-nav{margin-bottom:24px;gap:4px 16px;padding-bottom:10px;font-size:11px}.case-section-nav>div{gap:20px}
+ .case-page .case-hero h1{font-size:clamp(36px,10.5vw,64px);margin:22px 0;letter-spacing:-.045em}
+ .case-page .case-hero>.project-demo{margin-top:28px}.case-page .case-intro{display:block}.case-page .case-next{gap:8px;padding-bottom:32px}
+ .case-page .reveal-chapter{height:auto;min-height:0}.case-page .reveal-stage{height:64svh;min-height:420px;max-height:580px}
+}

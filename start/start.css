@@ -1,0 +1,126 @@
+/* Hub page (start/): the cartridge shelf + all-projects list.
+   Shares only the portfolio header with the rest of the site. */
+:root{
+  --paper:#f1eee6; --card:#fbfaf6; --ink:#1d1d1b; --muted:#6f6b62; --line:#d6d1c4; --shelf:#d9d3c4;
+  --serif:'Fraunces',Georgia,serif; --sans:Inter,system-ui,-apple-system,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --header:96px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header)}
+body{background:var(--paper);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+[lang="zh"]{display:none}
+body.zh [lang="zh"]{display:revert}
+body.zh [lang="en"]{display:none}
+
+.skip-link{position:absolute;left:12px;top:-60px;z-index:300;background:var(--ink);color:var(--paper);padding:8px 12px;font-size:13px}
+.skip-link:focus{top:12px}
+:focus-visible{outline:2px solid #365bd5;outline-offset:3px}
+
+/* ---------- first screen ---------- */
+.hub-hero{position:relative;min-height:calc(100vh - var(--header));min-height:calc(100svh - var(--header));margin-top:var(--header);
+  max-width:1360px;margin-inline:auto;padding:40px clamp(20px,5vw,76px) 64px;display:grid;grid-template-columns:minmax(300px,36%) 1fr;gap:clamp(28px,4vw,64px)}
+.hub-intro{display:flex;flex-direction:column}
+.hub-kicker,.hub-shelf-hint,.hub-selected-kicker,.hub-scroll,.hub-count,.hub-row-no{font:11px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hub-intro h1{font:400 clamp(48px,6vw,84px)/.95 var(--serif);letter-spacing:-.04em;margin:14px 0 14px}
+.hub-tagline{font:italic 400 clamp(19px,1.8vw,23px)/1.3 var(--serif)}
+.hub-facts{margin-top:12px;color:#4a4740;font-size:14px;max-width:46ch}
+.hub-links{display:flex;gap:18px;margin-top:14px;font-size:14px}
+.hub-links a{text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}
+.hub-links a:hover{border-color:var(--ink)}
+
+.hub-selected{margin-top:auto;padding-top:28px;border-top:1px solid var(--line)}
+.hub-selected-kicker{color:var(--cd,var(--muted))}
+.hub-selected-line{font:400 clamp(21px,2vw,26px)/1.2 var(--serif);letter-spacing:-.015em;margin:8px 0 12px}
+.hub-feature{list-style:none}
+.hub-feature a{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.hub-feature b{font:400 17px/1.3 var(--serif)}
+.hub-feature span{font:11px/1.4 var(--mono);color:var(--muted);text-align:right}
+.hub-feature a:hover b{color:var(--cd)}
+.hub-more,.hub-extra{font:11px/1.6 var(--mono);color:var(--muted);margin-top:8px}
+.hub-extra{margin-top:2px}
+.hub-open{display:inline-block;margin-top:16px;padding:9px 16px;background:var(--cd,var(--ink));color:#fbfaf6;text-decoration:none;font-size:14px;border-radius:3px;transition:filter .15s}
+.hub-open:hover{filter:brightness(1.12)}
+
+/* ---------- shelf ---------- */
+.hub-shelf-wrap{display:flex;flex-direction:column;min-height:0}
+.hub-shelf-hint{text-align:right}
+.hub-shelf{position:relative;flex:1;min-height:440px;display:flex;align-items:flex-end;justify-content:center;gap:8px;padding:24px 8px 18px}
+.hub-shelf::after{content:"";position:absolute;left:0;right:0;bottom:0;height:18px;background:var(--shelf);border-top:1px solid #c7c0ae;border-radius:2px}
+.spine{position:relative;z-index:1;width:68px;height:86%;display:flex;flex-direction:column;align-items:center;padding:14px 0 12px;
+  background:var(--cd);color:#fbfaf6;text-decoration:none;border-radius:4px 4px 0 0;box-shadow:inset -7px 0 0 rgba(0,0,0,.09);transition:transform .2s}
+.spine:hover{transform:translateY(-10px)}
+.spine-no{font:11px var(--mono);opacity:.8}
+.spine-name{writing-mode:vertical-rl;transform:rotate(180deg);font:400 22px/1 var(--serif);margin-top:16px;white-space:nowrap}
+body.zh .spine-name{transform:none;letter-spacing:.12em}
+.spine-mark{margin-top:auto;font:600 10px var(--mono);border:1px solid rgba(255,255,255,.6);padding:1px 5px}
+.case{display:none}
+
+/* JS on: the selected spine is replaced by its pulled-out case */
+.hub-ready .spine.is-out{display:none}
+.hub-ready .spine.is-out + .case{position:relative;z-index:2;display:flex;flex-direction:column;width:min(400px,46%);height:96%;padding:14px;
+  background:var(--c);color:#fbfaf6;text-decoration:none;border-radius:6px;box-shadow:0 14px 30px rgba(0,0,0,.18);
+  transform:rotate(-2deg) translateY(-8px);animation:pull .35s ease-out}
+@keyframes pull{from{transform:rotate(0) translateY(30px)}}
+.case-band{display:flex;justify-content:space-between;font:11px var(--mono);margin-bottom:10px}
+.case-cover{flex:1;min-height:0;overflow:hidden;border-radius:3px;background:#fbfaf6}
+.case-cover img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,center)}
+.case-label{display:block;background:#fbfaf6;color:var(--ink);margin-top:10px;padding:10px 12px;border-radius:3px}
+.case-label b{display:block;font:400 21px/1.2 var(--serif)}
+.case-label small{font:11px var(--mono);color:var(--muted)}
+.case:hover .case-label small{color:var(--cd)}
+
+.hub-scroll{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);text-decoration:none}
+.hub-scroll:hover{color:var(--ink)}
+
+/* ---------- all projects ---------- */
+.hub-list{max-width:1360px;margin:0 auto;padding:56px clamp(20px,5vw,76px) 80px;border-top:1px solid var(--line)}
+.hub-list-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--ink)}
+.hub-list h2{font:400 clamp(30px,3.4vw,44px)/1 var(--serif);letter-spacing:-.03em}
+.hub-count{vertical-align:super;margin-left:4px}
+.hub-filters{display:flex;gap:6px;flex-wrap:wrap}
+.hub-chip{font:12px/1 var(--sans);padding:7px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;cursor:pointer}
+.hub-chip:hover{border-color:var(--cd,var(--ink))}
+.hub-chip[aria-pressed="true"]{background:var(--cd,var(--ink));border-color:var(--cd,var(--ink));color:#fbfaf6}
+.hub-rows{list-style:none}
+.hub-row{display:grid;grid-template-columns:44px minmax(180px,1fr) minmax(0,1.1fr) 330px;gap:16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.hub-row[hidden]{display:none}
+.hub-row-name{font:400 19px/1.3 var(--serif);text-decoration:none}
+.hub-row-name:hover{text-decoration:underline;text-underline-offset:3px}
+.hub-row-line{color:#4a4740;font-size:14px}
+.hub-row-dirs{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.hub-tag{font:10.5px/1 var(--mono);padding:4px 7px;border-radius:3px;color:var(--cd);background:color-mix(in srgb,var(--c) 18%,transparent);white-space:nowrap}
+.hub-noscript{padding:16px 0;color:var(--muted)}
+
+.hub-footer{max-width:1360px;margin:0 auto;padding:22px clamp(20px,5vw,76px) 40px;display:flex;justify-content:space-between;gap:16px;font:11px var(--mono);letter-spacing:.06em;color:var(--muted);border-top:1px solid var(--line)}
+.hub-footer a{text-decoration:none}
+
+/* ---------- phone: spines become horizontal drawers ---------- */
+@media (max-width:860px){
+  :root{--header:92px}
+  .hub-hero{grid-template-columns:1fr;min-height:0;padding-top:28px;padding-bottom:72px;gap:0}
+  .hub-intro h1{margin-top:8px}
+  /* intro, then the drawers, then the chosen direction's projects */
+  .hub-intro{display:contents}
+  .hub-selected{order:3;margin-top:20px;padding-top:20px}
+  .hub-shelf-wrap{order:2;margin-top:28px}
+  .hub-shelf-hint{text-align:left;margin-bottom:8px}
+  .hub-shelf{flex-direction:column;align-items:stretch;min-height:0;padding:0;gap:6px}
+  .hub-shelf::after{display:none}
+  .spine{width:auto;height:52px;flex-direction:row;padding:0 14px;gap:12px;border-radius:4px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.09)}
+  .spine:hover{transform:none}
+  .spine-name,body.zh .spine-name{writing-mode:horizontal-tb;transform:none;margin:0;font-size:19px;letter-spacing:0}
+  .spine-mark{margin:0 0 0 auto}
+  .hub-ready .spine.is-out + .case{width:auto;height:auto;transform:none;animation:none}
+  .case-cover{flex:none;height:min(52vw,260px)}
+  .hub-scroll{bottom:24px}
+  .hub-row{grid-template-columns:34px 1fr;gap:2px 10px;padding:12px 0}
+  .hub-row-line,.hub-row-dirs{grid-column:2}
+  .hub-row-dirs{justify-content:flex-start;margin-top:4px}
+  .hub-footer{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .spine,.hub-ready .spine.is-out + .case{transition:none;animation:none}
+}

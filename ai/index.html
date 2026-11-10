@@ -17,27 +17,33 @@
   <link rel="stylesheet" href="style.css?v=20261008-published">
   <link rel="stylesheet" href="motion.css?v=20261008-published">
   <link rel="stylesheet" href="archive.css?v=20261008-published">
+<link rel="stylesheet" href="../assets/portfolio-nav.css?v=20261026-islands-nav-3">
+<script src="../assets/portfolio-nav.js?v=20261026-islands-nav-3" defer></script>
+<link rel="stylesheet" href="../assets/project-demos.css?v=20261027-audit-1">
+<link rel="stylesheet" href="../assets/project-hover.css?v=20261026-video-hover-2">
+<script src="../assets/project-hover.js?v=20261026-video-hover-2" defer></script>
 </head>
-<body>
+<body class="portfolio-site">
   <a class="skip-link" href="#work"><span lang="en">Skip to work</span><span lang="zh">跳到作品</span></a>
 
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Suzy AI Lab home">SUZY / AI LAB</a>
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
-      <a href="#principles"><span lang="en">Method</span><span lang="zh">方法</span></a>
-      <a href="#about"><span lang="en">About</span><span lang="zh">关于</span></a>
-      <button class="lang-toggle" id="langToggle" type="button" aria-label="Toggle language">EN / 中</button>
-    </nav>
-  </header>
+  <header class="portfolio-header">
+  <div class="portfolio-topbar">
+    <a class="portfolio-brand" href="../index.html">SUZY SU</a>
+    <span class="portfolio-caption"><span lang="en">PORTFOLIO / SELECT A DIRECTION</span><span lang="zh">作品集 / 选择方向</span></span>
+    <div class="portfolio-controls">
+      <button type="button" class="portfolio-language" id="langToggle" aria-label="Switch to Chinese" aria-pressed="false">EN / 中</button>
+    </div>
+  </div>
+  <nav class="portfolio-global" id="portfolioNavigation" aria-label="Portfolio / 作品集"><a href="../index.html" aria-label="Game design / 游戏设计"><span class="portfolio-route-full"><span lang="en">Game design</span><span lang="zh">游戏设计</span></span><span class="portfolio-route-short"><span lang="en">Games</span><span lang="zh">游戏</span></span></a><a href="../ai/" aria-current="page" aria-label="Creative technology / 创意技术"><span class="portfolio-route-full"><span lang="en">Creative technology</span><span lang="zh">创意技术</span></span><span class="portfolio-route-short"><span lang="en">Creative</span><span lang="zh">创意技术</span></span></a><a href="../ai-engineering.html" aria-label="AI engineering / AI 工程"><span class="portfolio-route-full"><span lang="en">AI engineering</span><span lang="zh">AI 工程</span></span><span class="portfolio-route-short"><span lang="en">AI Eng.</span><span lang="zh">AI 工程</span></span></a><a href="../data.html" aria-label="Data analysis / 数据分析"><span class="portfolio-route-full"><span lang="en">Data analysis</span><span lang="zh">数据分析</span></span><span class="portfolio-route-short"><span lang="en">Data</span><span lang="zh">数据分析</span></span></a><a href="../tools.html" aria-label="Tools & technology / 工具与技术"><span class="portfolio-route-full"><span lang="en">Tools & technology</span><span lang="zh">工具与技术</span></span><span class="portfolio-route-short"><span lang="en">Tools</span><span lang="zh">工具</span></span></a></nav>
+</header>
 
   <main>
     <div class="hero-scene"><section class="hero explorer-hero archive-mode" id="top" aria-label="Project explorer">
 <div class="explorer-heading wrap"><div><p class="eyebrow">SUZY SU / AI & CREATIVE TECHNOLOGY</p><h1><span lang="en">Explore the archive.</span><span lang="zh">探索作品档案。</span></h1></div><p class="explorer-intro"><span lang="en">AI systems, creative tools<br>and things worth exploring.</span><span lang="zh">AI 系统、创意工具，<br>和那些值得探索的想法。</span></p></div>
 <div class="explorer-toolbar wrap"><a class="browse-down" href="#work"><span lang="en">Browse all projects ↓</span><span lang="zh">向下浏览全部作品 ↓</span></a><p><span lang="en">Selected experiments</span><span lang="zh">精选探索</span> <span class="explorer-count">01 / 04</span></p><div><span class="explorer-hint"><span lang="en">Scroll or drag to choose</span><span lang="zh">滚动或拖动选择</span></span><button type="button" class="explorer-prev" aria-label="Previous project / 上一个项目">←</button><button type="button" class="explorer-next" aria-label="Next project / 下一个项目">→</button></div></div>
-<div class="explorer-rail" data-lenis-prevent role="group" aria-label="Select a project / 选择项目"><a draggable="false" class="explorer-card is-selected" href="table-for-two.html" data-title="Table for Two" data-description-en="Language becomes coordinated action." data-description-zh="让语言转化为双臂协同行动。" data-destination="table-for-two.html"><span class="explorer-card-top"><span>01 / 2026</span><span lang="en">Embodied AI</span><span lang="zh">具身智能</span></span><span class="explorer-art art-0"><img src="assets/cover-table.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>Table for Two</strong><span aria-hidden="true">↗</span></span></a>
-<a draggable="false" class="explorer-card" href="artdex.html" data-title="ArtDex" data-description-en="A museum visit, collected." data-description-zh="把博物馆之旅变成个人收藏。" data-destination="artdex.html"><span class="explorer-card-top"><span>02 / 2026</span><span lang="en">Vision product</span><span lang="zh">视觉产品</span></span><span class="explorer-art art-1"><img src="assets/cover-artdex.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>ArtDex</strong><span aria-hidden="true">↗</span></span></a>
-<a draggable="false" class="explorer-card" href="second-pass.html" data-title="Second Pass" data-description-en="Testing the claim behind the model." data-description-zh="验证模型背后的主张。" data-destination="second-pass.html"><span class="explorer-card-top"><span>03 / 2026</span><span lang="en">Research tool</span><span lang="zh">研究工具</span></span><span class="explorer-art art-2"><img src="assets/cover-second.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>Second Pass</strong><span aria-hidden="true">↗</span></span></a>
+<div class="explorer-rail" data-lenis-prevent role="group" aria-label="Select a project / 选择项目"><a draggable="false" class="explorer-card is-selected" href="table-for-two.html" data-preview-youtube="d6iiVpS3A5Q" data-title="Table for Two" data-description-en="Language becomes coordinated action." data-description-zh="让语言转化为双臂协同行动。" data-destination="table-for-two.html"><span class="explorer-card-top"><span>01 / 2026</span><span lang="en">Embodied AI</span><span lang="zh">具身智能</span></span><span class="explorer-art art-0"><img src="assets/cover-table.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>Table for Two</strong><span aria-hidden="true">↗</span></span></a>
+<a draggable="false" class="explorer-card" href="artdex.html" data-preview-video="ai/assets/artdex-live-capture.webm" data-title="ArtDex" data-description-en="A museum visit, collected." data-description-zh="把博物馆之旅变成个人收藏。" data-destination="artdex.html"><span class="explorer-card-top"><span>02 / 2026</span><span lang="en">Vision product</span><span lang="zh">视觉产品</span></span><span class="explorer-art art-1"><img src="assets/cover-artdex.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>ArtDex</strong><span aria-hidden="true">↗</span></span></a>
+<a draggable="false" class="explorer-card" href="second-pass.html" data-preview-video="ai/assets/second-pass-demo.mp4" data-title="Second Pass" data-description-en="Testing the claim behind the model." data-description-zh="验证模型背后的主张。" data-destination="second-pass.html"><span class="explorer-card-top"><span>03 / 2026</span><span lang="en">Research tool</span><span lang="zh">研究工具</span></span><span class="explorer-art art-2"><img src="assets/cover-second.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>Second Pass</strong><span aria-hidden="true">↗</span></span></a>
 <a draggable="false" class="explorer-card" href="https://sillage-fragrance-study.suzysu418.chatgpt.site" target="_blank" rel="noopener" data-title="SILLAGE" data-description-en="A fragrance story, told through motion." data-description-zh="以动效讲述香气故事。" data-destination="https://sillage-fragrance-study.suzysu418.chatgpt.site"><span class="explorer-card-top"><span>04 / 2026</span><span lang="en">Web & motion</span><span lang="zh">网页与动效</span></span><span class="explorer-art art-4"><img src="assets/cover-sillage.svg" alt="" draggable="false"></span><span class="explorer-card-bottom"><strong>SILLAGE</strong><span aria-hidden="true">↗</span></span></a></div>
 <div class="explorer-selection wrap"><div><p class="eyebrow"><span lang="en">In focus</span><span lang="zh">当前选择</span></p><h2 id="explorer-title">Table for Two</h2><p id="explorer-description"><span lang="en">Language becomes coordinated action.</span><span lang="zh">让语言转化为双臂协同行动。</span></p></div><a class="button button-primary explorer-open" href="table-for-two.html"><span lang="en">Explore this project</span><span lang="zh">探索这个项目</span><span aria-hidden="true">↗</span></a></div>
 </section></div>
@@ -62,8 +68,8 @@
 </nav>
 
       <article class="project project-dark" id="table-for-two" data-reveal>
-        <div class="project-media media-robot">
-          <img src="assets/table-for-two-cover.png" alt="Two simulated SO-101 robot arms setting a table" width="1600" height="900">
+        <div class="project-media media-robot" data-preview-youtube="d6iiVpS3A5Q">
+          <a class="project-cover-link" href="table-for-two.html" aria-label="Project details / 项目介绍"><img src="assets/table-for-two-cover.png" alt="Two simulated SO-101 robot arms setting a table" width="1600" height="900"></a>
           <span class="media-index">01</span>
         </div>
         <div class="project-copy wrap-narrow">
@@ -76,7 +82,7 @@
             <div><dt><span lang="en">Learned policy</span><span lang="zh">学习策略</span></dt><dd><span lang="en">0/10 complete task</span><span lang="zh">完整任务 0/10</span></dd></div>
             <div><dt><span lang="en">Runtime</span><span lang="zh">运行</span></dt><dd><span lang="en">Local Intel CPU / iGPU</span><span lang="zh">本地 Intel CPU / iGPU</span></dd></div>
           </dl>
-          <div class="project-links"><a href="https://youtu.be/d6iiVpS3A5Q" target="_blank" rel="noopener"><span lang="en">Watch demo</span><span lang="zh">观看演示</span> ↗</a><a href="https://github.com/suzyeth/table-for-two" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="project-links"><a href="table-for-two.html"><span lang="en">Project details & video →</span><span lang="zh">项目介绍与视频 →</span></a><a href="https://github.com/suzyeth/table-for-two" target="_blank" rel="noopener">GitHub ↗</a></div>
           <details class="case-notes">
             <summary><span lang="en">Read the case notes</span><span lang="zh">阅读案例摘要</span><span aria-hidden="true">+</span></summary>
             <div class="case-grid">
@@ -108,15 +114,15 @@
             </div>
           </details>
         </div>
-        <div class="project-media media-artdex">
-          <img src="assets/artdex-capture.png" alt="ArtDex mobile museum capture and recognition interface" width="1280" height="720">
+        <div class="project-media media-artdex" data-preview-video="ai/assets/artdex-live-capture.webm">
+          <a class="project-cover-link" href="artdex.html" aria-label="Project details / 项目介绍"><img src="assets/artdex-capture.png" alt="ArtDex mobile museum capture and recognition interface" width="1280" height="720"></a>
           <span class="media-index">02</span>
         </div>
       </article>
 
       <article class="project project-cyan" id="second-pass" data-reveal>
-        <div class="project-media media-film">
-          <img src="assets/second-pass-architecture.png" alt="Second Pass data and agent architecture" width="1600" height="900">
+        <div class="project-media media-film" data-preview-video="ai/assets/second-pass-demo.mp4">
+          <a class="project-cover-link" href="second-pass.html" aria-label="Project details / 项目介绍"><img src="assets/second-pass-architecture.png" alt="Second Pass data and agent architecture" width="1600" height="900"></a>
           <span class="media-index">03</span>
         </div>
         <div class="project-copy wrap-narrow">
@@ -129,7 +135,7 @@
             <div><dt><span lang="en">Result</span><span lang="zh">结果</span></dt><dd><span lang="en">No replicated signal found</span><span lang="zh">未发现可复现信号</span></dd></div>
             <div><dt><span lang="en">Control</span><span lang="zh">对照</span></dt><dd><span lang="en">Negative control collapses</span><span lang="zh">负对照结果归零</span></dd></div>
           </dl>
-          <div class="project-links"><a href="https://second-pass-334984245629.us-central1.run.app" target="_blank" rel="noopener"><span lang="en">Open live demo</span><span lang="zh">打开在线演示</span> ↗</a><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="project-links"><a href="second-pass.html"><span lang="en">Project details & video →</span><span lang="zh">项目介绍与视频 →</span></a><a href="https://second-pass-334984245629.us-central1.run.app" target="_blank" rel="noopener"><span lang="en">Open live demo</span><span lang="zh">打开在线演示</span> ↗</a><a href="https://github.com/suzyeth/second-pass" target="_blank" rel="noopener">GitHub ↗</a></div>
           <details class="case-notes">
             <summary><span lang="en">Read the case notes</span><span lang="zh">阅读案例摘要</span><span aria-hidden="true">+</span></summary>
             <div class="case-grid">
@@ -156,10 +162,10 @@
 
         <div class="lab-grid">
           <article class="lab-card" data-cat="agents" data-reveal>
-            <p class="lab-no">04 / WORKFLOW</p><h3>StudioFlow AI</h3>
+            <a class="lab-cover" href="studioflow.html#project-video" data-preview-video="ai/assets/studioflow-live-workflow.webm" aria-label="StudioFlow AI — watch project demo / 观看项目演示"><img src="https://i.ytimg.com/vi/QKe7fg2-CbA/hqdefault.jpg" width="480" height="360" alt="StudioFlow AI demo video cover" loading="lazy" decoding="async"></a><p class="lab-no">04 / WORKFLOW</p><h3>StudioFlow AI</h3>
             <p><span lang="en">A live video-brief workflow that turns intake into a structured production record and generated output.</span><span lang="zh">在线的视频需求工作流，将输入转化为结构化生产记录与生成结果。</span></p>
             <div class="lab-proof"><span lang="en">Cloud Run · Firestore mirror · Gemini intake · Veo output</span><span lang="zh">Cloud Run · Firestore 镜像 · Gemini 解析 · Veo 输出</span></div>
-            <div class="lab-links"><a class="lab-source" href="https://studioflow-ai-334984245629.us-central1.run.app" target="_blank" rel="noopener">Live demo ↗</a><a class="lab-source" href="assets/studioflow-live-workflow.webm" target="_blank" rel="noopener"><span lang="en">29s workflow ↗</span><span lang="zh">29 秒工作流 ↗</span></a><a class="lab-source" href="https://github.com/suzyeth/studioflow-ai" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="lab-links"><a href="studioflow.html"><span lang="en">Project details & video →</span><span lang="zh">项目介绍与视频 →</span></a><a class="lab-source" href="https://studioflow-ai-334984245629.us-central1.run.app" target="_blank" rel="noopener">Live demo ↗</a><a class="lab-source" href="assets/studioflow-live-workflow.webm" target="_blank" rel="noopener"><span lang="en">29s workflow ↗</span><span lang="zh">29 秒工作流 ↗</span></a><a class="lab-source" href="https://github.com/suzyeth/studioflow-ai" target="_blank" rel="noopener">GitHub ↗</a></div>
           </article>
           <article class="lab-card lab-card-media" data-cat="creative" data-reveal>
             <div class="lab-image pipeline-visual" aria-label="Comfy Gateway generation pipeline"><span>TEXT</span><i>→</i><span>IMAGE</span><i>→</i><span>EDIT</span><i>→</i><span>VIDEO</span></div>
@@ -202,7 +208,7 @@
     </section>
   </main>
 
-  <footer><span>© 2026 Suzy Su</span><a href="../index.html"><span lang="en">Game portfolio ↗</span><span lang="zh">游戏设计作品集 ↗</span></a><span><span lang="en">London / Remote</span><span lang="zh">伦敦 / 远程</span></span></footer>
+  <footer id="contact"><span>© 2026 Suzy Su</span><a href="../index.html"><span lang="en">Game portfolio ↗</span><span lang="zh">游戏设计作品集 ↗</span></a><span><span lang="en">London / Remote</span><span lang="zh">伦敦 / 远程</span></span></footer>
   <script src="assets/vendor/lenis.min.js"></script>
   <script src="script.js?v=20261008-published"></script>
   <script src="motion.js?v=20261008-published"></script>

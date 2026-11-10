@@ -1,0 +1,42 @@
+[
+  {
+    "project": "second-pass",
+    "youtube": "0TThYr3WP3s",
+    "source": "https://devpost.com/software/second-pass",
+    "previewKind": "local",
+    "previewFile": "ai/assets/second-pass-demo.mp4"
+  },
+  {
+    "project": "Show Your Marks",
+    "youtube": "3jgTBU9ih7w",
+    "source": "https://devpost.com/software/show-your-marks",
+    "previewKind": "local",
+    "previewFile": "ai/assets/show-your-marks-demo.mp4"
+  },
+  {
+    "project": "ArtDex",
+    "youtube": "4EHgdfU2AhI",
+    "source": "https://devpost.com/software/artdex-cq5pwy",
+    "previewKind": "local",
+    "previewFile": "ai/assets/artdex-live-capture.webm"
+  },
+  {
+    "project": "table-for-two",
+    "youtube": "d6iiVpS3A5Q",
+    "source": "ai/table-for-two.html (existing verified demo link)",
+    "previewKind": "youtube"
+  },
+  {
+    "project": "Roll Call",
+    "youtube": "mo6rYFPqxsU",
+    "source": "https://devpost.com/software/roll-call-fvq7oy",
+    "previewKind": "youtube"
+  },
+  {
+    "project": "StudioFlow AI",
+    "youtube": "QKe7fg2-CbA",
+    "source": "https://devpost.com/software/studioflow-ai",
+    "previewKind": "local",
+    "previewFile": "ai/assets/studioflow-live-workflow.webm"
+  }
+]

@@ -6,6 +6,7 @@
 
 (function () {
   const KEY = 'suzy-ai-lang';
+  if (document.querySelector('.portfolio-header')) return;
   const button = document.getElementById('langToggle');
   const apply = (lang) => {
     document.body.classList.toggle('zh', lang === 'zh');

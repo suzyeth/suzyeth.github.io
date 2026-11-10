@@ -73,25 +73,25 @@
 }
 </script>
 <link rel="stylesheet" href="assets/playable.css?v=20261025-inline">
+<link rel="stylesheet" href="assets/portfolio-nav.css?v=20261026-islands-nav-3">
+<script src="assets/portfolio-nav.js?v=20261026-islands-nav-3" defer></script>
+<link rel="stylesheet" href="assets/project-hover.css?v=20261026-video-hover-2">
+<script src="assets/project-hover.js?v=20261026-video-hover-2" defer></script>
 </head>
-<body>
+<body class="portfolio-site">
 
 <a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
 
 <!-- Top nav ============================================ -->
-<header class="hud">
-  <a href="#" class="brand">SUSU / PORTFOLIO</a>
-  <nav class="hud-r" aria-label="Primary">
-    <div class="hud-links" id="hudLinks">
-      <a href="#work"><span lang="en">Work</span><span lang="zh">作品</span></a>
-      <a href="#about"><span lang="en">About</span><span lang="zh">关于</span></a>
-      <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系</span></a>
+<header class="portfolio-header">
+  <div class="portfolio-topbar">
+    <a class="portfolio-brand" href="index.html">SUZY SU</a>
+    <span class="portfolio-caption"><span lang="en">PORTFOLIO / SELECT A DIRECTION</span><span lang="zh">作品集 / 选择方向</span></span>
+    <div class="portfolio-controls">
+      <button type="button" class="portfolio-language" id="langToggle" aria-label="Switch to Chinese" aria-pressed="false">EN / 中</button>
     </div>
-    <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN / 中</button>
-    <button id="menuToggle" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="hudLinks">
-      <span class="menu-bars" aria-hidden="true"></span>
-    </button>
-  </nav>
+  </div>
+  <nav class="portfolio-global" id="portfolioNavigation" aria-label="Portfolio / 作品集"><a href="index.html" aria-current="page" aria-label="Game design / 游戏设计"><span class="portfolio-route-full"><span lang="en">Game design</span><span lang="zh">游戏设计</span></span><span class="portfolio-route-short"><span lang="en">Games</span><span lang="zh">游戏</span></span></a><a href="ai/" aria-label="Creative technology / 创意技术"><span class="portfolio-route-full"><span lang="en">Creative technology</span><span lang="zh">创意技术</span></span><span class="portfolio-route-short"><span lang="en">Creative</span><span lang="zh">创意技术</span></span></a><a href="ai-engineering.html" aria-label="AI engineering / AI 工程"><span class="portfolio-route-full"><span lang="en">AI engineering</span><span lang="zh">AI 工程</span></span><span class="portfolio-route-short"><span lang="en">AI Eng.</span><span lang="zh">AI 工程</span></span></a><a href="data.html" aria-label="Data analysis / 数据分析"><span class="portfolio-route-full"><span lang="en">Data analysis</span><span lang="zh">数据分析</span></span><span class="portfolio-route-short"><span lang="en">Data</span><span lang="zh">数据分析</span></span></a><a href="tools.html" aria-label="Tools & technology / 工具与技术"><span class="portfolio-route-full"><span lang="en">Tools & technology</span><span lang="zh">工具与技术</span></span><span class="portfolio-route-short"><span lang="en">Tools</span><span lang="zh">工具</span></span></a></nav>
 </header>
 
 <main id="main">
@@ -136,11 +136,6 @@
       <span lang="en">London-based · 2 years in F2P mobile · 2 shipped titles · games, tools &amp; prototypes · MA UAL</span>
       <span lang="zh">现居伦敦 · F2P 手游 2 年 · 2 款已上线 · 游戏、工具与原型 · UAL 硕士</span>
     </p>
-    <div class="proj-links track-links" data-reveal style="justify-content:center">
-      <a href="ai/"><span lang="en">Applied AI work →</span><span lang="zh">应用 AI 作品 →</span></a>
-      <a href="data.html"><span lang="en">Data analysis →</span><span lang="zh">数据分析 →</span></a>
-      <a href="tools.html"><span lang="en">Tools &amp; technical →</span><span lang="zh">工具与技术 →</span></a>
-    </div>
     <ul class="stat-row" data-reveal>
       <li class="stat"><b>2</b><span lang="en">shipped F2P mobile titles, both live</span><span lang="zh">款已上线的 F2P 手游，均在运营</span></li>
       <li class="stat"><b>8%</b><span lang="en">paying-user rate on a shipped idle card RPG</span><span lang="zh">付费率，已上线的放置卡牌 RPG</span></li>
@@ -221,7 +216,7 @@
 
       <!-- 01 idol -->
       <article class="card" data-reveal data-id="idol" data-cat="games">
-        <a class="card-media idol-art" href="projects/idol.html" aria-label="idol — View case study / 查看项目案例">
+        <a class="card-media idol-art" data-preview-video="assets/idol-opening-new.mp4" href="projects/idol.html" aria-label="idol — View case study / 查看项目案例">
           <picture>
             <source type="image/webp" srcset="assets/idol-cover.webp" />
             <img src="assets/idol-cover.jpg" alt="Project:IDOL — backstage hub of an idol-management card roguelite" width="800" height="600" loading="lazy" decoding="async" />
@@ -244,7 +239,7 @@
 
       <!-- 02 tarduck -->
       <article class="card" data-reveal data-id="tarduck" data-cat="games">
-        <a class="card-media tarduck-art" href="projects/tarduck.html" aria-label="tarduck — View case study / 查看项目案例">
+        <a class="card-media tarduck-art" data-preview-video="assets/tarduck-demo.mp4" href="projects/tarduck.html" aria-label="tarduck — View case study / 查看项目案例">
           <video loop muted playsinline preload="none" poster="assets/tarduck-poster.jpg" data-lazy-video aria-label="tarduck — browser extraction shooter, isometric 3D raid overview with mission HUD">
             <source src="assets/tarduck-demo.mp4" type="video/mp4" />
           </video>
@@ -312,7 +307,7 @@
 
       <!-- 04 gacha -->
       <article class="card" data-reveal data-id="gacha" data-cat="tools">
-        <a class="card-media gacha-art" href="projects/gacha.html" aria-label="gacha — View case study / 查看项目案例">
+        <a class="card-media gacha-art" data-preview-video="assets/gacha-demo.mp4" href="projects/gacha.html" aria-label="gacha — View case study / 查看项目案例">
           <video loop muted playsinline preload="none" poster="assets/gacha-poster.jpg?v=20261017b" data-lazy-video aria-label="Gacha economy simulator — target-driven pull-cost percentile dashboard, running a 1000-player simulation">
             <source src="assets/gacha-demo.mp4?v=20261017" type="video/mp4" />
           </video>
@@ -335,7 +330,7 @@
 
       <!-- 05 sand-garden -->
       <article class="card" data-reveal data-id="sand-garden" data-cat="games">
-        <a class="card-media sand-garden-art" href="projects/sand-garden.html" aria-label="sand-garden — View case study / 查看项目案例">
+        <a class="card-media sand-garden-art" data-preview-video="assets/sandgarden-demo.mp4" href="projects/sand-garden.html" aria-label="sand-garden — View case study / 查看项目案例">
           <video loop muted playsinline preload="none" poster="assets/sandgarden-poster.jpg?v=20261017" data-lazy-video aria-label="Robot Karesansui — a robot raking concentric ripple patterns into a shader-drawn zen garden">
             <source src="assets/sandgarden-demo.mp4?v=20261017" type="video/mp4" />
           </video>
@@ -436,7 +431,7 @@ _</pre>
 
       <!-- 10 ma -->
       <article class="card" data-reveal data-id="ma" data-cat="games">
-        <a class="card-media ma-art" href="projects/ma.html" aria-label="ma — View case study / 查看项目案例">
+        <a class="card-media ma-art" data-preview-video="assets/ma-ending.mp4" href="projects/ma.html" aria-label="ma — View case study / 查看项目案例">
           <video src="assets/ma-ending.mp4" loop muted playsinline preload="none" data-lazy-video></video>
         </a>
         <div class="card-text">
@@ -695,6 +690,7 @@ _</pre>
 <script>
 // CRITICAL: language toggle must work even if every other script fails.
 (function () {
+  if (document.querySelector('.portfolio-header')) return;
   const KEY = 'lang';
   const btn = document.getElementById('langToggle');
   const apply = (l) => {
@@ -998,22 +994,7 @@ _</pre>
   targets.forEach(t => io.observe(t));
 })();
 
-// Lazy-play decorative videos only while in view (battery + data) ---
-(function () {
-  const vids = document.querySelectorAll('video[data-lazy-video]');
-  if (!vids.length) return;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;                       // honour reduced-motion: stay paused
-  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      const v = e.target;
-      if (e.isIntersecting) { v.play().catch(()=>{}); }
-      else { v.pause(); }
-    });
-  }, { threshold: .25 });
-  vids.forEach(v => io.observe(v));
-})();
+// Cover videos are controlled by project-hover.js: play on hover, stop on leave.
 
 // Lenis smooth scroll (optional enhancement) -----------------
 window.addEventListener('load', () => {

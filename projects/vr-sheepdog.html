@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VR Sheepdog — Herding Simulation Case Study · Suzy Su</title>
+<meta name="description" content="You are the shepherd, not the dog: a deterministic herding simulation where an autonomous sheepdog pens a flock around real furniture, built as the core of a mixed-reality game.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/vr-sheepdog.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="VR Sheepdog — Herding Simulation Case Study">
+<meta property="og:description" content="You are the shepherd, not the dog: a deterministic herding simulation where an autonomous sheepdog pens a flock around real furniture, built as the core of a mixed-reality game.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/vr-sheepdog.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20261021-data">
+<script src="../assets/lenis.min.js" defer></script>
+<link rel="stylesheet" href="../assets/playable.css?v=20261025-inline">
+<link rel="stylesheet" href="../assets/portfolio-nav.css?v=20261026-islands-nav-3">
+<script src="../assets/portfolio-nav.js?v=20261026-islands-nav-3" defer></script>
+</head>
+<body class="portfolio-site">
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="portfolio-header">
+  <div class="portfolio-topbar">
+    <a class="portfolio-brand" href="../index.html">SUZY SU</a>
+    <span class="portfolio-caption"><span lang="en">PORTFOLIO / SELECT A DIRECTION</span><span lang="zh">作品集 / 选择方向</span></span>
+    <div class="portfolio-controls">
+      <button type="button" class="portfolio-language" id="langToggle" aria-label="Switch to Chinese" aria-pressed="false">EN / 中</button>
+    </div>
+  </div>
+  <nav class="portfolio-global" id="portfolioNavigation" aria-label="Portfolio / 作品集"><a href="../index.html" aria-current="location" aria-label="Game design / 游戏设计"><span class="portfolio-route-full"><span lang="en">Game design</span><span lang="zh">游戏设计</span></span><span class="portfolio-route-short"><span lang="en">Games</span><span lang="zh">游戏</span></span></a><a href="../ai/" aria-label="Creative technology / 创意技术"><span class="portfolio-route-full"><span lang="en">Creative technology</span><span lang="zh">创意技术</span></span><span class="portfolio-route-short"><span lang="en">Creative</span><span lang="zh">创意技术</span></span></a><a href="../ai-engineering.html" aria-label="AI engineering / AI 工程"><span class="portfolio-route-full"><span lang="en">AI engineering</span><span lang="zh">AI 工程</span></span><span class="portfolio-route-short"><span lang="en">AI Eng.</span><span lang="zh">AI 工程</span></span></a><a href="../data.html" aria-label="Data analysis / 数据分析"><span class="portfolio-route-full"><span lang="en">Data analysis</span><span lang="zh">数据分析</span></span><span class="portfolio-route-short"><span lang="en">Data</span><span lang="zh">数据分析</span></span></a><a href="../tools.html" aria-label="Tools & technology / 工具与技术"><span class="portfolio-route-full"><span lang="en">Tools & technology</span><span lang="zh">工具与技术</span></span><span class="portfolio-route-short"><span lang="en">Tools</span><span lang="zh">工具</span></span></a></nav>
+</header>
+
+<main id="main">
+<article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Solo · AI-assisted (Claude Code) · In progress</span><span lang="zh">独立 · AI 协助开发（Claude Code）· 开发中</span></p>
+      <h1 class="proj-title">VR <em>Sheepdog</em></h1>
+      <p class="proj-tag">Unity 6 · C# · Flocking AI · A* · Deterministic Sim</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">You are the shepherd, not the dog. Seated in your own living room, you give hand signals to an autonomous sheepdog that herds a flock around your real sofa and table into a pen. The simulation core is done; the Quest mixed-reality shell is next. The commands are named after real handler calls: Walk Up, Lie Down, Come Bye, Away and That'll Do.</span>
+      <span lang="zh">你是牧羊人，不是狗。坐在自己的客厅里，用手势指挥一条自主牧羊犬，把羊群绕过真实的沙发和茶几赶进围栏。模拟核心已经完成，下一步是 Quest 混合现实外壳。指令沿用真实牧羊比赛的口令：Walk Up、Lie Down、Come Bye、Away、That'll Do。</span>
+    </p>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Game concept, herding rules, test layouts and evaluation; code written with Claude Code.</p><p lang="zh">玩法概念、放牧规则、测试场景和评估；代码借助 Claude Code 编写。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Personal portfolio project · milestone 1 of 4 done.</p><p lang="zh">个人作品集项目 · 四个里程碑完成了第一个。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>Unity 6 · C# · .NET 9 offline harness · NUnit</p>
+      </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">In a real room, furniture blocks the flock and the dog. A dog that works on an open field can fail completely around a sofa.</p><p lang="zh">在真实房间里，家具会挡住羊群和狗。在空地上能干活的狗，到了沙发旁边可能完全失灵。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Build a deterministic, seedable simulation first, test it over ten seeds per layout, and fix each failure at its root with a test.</p><p lang="zh">先做一个确定性、可指定种子的模拟，每种场景跑十个种子，每个失败都找到根因并补上测试。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">10 of 10 seeds pen all 12 sheep on both the open field and the L-shaped sofa room; 44 EditMode tests pass.</p><p lang="zh">空地和 L 形沙发房间两种场景，10 个种子都把 12 只羊全部赶进围栏；44 个 EditMode 测试通过。</p></div>
+    </div>
+
+    <div class="proj-media">
+      <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/vr-sheepdog/poster.jpg" controls aria-label="Top-down simulation: the dog (black) routes behind the flock (white) around an L-shaped sofa and pens all twelve sheep">
+        <source src="../assets/vr-sheepdog/m1-L.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <p class="case-flow-note"><span lang="en">Top-down debug render of the L-shaped sofa room (seed 5). Black: dog. White: sheep. The line is the dog's planned path.</span><span lang="zh">L 形沙发房间的俯视调试画面（种子 5）。黑色是狗，白色是羊，线条是狗规划的路线。</span></p>
+
+    <section class="proj-block case-flow-section">
+      <h2><span lang="en">How the herd moves</span><span lang="zh">羊群怎么动</span></h2>
+      <ol class="case-flow">
+        <li><h3><span lang="en">Sheep</span><span lang="zh">羊</span></h3><p lang="en">A flocking model from herding research (Strömbom et al. 2014): cohesion with six neighbours, separation, and fleeing pressure that grows as the dog gets closer.</p><p lang="zh">采用放牧研究中的群体模型（Strömbom 等，2014）：和六个邻居聚拢、保持间距，狗越近逃离的压力越大。</p></li>
+        <li><h3><span lang="en">Dog</span><span lang="zh">狗</span></h3><p lang="en">Collects strays, then drives the group toward the pen, unless the player's command overrides it.</p><p lang="zh">先收拢掉队的羊，再把羊群往围栏赶；玩家下指令时以指令为准。</p></li>
+        <li><h3><span lang="en">Room</span><span lang="zh">房间</span></h3><p lang="en">A 5 cm occupancy grid that knows each body's size, so nothing squeezes through a gap narrower than itself; bodies slide along walls instead of sticking.</p><p lang="zh">5 厘米一格的占用网格，按身体大小判断能否通过，比身体窄的缝钻不过去；碰到墙会沿墙滑动而不是卡住。</p></li>
+      </ol>
+      <p class="case-flow-note"><span lang="en">The simulation steps at a fixed 30 Hz and is deterministic for a seed and a command log. A five-second snapshot buffer already supports rewind and fork: go back, give a different command, compare.</span><span lang="zh">模拟以固定 30 Hz 步进，给定种子和指令记录结果完全确定。五秒快照缓冲已经支持倒带和分叉：退回去，换一个指令，对比结果。</span></p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">From 1 in 10 to 10 in 10 around a sofa</span><span lang="zh">绕沙发：从 10 次成功 1 次到 10 次全成</span></h2>
+      <p lang="en">The L-shaped room started at 1 success in 10 seeds. Five separate root causes were behind it, and each got a test: pathfinding returned nothing when it started inside an inflated obstacle; the flock's path used twice the sheep radius, so a 0.345 m gap was impassable; the drive point was purely geometric and landed behind the sofa arm; the pen entry point was computed behind the sofa; and "gathered" only checked distance, so a flock split by the sofa arm counted as one group.</p>
+      <p lang="zh">L 形房间一开始 10 个种子只成功 1 次。背后有五个独立的根因，每个都补了测试：起点落在障碍膨胀区内时寻路直接返回空；羊群路径用了两倍羊身半径，0.345 米的缝变得过不去；驱赶站位只按几何算，落到了沙发扶手后面；围栏入口点算在了沙发后面；「已聚拢」只看距离，被沙发扶手隔开的两群羊也被当成一群。</p>
+      <p lang="en">The dog's outrun was then planned with A* over a ground cost: cells next to sheep and cells in front of the flock cost more, so the dog goes round behind the flock instead of cutting through it. I first tried the wide arc used in real trials; on the open field it fell to 7 of 10, because in a small room the sheep feel the dog everywhere. A tight, fast pass behind the flock won.</p>
+      <p lang="zh">之后狗的绕跑改用 A* 按「地面代价」规划：贴着羊的格子和羊群前方的格子代价更高，狗会从羊群后面绕过去，而不是从中间穿过。我先试了真实比赛里的大弧线绕跑，结果空地成功率掉到 7/10：小房间里羊在哪儿都能感到狗。最后定为紧贴羊群后方快速绕过。</p>
+      <ul>
+        <li lang="en"><b>Open field:</b> 10 of 10 seeds penned all 12 sheep, 15.8–32.1 s, mean 18.6 s.</li>
+        <li lang="zh"><b>空地：</b>10 个种子都把 12 只羊全部赶进围栏，用时 15.8–32.1 秒，平均 18.6 秒。</li>
+        <li lang="en"><b>L-shaped sofa room:</b> 10 of 10, 27.4–43.1 s, mean 35.2 s.</li>
+        <li lang="zh"><b>L 形沙发房间：</b>10 个种子全部成功，用时 27.4–43.1 秒，平均 35.2 秒。</li>
+      </ul>
+      <p class="case-flow-note"><span lang="en">Ten seeds per layout in the Unity EditMode run.</span><span lang="zh">Unity EditMode 中每种场景跑 10 个种子。</span></p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Tooling and what's next</span><span lang="zh">工具与下一步</span></h2>
+      <p lang="en">The core is plain C# with no Unity dependency, so a .NET 9 harness compiles it outside the editor to run ten-seed tables, per-second traces and pathfinding probes in seconds. An editor recorder renders any seed to video. Next: a side-by-side rewind and fork view (M2), then the Quest shell, where the scanned room becomes the occupancy grid and three hand gestures replace the keyboard (M3).</p>
+      <p lang="zh">核心是不依赖 Unity 的纯 C#，所以 .NET 9 的离线工具可以在编辑器外编译它，几秒内跑完十个种子的结果表、逐秒轨迹和寻路探针。编辑器录制器可以把任意种子渲染成视频。下一步：倒带与分叉的并排对比视图（M2），然后是 Quest 外壳：扫描到的房间变成占用网格，三个手势代替键盘（M3）。</p>
+      <div class="proj-media">
+        <video loop muted playsinline preload="none" data-lazy-video controls aria-label="Open-field run: the dog collects and pens all twelve sheep on its own">
+          <source src="../assets/vr-sheepdog/m1-open.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p class="case-flow-note"><span lang="en">Open field, seed 3, fully autonomous.</span><span lang="zh">空地，种子 3，全自动。</span></p>
+    </section>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="vr-aquarium.html"><span lang="en">← VR Aquarium</span><span lang="zh">← VR 水族箱</span></a>
+      <a href="game-gate.html"><span lang="en">Next: game-gate →</span><span lang="zh">下一个：game-gate →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated November 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 11 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  if (document.querySelector('.portfolio-header')) return;
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+<script src="../assets/playable.js?v=20261025-inline"></script>
+</body>
+</html>

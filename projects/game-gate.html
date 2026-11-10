@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>game-gate — Pre-Merge Gate for Web Games Case Study · Suzy Su</title>
+<meta name="description" content="A pre-merge gate for web games: CI plays the game and screenshots every screen, a GitLab Duo agent explains the result in player terms, and nothing is fixed or merged without a human&#x27;s approval.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/game-gate.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="game-gate — Pre-Merge Gate for Web Games Case Study">
+<meta property="og:description" content="A pre-merge gate for web games: CI plays the game and screenshots every screen, a GitLab Duo agent explains the result in player terms, and nothing is fixed or merged without a human&#x27;s approval.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/game-gate.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20261021-data">
+<script src="../assets/lenis.min.js" defer></script>
+<link rel="stylesheet" href="../assets/playable.css?v=20261025-inline">
+<link rel="stylesheet" href="../assets/portfolio-nav.css?v=20261026-islands-nav-3">
+<script src="../assets/portfolio-nav.js?v=20261026-islands-nav-3" defer></script>
+</head>
+<body class="portfolio-site">
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="portfolio-header">
+  <div class="portfolio-topbar">
+    <a class="portfolio-brand" href="../index.html">SUZY SU</a>
+    <span class="portfolio-caption"><span lang="en">PORTFOLIO / SELECT A DIRECTION</span><span lang="zh">作品集 / 选择方向</span></span>
+    <div class="portfolio-controls">
+      <button type="button" class="portfolio-language" id="langToggle" aria-label="Switch to Chinese" aria-pressed="false">EN / 中</button>
+    </div>
+  </div>
+  <nav class="portfolio-global" id="portfolioNavigation" aria-label="Portfolio / 作品集"><a href="../index.html" aria-current="location" aria-label="Game design / 游戏设计"><span class="portfolio-route-full"><span lang="en">Game design</span><span lang="zh">游戏设计</span></span><span class="portfolio-route-short"><span lang="en">Games</span><span lang="zh">游戏</span></span></a><a href="../ai/" aria-label="Creative technology / 创意技术"><span class="portfolio-route-full"><span lang="en">Creative technology</span><span lang="zh">创意技术</span></span><span class="portfolio-route-short"><span lang="en">Creative</span><span lang="zh">创意技术</span></span></a><a href="../ai-engineering.html" aria-label="AI engineering / AI 工程"><span class="portfolio-route-full"><span lang="en">AI engineering</span><span lang="zh">AI 工程</span></span><span class="portfolio-route-short"><span lang="en">AI Eng.</span><span lang="zh">AI 工程</span></span></a><a href="../data.html" aria-label="Data analysis / 数据分析"><span class="portfolio-route-full"><span lang="en">Data analysis</span><span lang="zh">数据分析</span></span><span class="portfolio-route-short"><span lang="en">Data</span><span lang="zh">数据分析</span></span></a><a href="../tools.html" aria-label="Tools & technology / 工具与技术"><span class="portfolio-route-full"><span lang="en">Tools & technology</span><span lang="zh">工具与技术</span></span><span class="portfolio-route-short"><span lang="en">Tools</span><span lang="zh">工具</span></span></a></nav>
+</header>
+
+<main id="main">
+<article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Solo · AI-assisted (Claude Code) · GitLab AI Hackathon 2026 · MIT</span><span lang="zh">独立 · AI 协助开发（Claude Code）· GitLab AI 黑客松 2026 · MIT 开源</span></p>
+      <h1 class="proj-title">game-<em>gate</em></h1>
+      <p class="proj-tag">Node.js · Playwright · GitLab CI/CD · GitLab Duo Agent Platform</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">AI agents write game code in minutes, but checking it still takes hours: what changed for players, does it fit a small phone, do the data tables still line up, does it follow the design rules. game-gate is a pre-merge gate for web games. CI plays the game and screenshots every screen, a GitLab Duo agent explains the result in player terms, and nothing is fixed or merged without a person's approval.</span>
+      <span lang="zh">AI 几分钟就能写出游戏代码，核对却要几小时：玩家那边改了什么、小手机上放不放得下、数据表还对不对得上、是否符合设计规则。game-gate 是网页游戏的合并前把关工具：CI 自动试玩游戏、给每个界面截图，GitLab Duo 智能体用玩家视角写出评审结论，修复和合并都要人点头。</span>
+    </p>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Solo: design rules, checks, CI component, agent flow, deployment and the demo film.</p><p lang="zh">独立完成：设计规则、检查项、CI 组件、智能体流程、部署和演示视频。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">GitLab AI Hackathon, built 21–27 Oct 2026; released as v0.1.0.</p><p lang="zh">GitLab AI 黑客松，2026 年 10 月 21–27 日完成，发布 v0.1.0。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>Node.js · Playwright · Vitest · GitLab CI/CD · GitLab Duo · Cloud Run · Figma</p>
+      </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">Web games rarely have tests, so a pipeline stays green while a tutorial crashes on a missing card id or a button shrinks by eight pixels.</p><p lang="zh">网页游戏很少有测试，于是流水线一片绿，教程却因为一张不存在的卡牌 id 崩了，或者某个按钮矮了八个像素。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Let CI play and measure the game, let an agent judge the result against written design rules, and keep a person as the only one who can approve a fix.</p><p lang="zh">让 CI 去玩和测量游戏，让智能体对照写明的设计规则判断结果，批准修复的只能是人。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">In the demo merge request it caught a crash, two layout regressions and a design-rule break, and the fix landed only after approval.</p><p lang="zh">演示合并请求里，它抓到一个崩溃、两处布局回归和一条设计规则违规，修复在批准后才提交。</p></div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="https://www.youtube.com/watch?v=_KbnKGHUIj8" target="_blank" rel="noopener"><span lang="en">▶ Watch the 2:33 film</span><span lang="zh">▶ 观看 2:33 演示片</span></a>
+      <a href="https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/43588409/showcase" target="_blank" rel="noopener">GitLab ↗</a>
+      <a href="https://game-gate-demo-334984245629.us-central1.run.app" target="_blank" rel="noopener"><span lang="en">Demo game ↗</span><span lang="zh">演示游戏 ↗</span></a>
+    </div>
+
+    <div class="proj-media">
+      <video loop muted playsinline preload="metadata" data-lazy-video poster="../assets/game-gate/poster.jpg" controls aria-label="game-gate film opening: the shop button is eight pixels shorter than the start button">
+        <source src="../assets/game-gate/eight-pixels.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-block case-flow-section">
+      <h2><span lang="en">From merge request to approved fix</span><span lang="zh">从合并请求到批准的修复</span></h2>
+      <ol class="case-flow">
+        <li><h3><span lang="en">Check</span><span lang="zh">检查</span></h3><p lang="en">A CI component boots the game headless, plays it and screenshots each screen at 360, 412 and 1280 px, running only the checks the changed files can affect.</p><p lang="zh">CI 组件无头启动游戏、自动试玩，在 360、412、1280 px 三种宽度下给每个界面截图，只跑改动文件可能影响到的检查。</p></li>
+        <li><h3><span lang="en">Review</span><span lang="zh">评审</span></h3><p lang="en">A GitLab Duo flow reads the report, the diff and the design rules, and posts one note: what changed for players, each rule's status and exact proposed fixes.</p><p lang="zh">GitLab Duo 流程读取报告、diff 和设计规则，发一条评论：玩家能感受到的变化、每条规则的状态和具体修复建议。</p></li>
+        <li><h3><span lang="en">Approve</span><span lang="zh">批准</span></h3><p lang="en">The flow pauses. Only after a person approves does a fixer agent commit exactly those edits, to the merge-request branch only. It never merges.</p><p lang="zh">流程暂停。人批准之后，修复智能体才提交且只提交批准的修改，只改合并请求分支，从不合并。</p></li>
+      </ol>
+      <p class="case-flow-note"><span lang="en">Checks cover boot and autoplay errors, labels clipped or off-screen on small phones, same-role buttons with different sizes, and data references to missing ids. After merge, the image deploys to Cloud Run and the gate smoke-checks the live build.</span><span lang="zh">检查项包括：启动与自动试玩报错、小屏上文字被裁或跑出屏幕、同类按钮尺寸不一致、数据引用了不存在的 id。合并后镜像部署到 Cloud Run，gate 再检查线上版本。</span></p>
+      <div class="gameplay-gallery"><figure><a href="../assets/game-gate/review-note.jpg" target="_blank" rel="noopener"><img src="../assets/game-gate/review-note.jpg" alt="The Duo agent's merge-request note: blocked, what changed for players, and a design-intent table" width="1600" height="900" loading="lazy" decoding="async"></a><figcaption><span lang="en">The agent's review note is written for a designer: what players will see, and which design rules break.</span><span lang="zh">智能体的评审写给设计师看：玩家会看到什么，违反了哪几条设计规则。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Judgement, not just detection</span><span lang="zh">不只发现问题，还要判断</span></h2>
+      <p lang="en">In the demo, a tutorial dealt a card id that no longer existed. The checker proposed the closest existing id, 1006. The agent rejected it: 1006 is a skill card, so turn one would still break the rule that the tutorial deals two attack cards. It proposed restoring attack card 1002 instead. After approval, the fixer committed only the edits shown in the note, and the pipeline re-ran the checks.</p>
+      <p lang="zh">演示中，教程发了一张已经不存在的卡牌 id。检查器建议换成最接近的 id 1006。智能体否决了：1006 是技能牌，换上去第一回合仍然违反「教程发两张攻击牌」的规则，所以它建议恢复攻击牌 1002。批准后，修复智能体只提交评论里列出的修改，流水线重新跑检查。</p>
+      <div class="gameplay-gallery"><figure><a href="../assets/game-gate/overrules.jpg" target="_blank" rel="noopener"><img src="../assets/game-gate/overrules.jpg" alt="Checker suggestion card 1006 struck through; the Duo review restores attack card 1002" width="1600" height="900" loading="lazy" decoding="async"></a><figcaption><span lang="en">The agent overrules the checker's naive fix because it would still break a design rule. Frame from the film.</span><span lang="zh">智能体否决了检查器的简单修法，因为它仍会违反设计规则。画面截取自演示片。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">After the deadline: checking against the design</span><span lang="zh">赛后：对照设计稿检查</span></h2>
+      <p lang="en">Pocket Duel, the small card game built for game-gate to check and break on purpose, now has ten screens and states, all built from design tokens with a matching Figma file. A new check compares each screen's elements with the design spec for size, font, colour and corner radius, then diffs the screen against the design image, aligned per element so one moved block doesn't fail the whole screen. Animations are frozen before measuring, and cropped card text is reported. Six named regressions, one per screen problem, each state the finding the gate must report. This work is on a local branch; the hackathon repository stays as submitted.</p>
+      <p lang="zh">Pocket Duel 是专门给 game-gate 检查、也故意拿来弄坏的小卡牌游戏，现在扩到十个界面和状态，全部用设计变量搭建，并有对应的 Figma 设计稿。新增的检查把每个界面的元素和设计规格比尺寸、字体、颜色、圆角，再把整屏和设计图做像素比对；按元素对齐后再比，一个区块下移不会让整屏都报错。测量前先冻结动画，卡牌文字被截断也会报出。六个命名回归各对应一个界面问题，并写明 gate 必须报出的结论。这部分在本地分支上，黑客松仓库保持提交时的状态。</p>
+      <div class="gameplay-gallery"><figure><a href="../assets/game-gate/pocket-duel-v2.jpg" target="_blank" rel="noopener"><img src="../assets/game-gate/pocket-duel-v2.jpg" alt="Pocket Duel screens: home, deck, shop purchase dialog and duel" width="1696" height="915" loading="lazy" decoding="async"></a><figcaption><span lang="en">Four of Pocket Duel's ten screens: home, deck, shop purchase dialog, duel.</span><span lang="zh">Pocket Duel 十个界面中的四个：首页、牌组、购买弹窗、对战。</span></figcaption></figure></div>
+    </section>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="vr-sheepdog.html"><span lang="en">← VR Sheepdog</span><span lang="zh">← VR 牧羊犬</span></a>
+      <a href="liveops.html"><span lang="en">Next: LiveOps Investigator →</span><span lang="zh">下一个：LiveOps Investigator →</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated November 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 11 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  if (document.querySelector('.portfolio-header')) return;
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+<script src="../assets/playable.js?v=20261025-inline"></script>
+</body>
+</html>

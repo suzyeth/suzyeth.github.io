@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LiveOps Investigator — Live-Event Revenue Agent Case Study · Suzy Su</title>
+<meta name="description" content="An agent that explains why a live event earned less than its turnout predicted, across three data sources, with dollar estimates and an explicit unexplained remainder.">
+<meta name="author" content="Suzy Su">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://suzyeth.github.io/projects/liveops.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="LiveOps Investigator — Live-Event Revenue Agent Case Study">
+<meta property="og:description" content="An agent that explains why a live event earned less than its turnout predicted, across three data sources, with dollar estimates and an explicit unexplained remainder.">
+<meta property="og:url" content="https://suzyeth.github.io/projects/liveops.html">
+<meta property="og:image" content="https://suzyeth.github.io/assets/og-card.jpg">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="zh_CN">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0c0a'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-style='italic' fill='%23e8623a'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../style.css?v=20261021-data">
+<script src="../assets/lenis.min.js" defer></script>
+<link rel="stylesheet" href="../assets/playable.css?v=20261025-inline">
+<link rel="stylesheet" href="../assets/portfolio-nav.css?v=20261026-islands-nav-3">
+<script src="../assets/portfolio-nav.js?v=20261026-islands-nav-3" defer></script>
+</head>
+<body class="portfolio-site">
+
+<a class="skip-link" href="#main"><span lang="en">Skip to content</span><span lang="zh">跳到主内容</span></a>
+
+<header class="portfolio-header">
+  <div class="portfolio-topbar">
+    <a class="portfolio-brand" href="../index.html">SUZY SU</a>
+    <span class="portfolio-caption"><span lang="en">PORTFOLIO / SELECT A DIRECTION</span><span lang="zh">作品集 / 选择方向</span></span>
+    <div class="portfolio-controls">
+      <button type="button" class="portfolio-language" id="langToggle" aria-label="Switch to Chinese" aria-pressed="false">EN / 中</button>
+    </div>
+  </div>
+  <nav class="portfolio-global" id="portfolioNavigation" aria-label="Portfolio / 作品集"><a href="../index.html" aria-current="location" aria-label="Game design / 游戏设计"><span class="portfolio-route-full"><span lang="en">Game design</span><span lang="zh">游戏设计</span></span><span class="portfolio-route-short"><span lang="en">Games</span><span lang="zh">游戏</span></span></a><a href="../ai/" aria-label="Creative technology / 创意技术"><span class="portfolio-route-full"><span lang="en">Creative technology</span><span lang="zh">创意技术</span></span><span class="portfolio-route-short"><span lang="en">Creative</span><span lang="zh">创意技术</span></span></a><a href="../ai-engineering.html" aria-label="AI engineering / AI 工程"><span class="portfolio-route-full"><span lang="en">AI engineering</span><span lang="zh">AI 工程</span></span><span class="portfolio-route-short"><span lang="en">AI Eng.</span><span lang="zh">AI 工程</span></span></a><a href="../data.html" aria-label="Data analysis / 数据分析"><span class="portfolio-route-full"><span lang="en">Data analysis</span><span lang="zh">数据分析</span></span><span class="portfolio-route-short"><span lang="en">Data</span><span lang="zh">数据分析</span></span></a><a href="../tools.html" aria-label="Tools & technology / 工具与技术"><span class="portfolio-route-full"><span lang="en">Tools & technology</span><span lang="zh">工具与技术</span></span><span class="portfolio-route-short"><span lang="en">Tools</span><span lang="zh">工具</span></span></a></nav>
+</header>
+
+<main id="main">
+<article class="proj-wrap">
+
+    <a class="proj-back" href="../index.html#work">
+      <span aria-hidden="true">←</span>
+      <span lang="en">All work</span><span lang="zh">返回作品</span>
+    </a>
+
+    <header class="proj-head">
+      <p class="proj-eyebrow"><span lang="en">Solo · AI-assisted (Claude Code) · Open Agent Hackathon 2026</span><span lang="zh">独立 · AI 协助开发（Claude Code）· Open Agent Hackathon 2026</span></p>
+      <h1 class="proj-title">LiveOps <em>Investigator</em></h1>
+      <p class="proj-tag">TypeScript · Postgres · Federated SQL · Local LLM</p>
+    </header>
+
+    <p class="proj-lede">
+      <span lang="en">More players showed up for a live event, but revenue didn't keep up. This agent follows the evidence across the game server, the store purchase log and the live-ops calendar, puts a dollar estimate on each explanation, says what it can't explain, and lets a reviewer challenge every step. All data is synthetic; the findings are leads with dollar estimates, not causal proof.</span>
+      <span lang="zh">活动来的人更多了，收入却没跟上。这个 Agent 在游戏服务器、商店支付日志和运营日历三套数据之间追查证据，给每个解释估出金额，明确说出它解释不了的部分，而且每一步都允许人工质疑。数据全部是合成的；结论是带金额估计的线索，不是因果证明。</span>
+    </p>
+
+    <div class="proj-meta">
+      <div>
+        <h3><span lang="en">My role</span><span lang="zh">我的职责</span></h3>
+        <p lang="en">Solo, AI-assisted build: scenario and data design, investigation rules, review flow and demo video.</p><p lang="zh">独立完成，AI 协助开发：场景与数据设计、调查规则、审核流程和演示视频。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Context</span><span lang="zh">项目背景</span></h3>
+        <p lang="en">Open Agent Hackathon 2026, built 26–27 Oct; submitted.</p><p lang="zh">Open Agent Hackathon 2026，10 月 26–27 日完成并提交。</p>
+      </div>
+      <div>
+        <h3><span lang="en">Core tools</span><span lang="zh">主要技术</span></h3>
+        <p>TypeScript · Node.js · Postgres · Zetaris · Llama 3.2 1B (Nightshift) · H-MEM</p>
+      </div>
+    </div>
+
+    <div class="proj-pdo">
+      <div><h3><span lang="en">Problem</span><span lang="zh">问题</span></h3><p lang="en">A dashboard shows the revenue gap, but not why, or how much each cause accounts for. The answer is split across systems that don't share data.</p><p lang="zh">仪表盘看得到收入缺口，看不到原因，也看不到每个原因占多少。答案分散在互不相通的几套系统里。</p></div>
+      <div><h3><span lang="en">Decision</span><span lang="zh">决策</span></h3><p lang="en">Keep every number deterministic: reviewed SQL templates, fixed statistics and verdicts. The model only picks which open check runs next.</p><p lang="zh">所有数字都由确定的流程算出：审核过的 SQL 模板、固定的统计方法和判定规则。模型只负责选下一个跑哪项检查。</p></div>
+      <div><h3><span lang="en">Outcome</span><span lang="zh">结果</span></h3><p lang="en">Three cases solved end to end, including one where the right answer is "not explained" and the agent says so.</p><p lang="zh">三个案例从头到尾跑通，其中一个的正确答案是「解释不了」，Agent 也如实这么说。</p></div>
+    </div>
+
+    <div class="proj-links">
+      <a class="primary" href="https://github.com/suzyeth/liveops-investigator" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+
+    <div class="proj-media">
+      <video controls playsinline preload="none" poster="../assets/liveops/finding.jpg" aria-label="LiveOps Investigator — 3:33 narrated demo: architecture, the web app and three investigated cases">
+        <source src="../assets/liveops/demo.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <section class="proj-block case-flow-section">
+      <h2><span lang="en">How an investigation runs</span><span lang="zh">一次调查怎么跑</span></h2>
+      <ol class="case-flow">
+        <li><h3><span lang="en">Measure the gap</span><span lang="zh">量出缺口</span></h3><p lang="en">Split the revenue change into players × payer conversion × spend per payer, and compare it with what turnout predicted.</p><p lang="zh">把收入变化拆成人数 × 付费率 × 客单价，再和按人数推算的应得收入比较。</p></li>
+        <li><h3><span lang="en">Drill down</span><span lang="zh">逐项深挖</span></h3><p lang="en">Each reviewed SQL check opens only the follow-ups its result justifies. Every open check runs.</p><p lang="zh">每项审核过的 SQL 检查只打开结果支持的后续检查，所有打开的检查都会跑完。</p></li>
+        <li><h3><span lang="en">Size and state</span><span lang="zh">估金额、下结论</span></h3><p lang="en">Each explanation gets a verdict and a dollar estimate; the remainder is reported as unexplained.</p><p lang="zh">每个解释给出判定和金额估计，剩下的部分写明「解释不了」。</p></li>
+      </ol>
+      <p class="case-flow-note"><span lang="en">One query joins all three sources through Zetaris. A solved case stores a lesson in H-MEM; later cases try that check first. That changes the order, not which evidence is collected.</span><span lang="zh">有一条查询通过 Zetaris 同时连接三个数据源。解决过的案例会在 H-MEM 里存一条经验，之后的案例先试这项检查；这只改变顺序，不改变收集到的证据。</span></p>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">The model doesn't touch the numbers</span><span lang="zh">模型不碰数字</span></h2>
+      <p lang="en">A local 1B model (Llama 3.2 via Nightshift, on a laptop GPU) chooses the order of checks. It never writes SQL, states a number or gives a verdict. Its reply counts only if it names exactly one valid check; anything else falls back to the default order. SQL parameters come from the case definition or earlier validated results, never from model text. A rate drop counts only if it is more than 5 points, on at least 200 orders per period, with |z| ≥ 3. Consistency checks stop the run if the parts don't add up: the three-way split must equal the revenue change, and completed orders must match successful payment attempts.</p>
+      <p lang="zh">本地 1B 模型（Llama 3.2，经 Nightshift 跑在笔记本 GPU 上）只决定检查的顺序，从不写 SQL、不报数字、不下判定。它的回复只有在恰好点名一项有效检查时才算数，否则按默认顺序走。SQL 参数只来自案例定义或之前验证过的结果，不取模型生成的文字。一个比率下降要超过 5 个百分点、每期至少 200 单、|z| ≥ 3 才算数。各部分加不起来时，一致性检查会直接停止运行：三项拆分之和必须等于收入变化，完成的订单数必须等于成功的支付次数。</p>
+      <div class="gameplay-gallery"><figure><a href="../assets/liveops/architecture.jpg" target="_blank" rel="noopener"><img src="../assets/liveops/architecture.jpg" alt="Architecture: three Postgres sources joined by Zetaris, an agent loop that runs reviewed SQL checks, a web app with reviewer challenges" width="1280" height="720" loading="lazy" decoding="async"></a><figcaption><span lang="en">Three systems, one query layer, and an agent a reviewer can challenge. Frame from the demo video.</span><span lang="zh">三套系统、一层查询，以及一个允许人工质疑的 Agent。画面截取自演示视频。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Three cases, three different answers</span><span lang="zh">三个案例，三种答案</span></h2>
+      <p lang="en">The scenario follows the public format and list prices of a mobile game's Community Day. Three problems are planted in the generated data, and the agent is never told about them.</p>
+      <p lang="zh">场景参照一款手游的「社区日」活动的公开形式和定价。生成的数据里埋了三个问题，Agent 事先并不知道。</p>
+      <ul>
+        <li lang="en"><b>Case 1 — payments.</b> Turnout +24%, revenue $12,382 short of what it predicted. Google Play order completion fell from 93.8% to 67.6%, concentrated on one app build. About $4,943 is failed orders; about $7,250 is a shift toward lower-spending players.</li>
+        <li lang="zh"><b>案例一：支付。</b>人数 +24%，收入比按人数推算少 $12,382。Google Play 订单完成率从 93.8% 降到 67.6%，集中在一个客户端版本。约 $4,943 来自支付失败，约 $7,250 来自低消费玩家占比上升。</li>
+        <li lang="en"><b>Case 2 — the offer.</b> Payments healthy. The ticket rose from $1.99 to $4.99 and the bundle lost it. About $3,911 is the offer, about $6,013 the player mix, and $3,547 is unexplained.</li>
+        <li lang="zh"><b>案例二：商品。</b>支付正常。门票从 $1.99 涨到 $4.99，礼盒里也不再含门票。约 $3,911 来自商品改动，约 $6,013 来自玩家结构，$3,547 解释不了。</li>
+        <li lang="en"><b>Case 3 — no cause in the data.</b> Payments held and no offer changed. All $6,228 is reported as unexplained, rather than pinned on a cause.</li>
+        <li lang="zh"><b>案例三：数据里没有原因。</b>支付正常，商品也没变。$6,228 的缺口全部标为「解释不了」，没有硬套一个原因。</li>
+      </ul>
+      <div class="gameplay-gallery"><figure><a href="../assets/liveops/unexplained.jpg" target="_blank" rel="noopener"><img src="../assets/liveops/unexplained.jpg" alt="Case 3 finding: every explanation marked not supported, $6,228 not explained, with challenge buttons and the memory path" width="1280" height="720" loading="lazy" decoding="async"></a><figcaption><span lang="en">Case 3: every checked explanation is "not supported", so the whole shortfall is reported as unexplained. Each row has a Challenge button.</span><span lang="zh">案例三：检查过的解释都「不成立」，整个缺口标为解释不了。每一行都有「质疑」按钮。</span></figcaption></figure></div>
+    </section>
+
+    <section class="proj-block">
+      <h2><span lang="en">Built to be challenged</span><span lang="zh">为被质疑而设计</span></h2>
+      <p lang="en">The web app shows why each step ran, its chart, SQL and rows. A reviewer can say the data looks wrong (the step's SQL is re-run and dependent findings are marked disputed), that something is missing (a new check runs, e.g. revenue by country), or that they don't trust a lesson (its confidence in memory drops). 24 automated tests cover the generator, the agent and the review actions.</p>
+      <p lang="zh">网页应用展示每一步为什么跑、对应的图表、SQL 和数据行。审核人可以说「数据不对」（重新执行这一步的 SQL，依赖它的结论标为有争议）、「漏了东西」（跑一项新检查，比如按国家看收入），或「不信这条经验」（降低它在记忆里的可信度）。24 个自动化测试覆盖数据生成、Agent 和审核操作。</p>
+      <div class="gameplay-gallery"><figure><a href="../assets/liveops/finding.jpg" target="_blank" rel="noopener"><img src="../assets/liveops/finding.jpg" alt="Live progress view: each step of cases one and two with its measured result" width="1280" height="720" loading="lazy" decoding="async"></a><figcaption><span lang="en">Live progress for cases 1 and 2: each check and what it measured.</span><span lang="zh">案例一、二的实时进度：每项检查和它量出的结果。</span></figcaption></figure></div>
+    </section>
+
+    <nav class="proj-nav" aria-label="Project navigation">
+      <a href="game-gate.html"><span lang="en">← game-gate</span><span lang="zh">← game-gate</span></a>
+      <a href="../index.html#work"><span lang="en">All work</span><span lang="zh">返回作品</span></a>
+    </nav>
+
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 Suzy Su · London</span>
+    <span class="foot-mute" lang="en">Last updated November 2026</span>
+    <span class="foot-mute" lang="zh">2026 年 11 月更新</span>
+  </div>
+</footer>
+
+<script>
+// Language toggle — must work even if every other script fails.
+(function () {
+  if (document.querySelector('.portfolio-header')) return;
+  const KEY = 'lang';
+  const btn = document.getElementById('langToggle');
+  const apply = (l) => {
+    document.body.classList.toggle('zh', l === 'zh');
+    document.documentElement.lang = (l === 'zh') ? 'zh-CN' : 'en';
+    if (btn) btn.setAttribute('aria-pressed', String(l === 'zh'));
+  };
+  apply(localStorage.getItem(KEY) || 'en');
+  if (btn) btn.addEventListener('click', () => {
+    const next = document.body.classList.contains('zh') ? 'en' : 'zh';
+    localStorage.setItem(KEY, next);
+    apply(next);
+  });
+})();
+
+// Mobile nav menu (matches the homepage).
+(function () {
+  const hud = document.querySelector('.hud');
+  const btn = document.getElementById('menuToggle');
+  if (!hud || !btn) return;
+  const close = () => { hud.classList.remove('menu-open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => {
+    const open = hud.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  hud.querySelectorAll('.hud-links a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => {
+    if (hud.classList.contains('menu-open') && !hud.contains(e.target)) close();
+  });
+})();
+
+// Lazy-play the demo video only while in view.
+(function () {
+  const vids = document.querySelectorAll('video[data-lazy-video]');
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) { vids.forEach(v => v.play().catch(()=>{})); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { e.isIntersecting ? e.target.play().catch(()=>{}) : e.target.pause(); });
+  }, { threshold: .25 });
+  vids.forEach(v => io.observe(v));
+})();
+
+// Lenis smooth scroll (optional).
+window.addEventListener('load', () => {
+  if (typeof Lenis === 'undefined') return;
+  const lenis = new Lenis({ lerp: .08, smoothWheel: true });
+  function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+});
+</script>
+
+<script src="../assets/playable.js?v=20261025-inline"></script>
+</body>
+</html>

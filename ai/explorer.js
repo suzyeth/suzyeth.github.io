@@ -29,7 +29,7 @@
     const label = document.createElement('span');
     label.className = 'archive-title'; label.textContent = card.dataset.title;
     const footer = document.createElement('span');
-    footer.className = 'archive-imprint'; footer.textContent = 'SUZY / FIELD NOTES — 2026 — NO. 0' + (index + 1);
+    footer.className = 'archive-imprint'; footer.textContent = 'SUZY / FIELD NOTES — 2026 — NO. ' + String(index + 1).padStart(2, '0');
     label.setAttribute('aria-hidden', 'true');
     footer.setAttribute('aria-hidden', 'true');
     art.append(label, footer);
@@ -59,7 +59,7 @@
     document.getElementById('explorer-title').textContent = card.dataset.title;
     document.querySelector('#explorer-description [lang="en"]').textContent = card.dataset.descriptionEn;
     document.querySelector('#explorer-description [lang="zh"]').textContent = card.dataset.descriptionZh;
-    document.querySelector('.explorer-count').textContent = `0${index + 1} / 0${cards.length}`;
+    document.querySelector('.explorer-count').textContent = `${String(index + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
     open.href = card.dataset.destination;
     if (card.dataset.destination.startsWith('https:')) { open.target = '_blank'; open.rel = 'noopener'; }
     else { open.removeAttribute('target'); open.removeAttribute('rel'); }
